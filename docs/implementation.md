@@ -68,4 +68,12 @@ User requested forward-facing location like Google Maps. Bundled the MIT Leaflet
 
 Dragging and route overview suspend the follow camera; the location button restores heading-up. N resets to north-up until follow is resumed. Fullscreen preserves camera mode and tracking. Unit tests and browser tests verify angle wrapping, stationary/missing-heading behaviour, real rendered road vectors, arrow direction, lower-centred location and camera controls.
 
+## HC1 detours and route guidance
+
+User confirmed HC1 was the correct destination but the route was unnecessarily long. The current ICO V1.09-2026 plan shows paired opposite arrows along the C1 access corridor, while OSM way 746582135 was one-way. Added a reproducible, source-recorded direction override without changing geometry or the HC1 approach. The builder checks the exact node chain before applying it and retains the original OSM direction.
+
+Fixed shortest-path initialization at road junctions: starting or arriving at a node no longer requires traversing the arbitrarily selected incident segment. A credible travel course preserves incoming-road context at the starting junction, including when considering a same-segment direct route. Corrected U-turn relations between separate ways. Direction-aware road matching is bounded by reported GPS uncertainty and the existing 50 m maximum road offset.
+
+Extracted guidance into a testable module, retaining turns near the current position and warning when the initial route requires reversing direction. Regression tests reproduce the old HC1 detour, junction loops, lane ambiguity and restriction bypasses. Browser tests use simulated GPS on the corrected HC1 lane and verify direct distance. Shortest-route claims apply to represented legal graph paths between snapped road points; on-site operating rules and unknown road coverage remain limitations.
+
 Duplicate parking labels across terminals must not silently select the wrong destination. No route may be claimed for an unsupported parking or line. Numeric parking codes must work without being mistaken for line numbers. Location permissions must fail clearly. Mobile users must be able to dismiss overlays and access the map. Storage failures must not prevent lookup. Only local assets should be cached; public OSM tiles remain online.

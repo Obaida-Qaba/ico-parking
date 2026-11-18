@@ -2,6 +2,7 @@ import {chromium} from '@playwright/test';
 import assert from 'node:assert/strict';
 import {readFileSync,mkdirSync} from 'node:fs';
 import {buildGraph,routeRoads,distanceMetres,nearestRoad} from '../public/navigation.mjs';
+import {courseBetween} from '../public/heading.mjs';
 mkdirSync('test-results',{recursive:true});
 const data=JSON.parse(readFileSync('public/destinations.json','utf8'));
 const graph=buildGraph(JSON.parse(readFileSync('public/roads.json','utf8')));
@@ -42,6 +43,17 @@ try{
  assert.ok(Math.abs(metres-expected.distance)<3);
  assert.equal(await page.evaluate(()=>localStorage.getItem('portway-gps-pins')),null);
  await page.screenshot({path:'test-results/hc1-automatic-route-simulated-gps.png',fullPage:true});
+ // The HC1 lane is two-way on the current ICO plan. Starting just southeast
+ // of the approach should use this lane directly rather than circle the block.
+ const laneStart=[51.3019,3.2270544],laneHeading=courseBetween(laneStart,end);
+ await page.goto(base+'/?map=south&parking=HC1');
+ await page.locator('.destination-code').waitFor();
+ await page.evaluate(({p,heading})=>{navigator.geolocation.watchPosition=ok=>{ok({timestamp:Date.now(),coords:{latitude:p[0],longitude:p[1],accuracy:3,heading,speed:2}});return 10;};},{p:laneStart,heading:laneHeading});
+ await page.locator('#route-button').click();
+ await page.locator('.road-route').waitFor();
+ const laneMetres=parseFloat(await page.locator('#navigation-distance').innerText());
+ assert.ok(Math.abs(laneMetres-distanceMetres(laneStart,end))<2,'HC1 uses the short direct two-way lane');
+ await page.screenshot({path:'test-results/hc1-short-route-simulated-gps.png',fullPage:true});
  const h61=data.destinations['south:H61'];assert.ok(h61,'H61 builtin location');
  const hEnd=[h61.lat,h61.lon];let hStart;
  for(const point of graph.nodes.values()){
@@ -58,5 +70,5 @@ try{
  assert.match(await page.locator('#navigation-detail').innerText(),/H61 parking approach/);
  assert.equal(await page.evaluate(()=>localStorage.getItem('portway-gps-pins')),null);
  assert.deepEqual(errors,[]);
- console.log('PASS HC1 Bastenaken and H61 Hanze: fresh device, no saved pins, automatic road routes from simulated GPS, no recording prompt, line references retained');
+ console.log('PASS HC1 Bastenaken and H61 Hanze: fresh device, no saved pins, automatic routes, direct HC1 two-way access without a loop, line references retained');
 }finally{await browser.close();}

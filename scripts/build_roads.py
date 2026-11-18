@@ -38,8 +38,19 @@ for filename,bbox in SOURCES:
         if all(x in members for x in ['from','via','to']) and members['via']['type']=='node':
             restrictions[rel.attrib['id']]={'from':members['from']['ref'],'via':members['via']['ref'],'to':members['to']['ref'],'type':tags.get('restriction:motorcar',tags.get('restriction:motor_vehicle',tags.get('restriction','')))}
 
-data={'source':'OpenStreetMap contributors','license':'ODbL 1.0','sourceUrl':'https://www.openstreetmap.org/copyright','retrieved':'2026-11-18',
+rules=json.loads((ROOT/'scripts'/'terminal-road-rules.json').read_text(encoding='utf-8'))
+for rule in rules['overrides']:
+    way=ways.get(rule['way'])
+    if way is None or way['nodes']!=rule['expectedNodes']:
+        raise ValueError('Terminal traffic rule needs review after road geometry changed: '+rule['way'])
+    way['osmOneway']=way['oneway']
+    way['oneway']=rule['oneway']
+    way['trafficOverride']={k:v for k,v in rule.items() if k not in ['way','expectedNodes','oneway']}
+
+data={'source':'OpenStreetMap contributors with current ICO terminal traffic directions','license':'ODbL 1.0','sourceUrl':'https://www.openstreetmap.org/copyright','retrieved':'2026-11-18',
+      'trafficRevision':rules['revision'],
       'bounds':[[51.28,3.18],[51.35,3.26]],'ways':list(ways.values()),'restrictions':list(restrictions.values()),
       'note':'Mapped road geometry only. No inferred road links. Private roads assume authorized terminal access. Operational changes are not live.'}
 (ROOT/'public'/'roads.json').write_text(json.dumps(data,separators=(',',':')),encoding='utf-8')
 print(len(ways),'motorable OSM ways,',len(restrictions),'node turn restrictions')
+print(len(rules['overrides']),'ICO traffic corrections applied')

@@ -1,0 +1,14 @@
+{
+  "revision": "ICO-SIT-V1.09-2026",
+  "overrides": [
+    {
+      "way": "746582135",
+      "oneway": false,
+      "expectedNodes": ["6986702601", "6986702603", "6986702604", "6986702605", "6986702606", "6986702607", "6986702608", "6986702609", "6986702602"],
+      "source": "https://www.icoterminals.com/sites/default/files/SIT%20terminalplan%20SIT%2021%2009%202026.pdf",
+      "sourceRevision": "V1.09-2026",
+      "sourceRegion": "C1 access lane below LC1, KC1, JC1, IC1, HC1 and GC1; PDF points x390-940, y348-365",
+      "reason": "The current ICO plan shows paired opposite arrows indicating two-way traffic along the C1 access corridor. The older OSM one-way tag causes unnecessary HC1 detours."
+    }
+  ]
+}

@@ -1,6 +1,7 @@
 import {buildGraph,routeRoads,distanceMetres,parkingKey,validPin} from './navigation.mjs';
 import {resolveDestination} from './destinations.mjs';
 import {createCourseTracker,screenHeading} from './heading.mjs';
+import {nextInstruction} from './guidance.mjs';
 
 export function createGPS({getMap,getSelected,getCatalogue,showStreet,toast,dialog,onPinChanged,escape:esc}) {
   let watch=null,fix=null,layer=null,boundMap=null,street=false,following=true,active=null,graph=null,graphPromise=null,route=null,pending=null,lastRouteAt=0;
@@ -73,18 +74,6 @@ export function createGPS({getMap,getSelected,getCatalogue,showStreet,toast,dial
       L.polyline(route.points,{color:'#1478e9',weight:6,opacity:1,className:'road-route',interactive:false}).addTo(layer);
     }
   }
-  function nextTurn(points){
-    if(points.length<3)return 'Follow the highlighted road';
-    const bearing=(a,b)=>Math.atan2((b[1]-a[1])*Math.cos(a[0]*Math.PI/180),b[0]-a[0])*180/Math.PI;
-    let travelled=0;
-    for(let i=1;i<points.length-1;i++){
-      const before=distanceMetres(points[i-1],points[i]),after=distanceMetres(points[i],points[i+1]);travelled+=before;
-      if(before<2||after<2)continue;
-      const turn=((bearing(points[i],points[i+1])-bearing(points[i-1],points[i])+540)%360)-180;
-      if(Math.abs(turn)>35)return `${turn>0?'Right':'Left'} turn in ${Math.max(5,Math.round(travelled/5)*5)} m`;
-    }
-    return 'Follow the highlighted road';
-  }
   async function calculate(force=false){
     if(!active||!fix)return;
     if(!usable()){
@@ -95,13 +84,14 @@ export function createGPS({getMap,getSelected,getCatalogue,showStreet,toast,dial
     try{
       const g=await loadGraph();if(active!==hit)return;if(!usable())return calculate(true);
       const firstRoute=!route?.available;
-      route=routeRoads(g,[fix.lat,fix.lon],[pin.lat,pin.lon],{maxSnap:50});
+      const travelHeading=Number.isFinite(fix.speed)&&fix.speed<.7?null:course.heading;
+      route=routeRoads(g,[fix.lat,fix.lon],[pin.lat,pin.lon],{maxSnap:50,heading:travelHeading,accuracy:fix.accuracy});
       $('navigation-destination').textContent=label(hit);
       if(!route.available){$('navigation-instruction').textContent='No connected road route';$('navigation-detail').textContent=route.reason;$('navigation-distance').textContent='—';}
       else{
         $('navigation-distance').textContent=route.distance>=1000?(route.distance/1000).toFixed(1)+' km':Math.round(route.distance)+' m';
         const near=distanceMetres([fix.lat,fix.lon],[pin.lat,pin.lon])<=Math.max(12,fix.accuracy);
-        $('navigation-instruction').textContent=near?(pin.automatic?'You are near the parking approach':'You are near your saved destination'):nextTurn(route.points);
+        $('navigation-instruction').textContent=near?(pin.automatic?'You are near the parking approach':'You are near your saved destination'):nextInstruction(route.points,{heading:travelHeading});
         const targetNote=pin.automatic?`Route to ${hit.parking.code} parking approach.${hit.line?' Line '+hit.line+' remains a reference inside the parking.':''}`:(!pin.exactLine&&hit.line?`Route to ${hit.parking.code} parking; line ${hit.line} is not separately positioned.`:'Route follows mapped roads.');
         $('navigation-detail').textContent=targetNote+(route.endOffset>10?` Road ends ${Math.round(route.endOffset)} m from the point.`:'')+' Follow current terminal signs.';
       }

@@ -26,7 +26,7 @@ Open http://127.0.0.1:4173. The app runs directly from `public/`; no build or AP
 - All six plan images, the app shell and the road network are saved offline after the initial successful download. External background street-map tiles require internet; road geometry and routing work offline. Browser storage can be evicted by the device.
 - Continuous high-accuracy GPS tracking, accuracy display, heading, speed and follow-position mode. Tracking can be stopped explicitly.
 - Heading-up driving view: the geographic road map rotates with the travel course, with a forward-pointing blue arrow lower on the screen to show the road ahead. Stops retain the last reliable course. If the phone supplies no heading, meaningful GPS movement provides a course. Panning pauses the follow camera; the location button resumes it. **N** switches to north-up.
-- Road routing to built-in or saved destinations with distance updates, basic turn prompts and rerouting from updated GPS. Routes follow OSM road geometry, mapped one-way directions and node turn restrictions. They never connect disconnected roads with an invented shortcut.
+- Road routing to built-in or saved destinations with distance updates, basic turn prompts and rerouting from updated GPS. Routes minimize distance over the represented road graph, follow mapped one-way directions and node turn restrictions, and use travel course to distinguish nearby lanes within GPS uncertainty. They never connect disconnected roads with an invented shortcut.
 - Bastenaken/Hanze searches use the current combined southern plan, including `HC1 Bastenaken`. An explicitly typed terminal takes precedence over a previous dropdown selection.
 - Navigation pauses when GPS accuracy is worse than 35 metres or the last fix is older than 15 seconds.
 - PWA manifest, installation support where the browser permits it, and home-screen icons.
@@ -42,6 +42,8 @@ These approaches are matched from the September 2026 ICO plan to actual geograph
 A line reference routes to the parking approach unless a separate exact line point exists. For a reference outside the built-in catalogue, optional on-site GPS or map selection is still available. Saving requires a fresh fix with accuracy of 25 metres or better. Saved points stay on this device and take precedence over built-in approaches; shared links identify the parking/line but do not transfer private GPS refinements.
 
 Routing covers the downloaded Zeebrugge road network, including internal roads present in OSM. Missing roads, temporary closures, access changes and way-based turn restrictions are not provided as live operational data. The router assumes authorized access to mapped private terminal roads. Explicitly locked/no-access nodes and motor-vehicle prohibitions are excluded. It refuses to route if either endpoint is more than 50 metres from a mapped drivable road. The drawn route ends on the road; any gap to the saved point is reported rather than drawn across a parking block.
+
+The C1 access corridor beside HC1 follows the paired two-way arrows in ICO's V1.09-2026 plan, correcting the OSM one-way tag for way 746582135. `scripts/terminal-road-rules.json` records the source and expected node chain; rebuilding fails for review if that geometry changes. The original OSM direction and correction provenance remain in `roads.json`. This is a documented source correction, not live closure or traffic information.
 
 PDF parking markers identify source drawing labels, not verified entrances. Some labels appear at multiple positions. Live GPS is shown on the geographic road map, which also shows saved destination points. The schematic PDF drawings remain separate and are not presented as GPS-aligned.
 
@@ -86,6 +88,8 @@ npm run test:browser
 The suites check desktop/mobile search, line references, deep links, missing parking, invalid input, every map, denied/granted GPS, live movement, accurate GPS capture, road routing, one-way and turn restrictions, low-accuracy pause, stopping tracking, offline road routing and no uncaught browser errors. GPS browser tests use simulated positions on actual downloaded road geometry; they do not establish on-site accuracy. Screenshots are written to `test-results/` and are not published.
 
 Automatic-destination checks include HC1/Bastenaken filtering, terminal names typed into search, fresh devices with no saved pins, automatic HC1/H61 routes without the recording dialog, and every built-in target lying on a motorable road. Rebuild matched approaches with `python scripts/build_destinations.py` after the map/road build; this uses `numpy`.
+
+Routing regressions cover direct HC1 access from the corrected direction, unnecessary loops at source/target junctions, course-aware parallel-lane selection, restricted initial turns and U-turns. Guidance checks cover reversals, immediate turns, duplicate points and dense geometry. Browser checks include the short HC1 access route from simulated GPS.
 
 Map UI checks cover native desktop fullscreen, rejected-fullscreen mobile fallback, portrait/landscape map size, accessible map options, visible source dialogs, explicit/Escape exits and preservation of the current GPS watch and route geometry.
 

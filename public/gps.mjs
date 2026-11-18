@@ -3,6 +3,7 @@ import {resolveDestination} from './destinations.mjs';
 import {createCourseTracker,screenHeading} from './heading.mjs';
 import {nextInstruction} from './guidance.mjs';
 import {createParkingLabels} from './parking-labels.mjs';
+import {createRoadMap} from './road-map.mjs';
 
 export function createGPS({getMap,getSelected,getCatalogue,showStreet,toast,dialog,onPinChanged,escape:esc}) {
   let watch=null,fix=null,layer=null,boundMap=null,street=false,following=true,active=null,graph=null,graphPromise=null,route=null,pending=null,lastRouteAt=0;
@@ -185,10 +186,7 @@ export function createGPS({getMap,getSelected,getCatalogue,showStreet,toast,dial
     draw();followView();
     loadGraph().then(g=>{
       if(boundMap!==m||!street)return;
-      if(!m.getPane('mappedRoads'))m.createPane('mappedRoads',m.getPane('overlayPane')).style.zIndex='0';
-      const roadLayer=L.layerGroup().addTo(m);
-      for(const segment of g.segments)L.polyline([segment.pa,segment.pb],{color:'#427b76',weight:2,opacity:.42,interactive:false,pane:'mappedRoads'}).addTo(roadLayer);
-      roadLayer.bringToBack?.();layer.bringToFront?.();draw();
+      createRoadMap(m,g);draw();
     }).catch(()=>{});
   }
   function clearRoute(){active=null;route=null;pending=null;$('cancel-pin').hidden=true;navigationLayout(false);draw();}

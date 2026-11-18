@@ -90,4 +90,12 @@ Kept the route approaches unchanged and added separate display positions for the
 
 Both normal and highlighted codes now use the parking display point. The highlighted badge is centred there, and a blue dot separately marks the road endpoint. Collision reserves follow the displayed badge. Data tests verify the correct aisle strip and independent HC1/HC2/HC3 coordinates; browser tests verify displayed positions and the road endpoint across 0/90/270-degree rotations.
 
+## Reported nonexistent HC3 cross street
+
+An on-site screenshot showed a transverse street between GPS near GC2 and HC3, although the user reported no left/right street there. Its position matches node 2494511760 on way 241873297, 106 m before the HC3 approach. The crossing comes from OSM way 241873269. The current ICO plan shows paired HC/GC C-row blocks sharing a boundary, rather than a cross-road gap.
+
+Excluded exactly three perpendicular segments of that way through rows C1-C3. All shared nodes, longitudinal aisles and unrelated way segments remain available. A reproducible rule records the on-site report, supporting plan and expected source node chain; a geometry change requires review. This is a scoped correction, not removal of all grid crossings or a surveyed map of the full terminal.
+
+The external raster tiles also contain the false street. `road-map.mjs` therefore renders an opaque geographic background in the bounded correction area, then draws the corrected graph above it with road casing and fill. The background and road panes rotate with the map at overlay-child depths -2 and -1; the GPS, labels and blue route remain above them. Ordinary tiles remain visible outside the area. Tests reproduce the missing correction before implementation, verify no lateral graph edges and preserved straight travel, and check vector geometry, opaque coverage, route stacking, rotation and offline use in the browser.
+
 Duplicate parking labels across terminals must not silently select the wrong destination. No route may be claimed for an unsupported parking or line. Numeric parking codes must work without being mistaken for line numbers. Location permissions must fail clearly. Mobile users must be able to dismiss overlays and access the map. Storage failures must not prevent lookup. Only local assets should be cached; public OSM tiles remain online.

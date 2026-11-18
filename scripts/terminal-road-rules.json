@@ -1,5 +1,5 @@
 {
-  "revision": "ICO-SIT-V1.09-2026",
+  "revision": "ICO-SIT-V1.09-2026-field-2026-11-18",
   "overrides": [
     {
       "way": "746582135",
@@ -9,6 +9,32 @@
       "sourceRevision": "V1.09-2026",
       "sourceRegion": "C1 access lane below LC1, KC1, JC1, IC1, HC1 and GC1; PDF points x390-940, y348-365",
       "reason": "The current ICO plan shows paired opposite arrows indicating two-way traffic along the C1 access corridor. The older OSM one-way tag causes unnecessary HC1 detours."
+    }
+  ],
+  "segmentExclusions": [
+    {
+      "way": "241873269",
+      "expectedNodes": ["2494511765", "2494511764", "2494511762", "6986702605", "6986702612", "2494511760", "6986702619", "6986702626", "11393709903", "2494511759"],
+      "excludedSegments": [["6986702605", "6986702612"], ["6986702612", "2494511760"], ["2494511760", "6986702619"]],
+      "source": "https://www.icoterminals.com/sites/default/files/SIT%20terminalplan%20SIT%2021%2009%202026.pdf",
+      "sourceRevision": "V1.09-2026",
+      "onSiteReport": "2026-11-18: the app user reported no left/right street between their position near GC2 and HC3; the reported crossing matches node 2494511760, 106 m from the HC3 road approach.",
+      "sourceRegion": "HC1/GC1, HC2/GC2 and HC3/GC3 are contiguous paired parking blocks, PDF x616.34-709.82, y328.86-354.77. Their common border is not an access-road gap.",
+      "reason": "The current ICO plan and on-site report do not support the three perpendicular cross-parking segments through the paired H/G C-row blocks. Retain the actual longitudinal aisles, their shared nodes and unrelated portions of this OSM way."
+    }
+  ],
+  "mapPatches": [
+    {
+      "id": "hc-gc-c-rows",
+      "crossingWay": "241873269",
+      "betweenNodes": ["6986702605", "6986702619"],
+      "alongWay": "241873297",
+      "alongNodes": ["2494511750", "2494511760"],
+      "halfLengthMetres": 150,
+      "capMetres": 10,
+      "fill": "#eae6e8",
+      "source": "https://www.icoterminals.com/sites/default/files/SIT%20terminalplan%20SIT%2021%2009%202026.pdf",
+      "reason": "Replace the inaccurate background cross street within the matched H/G C-row area with corrected road vectors, using the 2026-11-18 on-site report and ICO V1.09-2026 parking-block layout."
     }
   ]
 }

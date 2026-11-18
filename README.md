@@ -46,6 +46,8 @@ Routing covers the downloaded Zeebrugge road network, including internal roads p
 
 The C1 access corridor beside HC1 follows the paired two-way arrows in ICO's V1.09-2026 plan, correcting the OSM one-way tag for way 746582135. `scripts/terminal-road-rules.json` records the source and expected node chain; rebuilding fails for review if that geometry changes. The original OSM direction and correction provenance remain in `roads.json`. This is a documented source correction, not live closure or traffic information.
 
+Three nonexistent perpendicular links through the paired HC/GC C-row blocks are excluded from routing after an on-site report supported by the ICO plan. The valid straight aisles and unrelated road segments remain connected. In this bounded area, corrected road vectors replace the outdated raster street grid so the false cross street is absent from both routing and the visible map. Correction provenance, expected node chains and the affected display polygon are stored with the road data. Outside this area the usual OSM tiles remain visible; this does not establish that every terminal road has been checked on site.
+
 PDF parking markers identify source drawing labels, not verified entrances. Some labels appear at multiple positions. Live GPS is shown on the geographic road map, which also shows saved destination points. The schematic PDF drawings remain separate and are not presented as GPS-aligned.
 
 The older PDF pages are raster images. Only clearly readable labels have been manually indexed; unindexed labels remain visible in the plans. Their arrangements and numbering may be outdated. None of these plans has been confirmed against the current operating layout by ICO.
@@ -99,6 +101,8 @@ Heading checks simulate 90°, 180° and 270° travel and verify both projected c
 Nearby-label browser checks verify other parking codes beside an active HC1 route, upright text and non-overlapping labels after rotation, no duplicate destination label, and preservation across live GPS updates, fullscreen and offline reloads.
 
 Parking-position regressions check that C-row labels lie between their own bounding aisles. HC2 browser checks verify both normal and highlighted code positions at 0°, 90° and 270° map bearings, independently of the road endpoint. Display positions are source-matched estimates; LC1 uses the midpoint of paired aisle endpoints at the row edge. These labels do not change routing destinations or locate exact lines.
+
+Road-correction regressions verify that the reported HC3 crossing has no lateral graph edges while straight travel remains available. Browser checks confirm the old raster crossing is covered by the corrected geographic map area, the removed segments are absent from road vectors, and the blue route stays visible during rotation and offline reloads.
 
 ## Phone access and hosting
 

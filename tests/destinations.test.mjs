@@ -55,7 +55,7 @@ test('C-row parking names sit inside their own blocks, separately from the share
   const label=pin.labelPosition;
   assert.ok(validPin(label),key+' has a separate geographic parking label');
   const lower=pin.roadWay;
-  const upper=key.endsWith('1')?'746582136':key.endsWith('3')?'1228590688':/^south:[GH]/.test(key)?'241873297':'746582089';
+  const upper=key.endsWith('1')?'746582136':key.endsWith('3')?(/^south:[G-I]/.test(key)?'1228590688':'746582137'):/^south:[GH]/.test(key)?'241873297':'746582089';
   const distances=[lower,upper].map(id=>nearestRoad(buildGraph({ways:roads.ways.filter(w=>w.id===id)}),[label.lat,label.lon]).distance);
   assert.ok(distances.every(d=>d>5&&d<20),key+' label must be between its actual bounding aisles, not on a shared boundary');
  }

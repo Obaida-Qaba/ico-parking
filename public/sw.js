@@ -1,4 +1,4 @@
-const CACHE='portway-v17-smooth-navigation';
+const CACHE='portway-v18-c3-road-continuations';
 self.addEventListener('install',event=>{
   event.waitUntil((async()=>{
     const cache=await caches.open(CACHE);

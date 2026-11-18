@@ -124,14 +124,35 @@ bc=fit(BASTENAKEN_CONTROLS)
 # continuous OSM parking aisle. Do not reuse this mapping for changed E/F blocks,
 # A/B blocks or other terminal regions with different schematic scales.
 rows={1:(357.07,'746582135'),2:(346.53,'746582136'),3:(337.10,'241873297')}
+# The G/H C3 lane ends at H's western junction. I-L use its real continuation;
+# their upper boundary also continues on a different way after the I strip.
+C3_CONTINUATIONS={
+    'I':{'lowerNodes':['6986702466','2494511750'],'upperWay':'1228590688','upperNodes':['6986702620','6986702621'],'sideWays':['746582086','746582127'],'sourceBounds':[564.69,328.86,606.32,335.91]},
+    'J':{'lowerNodes':['6986702472','6986702466'],'upperWay':'746582137','upperNodes':['6986702621','6986702622'],'sideWays':['746582091','746582086'],'sourceBounds':[513.06,328.86,554.69,335.91]},
+    'K':{'lowerNodes':['6986702467','6986702472'],'upperWay':'746582137','upperNodes':['6986702622','6986702623'],'sideWays':['746582088','746582091'],'sourceBounds':[461.44,328.86,503.07,335.91]},
+    'L':{'lowerNodes':['6986702465','6986702467'],'upperWay':'746582137','upperNodes':['6986702623','6986702617'],'sideWays':['746582075','746582088'],'sourceBounds':[409.81,328.86,451.44,335.91]},
+}
 for p in CURRENT['parkings']:
     code=p['code']
     if len(code)==3 and code[0] in 'LGKHJI' and code[1]=='C' and code[2] in '123':
         n=int(code[2]);y,way=rows[n]
+        continuation=C3_CONTINUATIONS.get(code[0]) if n==3 else None
+        if continuation:
+            way='746582089'
+            require_road_chain(way,continuation['lowerNodes'],False)
+            require_road_chain(continuation['upperWay'],continuation['upperNodes'],True)
+            for side,top,bottom in zip(continuation['sideWays'],continuation['upperNodes'][::-1],continuation['lowerNodes']):
+                require_road_chain(side,[top,bottom],False)
         add(code,[p['x']/3,y],bc,way,'bastenaken-central-c-rows')
         if 'south:'+code in out:
-            upper='746582136' if n==1 else '1228590688' if n==3 else '241873297' if code[0] in 'GH' else '746582089'
+            upper=continuation['upperWay'] if continuation else '746582136' if n==1 else '1228590688' if n==3 else '241873297' if code[0] in 'GH' else '746582089'
             add_block_label(code,[p['x']/3,p['y']/3],bc,way,upper)
+            if continuation:
+                point=out['south:'+code]
+                if point['roadSegment']!=continuation['lowerNodes']:
+                    raise ValueError('C3 approach left its individually matched parking column: '+code)
+                point['sourceBounds']=continuation['sourceBounds']
+                point['junctionMatch']={'lowerWay':way,'lowerNodes':continuation['lowerNodes'],'upperWay':upper,'upperNodes':continuation['upperNodes'],'sideWays':continuation['sideWays']}
 
 # H61 is reached at its north access lane in the current revised H zone.
 add('H61',[250.6,628],fit(HANZE_CONTROLS),'746744831','hanze-h61')

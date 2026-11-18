@@ -395,6 +395,67 @@
         "basis": "The ICO parking row lies between these matched OSM aisles. Display label only; road routing retains its separate approach point. Not surveyed."
       }
     },
+    "south:IC3": {
+      "lat": 51.30068801045976,
+      "lon": 3.2272054520035582,
+      "method": "source-road-match",
+      "scope": "parking-approach",
+      "parking": "IC3",
+      "sourceMap": "south",
+      "sourceRevision": "V1.09-2026",
+      "roadWay": "746582089",
+      "roadSegment": [
+        "6986702466",
+        "2494511750"
+      ],
+      "sourcePoint": [
+        586.6633,
+        337.1
+      ],
+      "matchDistanceMetres": 0.55,
+      "lineExact": false,
+      "region": "bastenaken-central-c-rows",
+      "basis": "Local ICO parking-block and landmark geometry matched to an identified OSM service-road lane. Parking approach only; exact line positions and current site operations are not verified.",
+      "labelPosition": {
+        "lat": 51.300657807459594,
+        "lon": 3.227039785805961,
+        "method": "matched-aisle-midpoint",
+        "scope": "parking-block-label",
+        "sourcePoint": [
+          586.6633,
+          331.7533
+        ],
+        "boundaryWays": [
+          "746582089",
+          "1228590688"
+        ],
+        "boundaryWidthMetres": 23.66,
+        "edgeEstimate": false,
+        "basis": "The ICO parking row lies between these matched OSM aisles. Display label only; road routing retains its separate approach point. Not surveyed."
+      },
+      "sourceBounds": [
+        564.69,
+        328.86,
+        606.32,
+        335.91
+      ],
+      "junctionMatch": {
+        "lowerWay": "746582089",
+        "lowerNodes": [
+          "6986702466",
+          "2494511750"
+        ],
+        "upperWay": "1228590688",
+        "upperNodes": [
+          "6986702620",
+          "6986702621"
+        ],
+        "sideWays": [
+          "746582086",
+          "746582127"
+        ]
+      }
+    },
     "south:JC1": {
       "lat": 51.2994790875193,
       "lon": 3.2290142749552,
@@ -471,6 +532,67 @@
         "boundaryWidthMetres": 26.57,
         "edgeEstimate": false,
         "basis": "The ICO parking row lies between these matched OSM aisles. Display label only; road routing retains its separate approach point. Not surveyed."
+      }
+    },
+    "south:JC3": {
+      "lat": 51.29933857924742,
+      "lon": 3.2283071708837388,
+      "method": "source-road-match",
+      "scope": "parking-approach",
+      "parking": "JC3",
+      "sourceMap": "south",
+      "sourceRevision": "V1.09-2026",
+      "roadWay": "746582089",
+      "roadSegment": [
+        "6986702472",
+        "6986702466"
+      ],
+      "sourcePoint": [
+        535.07,
+        337.1
+      ],
+      "matchDistanceMetres": 4.86,
+      "lineExact": false,
+      "region": "bastenaken-central-c-rows",
+      "basis": "Local ICO parking-block and landmark geometry matched to an identified OSM service-road lane. Parking approach only; exact line positions and current site operations are not verified.",
+      "labelPosition": {
+        "lat": 51.299308071319416,
+        "lon": 3.2281409866408532,
+        "method": "matched-aisle-midpoint",
+        "scope": "parking-block-label",
+        "sourcePoint": [
+          535.07,
+          331.8233
+        ],
+        "boundaryWays": [
+          "746582089",
+          "746582137"
+        ],
+        "boundaryWidthMetres": 23.74,
+        "edgeEstimate": false,
+        "basis": "The ICO parking row lies between these matched OSM aisles. Display label only; road routing retains its separate approach point. Not surveyed."
+      },
+      "sourceBounds": [
+        513.06,
+        328.86,
+        554.69,
+        335.91
+      ],
+      "junctionMatch": {
+        "lowerWay": "746582089",
+        "lowerNodes": [
+          "6986702472",
+          "6986702466"
+        ],
+        "upperWay": "746582137",
+        "upperNodes": [
+          "6986702621",
+          "6986702622"
+        ],
+        "sideWays": [
+          "746582091",
+          "746582086"
+        ]
       }
     },
     "south:KC1": {
@@ -551,6 +673,67 @@
         "basis": "The ICO parking row lies between these matched OSM aisles. Display label only; road routing retains its separate approach point. Not surveyed."
       }
     },
+    "south:KC3": {
+      "lat": 51.29797959789162,
+      "lon": 3.2294134039122504,
+      "method": "source-road-match",
+      "scope": "parking-approach",
+      "parking": "KC3",
+      "sourceMap": "south",
+      "sourceRevision": "V1.09-2026",
+      "roadWay": "746582089",
+      "roadSegment": [
+        "6986702467",
+        "6986702472"
+      ],
+      "sourcePoint": [
+        483.15,
+        337.1
+      ],
+      "matchDistanceMetres": 8.98,
+      "lineExact": false,
+      "region": "bastenaken-central-c-rows",
+      "basis": "Local ICO parking-block and landmark geometry matched to an identified OSM service-road lane. Parking approach only; exact line positions and current site operations are not verified.",
+      "labelPosition": {
+        "lat": 51.29794861941018,
+        "lon": 3.229247882865166,
+        "method": "matched-aisle-midpoint",
+        "scope": "parking-block-label",
+        "sourcePoint": [
+          483.15,
+          331.9667
+        ],
+        "boundaryWays": [
+          "746582089",
+          "746582137"
+        ],
+        "boundaryWidthMetres": 23.72,
+        "edgeEstimate": false,
+        "basis": "The ICO parking row lies between these matched OSM aisles. Display label only; road routing retains its separate approach point. Not surveyed."
+      },
+      "sourceBounds": [
+        461.44,
+        328.86,
+        503.07,
+        335.91
+      ],
+      "junctionMatch": {
+        "lowerWay": "746582089",
+        "lowerNodes": [
+          "6986702467",
+          "6986702472"
+        ],
+        "upperWay": "746582137",
+        "upperNodes": [
+          "6986702622",
+          "6986702623"
+        ],
+        "sideWays": [
+          "746582088",
+          "746582091"
+        ]
+      }
+    },
     "south:LC1": {
       "lat": 51.2967932,
       "lon": 3.231195,
@@ -627,6 +810,67 @@
         "boundaryWidthMetres": 26.79,
         "edgeEstimate": false,
         "basis": "The ICO parking row lies between these matched OSM aisles. Display label only; road routing retains its separate approach point. Not surveyed."
+      }
+    },
+    "south:LC3": {
+      "lat": 51.29662677984252,
+      "lon": 3.2305131311095776,
+      "method": "source-road-match",
+      "scope": "parking-approach",
+      "parking": "LC3",
+      "sourceMap": "south",
+      "sourceRevision": "V1.09-2026",
+      "roadWay": "746582089",
+      "roadSegment": [
+        "6986702465",
+        "6986702467"
+      ],
+      "sourcePoint": [
+        431.4767,
+        337.1
+      ],
+      "matchDistanceMetres": 13.0,
+      "lineExact": false,
+      "region": "bastenaken-central-c-rows",
+      "basis": "Local ICO parking-block and landmark geometry matched to an identified OSM service-road lane. Parking approach only; exact line positions and current site operations are not verified.",
+      "labelPosition": {
+        "lat": 51.29659613477316,
+        "lon": 3.230348339059147,
+        "method": "matched-aisle-midpoint",
+        "scope": "parking-block-label",
+        "sourcePoint": [
+          431.4767,
+          331.9467
+        ],
+        "boundaryWays": [
+          "746582089",
+          "746582137"
+        ],
+        "boundaryWidthMetres": 23.59,
+        "edgeEstimate": false,
+        "basis": "The ICO parking row lies between these matched OSM aisles. Display label only; road routing retains its separate approach point. Not surveyed."
+      },
+      "sourceBounds": [
+        409.81,
+        328.86,
+        451.44,
+        335.91
+      ],
+      "junctionMatch": {
+        "lowerWay": "746582089",
+        "lowerNodes": [
+          "6986702465",
+          "6986702467"
+        ],
+        "upperWay": "746582137",
+        "upperNodes": [
+          "6986702623",
+          "6986702617"
+        ],
+        "sideWays": [
+          "746582075",
+          "746582088"
+        ]
       }
     },
     "south:H61": {
@@ -20184,7 +20428,7 @@
   "coverageAudit": {
     "south": {
       "total": 260,
-      "routable": 173,
+      "routable": 177,
       "missing": [
         "AH1",
         "AH2",
@@ -20237,7 +20481,6 @@
         "HD3",
         "HD4",
         "HFX",
-        "IC3",
         "ID1",
         "ID2",
         "ID3",
@@ -20246,7 +20489,6 @@
         "IE2",
         "IE3",
         "IOS",
-        "JC3",
         "JD1",
         "JD2",
         "JD3",
@@ -20255,7 +20497,6 @@
         "JE2",
         "JE3",
         "JOS",
-        "KC3",
         "KD1",
         "KD2",
         "KD3",
@@ -20264,7 +20505,6 @@
         "KE2",
         "KE3",
         "KOS",
-        "LC3",
         "LD1",
         "LD2",
         "LD3",

@@ -136,15 +136,23 @@ With Chromium mobile viewport and 4x CPU throttling, VPC pan/rotation changed fr
 
 BB exposed the gap between source labels and geographic destinations again. North BB now resolves directly to the adjacent lane 241878068 at 51.32706215, 3.2180946 without a saved pin. Its row is counted from the HLN/SUI warehouse boundary rather than extrapolated from a whole-plan transform. All 47 matched North targets route from BB over the existing directed network.
 
-The generated catalogue contains 348 source-reference approach records. Regional builders record bounded road parcels, lane/node guards, source positions, named controls and historical/group precision. The original 20 records are preserved. Toyota markers were corrected against the brochure, including P04, and seven omitted codes were added. North L/P/W fragments from warehouse text are excluded. Explicit historical-only records resolve in their own source map; saved points retain precedence.
+The generated catalogue contains 352 source-reference approach records. Regional builders record bounded road parcels, lane/node guards, source positions, named controls and historical/group precision. The original 20 records are preserved. Toyota markers were corrected against the brochure, including P04, and seven omitted codes were added. North L/P/W fragments from warehouse text are excluded. Explicit historical-only records resolve in their own source map; saved points retain precedence.
 
 The resolver retains parking-group-approach scope. Destination and route details call these parking-area approaches and state when the exact entrance is unmapped. No exact line positions are inferred. The source-to-road matches remain estimates and are not on-site validation.
 
-Every offered approach is checked for an actual directed road connection from CD1 or North BB. This caught H30/H31 on an isolated inbound lane; their shared approaches now use the reachable northern boundary road 746744822, retaining the original one-way road data. All 348 offered targets pass this connectivity regression.
+Every offered approach is checked for an actual directed road connection from CD1 or North BB. This caught H30/H31 on an isolated inbound lane; their shared approaches now use the reachable northern boundary road 746744822, retaining the original one-way road data. All 352 offered targets pass this connectivity regression.
 
-Coverage is 415/531 indexed source-plan references, including historical duplicates; 116 remain unlocated. coverageAudit records each gap, and npm run audit:coverage exits 1 until none remain. Unit tests check audit completeness and road placement; this does not make the full-coverage audit pass. Nissan internal roads and gate connections are not established. FX projections across a fence to public MVO were removed after review. AH/BH/CH research remains outside the published merge because individual geography is not established; the nearby 1338613xxx grid is WWL rather than ICO.
+Coverage is 419/531 indexed source-plan references, including historical duplicates; 112 remain unlocated. coverageAudit records each gap, and npm run audit:coverage exits 1 until none remain. Unit tests check audit completeness and road placement; this does not make the full-coverage audit pass. Nissan internal roads and gate connections are not established. FX projections across a fence to public MVO were removed after review. AH/BH/CH research remains outside the published merge because individual geography is not established; the nearby 1338613xxx grid is WWL rather than ICO.
 
 The larger catalogue attached all 351 trial marker nodes before hiding them. The label layer now attaches only points within the viewport plus 64 pixels and preserves cached marker objects. A 4x CPU fixture reduced attached nodes to about 60 and pan/rotation work from about 15 ms to about 10 ms. Large parking lists now remain on screen and scroll. Browser checks include fresh-device BB, five supported plan views, retained lines, offline BB, marker reuse and grouped labels. Full coverage remains unfinished because of the recorded geographic-data gaps.
+
+## JC3 and the C3 road continuation
+
+JC3 exposed a builder error rather than missing physical roads. Row 3 always used way 241873297, which terminates at the H/I boundary. The 30 m matching guard therefore rejected I-L targets 112-620 m beyond that way. The actual lower continuation is way 746582089; the upper boundary continues from 1228590688 onto 746582137 after I.
+
+Four source-checked C3 recipes now require each individual lower/upper segment and its two adjacent side junctions. IC3, JC3, KC3 and LC3 retain separate parking-block labels between their true bounding aisles, and arrival points stay on the lower road. All previous 348 destination objects remain unchanged. Exact line positions are still not inferred.
+
+The JC3 mobile regression reproduces the former View parking action, then verifies direct navigation from the actual adjacent C3 aisle, fresh-device search, a visibly painted 121 m same-road route, retained line 15, no saved GPS or dialog, and offline reload. Unit checks cover all four added destinations and their connected road routes.
 
 ## Active navigation smoothness
 

@@ -59,6 +59,26 @@ def add(code,source,coeff,way,region):
         'basis':'Local ICO parking-block and landmark geometry matched to an identified OSM service-road lane. Parking approach only; exact line positions and current site operations are not verified.'
     }
 
+def add_block_label(code,source,coeff,lower_way,upper_way):
+    """Label the parking strip, not the access road shared with the next row."""
+    raw=np.array([*source,1])@coeff
+    lower=on_road(raw,lower_way);upper=on_road(raw,upper_way)
+    scale=np.array([69800,111320])
+    width=float(np.linalg.norm((upper[1]-lower[1])*scale))
+    if max(lower[0],upper[0])>35 or not 15<width<35:
+        raise ValueError('Parking label boundary match needs review: '+code)
+    point=(lower[1]+upper[1])/2
+    edge=False
+    for result,wayid in [(lower,lower_way),(upper,upper_way)]:
+        way=next(w for w in ROADS['ways'] if w['id']==wayid)
+        if any(np.allclose(result[1],np.array(p[::-1]),atol=1e-12,rtol=0) for p in [way['points'][0],way['points'][-1]]):edge=True
+    out['south:'+code]['labelPosition']={
+        'lat':float(point[1]),'lon':float(point[0]),'method':'matched-aisle-midpoint',
+        'scope':'parking-block-label','sourcePoint':[round(x,4) for x in source],
+        'boundaryWays':[lower_way,upper_way],'boundaryWidthMetres':round(width,2),'edgeEstimate':edge,
+        'basis':'The ICO parking row lies between these matched OSM aisles. Display label only; road routing retains its separate approach point. Not surveyed.'
+    }
+
 bc=fit(BASTENAKEN_CONTROLS)
 # Narrow C-row blocks: each bottom access lane corresponds to an identifiable
 # continuous OSM parking aisle. Do not reuse this mapping for changed E/F blocks,
@@ -69,11 +89,14 @@ for p in CURRENT['parkings']:
     if len(code)==3 and code[0] in 'LGKHJI' and code[1]=='C' and code[2] in '123':
         n=int(code[2]);y,way=rows[n]
         add(code,[p['x']/3,y],bc,way,'bastenaken-central-c-rows')
+        if 'south:'+code in out:
+            upper='746582136' if n==1 else '1228590688' if n==3 else '241873297' if code[0] in 'GH' else '746582089'
+            add_block_label(code,[p['x']/3,p['y']/3],bc,way,upper)
 
 # H61 is reached at its north access lane in the current revised H zone.
 add('H61',[250.6,628],fit(HANZE_CONTROLS),'746744831','hanze-h61')
 result={
- 'version':2,'source':'ICO SIT terminalplan V1.09-2026 and OpenStreetMap road/landmark geometry',
+ 'version':3,'source':'ICO SIT terminalplan V1.09-2026 and OpenStreetMap road/landmark geometry',
  'sourceUrl':'https://www.icoterminals.com/sites/default/files/SIT%20terminalplan%20SIT%2021%2009%202026.pdf',
  'lineExact':False,'coverage':'Bounded individually matched regions only; no global schematic georeference or site validation claimed.',
  'controlPoints':{'bastenaken':BASTENAKEN_CONTROLS,'hanze':HANZE_CONTROLS},

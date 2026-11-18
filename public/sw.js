@@ -1,4 +1,4 @@
-const CACHE='portway-v8-parking-labels';
+const CACHE='portway-v9-parking-positions';
 self.addEventListener('install',event=>{
   event.waitUntil((async()=>{
     const cache=await caches.open(CACHE);

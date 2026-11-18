@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node server.mjs",
     "test": "node --test tests/core.test.mjs tests/navigation.test.mjs tests/destinations.test.mjs tests/heading.test.mjs tests/traffic-rules.test.mjs tests/guidance.test.mjs",
-    "test:browser": "node tests/browser.mjs && node tests/gps-browser.mjs && node tests/automatic-browser.mjs && node tests/map-ui-browser.mjs && node tests/heading-browser.mjs && node tests/parking-labels-browser.mjs"
+    "test:browser": "node tests/browser.mjs && node tests/gps-browser.mjs && node tests/automatic-browser.mjs && node tests/map-ui-browser.mjs && node tests/heading-browser.mjs && node tests/parking-labels-browser.mjs && node tests/parking-position-browser.mjs"
   },
   "dependencies": {
     "@tomickigrzegorz/leaflet-rotate": "0.3.0",

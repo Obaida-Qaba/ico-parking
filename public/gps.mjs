@@ -70,11 +70,13 @@ export function createGPS({getMap,getSelected,getCatalogue,showStreet,toast,dial
       L.marker(position,{title:stale?'Last GPS position · signal stale':'Your live GPS position',icon:L.divIcon({className:'gps-dot'+(hasCourse?' heading-arrow':'')+(stale?' stale':''),html,iconSize:hasCourse?[32,38]:[18,18],iconAnchor:hasCourse?[16,19]:[9,9]})}).addTo(layer);
     }
     const hit=active||getSelected(),pin=pinFor(hit);
-    parkingLabels?.update({activeKey:hit?parkingKey({...hit,line:null}).replace(/:parking$/,''):null,saved:pins,gpsPosition:fix,destination:pin});
-    if(pin)L.marker([pin.lat,pin.lon],{title:label(hit)+(pin.automatic?' · mapped parking approach':' · saved GPS point'),icon:L.divIcon({className:'gps-target',html:`<span>${esc(hit.parking.code)}</span>`,iconSize:[0,0]})}).addTo(layer);
+    const display=pin?.automatic&&validPin(pin.labelPosition)?pin.labelPosition:pin;
+    parkingLabels?.update({activeKey:hit?parkingKey({...hit,line:null}).replace(/:parking$/,''):null,saved:pins,gpsPosition:fix,destination:display});
+    if(display)L.marker([display.lat,display.lon],{title:label(hit)+(display!==pin?' · parking area':pin.automatic?' · mapped parking approach':' · saved GPS point'),icon:L.divIcon({className:'gps-target',html:`<span>${esc(hit.parking.code)}</span>`,iconSize:[0,0]})}).addTo(layer);
     if(active&&route?.available&&usable()){
       L.polyline(route.points,{color:'#fff',weight:10,opacity:.95,interactive:false}).addTo(layer);
       L.polyline(route.points,{color:'#1478e9',weight:6,opacity:1,className:'road-route',interactive:false}).addTo(layer);
+      L.circleMarker(route.points.at(-1),{radius:5,color:'#fff',weight:2,fillColor:'#1478e9',fillOpacity:1,className:'route-endpoint',interactive:false}).addTo(layer);
     }
   }
   async function calculate(force=false){

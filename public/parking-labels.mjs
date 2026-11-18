@@ -3,7 +3,7 @@ import {validPin} from './navigation.mjs';
 const region=id=>['bastenaken','hanze'].includes(id)?'south':id;
 const overlaps=(a,b)=>a.left<b.right&&a.right>b.left&&a.top<b.bottom&&a.bottom>b.top;
 
-/** Geographic parking approaches only. Never project uncalibrated PDF labels. */
+/** Matched parking areas and approaches only. Never project uncalibrated PDF labels. */
 export function createParkingLabels(map,catalogue){
   const layer=L.layerGroup().addTo(map);
   let markers=[],signature='',position=null,target=null;
@@ -14,7 +14,7 @@ export function createParkingLabels(map,catalogue){
       const p=map.latLngToContainerPoint([pin.lat,pin.lon]);
       occupied.push({left:p.x-width/2,right:p.x+width/2,top:p.y-height/2+offset,bottom:p.y+height/2+offset});
     };
-    reserve(position,44,50);reserve(target,84,56,-20);
+    reserve(position,44,50);reserve(target,84,44);
     const candidates=markers.map(item=>({...item,point:map.latLngToContainerPoint(item.marker.getLatLng())}));
     candidates.sort((a,b)=>a.point.distanceTo(size.divideBy(2))-b.point.distanceTo(size.divideBy(2))||a.key.localeCompare(b.key));
     for(const {marker,point,width} of candidates){
@@ -29,7 +29,8 @@ export function createParkingLabels(map,catalogue){
     const points=new Map();
     for(const [key,pin] of Object.entries(catalogue?.destinations||{})){
       const parts=key.split(':');if(parts.length!==2||!validPin(pin))continue;
-      points.set(`${region(parts[0])}:${parts[1]}`,{...pin,code:parts[1]});
+      const display=validPin(pin.labelPosition)?pin.labelPosition:pin;
+      points.set(`${region(parts[0])}:${parts[1]}`,{...pin,lat:display.lat,lon:display.lon,code:parts[1]});
     }
     for(const [key,pin] of Object.entries(saved)){
       const parts=key.split(':');if(parts.length!==3||parts[2]!=='parking'||!validPin(pin))continue;

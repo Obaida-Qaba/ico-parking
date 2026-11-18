@@ -2,7 +2,7 @@ import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {resolveDestination} from '../public/destinations.mjs';
 import {readFileSync} from 'node:fs';
-import {buildGraph,nearestRoad} from '../public/navigation.mjs';
+import {buildGraph,nearestRoad,distanceMetres,validPin} from '../public/navigation.mjs';
 const hit={map:{id:'bastenaken'},parking:{code:'HC1'},line:null};
 const automatic={destinations:{'south:HC1':{lat:51.301,lon:3.225,method:'source-road-match',scope:'parking-approach'}}};
 test('known parking navigates immediately without asking user to record GPS',()=>{
@@ -39,4 +39,24 @@ test('published automatic approaches are real map references and lie on motorabl
    assert.ok(nearestRoad(graph,[point.lat,point.lon]).distance<1,key+' must lie on road geometry');
    assert.equal(point.lineExact,false);
  }
+});
+
+test('C-row parking names sit inside their own blocks, separately from the shared access roads',()=>{
+ const catalogue=JSON.parse(readFileSync(new URL('../public/destinations.json',import.meta.url)));
+ const roads=JSON.parse(readFileSync(new URL('../public/roads.json',import.meta.url)));
+ for(const [key,pin] of Object.entries(catalogue.destinations).filter(([key])=>/^south:[G-L]C[123]$/.test(key))){
+  const label=pin.labelPosition;
+  assert.ok(validPin(label),key+' has a separate geographic parking label');
+  const lower=pin.roadWay;
+  const upper=key.endsWith('1')?'746582136':key.endsWith('3')?'1228590688':/^south:[GH]/.test(key)?'241873297':'746582089';
+  const distances=[lower,upper].map(id=>nearestRoad(buildGraph({ways:roads.ways.filter(w=>w.id===id)}),[label.lat,label.lon]).distance);
+  assert.ok(distances.every(d=>d>5&&d<20),key+' label must be between its actual bounding aisles, not on a shared boundary');
+ }
+ const hc2=catalogue.destinations['south:HC2'];
+ for(const [code,expected] of Object.entries({HC1:[51.3021440213,3.2266532807],HC2:[51.3020698614,3.2262957722],HC3:[51.3019997650,3.2259460208]})){
+  const label=catalogue.destinations['south:'+code].labelPosition;
+  assert.ok(distanceMetres([label.lat,label.lon],expected)<.2,code+' matches the independently checked source row and geographic aisle midpoint');
+ }
+ assert.ok(distanceMetres([hc2.lat,hc2.lon],[51.3021079235,3.2264808579])<.1,'HC2 route still ends on its own access road');
+ assert.ok(distanceMetres([hc2.lat,hc2.lon],[hc2.labelPosition.lat,hc2.labelPosition.lon])>8,'parking label is not the access-road endpoint');
 });

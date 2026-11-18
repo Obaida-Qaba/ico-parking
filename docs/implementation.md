@@ -82,4 +82,12 @@ Added a separate geographic parking-label layer using all 15 existing matched ap
 
 Labels use the non-rotating marker pane so their text stays upright while their geographic positions turn with the driving view. Screen-space collision checks prioritize labels near the map centre and reserve space for the GPS marker and active destination. Panning, zooming, rotating and resizing refresh spacing; GPS route redraws preserve the label layer. Labels are noninteractive, so reading nearby codes cannot change the route. Browser verification includes HC1/GC1 visibility, text orientation, spacing, GPS updates, fullscreen and offline reloads.
 
+## Parking-row display correction
+
+An on-site HC2/HC3 report exposed two display defects: parking codes reused approach points on shared row boundaries, and the highlighted badge floated 30 pixels above that point at zoom 17. Under rotation the HC2 badge could appear closer to HC3's approach than its own.
+
+Kept the route approaches unchanged and added separate display positions for the 14 bounded C-row blocks. Source row identities select the actual bordering OSM aisles; labels use the midpoint of those aisle projections at the locally matched source label position. Row 2 uses way 241873297 for G/H and its continuation 746582089 for I/J/K/L. The builder checks source proximity and strip width, stores provenance, and flags the LC1 endpoint estimate. No global schematic georeference or surveyed accuracy is implied.
+
+Both normal and highlighted codes now use the parking display point. The highlighted badge is centred there, and a blue dot separately marks the road endpoint. Collision reserves follow the displayed badge. Data tests verify the correct aisle strip and independent HC1/HC2/HC3 coordinates; browser tests verify displayed positions and the road endpoint across 0/90/270-degree rotations.
+
 Duplicate parking labels across terminals must not silently select the wrong destination. No route may be claimed for an unsupported parking or line. Numeric parking codes must work without being mistaken for line numbers. Location permissions must fail clearly. Mobile users must be able to dismiss overlays and access the map. Storage failures must not prevent lookup. Only local assets should be cached; public OSM tiles remain online.

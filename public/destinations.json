@@ -1,5 +1,5 @@
 {
-  "version": 2,
+  "version": 3,
   "source": "ICO SIT terminalplan V1.09-2026 and OpenStreetMap road/landmark geometry",
   "sourceUrl": "https://www.icoterminals.com/sites/default/files/SIT%20terminalplan%20SIT%2021%2009%202026.pdf",
   "lineExact": false,
@@ -103,7 +103,24 @@
       "matchDistanceMetres": 1.92,
       "lineExact": false,
       "region": "bastenaken-central-c-rows",
-      "basis": "Local ICO parking-block and landmark geometry matched to an identified OSM service-road lane. Parking approach only; exact line positions and current site operations are not verified."
+      "basis": "Local ICO parking-block and landmark geometry matched to an identified OSM service-road lane. Parking approach only; exact line positions and current site operations are not verified.",
+      "labelPosition": {
+        "lat": 51.30334347356134,
+        "lon": 3.225674351634071,
+        "method": "matched-aisle-midpoint",
+        "scope": "parking-block-label",
+        "sourcePoint": [
+          683.8033,
+          350.9033
+        ],
+        "boundaryWays": [
+          "746582135",
+          "746582136"
+        ],
+        "boundaryWidthMetres": 25.17,
+        "edgeEstimate": false,
+        "basis": "The ICO parking row lies between these matched OSM aisles. Display label only; road routing retains its separate approach point. Not surveyed."
+      }
     },
     "south:GC2": {
       "lat": 51.30330701435783,
@@ -125,7 +142,24 @@
       "matchDistanceMetres": 2.53,
       "lineExact": false,
       "region": "bastenaken-central-c-rows",
-      "basis": "Local ICO parking-block and landmark geometry matched to an identified OSM service-road lane. Parking approach only; exact line positions and current site operations are not verified."
+      "basis": "Local ICO parking-block and landmark geometry matched to an identified OSM service-road lane. Parking approach only; exact line positions and current site operations are not verified.",
+      "labelPosition": {
+        "lat": 51.30326946377344,
+        "lon": 3.225316764258314,
+        "method": "matched-aisle-midpoint",
+        "scope": "parking-block-label",
+        "sourcePoint": [
+          683.8033,
+          341.5067
+        ],
+        "boundaryWays": [
+          "746582136",
+          "241873297"
+        ],
+        "boundaryWidthMetres": 26.78,
+        "edgeEstimate": false,
+        "basis": "The ICO parking row lies between these matched OSM aisles. Display label only; road routing retains its separate approach point. Not surveyed."
+      }
     },
     "south:GC3": {
       "lat": 51.303229746904506,
@@ -147,7 +181,24 @@
       "matchDistanceMetres": 7.34,
       "lineExact": false,
       "region": "bastenaken-central-c-rows",
-      "basis": "Local ICO parking-block and landmark geometry matched to an identified OSM service-road lane. Parking approach only; exact line positions and current site operations are not verified."
+      "basis": "Local ICO parking-block and landmark geometry matched to an identified OSM service-road lane. Parking approach only; exact line positions and current site operations are not verified.",
+      "labelPosition": {
+        "lat": 51.303199874776865,
+        "lon": 3.224969330137677,
+        "method": "matched-aisle-midpoint",
+        "scope": "parking-block-label",
+        "sourcePoint": [
+          683.8033,
+          331.78
+        ],
+        "boundaryWays": [
+          "241873297",
+          "1228590688"
+        ],
+        "boundaryWidthMetres": 23.47,
+        "edgeEstimate": false,
+        "basis": "The ICO parking row lies between these matched OSM aisles. Display label only; road routing retains its separate approach point. Not surveyed."
+      }
     },
     "south:HC1": {
       "lat": 51.302174560703136,
@@ -169,7 +220,24 @@
       "matchDistanceMetres": 1.85,
       "lineExact": false,
       "region": "bastenaken-central-c-rows",
-      "basis": "Local ICO parking-block and landmark geometry matched to an identified OSM service-road lane. Parking approach only; exact line positions and current site operations are not verified."
+      "basis": "Local ICO parking-block and landmark geometry matched to an identified OSM service-road lane. Parking approach only; exact line positions and current site operations are not verified.",
+      "labelPosition": {
+        "lat": 51.30214405188722,
+        "lon": 3.226653255734284,
+        "method": "matched-aisle-midpoint",
+        "scope": "parking-block-label",
+        "sourcePoint": [
+          637.9567,
+          350.9767
+        ],
+        "boundaryWays": [
+          "746582135",
+          "746582136"
+        ],
+        "boundaryWidthMetres": 25.09,
+        "edgeEstimate": false,
+        "basis": "The ICO parking row lies between these matched OSM aisles. Display label only; road routing retains its separate approach point. Not surveyed."
+      }
     },
     "south:HC2": {
       "lat": 51.30210792352983,
@@ -191,7 +259,24 @@
       "matchDistanceMetres": 1.31,
       "lineExact": false,
       "region": "bastenaken-central-c-rows",
-      "basis": "Local ICO parking-block and landmark geometry matched to an identified OSM service-road lane. Parking approach only; exact line positions and current site operations are not verified."
+      "basis": "Local ICO parking-block and landmark geometry matched to an identified OSM service-road lane. Parking approach only; exact line positions and current site operations are not verified.",
+      "labelPosition": {
+        "lat": 51.302069894316304,
+        "lon": 3.226295745333493,
+        "method": "matched-aisle-midpoint",
+        "scope": "parking-block-label",
+        "sourcePoint": [
+          637.9567,
+          341.58
+        ],
+        "boundaryWays": [
+          "746582136",
+          "241873297"
+        ],
+        "boundaryWidthMetres": 26.86,
+        "edgeEstimate": false,
+        "basis": "The ICO parking row lies between these matched OSM aisles. Display label only; road routing retains its separate approach point. Not surveyed."
+      }
     },
     "south:HC3": {
       "lat": 51.302030225308016,
@@ -213,7 +298,24 @@
       "matchDistanceMetres": 3.58,
       "lineExact": false,
       "region": "bastenaken-central-c-rows",
-      "basis": "Local ICO parking-block and landmark geometry matched to an identified OSM service-road lane. Parking approach only; exact line positions and current site operations are not verified."
+      "basis": "Local ICO parking-block and landmark geometry matched to an identified OSM service-road lane. Parking approach only; exact line positions and current site operations are not verified.",
+      "labelPosition": {
+        "lat": 51.3019998000959,
+        "lon": 3.225945992256074,
+        "method": "matched-aisle-midpoint",
+        "scope": "parking-block-label",
+        "sourcePoint": [
+          637.9567,
+          331.8533
+        ],
+        "boundaryWays": [
+          "241873297",
+          "1228590688"
+        ],
+        "boundaryWidthMetres": 23.71,
+        "edgeEstimate": false,
+        "basis": "The ICO parking row lies between these matched OSM aisles. Display label only; road routing retains its separate approach point. Not surveyed."
+      }
     },
     "south:IC1": {
       "lat": 51.300822863444026,
@@ -235,7 +337,24 @@
       "matchDistanceMetres": 5.59,
       "lineExact": false,
       "region": "bastenaken-central-c-rows",
-      "basis": "Local ICO parking-block and landmark geometry matched to an identified OSM service-road lane. Parking approach only; exact line positions and current site operations are not verified."
+      "basis": "Local ICO parking-block and landmark geometry matched to an identified OSM service-road lane. Parking approach only; exact line positions and current site operations are not verified.",
+      "labelPosition": {
+        "lat": 51.30079284714762,
+        "lon": 3.2277500972644786,
+        "method": "matched-aisle-midpoint",
+        "scope": "parking-block-label",
+        "sourcePoint": [
+          586.3733,
+          351.0
+        ],
+        "boundaryWays": [
+          "746582135",
+          "746582136"
+        ],
+        "boundaryWidthMetres": 24.78,
+        "edgeEstimate": false,
+        "basis": "The ICO parking row lies between these matched OSM aisles. Display label only; road routing retains its separate approach point. Not surveyed."
+      }
     },
     "south:IC2": {
       "lat": 51.30076526545837,
@@ -257,7 +376,24 @@
       "matchDistanceMetres": 5.36,
       "lineExact": false,
       "region": "bastenaken-central-c-rows",
-      "basis": "Local ICO parking-block and landmark geometry matched to an identified OSM service-road lane. Parking approach only; exact line positions and current site operations are not verified."
+      "basis": "Local ICO parking-block and landmark geometry matched to an identified OSM service-road lane. Parking approach only; exact line positions and current site operations are not verified.",
+      "labelPosition": {
+        "lat": 51.30072775193486,
+        "lon": 3.227388491680093,
+        "method": "matched-aisle-midpoint",
+        "scope": "parking-block-label",
+        "sourcePoint": [
+          586.6633,
+          341.4767
+        ],
+        "boundaryWays": [
+          "746582136",
+          "746582089"
+        ],
+        "boundaryWidthMetres": 26.78,
+        "edgeEstimate": false,
+        "basis": "The ICO parking row lies between these matched OSM aisles. Display label only; road routing retains its separate approach point. Not surveyed."
+      }
     },
     "south:JC1": {
       "lat": 51.2994790875193,
@@ -279,7 +415,24 @@
       "matchDistanceMetres": 9.4,
       "lineExact": false,
       "region": "bastenaken-central-c-rows",
-      "basis": "Local ICO parking-block and landmark geometry matched to an identified OSM service-road lane. Parking approach only; exact line positions and current site operations are not verified."
+      "basis": "Local ICO parking-block and landmark geometry matched to an identified OSM service-road lane. Parking approach only; exact line positions and current site operations are not verified.",
+      "labelPosition": {
+        "lat": 51.299449902019475,
+        "lon": 3.2288410627271116,
+        "method": "matched-aisle-midpoint",
+        "scope": "parking-block-label",
+        "sourcePoint": [
+          535.07,
+          350.94
+        ],
+        "boundaryWays": [
+          "746582135",
+          "746582136"
+        ],
+        "boundaryWidthMetres": 24.5,
+        "edgeEstimate": false,
+        "basis": "The ICO parking row lies between these matched OSM aisles. Display label only; road routing retains its separate approach point. Not surveyed."
+      }
     },
     "south:JC2": {
       "lat": 51.299415005008555,
@@ -301,7 +454,24 @@
       "matchDistanceMetres": 9.46,
       "lineExact": false,
       "region": "bastenaken-central-c-rows",
-      "basis": "Local ICO parking-block and landmark geometry matched to an identified OSM service-road lane. Parking approach only; exact line positions and current site operations are not verified."
+      "basis": "Local ICO parking-block and landmark geometry matched to an identified OSM service-road lane. Parking approach only; exact line positions and current site operations are not verified.",
+      "labelPosition": {
+        "lat": 51.29937765397509,
+        "lon": 3.2284891268459823,
+        "method": "matched-aisle-midpoint",
+        "scope": "parking-block-label",
+        "sourcePoint": [
+          535.07,
+          341.5467
+        ],
+        "boundaryWays": [
+          "746582136",
+          "746582089"
+        ],
+        "boundaryWidthMetres": 26.57,
+        "edgeEstimate": false,
+        "basis": "The ICO parking row lies between these matched OSM aisles. Display label only; road routing retains its separate approach point. Not surveyed."
+      }
     },
     "south:KC1": {
       "lat": 51.29811945788663,
@@ -323,7 +493,24 @@
       "matchDistanceMetres": 13.35,
       "lineExact": false,
       "region": "bastenaken-central-c-rows",
-      "basis": "Local ICO parking-block and landmark geometry matched to an identified OSM service-road lane. Parking approach only; exact line positions and current site operations are not verified."
+      "basis": "Local ICO parking-block and landmark geometry matched to an identified OSM service-road lane. Parking approach only; exact line positions and current site operations are not verified.",
+      "labelPosition": {
+        "lat": 51.298090271418104,
+        "lon": 3.2299468392018365,
+        "method": "matched-aisle-midpoint",
+        "scope": "parking-block-label",
+        "sourcePoint": [
+          483.15,
+          351.0867
+        ],
+        "boundaryWays": [
+          "746582135",
+          "746582136"
+        ],
+        "boundaryWidthMetres": 24.26,
+        "edgeEstimate": false,
+        "basis": "The ICO parking row lies between these matched OSM aisles. Display label only; road routing retains its separate approach point. Not surveyed."
+      }
     },
     "south:KC2": {
       "lat": 51.298056362853245,
@@ -345,7 +532,24 @@
       "matchDistanceMetres": 13.64,
       "lineExact": false,
       "region": "bastenaken-central-c-rows",
-      "basis": "Local ICO parking-block and landmark geometry matched to an identified OSM service-road lane. Parking approach only; exact line positions and current site operations are not verified."
+      "basis": "Local ICO parking-block and landmark geometry matched to an identified OSM service-road lane. Parking approach only; exact line positions and current site operations are not verified.",
+      "labelPosition": {
+        "lat": 51.298018427667465,
+        "lon": 3.229595967718403,
+        "method": "matched-aisle-midpoint",
+        "scope": "parking-block-label",
+        "sourcePoint": [
+          483.15,
+          341.6933
+        ],
+        "boundaryWays": [
+          "746582136",
+          "746582089"
+        ],
+        "boundaryWidthMetres": 26.63,
+        "edgeEstimate": false,
+        "basis": "The ICO parking row lies between these matched OSM aisles. Display label only; road routing retains its separate approach point. Not surveyed."
+      }
     },
     "south:LC1": {
       "lat": 51.2967932,
@@ -367,7 +571,24 @@
       "matchDistanceMetres": 17.6,
       "lineExact": false,
       "region": "bastenaken-central-c-rows",
-      "basis": "Local ICO parking-block and landmark geometry matched to an identified OSM service-road lane. Parking approach only; exact line positions and current site operations are not verified."
+      "basis": "Local ICO parking-block and landmark geometry matched to an identified OSM service-road lane. Parking approach only; exact line positions and current site operations are not verified.",
+      "labelPosition": {
+        "lat": 51.29674425,
+        "lon": 3.2310416,
+        "method": "matched-aisle-midpoint",
+        "scope": "parking-block-label",
+        "sourcePoint": [
+          431.4767,
+          351.07
+        ],
+        "boundaryWays": [
+          "746582135",
+          "746582136"
+        ],
+        "boundaryWidthMetres": 24.03,
+        "edgeEstimate": true,
+        "basis": "The ICO parking row lies between these matched OSM aisles. Display label only; road routing retains its separate approach point. Not surveyed."
+      }
     },
     "south:LC2": {
       "lat": 51.29670420847658,
@@ -389,7 +610,24 @@
       "matchDistanceMetres": 17.81,
       "lineExact": false,
       "region": "bastenaken-central-c-rows",
-      "basis": "Local ICO parking-block and landmark geometry matched to an identified OSM service-road lane. Parking approach only; exact line positions and current site operations are not verified."
+      "basis": "Local ICO parking-block and landmark geometry matched to an identified OSM service-road lane. Parking approach only; exact line positions and current site operations are not verified.",
+      "labelPosition": {
+        "lat": 51.29666601238593,
+        "lon": 3.2306965998602215,
+        "method": "matched-aisle-midpoint",
+        "scope": "parking-block-label",
+        "sourcePoint": [
+          431.4767,
+          341.6733
+        ],
+        "boundaryWays": [
+          "746582136",
+          "746582089"
+        ],
+        "boundaryWidthMetres": 26.79,
+        "edgeEstimate": false,
+        "basis": "The ICO parking row lies between these matched OSM aisles. Display label only; road routing retains its separate approach point. Not surveyed."
+      }
     },
     "south:H61": {
       "lat": 51.29689337975793,

@@ -8,7 +8,8 @@ export function resolveDestination(hit,saved={},catalogue={}) {
   if(validPin(exact))return {...exact,automatic:false,exactLine:!!hit.line,scope:hit.line?'line':'parking'};
   const parking=saved[parkingKeyOnly];
   if(validPin(parking))return {...parking,automatic:false,exactLine:false,scope:'parking'};
-  const point=catalogue?.destinations?.[parkingKeyOnly.replace(/:parking$/,'')];
-  if(validPin(point))return {...point,automatic:true,exactLine:false,scope:'parking-approach'};
+  const exactSource=catalogue?.destinations?.[`${hit.map.id}:${hit.parking.code}`];
+  const point=validPin(exactSource)?exactSource:catalogue?.destinations?.[parkingKeyOnly.replace(/:parking$/,'')];
+  if(validPin(point))return {...point,automatic:true,exactLine:false,scope:point.scope==='parking-group-approach'?'parking-group-approach':'parking-approach'};
   return null;
 }

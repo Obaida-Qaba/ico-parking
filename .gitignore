@@ -4,3 +4,4 @@ test-results/
 scripts/sources/
 scripts/*.png
 scripts/geo/
+__pycache__/

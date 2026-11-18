@@ -1,6 +1,8 @@
 import {chromium} from '@playwright/test';
 import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
 import {observeMap} from './observe-map.mjs';
+const catalogue=JSON.parse(readFileSync('public/destinations.json','utf8'));
 const base=(process.env.PORTWAY_BASE_URL||'http://127.0.0.1:4173').replace(/\/$/,'');
 const browser=await chromium.launch();
 const context=await browser.newContext({viewport:{width:390,height:844},isMobile:true,hasTouch:true});
@@ -15,9 +17,23 @@ await cdp.send('Emulation.setCPUThrottlingRate',{rate:4});
 try{
  await page.goto(base);await page.locator('.gps-dot').waitFor();
  await page.locator('.mapped-road-fill').waitFor();
- const result=await page.evaluate(async()=>{
+ const result=await page.evaluate(async catalogue=>{
   const map=window.__performanceMap;map.fire('dragstart');map.stopHeadingUp();map.setBearing(0);map.setView([51.3074,3.221],16,{animate:false});
   await new Promise(requestAnimationFrame);await new Promise(requestAnimationFrame);
+  const parkingLayers=[];map.eachLayer(layer=>{if(layer.getElement?.()?.classList.contains('nearby-parking'))parkingLayers.push(layer);});
+  const size=map.getSize(),withinBuffer=point=>point.x>=-64&&point.x<=size.x+64&&point.y>=-64&&point.y<=size.y+64;
+  const parkingDOM={catalogue:Object.keys({...catalogue.destinations,...catalogue.labels}).length,attached:parkingLayers.length,offscreen:parkingLayers.filter(layer=>!withinBuffer(map.latLngToContainerPoint(layer.getLatLng()))).length};
+  const stableParking=parkingLayers.find(layer=>{const point=map.latLngToContainerPoint(layer.getLatLng());return point.x>64&&point.x<size.x-64&&point.y>64&&point.y<size.y-64;});
+  const stableParkingElement=stableParking?.getElement();
+  for(let i=0;i<100;i++)map.fire('rotate');
+  await new Promise(resolve=>setTimeout(resolve,100));
+  const sameParkingLayer=stableParking&&map.hasLayer(stableParking)&&stableParkingElement===stableParking.getElement();
+  map.setView([51.34,3.221],16,{animate:false});
+  await new Promise(requestAnimationFrame);await new Promise(requestAnimationFrame);
+  const parkingDetachedOffscreen=stableParking&&!map.hasLayer(stableParking);
+  map.setView([51.3074,3.221],16,{animate:false});
+  await new Promise(requestAnimationFrame);await new Promise(requestAnimationFrame);
+  const parkingReusedAfterReturn=stableParking&&map.hasLayer(stableParking);
   const counts={roadProject:0,roadProjectMs:0,roadClip:0,roadClipMs:0,otherProject:0};
   for(const [method,count,time] of [['_project','roadProject','roadProjectMs'],['_clipPoints','roadClip','roadClipMs']]){
    const original=L.Polyline.prototype[method];
@@ -51,9 +67,14 @@ try{
   window.__performanceFix({timestamp:Date.now()+100,coords:{latitude:51.30756,longitude:3.221,accuracy:3,heading:153,speed:4}});
   const zoomAfterGPS=map.getZoom();
   const summarize=values=>({max:Math.max(...values),mean:values.reduce((a,b)=>a+b,0)/values.length,p95:[...values].sort((a,b)=>a-b)[Math.floor(values.length*.95)]});
-  return {roadModel:model,roadPathCharacters:outline?.getAttribute('d')?.length,panning,totals:counts,panRotate:summarize(actions),frames:summarize(frames),gps:summarize(gpsTimes),followingGPS:summarize(followingTimes),followingCounts,markerMutations:{added,removed},sameGPSMarker,zoomAfterGPS};
- });
+  return {parkingDOM,sameParkingLayer,parkingDetachedOffscreen,parkingReusedAfterReturn,roadModel:model,roadPathCharacters:outline?.getAttribute('d')?.length,panning,totals:counts,panRotate:summarize(actions),frames:summarize(frames),gps:summarize(gpsTimes),followingGPS:summarize(followingTimes),followingCounts,markerMutations:{added,removed},sameGPSMarker,zoomAfterGPS};
+ },catalogue);
  console.log(JSON.stringify(result,null,2));
+ assert.equal(result.parkingDOM.offscreen,0,'parking markers outside the viewport plus 64 px buffer are detached from the DOM');
+ assert.ok(result.parkingDOM.attached<result.parkingDOM.catalogue/2,'the map attaches the local parking subset rather than the entire terminal catalogue');
+ assert.equal(result.sameParkingLayer,true,'unchanged rotations preserve the cached in-view parking marker and its DOM element');
+ assert.equal(result.parkingDetachedOffscreen,true,'panning away detaches a cached parking marker');
+ assert.equal(result.parkingReusedAfterReturn,true,'returning to the same parking reattaches the same cached Leaflet marker');
  assert.equal(result.sameGPSMarker,true,'live GPS updates reuse the location marker instead of removing and rebuilding it');
  assert.equal(result.zoomAfterGPS,16,'manual zoom is preserved when the next GPS fix arrives');
  console.log('PASS movement rendering: stable GPS marker through repeated fixes and profiled pan/rotation');

@@ -12,6 +12,13 @@ await context.addInitScript(()=>{
  navigator.geolocation.clearWatch=()=>window.__unmappedStops++;
 });
 const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
+// Exercise corrupt/incomplete catalogue recovery explicitly even when the
+// published catalogue covers A01. Do not require a real parking to stay broken.
+await page.route('**/destinations.json',async route=>{
+ const response=await route.fetch(),catalogue=await response.json();
+ delete catalogue.destinations['toyota:A01'];
+ await route.fulfill({response,json:catalogue});
+});
 try{
  await page.goto(base+'/?map=toyota&parking=A01&line=15');
  await page.locator('.destination-code').waitFor();

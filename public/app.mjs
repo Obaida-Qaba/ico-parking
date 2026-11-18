@@ -200,7 +200,7 @@ function renderGPSActions(){
   if(!button){button=document.createElement('button');button.id='save-gps-button';button.className='secondary destination-options-button';$('destination-options').append(button);}
   $('destination-options').hidden=false;
   button.textContent=pin?.automatic?'Refine destination location':pin?'Manage saved GPS point':'Save this parking’s GPS location';button.onclick=()=>gps.setup(selected);
-  if(pin){const note=$('destination-card').querySelector('.line-note');note.textContent=pin.automatic?`Built-in route to ${selected.parking.code} parking approach.${selected.line?' Find line '+selected.line+' inside the parking.':''}`:pin.method==='gps'?`GPS location saved on this device (±${Math.round(pin.accuracy)} m). Road routing uses this saved point.`:'Destination point selected on the road map. Road routing uses this saved point.';if(selected.line&&!pin.exactLine&&!pin.automatic)note.textContent+=' Line '+selected.line+' is not separately positioned.';}
+  if(pin){const note=$('destination-card').querySelector('.line-note');note.textContent=pin.automatic?`Built-in route to ${selected.parking.code} parking ${pin.scope==='parking-group-approach'?'area ':''}approach.${pin.scope==='parking-group-approach'?' Shared area access; exact entrance is not mapped.':''}${selected.line?' Find line '+selected.line+' inside the parking.':''}`:pin.method==='gps'?`GPS location saved on this device (±${Math.round(pin.accuracy)} m). Road routing uses this saved point.`:'Destination point selected on the road map. Road routing uses this saved point.';if(selected.line&&!pin.exactLine&&!pin.automatic)note.textContent+=' Line '+selected.line+' is not separately positioned.';}
 }
 function clearDestination() {
   clearTimeout(debounce);

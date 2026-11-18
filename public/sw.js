@@ -1,4 +1,4 @@
-const CACHE='portway-v15-smooth-map-labels';
+const CACHE='portway-v16-parking-road-coverage';
 self.addEventListener('install',event=>{
   event.waitUntil((async()=>{
     const cache=await caches.open(CACHE);

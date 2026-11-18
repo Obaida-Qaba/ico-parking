@@ -72,6 +72,17 @@ for b in pg.get_text('dict')['blocks']:
         if re.fullmatch(r'(?:H\d{1,2}\s*[A-G]?|HH\d|[A-Z]{2}\s*\d{1,2}|[A-Z]{2}X|CH\d{1,2}|B[A-Z]{1,2}|[IJKL]OS|DR[A-Z]+)',text):
             box=line['bbox'];south['_add'](text,(box[0]+box[2])/2,(box[1]+box[3])/2)
 
+# Illustrator stores the AA letters and their adjacent number as separate
+# lines. Join only numbers on that same baseline, within the printed label.
+south_lines=[line for b in pg.get_text('dict')['blocks'] for line in b.get('lines',[])]
+for line in south_lines:
+    if ''.join(s['text'] for s in line['spans']).strip()!='AA':continue
+    box=line['bbox'];baseline=(box[1]+box[3])/2
+    for number in south_lines:
+        text=''.join(s['text'] for s in number['spans']).strip();nb=number['bbox']
+        if text in ['1','2'] and 0<=nb[0]-box[2]<8 and abs((nb[1]+nb[3])/2-baseline)<1:
+            south['_add']('AA'+text,(box[0]+nb[2])/2,baseline)
+
 north, pg = make_map('north','Noordelijke Insteek','Northern terminal','current',5,
                      (30,30,940,810),'Date not printed','Plan published in ICO’s January 2026 document.',-90)
 allowed = set('APZ X I K KCB KCA HHN KD M O P Q2 U KB KA KE HHO E BA BB BC CA CB CC DA DB DC R S G F H J L N B1 B46 A23 B23 Y W SL PL PL2 AA Z06'.split())
@@ -79,6 +90,9 @@ for b in pg.get_text('dict')['blocks']:
     for line in b.get('lines',[]):
         text=''.join(s['text'] for s in line['spans']).strip()
         compact=re.sub(r'\s+','',text)
+        # Tiny L/P fragments in '+100 LP', and W in HHW, are warehouse
+        # annotations. Actual single-letter parking labels use the large font.
+        if compact in ['L','P','W'] and max(s['size'] for s in line['spans'])<14:continue
         if compact in allowed or re.fullmatch(r'Z0[1-6]|Q(?:9|10)',compact):
             box=line['bbox'];north['_add'](compact,(box[0]+box[2])/2,(box[1]+box[3])/2)
 
@@ -110,21 +124,9 @@ for code,x,y in [('H1',323,212),('H2',323,267),('H3',323,319),('H4',323,370),('H
     screenshot_point(hanze,code,x,y)
 
 toyota=legacy('toyota','Toyota','Toyota terminal · older plan',25,'Cewez brochure plan. Parking labels are indexed from the drawing; internal line positions are unverified.')
-for i,y in enumerate([188,207,226,245],1):screenshot_point(toyota,f'A{i:02}',220,y)
-for i,y in enumerate([188,207,226,245],5):screenshot_point(toyota,f'A{i:02}',315,y)
-screenshot_point(toyota,'A01PPO',415,210)
-for i,y in enumerate([269,287,306,325,344,363,382,401,420,439],1):screenshot_point(toyota,f'B{i:02}',220,y)
-for i,y in enumerate([455,475,493,511,531,550,571,591,612,631,646,665,682],1):screenshot_point(toyota,f'C{i:02}',220,y)
-for prefix,x in [('D',310),('E',406)]:
-    for i,y in enumerate([611,630,648,666,684],9):screenshot_point(toyota,f'{prefix}{i:02}',x,y)
-for prefix,x in [('F',570),('G',671)]:
-    for i,y in enumerate([454,475,495,516,536,556,578,598,620,642,665,687,709,730],1):
-        screenshot_point(toyota,f'{prefix}{i:02}',x,y)
-for prefix,x in [('I',320),('J',434)]:
-    for i,y in enumerate([754,774,793,814,834,854,875,895,916,936,956,977,997,1018,1038,1058,1081],1):
-        screenshot_point(toyota,f'{prefix}{i:02}',x,y)
-for i,y in enumerate([205,273,335,402,465,533,602,659,701,776,838,904,962,1018],1):
-    screenshot_point(toyota,f'H{i:02}',165 if i>=10 else 110,y)
+toyota_points=json.loads((ROOT/'scripts/toyota-source-points.json').read_text(encoding='utf-8'))['points']
+for code,point in toyota_points.items():
+    toyota['_add'](code,*point,'manual-source-label')
 
 for m in maps:
     del m['_add']

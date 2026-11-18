@@ -28,6 +28,13 @@ test('unmapped parking stays unavailable; invalid coordinates are rejected',()=>
  assert.equal(resolveDestination(hit,{}, {destinations:{'south:HC1':{lat:NaN,lon:3.225}}}),null);
 });
 
+test('an explicitly matched historical-only block resolves without inventing a current code',()=>{
+ const point={lat:51.295,lon:3.242,method:'bounded-landmark-road-match',scope:'parking-group-approach'};
+ const found=resolveDestination({map:{id:'hanze'},parking:{code:'H24'},line:'15'},{},{destinations:{'hanze:H24':point}});
+ assert.ok(found,'the selected source map has its own recorded approach');
+ assert.equal(found.lat,point.lat);assert.equal(found.exactLine,false);assert.equal(found.scope,'parking-group-approach');
+});
+
 test('published automatic approaches are real map references and lie on motorable roads',()=>{
  const catalogue=JSON.parse(readFileSync(new URL('../public/destinations.json',import.meta.url)));
  const atlas=JSON.parse(readFileSync(new URL('../public/data.json',import.meta.url)));

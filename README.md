@@ -43,11 +43,26 @@ Open http://127.0.0.1:4173. The app runs directly from `public/`; no build or AP
 
 Terminal detection is a coarse search preference, not an exact operating boundary or a new navigation destination catalogue. `public/terminals.json` records geographic footprint sources and approximate area divisions. Poor or stale fixes do not guess a terminal; uncertain boundaries hold the previous area or fall back to a broad region. Toyota/Hanze use a documented uncertainty band. Outside the port, search covers all terminals. Automatic context works offline after the initial download.
 
-**Automatic parking routing is available for 20 matched approaches:** GC1–GC3, HC1–HC3, IC1–IC2, JC1–JC2, KC1–KC2, LC1–LC2, H61, CD1, CD2, DD1, DC2 and CC2. CD1 and the other VPC compounds start directly without recording GPS. A line number remains a reference inside the parking.
+**BB now starts a road route directly on a fresh device.** The built-in catalogue contains 348 parking-reference approaches, including 47 of the 50 North codes, all indexed Hanze H/HH references, the historical Toyota blocks and additional bounded South/quay compounds. The original 20 checked approaches remain unchanged. No saved parking pin is required for these references.
 
-These approaches are matched from the September 2026 ICO plan to actual geographic road geometry. The VPC compounds use individually identified neighboring road junctions, lane directions and the VPC building rather than extrapolating the C-row affine transform. DC2/CC2 identify an approach to an individually matched sub-block of a repeated parking code. They are not surveyed entrances or exact line coordinates. The builder records control points, node chains, matched road segments and interior display labels in `public/destinations.json`. A small source-to-road projection residual does not establish on-site GPS accuracy. Matched regions are not extrapolated to all terminals.
+Coverage is still partial. Counting each source-plan reference separately, including repeated names on historical plans:
 
-A line reference routes to the parking approach unless a separate exact line point exists. References without a built-in GPS point show **View parking**, opening their highlighted source plan without a recording dialog or fabricated road route. Optional GPS/map refinements remain under Maps. Saving requires a fresh fix with accuracy of 25 metres or better. Saved points stay on this device and take precedence over built-in approaches; shared links identify the parking/line but do not transfer private GPS refinements.
+| Plan | References with road approaches | Indexed references |
+|---|---:|---:|
+| Current South | 173 | 260 |
+| North | 47 | 50 |
+| Nissan | 0 | 13 |
+| Older Bastenaken | 27 | 40 |
+| Older Hanze | 43 | 43 |
+| Toyota brochure | 125 | 125 |
+
+That is 415 of 531 source references; 116 still lack a confirmed geographic approach. `public/destinations.json.coverageAudit` and `npm run audit:coverage` list every remaining code. The audit exits with status 1 while any are missing. Passing unit/browser tests is not a claim of complete parking coverage.
+
+The new regions use individually identified road-junction parcels, named landmarks and bounded road matching, with separate source positions and arrival points. North BB uses its own lane in the ordered E/DC/DB/DA/CC/CB/CA/BC/BB/BA ladder; it is not routed to the terminal centre. Some historical or revised blocks use a **shared parking-area approach**, explicitly described in the destination and route details. These routes do not establish an individual entrance or exact line. Historical Toyota uses two windmill controls and an independent Bridgestone edge check; the older drawing differs from current lane geometry. These are source-matched estimates, not surveyed positions.
+
+Unconfirmed FX public-road targets were excluded because proximity across a fence does not establish parking access. Nissan needs its missing internal roads and gate connection confirmed. The CH schematic and remaining central blocks still need individual geographic associations. A tempting upper road grid was confirmed through official port GIS to belong to WWL rather than ICO; it was not used for CH. `scripts/build_upper_destinations.py` retains the research and candidate estimates but is intentionally excluded from the published merge.
+
+A line reference routes to the parking or shared-area approach unless a separate exact line point exists. References without a built-in GPS point show **View parking**, opening their highlighted source plan without a recording dialog or fabricated road route. Optional GPS/map refinements remain under Maps. Saving requires a fresh fix with accuracy of 25 metres or better. Saved points stay on this device and take precedence over built-in approaches; shared links identify the parking/line but do not transfer private GPS refinements.
 
 Routing covers the downloaded Zeebrugge road network, including internal roads present in OSM. Missing roads, temporary closures, access changes and way-based turn restrictions are not provided as live operational data. The router assumes authorized access to mapped private terminal roads. Explicitly locked/no-access nodes and motor-vehicle prohibitions are excluded. It refuses to route if either endpoint is more than 50 metres from a mapped drivable road. The drawn route ends on the road; any gap to the saved point is reported rather than drawn across a parking block.
 
@@ -75,11 +90,14 @@ This is an independent application, not an official ICO service.
 
 ## Rebuild the map catalogue
 
-Python dependencies: `requests`, `pymupdf`, `Pillow`.
+Python dependencies: `requests`, `pymupdf`, `Pillow`, `numpy`.
 
 ```powershell
 python scripts/build_maps.py
+python scripts/build_destinations.py
 ```
+
+The destination builder runs the checked regional builders and retains a generated coverage audit. `scripts/toyota-source-points.json` contains corrected brochure row positions and seven previously missing parking references. North L/P/W warehouse-text fragments are excluded from the source index.
 
 Source PDFs are cached under `scripts/sources/`. Current plans are rendered directly from PDF coordinates. Legacy coordinates are manually read from the source drawings, with provenance stored per marker. Review and verify coordinates before treating any as operational navigation data.
 
@@ -94,6 +112,8 @@ npx playwright install chromium
 # With the app running:
 npm run test:browser
 ```
+
+The BB/coverage browser regression checks fresh-device road routes on five supported plan views, then repeats BB offline. The route-free Nissan view remains explicitly unsupported.
 
 The suites check desktop/mobile search, line references, deep links, missing parking, invalid input, every map, denied/granted GPS, live movement, accurate GPS capture, road routing, one-way and turn restrictions, low-accuracy pause, stopping tracking, offline road routing and no uncaught browser errors. GPS browser tests use simulated positions on actual downloaded road geometry; they do not establish on-site accuracy. Screenshots are written to `test-results/` and are not published.
 
@@ -115,10 +135,10 @@ Road-correction regressions verify that the reported HC3 crossing has no lateral
 
 Home-screen checks simulate all five terminal locations, Toyota-first results with other-terminal fallback, manual overrides, switching back to automatic selection, nonblocking GPS denial, continuous tracking through plan previews, and offline context detection. Region tests cover unrelated industrial sites, water/outside-port points, stale/poor fixes and boundary jitter. These are simulations, not on-site device validation.
 
-CD1 browser checks start on its actual shared access lane, verify the short direct route without saved pins or a recording prompt, preserve line references and roads, then repeat offline. An unmapped-parking regression verifies the highlighted source plan opens directly while GPS continues; an existing HC1 route still starts normally afterward.
+CD1 browser checks start on its actual shared access lane, verify the short direct route without saved pins or a recording prompt, preserve line references and roads, then repeat offline. A deliberately incomplete test catalogue verifies the highlighted source plan opens directly while GPS continues; an existing HC1 route still starts normally afterward.
 
 ## Phone access and hosting
 
 The hosted HTTPS app works on phones. The optional local development server is local to this computer by default. For same-network development browsing, run with `$env:HOST='0.0.0.0'` and open this computer's LAN IP on the phone; the Windows firewall must permit that connection. Plain LAN HTTP does not enable GPS or PWA offline storage on most browsers.
 
-Before automatic lookup-to-navigation can work for every parking and line, obtain verified destination coordinates and confirm the road network against current terminal operations. On-site device/GPS validation has not yet been performed. Rebuild the offline road network with `python scripts/build_roads.py`; its Python dependency is `requests`.
+Full parking coverage remains unfinished; obtain the missing geographic parking/access associations and confirm the road network against current terminal operations. Exact line navigation additionally needs separately positioned line points. On-site device/GPS validation has not yet been performed. Rebuild the offline road network with `python scripts/build_roads.py`; its Python dependency is `requests`.

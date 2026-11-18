@@ -37,7 +37,14 @@ export function createParkingLabels(map,catalogue){
   function showGroup(group){
     popup?.remove();
     map.fire('dragstart');map.stopHeadingUp?.();
-    const content=document.createElement('div');content.style.cssText=`min-width:150px;max-height:${Math.max(90,Math.min(230,map.getSize().y-260))}px;overflow:auto`;
+    const size=map.getSize(),origin=map.getContainer().getBoundingClientRect(),safe={left:8,right:size.x-8,top:8,bottom:size.y-8};
+    for(const selector of ['#search-form','.map-top','.map-controls','#navigation-panel','#destination-card']){
+      const box=document.querySelector(selector)?.getBoundingClientRect();if(!box?.width||!box.height)continue;
+      if(selector==='.map-controls')safe.right=Math.min(safe.right,box.left-origin.left-8);
+      else if(selector==='#search-form'||selector==='.map-top')safe.top=Math.max(safe.top,box.bottom-origin.top+8);
+      else safe.bottom=Math.min(safe.bottom,box.top-origin.top-8);
+    }
+    const content=document.createElement('div');content.style.cssText=`min-width:150px;max-height:${Math.max(44,Math.min(230,safe.bottom-safe.top-44))}px;overflow:auto`;
     const heading=document.createElement('strong');heading.textContent=group.members.length===1?'Parking nearby':`${group.members.length} parkings nearby`;content.append(heading);
     for(const member of group.members){
       const button=document.createElement('button');button.type='button';button.className='parking-group-item';button.textContent=member.code;
@@ -46,7 +53,10 @@ export function createParkingLabels(map,catalogue){
       content.append(button);
     }
     const anchor=map.latLngToContainerPoint(group.marker.getLatLng()).add(group.displacement||[0,0]);
-    popup=L.popup({autoPan:true,autoPanPaddingTopLeft:[20,145],autoPanPaddingBottomRight:[75,150],maxWidth:240,className:'parking-group-popup'}).setLatLng(map.containerPointToLatLng(anchor)).setContent(content).openOn(map);
+    popup=L.popup({autoPan:false,maxWidth:240,className:'parking-group-popup'}).setLatLng(map.containerPointToLatLng(anchor)).setContent(content).openOn(map);
+    const box=popup.getElement().getBoundingClientRect(),left=box.left-origin.left,top=box.top-origin.top;
+    const x=Math.max(safe.left,Math.min(safe.right-box.width,left))-left,y=Math.max(safe.top,Math.min(safe.bottom-box.height,top))-top;
+    if(x||y)popup.setLatLng(map.containerPointToLatLng(anchor.add([x,y])));
   }
   function makeGroup(key,members,anchor){
     const root=document.createElement('div');root.style.cssText='position:relative;width:1px;height:1px;pointer-events:none';
@@ -74,13 +84,18 @@ export function createParkingLabels(map,catalogue){
     }
     for(const item of markers.values()){
       if(item.key===activeKey){if(layer.hasLayer(item.marker))layer.removeLayer(item.marker);continue;}
+      const point=map.latLngToContainerPoint(item.marker.getLatLng());
+      if(point.x<-64||point.x>size.x+64||point.y<-64||point.y>size.y+64){
+        if(layer.hasLayer(item.marker))layer.removeLayer(item.marker);
+        continue;
+      }
       if(!layer.hasLayer(item.marker))item.marker.addTo(layer);
       const element=item.marker.getElement(),width=Math.max(28,Math.ceil(item.code.length*font*.64+8));
       if(item.element!==element||item.font!==font){
         item.element=element;item.font=font;element.dataset.parking=item.code;
         Object.assign(element.style,{width:width+'px',height:height+'px',marginLeft:-width/2+'px',marginTop:-height/2+'px',fontSize:font+'px',lineHeight:height-2+'px'});
       }
-      const point=map.latLngToContainerPoint(item.marker.getLatLng()),rect=rectangle(point,width+2,height+2);
+      const rect=rectangle(point,width+2,height+2);
       const visible=rect.right>0&&rect.left<size.x&&rect.bottom>0&&rect.top<size.y;
       if(visible)candidates.push({...item,point,rect});else hidden(element,true);
     }

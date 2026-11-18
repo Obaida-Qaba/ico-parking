@@ -8,6 +8,8 @@ Dependencies: numpy (only when rebuilding; browser has no dependency).
 """
 from pathlib import Path
 import json
+import subprocess
+import sys
 import numpy as np
 
 ROOT=Path(__file__).resolve().parents[1]
@@ -170,12 +172,36 @@ add_junction_match('CC2',[881.71,319.19,896.19,343.45],'241873275',
         ('1349890063',['12431453999','12431453998'],False),
         ('746582110',['2494511854','6986702537'],False),
         ('746582120',['12431453999','6986702537'],False)],approach_oneway=True)
+# Independent schematic regions have independent topology matches. Preserve the
+# existing checked C-row/VPC points when merging the wider source catalogue.
+regions=[]
+evidence_gaps=[]
+for builder,filename in [
+    ('build_perimeter_destinations.py','perimeter-destinations.json'),
+    ('build_north_destinations.py','north-destinations.json'),
+    ('build_south_west_destinations.py','south-west-destinations.json'),
+    ('build_south_east_destinations.py','south-east-destinations.json'),
+    ('build_central_destinations.py','central-destinations.json'),
+]:
+    subprocess.run([sys.executable,str(ROOT/'scripts'/builder)],check=True,cwd=ROOT)
+    extra=json.loads((ROOT/'scripts/geo'/filename).read_text(encoding='utf-8'))
+    for key,point in extra['destinations'].items():
+        if key not in out:out[key]=point
+    regions.extend(extra.get('regions',[]))
+    evidence_gaps.extend(extra.get('unresolved',[]))
+
+audit={}
+for source_map in DATA['maps']:
+    target_map='south' if source_map['id'] in ['bastenaken','hanze'] else source_map['id']
+    missing=[p['code'] for p in source_map['parkings'] if target_map+':'+p['code'] not in out and source_map['id']+':'+p['code'] not in out]
+    audit[source_map['id']]={'total':len(source_map['parkings']),'routable':len(source_map['parkings'])-len(missing),'missing':missing}
+
 result={
- 'version':4,'source':'ICO SIT terminalplan V1.09-2026 and OpenStreetMap road/landmark geometry',
+ 'version':5,'source':'ICO terminal plans and individually matched geographic road/landmark geometry',
  'sourceUrl':'https://www.icoterminals.com/sites/default/files/SIT%20terminalplan%20SIT%2021%2009%202026.pdf',
  'lineExact':False,'coverage':'Bounded individually matched regions only; no global schematic georeference or site validation claimed.',
  'controlPoints':{'bastenaken':BASTENAKEN_CONTROLS,'hanze':HANZE_CONTROLS},
- 'destinations':out
+ 'destinations':out,'regions':regions,'coverageAudit':audit,'evidenceGaps':evidence_gaps
 }
 (ROOT/'public/destinations.json').write_text(json.dumps(result,indent=2),encoding='utf-8')
 print(len(out),'matched parking-road approaches')

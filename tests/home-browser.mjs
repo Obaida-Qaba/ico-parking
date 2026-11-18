@@ -36,7 +36,7 @@ try{
  await page.locator('.result-row').first().click();
  assert.equal(await page.locator('.destination-code').innerText(),'A01');
  assert.equal(await page.locator('.leaflet-image-layer').count(),0,'choosing a parking keeps the GPS map');
- await page.locator('#route-button').click();await page.locator('.leaflet-image-layer').waitFor();
+ await page.locator('#view-plan-button').click();await page.locator('.leaflet-image-layer').waitFor();
  await page.locator('#clear-destination').click();await page.locator('.gps-dot').waitFor();
  assert.equal(await page.locator('.leaflet-image-layer').count(),0,'closing the plan preview returns to location');
  await page.locator('#search-settings').evaluate(el=>el.open=true);

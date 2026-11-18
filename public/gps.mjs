@@ -127,7 +127,8 @@ export function createGPS({getMap,getSelected,getCatalogue,showStreet,toast,dial
         $('navigation-distance').textContent=route.distance>=1000?(route.distance/1000).toFixed(1)+' km':Math.round(route.distance)+' m';
         const near=distanceMetres([fix.lat,fix.lon],[pin.lat,pin.lon])<=Math.max(12,fix.accuracy);
         $('navigation-instruction').textContent=near?(pin.automatic?'You are near the parking approach':'You are near your saved destination'):nextInstruction(route.points,{heading:travelHeading});
-        const targetNote=pin.automatic?`Route to ${hit.parking.code} parking approach.${hit.line?' Line '+hit.line+' remains a reference inside the parking.':''}`:(!pin.exactLine&&hit.line?`Route to ${hit.parking.code} parking; line ${hit.line} is not separately positioned.`:'Route follows mapped roads.');
+        const area=pin.scope==='parking-group-approach';
+        const targetNote=pin.automatic?`Route to ${hit.parking.code} parking ${area?'area ':''}approach.${area?' Shared area access; exact entrance is not mapped.':''}${hit.line?' Line '+hit.line+' remains a reference inside the parking.':''}`:(!pin.exactLine&&hit.line?`Route to ${hit.parking.code} parking; line ${hit.line} is not separately positioned.`:'Route follows mapped roads.');
         $('navigation-detail').textContent=targetNote+(route.endOffset>10?` Road ends ${Math.round(route.endOffset)} m from the point.`:'')+' Follow current terminal signs.';
       }
       draw();

@@ -54,7 +54,26 @@ test('all source labels lie inside their rendered plan, including H61', () => {
   assert.ok(data.maps.find(m=>m.id==='south').parkings.some(p=>p.code==='H61'));
   const south=data.maps.find(m=>m.id==='south');
   assert.match(south.date,/2026/);
-  for(const code of ['H53','H54','H71','H73','H80','H85','CH24'])assert.ok(south.parkings.some(p=>p.code===code),code);
+  for(const code of ['H53','H54','H71','H73','H80','H85','CH24','AA1','AA2'])assert.ok(south.parkings.some(p=>p.code===code),code);
+});
+
+test('North single-letter destinations use parking labels rather than fragments of warehouse text',()=>{
+  const {maps}=JSON.parse(readFileSync(new URL('../public/data.json',import.meta.url)));
+  const north=maps.find(m=>m.id==='north');
+  assert.equal(north.parkings.find(p=>p.code==='L').points.length,1);
+  assert.equal(north.parkings.find(p=>p.code==='P').points.length,1);
+  assert.equal(north.parkings.find(p=>p.code==='W').points.length,1);
+  assert.ok(north.parkings.find(p=>p.code==='L').y<1000,'the actual L block is in the upper paired grid');
+});
+
+test('Toyota includes the printed extra parking blocks and its row markers stay in their source rows',()=>{
+  const {maps}=JSON.parse(readFileSync(new URL('../public/data.json',import.meta.url)));
+  const toyota=maps.find(m=>m.id==='toyota');
+  for(const code of ['A09','F00','G00','P02','P03','P04','P05'])assert.ok(toyota.parkings.some(p=>p.code===code),code);
+  for(const [code,expected] of Object.entries({H01:[195,183],F14:[1086,1239],I17:[597,1995],P04:[1246.5,579.9]})){
+    const point=toyota.parkings.find(p=>p.code===code);
+    assert.ok(Math.hypot(point.x-expected[0],point.y-expected[1])<1,code+' uses its actual source row');
+  }
 });
 
 test('Bastenaken searches include current HC1, rather than only the sparse older plan',()=>{

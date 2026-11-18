@@ -62,12 +62,16 @@ try{
   m.setBearing(27);m.setView([51.3071,3.2215],16,{animate:false});
  });
  await page.waitForTimeout(150);
- const coverage=await page.evaluate(()=>{
+ const coverage=await page.evaluate(catalogue=>{
   const m=window.__parkingMap,size=m.getSize(),expected=[],shown=new Set();
-  m.eachLayer(marker=>{const el=marker.getElement?.();if(!el?.classList.contains('nearby-parking'))return;const p=m.latLngToContainerPoint(marker.getLatLng());if(p.x>=0&&p.x<=size.x&&p.y>=0&&p.y<=size.y)expected.push(el.dataset.parking);if(!el.hidden)shown.add(el.dataset.parking);});
+  for(const [key,pin] of Object.entries({...catalogue.destinations,...catalogue.labels})){
+   const point=pin.labelPosition||pin;if(!Number.isFinite(point.lat)||!Number.isFinite(point.lon)||key==='south:HC1')continue;
+   const p=m.latLngToContainerPoint([point.lat,point.lon]);if(p.x>=0&&p.x<=size.x&&p.y>=0&&p.y<=size.y)expected.push(key.split(':')[1]);
+  }
+  for(const el of document.querySelectorAll('.nearby-parking'))if(!el.hidden)shown.add(el.dataset.parking);
   for(const button of document.querySelectorAll('.parking-cluster-button'))if(!button.closest('[hidden]'))for(const code of JSON.parse(button.dataset.parkingCodes))shown.add(code);
   return {expected,shown:[...shown]};
- });
+ },catalogue);
  assert.ok(coverage.expected.length>=8,'fixture includes the VPC compounds and adjacent C rows');
  assert.deepEqual(coverage.expected.filter(code=>!coverage.shown.includes(code)),[],'known parking points are represented by a readable label or explicit group instead of disappearing');
  const group=page.locator('.parking-cluster-button').first();
@@ -75,7 +79,15 @@ try{
  await page.screenshot({path:'test-results/mobile-parking-groups-overview.png',fullPage:true});
  const members=JSON.parse(await group.getAttribute('data-parking-codes'));
  await group.click();
+ await page.waitForTimeout(350);
+ const popupBounds=await page.locator('.parking-group-popup').boundingBox();
+ assert.ok(popupBounds.x>=0&&popupBounds.y>=0&&popupBounds.x+popupBounds.width<=390&&popupBounds.y+popupBounds.height<=844,'parking list stays inside the screen: '+JSON.stringify(popupBounds));
+ await page.screenshot({path:'test-results/mobile-parking-group-list.png',fullPage:true});
  for(const code of members)assert.ok(await page.getByRole('button',{name:'Show '+code+' on map',exact:true}).isVisible(),'the group exposes '+code);
+ const lastMember=page.getByRole('button',{name:'Show '+members.at(-1)+' on map',exact:true});
+ await lastMember.scrollIntoViewIfNeeded();
+ const lastBounds=await lastMember.boundingBox();
+ assert.ok(lastBounds.y>=popupBounds.y&&lastBounds.y+lastBounds.height<=popupBounds.y+popupBounds.height,'the last member is reachable by scrolling the parking list');
  await page.getByRole('button',{name:'Show '+members[0]+' on map',exact:true}).click();
  assert.equal(await page.locator('#navigation-destination').innerText(),'HC1','inspecting a parking group does not change the current route');
  await page.locator('.leaflet-popup-close-button').click();

@@ -26,6 +26,7 @@ Open http://127.0.0.1:4173. The app runs directly from `public/`; no build or AP
 - All six plan images, the app shell and the road network are saved offline after the initial successful download. External background street-map tiles require internet; road geometry and routing work offline. Browser storage can be evicted by the device.
 - Continuous high-accuracy GPS tracking, accuracy display, heading, speed and follow-position mode. Tracking can be stopped explicitly.
 - Heading-up driving view: the geographic road map rotates with the travel course, with a forward-pointing blue arrow lower on the screen to show the road ahead. Stops retain the last reliable course. If the phone supplies no heading, meaningful GPS movement provides a course. Panning pauses the follow camera; the location button resumes it. **N** switches to north-up.
+- Nearby mapped parking codes remain visible on the geographic driving map, including during navigation and fullscreen. Compact upright labels mark the 15 known parking approaches and saved parking points; the destination stays distinct. Labels are spaced to avoid overlapping each other, the vehicle and the destination, with more becoming visible as you zoom in. Uncalibrated PDF labels are not placed on the GPS map.
 - Road routing to built-in or saved destinations with distance updates, basic turn prompts and rerouting from updated GPS. Routes minimize distance over the represented road graph, follow mapped one-way directions and node turn restrictions, and use travel course to distinguish nearby lanes within GPS uncertainty. They never connect disconnected roads with an invented shortcut.
 - Bastenaken/Hanze searches use the current combined southern plan, including `HC1 Bastenaken`. An explicitly typed terminal takes precedence over a previous dropdown selection.
 - Navigation pauses when GPS accuracy is worse than 35 metres or the last fix is older than 15 seconds.
@@ -94,6 +95,8 @@ Routing regressions cover direct HC1 access from the corrected direction, unnece
 Map UI checks cover native desktop fullscreen, rejected-fullscreen mobile fallback, portrait/landscape map size, accessible map options, visible source dialogs, explicit/Escape exits and preservation of the current GPS watch and route geometry.
 
 Heading checks simulate 90°, 180° and 270° travel and verify both projected coordinates and the actual rendered road/route SVGs point upward. They also check arrow orientation, lower-centred position, north-up/recenter, manual-pan suspension, fullscreen and unchanged GPS tracking. Unit checks cover missing headings, stationary drift, unreliable accuracy, out-of-order fixes and movement-based course estimation. These simulations do not establish a particular phone’s on-site GPS/heading accuracy.
+
+Nearby-label browser checks verify other parking codes beside an active HC1 route, upright text and non-overlapping labels after rotation, no duplicate destination label, and preservation across live GPS updates, fullscreen and offline reloads.
 
 ## Phone access and hosting
 

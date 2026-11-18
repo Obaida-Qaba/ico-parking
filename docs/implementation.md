@@ -76,4 +76,10 @@ Fixed shortest-path initialization at road junctions: starting or arriving at a 
 
 Extracted guidance into a testable module, retaining turns near the current position and warning when the initial route requires reversing direction. Regression tests reproduce the old HC1 detour, junction loops, lane ambiguity and restriction bypasses. Browser tests use simulated GPS on the corrected HC1 lane and verify direct distance. Shortest-route claims apply to represented legal graph paths between snapped road points; on-site operating rules and unknown road coverage remain limitations.
 
+## Other parking codes during navigation
+
+Added a separate geographic parking-label layer using all 15 existing matched approaches and valid saved parking-level points. This changes visibility without creating additional destination coordinates or applying the local schematic transforms outside their calibrated regions. The active parking is omitted from this layer because its larger destination marker already identifies it.
+
+Labels use the non-rotating marker pane so their text stays upright while their geographic positions turn with the driving view. Screen-space collision checks prioritize labels near the map centre and reserve space for the GPS marker and active destination. Panning, zooming, rotating and resizing refresh spacing; GPS route redraws preserve the label layer. Labels are noninteractive, so reading nearby codes cannot change the route. Browser verification includes HC1/GC1 visibility, text orientation, spacing, GPS updates, fullscreen and offline reloads.
+
 Duplicate parking labels across terminals must not silently select the wrong destination. No route may be claimed for an unsupported parking or line. Numeric parking codes must work without being mistaken for line numbers. Location permissions must fail clearly. Mobile users must be able to dismiss overlays and access the map. Storage failures must not prevent lookup. Only local assets should be cached; public OSM tiles remain online.

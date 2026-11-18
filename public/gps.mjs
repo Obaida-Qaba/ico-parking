@@ -2,11 +2,13 @@ import {buildGraph,routeRoads,distanceMetres,parkingKey,validPin} from './naviga
 import {resolveDestination} from './destinations.mjs';
 import {createCourseTracker,screenHeading} from './heading.mjs';
 import {nextInstruction} from './guidance.mjs';
+import {createParkingLabels} from './parking-labels.mjs';
 
 export function createGPS({getMap,getSelected,getCatalogue,showStreet,toast,dialog,onPinChanged,escape:esc}) {
   let watch=null,fix=null,layer=null,boundMap=null,street=false,following=true,active=null,graph=null,graphPromise=null,route=null,pending=null,lastRouteAt=0;
   const course=createCourseTracker();
   let headingUp=true,adjustingCamera=false;
+  let parkingLabels=null;
   let pins={};
   try{const value=JSON.parse(localStorage.getItem('portway-gps-pins')||'{}');if(value&&typeof value==='object'&&!Array.isArray(value))pins=Object.fromEntries(Object.entries(value).filter(([,p])=>validPin(p)));}catch{}
   const $=id=>document.getElementById(id);
@@ -68,6 +70,7 @@ export function createGPS({getMap,getSelected,getCatalogue,showStreet,toast,dial
       L.marker(position,{title:stale?'Last GPS position · signal stale':'Your live GPS position',icon:L.divIcon({className:'gps-dot'+(hasCourse?' heading-arrow':'')+(stale?' stale':''),html,iconSize:hasCourse?[32,38]:[18,18],iconAnchor:hasCourse?[16,19]:[9,9]})}).addTo(layer);
     }
     const hit=active||getSelected(),pin=pinFor(hit);
+    parkingLabels?.update({activeKey:hit?parkingKey({...hit,line:null}).replace(/:parking$/,''):null,saved:pins,gpsPosition:fix,destination:pin});
     if(pin)L.marker([pin.lat,pin.lon],{title:label(hit)+(pin.automatic?' · mapped parking approach':' · saved GPS point'),icon:L.divIcon({className:'gps-target',html:`<span>${esc(hit.parking.code)}</span>`,iconSize:[0,0]})}).addTo(layer);
     if(active&&route?.available&&usable()){
       L.polyline(route.points,{color:'#fff',weight:10,opacity:.95,interactive:false}).addTo(layer);
@@ -165,6 +168,7 @@ export function createGPS({getMap,getSelected,getCatalogue,showStreet,toast,dial
   }
   function bind(m,isStreet){
     boundMap=m;street=isStreet;layer=isStreet?L.layerGroup().addTo(m):null;
+    parkingLabels=isStreet?createParkingLabels(m,getCatalogue?.()):null;
     $('north-up').hidden=!isStreet;
     if(!isStreet)return;
     m.on('dragstart',()=>{following=false;m.stopHeadingUp();updateArrow();$('follow-gps').classList.remove('following');});

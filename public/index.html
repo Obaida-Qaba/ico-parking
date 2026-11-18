@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#102e33">
+  <meta name="description" content="Find parking references on ICO Zeebrugge terminal plans.">
+  <title>Portway · ICO parking finder</title>
+  <link rel="icon" type="image/svg+xml" href="icon.svg">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="vendor/leaflet.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skip" href="#destination">Skip to parking search</a>
+<header class="topbar">
+  <a href="./" class="brand" aria-label="Portway home"><img src="icon.svg" width="35" height="35" alt=""><span>portway<span class="brand-dot">.</span></span></a>
+  <div class="workspace"><span class="tiny-dot"></span> ICO ZEEBRUGGE <span class="workspace-tag">Parking finder</span></div>
+  <div class="header-actions"><span id="offline-status" class="connection">Checking offline maps…</span><button id="install" class="text-button" hidden>Install app</button><button id="about" class="icon-button" aria-label="About maps and coverage" title="About maps and coverage"><i data-icon="info"></i></button></div>
+</header>
+<main class="app-shell">
+  <aside class="sidebar" aria-label="Parking search">
+    <div class="sidebar-content">
+      <div class="eyebrow">YOUR TERMINAL COMPANION</div>
+      <h1>Know where<br>you’re going.</h1>
+      <p class="intro">Find your parking on the ICO terminal plans.</p>
+      <form id="search-form" novalidate>
+        <label for="destination">Parking or destination</label>
+        <div class="search-input"><i data-icon="search"></i><input id="destination" type="search" placeholder="Try H61 line 15" autocomplete="off" spellcheck="false" maxlength="80" enterkeyhint="search"><kbd>/</kbd></div>
+        <div class="form-row">
+          <div class="terminal-field"><label for="terminal-filter">Terminal</label><select id="terminal-filter"><option value="all">Search all maps</option></select></div>
+          <div class="line-field"><label for="line">Line <span>(optional)</span></label><input id="line" type="number" min="1" max="9999" step="1" inputmode="numeric" placeholder="e.g. 15"></div>
+        </div>
+        <button class="primary find-button" type="submit">Find parking <i data-icon="arrow"></i></button>
+        <p class="form-error" id="search-error" role="alert" hidden></p>
+      </form>
+      <section id="search-results" class="search-results" aria-label="Search results" hidden><div class="section-heading"><h2>Matching parkings</h2><span id="result-count"></span></div><div id="result-list"></div></section>
+      <section id="destination-card" class="destination-card" aria-label="Selected destination" hidden></section>
+      <section id="welcome-content">
+        <div class="section-heading"><h2>Quick find</h2><span>Southern terminal</span></div>
+        <div class="quick-links"><button data-quick="H61">H61 <i data-icon="arrow-up"></i></button><button data-quick="H26">H26 <i data-icon="arrow-up"></i></button><button data-quick="HA1">HA1 <i data-icon="arrow-up"></i></button></div>
+        <section id="recents-section" hidden><div class="section-heading"><h2>Recent destinations</h2><button id="clear-recents" class="inline-button">Clear</button></div><div id="recent-list"></div></section>
+        <div class="tip"><div class="tip-icon"><i data-icon="pin"></i></div><div><strong>Your parking, on the plan.</strong><p>Search a reference or tap a parking marker. Pinch or scroll to get a closer look.</p></div></div>
+        <div class="coverage-note"><i data-icon="route"></i><p><strong>Parking lookup is ready.</strong> Internal road navigation and exact line positions still need verified map data.</p></div>
+      </section>
+    </div>
+    <div class="sidebar-footer"><span>ICO ZEEBRUGGE</span><span id="catalogue-count">Loading maps…</span></div>
+  </aside>
+  <section class="map-workspace" aria-label="Terminal map workspace">
+    <div id="map" role="region" aria-label="Interactive terminal plan"></div>
+    <div class="map-top"><div class="map-heading"><span class="live-pill">TERMINAL PLAN</span><h2 id="map-title">Zuidelijke Insteek</h2><p id="map-subtitle">Loading terminal plan…</p></div><div class="view-switch" role="group" aria-label="Map view"><button id="plan-view" class="active" aria-pressed="true"><i data-icon="layers"></i> Plan</button><button id="street-view" aria-pressed="false"><i data-icon="globe"></i> Street map</button></div></div>
+    <div class="map-controls"><button id="locate" class="map-control" aria-label="Show my GPS location" title="Show my GPS location"><i data-icon="locate"></i></button><div class="zoom-group"><button id="zoom-in" class="map-control" aria-label="Zoom in"><i data-icon="plus"></i></button><button id="zoom-out" class="map-control" aria-label="Zoom out"><i data-icon="minus"></i></button></div><button id="fit-map" class="map-control" aria-label="Fit whole map" title="Fit whole map"><i data-icon="expand"></i></button></div>
+    <div id="map-loading" class="map-loading" role="status">Loading terminal plan…</div>
+    <div id="street-notice" class="street-notice" hidden>Street map shows terminal locations only. Internal parking and line positions aren’t geographically verified.</div>
+    <div class="map-bottom"><div class="map-library-heading"><span><i data-icon="layers"></i> ICO MAP LIBRARY</span><button id="source" class="inline-button">Map source <i data-icon="external"></i></button></div><div id="map-library" class="map-library" aria-label="Available terminal plans"></div></div>
+    <div class="map-source"><span id="map-date"></span><span>Source: ICO / Cewez · Independent app</span></div>
+  </section>
+</main>
+<div id="toast" class="toast" role="status" hidden></div>
+<dialog id="info-dialog"><div class="dialog-header"><span class="eyebrow">PORTWAY / MAP INFORMATION</span><button id="close-dialog" class="icon-button" aria-label="Close information"><i data-icon="close"></i></button></div><div id="dialog-content"></div></dialog>
+<noscript><p>This parking finder requires JavaScript to display and search maps.</p></noscript>
+<script src="vendor/leaflet.js"></script>
+<script type="module" src="app.mjs"></script>
+</body>
+</html>

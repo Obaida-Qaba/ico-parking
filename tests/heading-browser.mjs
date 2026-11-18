@@ -60,7 +60,7 @@ async function assertHeadingUp(course){
       arrowAngle=((sum+540)%360)-180;
     }
     const result={dx:ahead.x-here.x,dy:ahead.y-here.y,yFraction:here.y/size.y,xFraction:here.x/size.x,arrowAngle};
-    // Verify actual rendered vector transforms too, including the custom offline road pane.
+    // Verify the rendered navigation overlay, without restoring a basemap grid.
     const inspect=pane=>{
       const line=L.polyline([position,forward],{pane,color:'#000',weight:3,interactive:false}).addTo(map);
       const path=line.getElement(),matrix=path.getScreenCTM(),a=path.getPointAtLength(0),b=path.getPointAtLength(path.getTotalLength());
@@ -68,10 +68,9 @@ async function assertHeadingUp(course){
       line.remove();return {dx:pb.x-pa.x,dy:pb.y-pa.y};
     };
     result.overlay=inspect('overlayPane');
-    result.offlineRoad=inspect('mappedRoads');
     return result;
   },{position:start,course});
-  for(const [name,vector] of [['geographic conversion',geometry],['route vector',geometry.overlay],['offline road vector',geometry.offlineRoad]]){
+  for(const [name,vector] of [['geographic conversion',geometry],['navigation vector',geometry.overlay]]){
     assert.ok(vector.dy<-10,`${course}° ${name} points toward top of screen`);
     assert.ok(Math.abs(vector.dx)<Math.max(4,Math.abs(vector.dy)*.08),`${course}° ${name} is nearly vertical: ${JSON.stringify(vector)}`);
   }
@@ -124,5 +123,5 @@ try{
   assert.equal(await page.evaluate(()=>window.__gpsStarts),1,'camera modes do not restart GPS tracking');
   assert.equal(await page.evaluate(()=>window.__gpsStops),0,'camera modes do not stop GPS tracking');
   assert.deepEqual(errors,[],'no uncaught browser errors');
-  console.log('PASS heading-up: 90/180/270 courses rotate real roads and route toward top, blue arrow points forward, lower-centred position, north-up/recenter, manual-pan suspension, fullscreen and GPS state preserved');
+  console.log('PASS heading-up: 90/180/270 courses rotate navigation geometry toward top, blue arrow points forward, lower-centred position, north-up/recenter, manual-pan suspension, fullscreen and GPS state preserved');
 }finally{await browser.close();}

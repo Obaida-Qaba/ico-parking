@@ -3,7 +3,6 @@ import {resolveDestination} from './destinations.mjs';
 import {createCourseTracker,screenHeading} from './heading.mjs';
 import {nextInstruction} from './guidance.mjs';
 import {createParkingLabels} from './parking-labels.mjs';
-import {createRoadMap} from './road-map.mjs';
 
 export function createGPS({getMap,getSelected,getCatalogue,showStreet,toast,dialog,onPinChanged,escape:esc}) {
   let watch=null,fix=null,layer=null,boundMap=null,street=false,following=true,active=null,graph=null,graphPromise=null,route=null,pending=null,lastRouteAt=0;
@@ -150,10 +149,10 @@ export function createGPS({getMap,getSelected,getCatalogue,showStreet,toast,dial
   }
   function setup(hit){
     const name=label(hit),existing=pinFor(hit);
-    dialog(`<h2>${existing?'Destination location':'Locate '+esc(name)}</h2><p>${existing?(existing.automatic?'A built-in road approach is available for this parking. You can optionally refine it with an on-site GPS measurement.':'This destination has a GPS point saved on this device.'):'This reference is not yet in the built-in destination catalogue. You can optionally add its actual location here.'}</p>${existing?`<p>${esc(name)}<br>${existing.lat.toFixed(6)}, ${existing.lon.toFixed(6)}<br>${existing.automatic?'Matched from the ICO terminal plan to the geographic road layout':existing.method==='gps'?'Recorded on site · accuracy ±'+Math.round(existing.accuracy)+' m':'Point selected on the geographic road map'}</p>`:''}<button class="primary" id="capture-parking">I’m at ${esc(name)} · save GPS</button><p>Use this while you are at the named parking${hit.line?' and line '+esc(hit.line):''}. The point is stored on this device.</p><button class="secondary" id="pick-parking">Choose its location on the road map</button>${existing&&!existing.automatic?'<button class="inline-button" id="forget-pin" style="margin-top:20px">Remove saved point</button>':''}`);
+    dialog(`<h2>${existing?'Destination location':'Locate '+esc(name)}</h2><p>${existing?(existing.automatic?'A built-in road approach is available for this parking. You can optionally refine it with an on-site GPS measurement.':'This destination has a GPS point saved on this device.'):'This reference is not yet in the built-in destination catalogue. You can optionally add its actual location here.'}</p>${existing?`<p>${esc(name)}<br>${existing.lat.toFixed(6)}, ${existing.lon.toFixed(6)}<br>${existing.automatic?'Matched from the ICO terminal plan to the geographic road layout':existing.method==='gps'?'Recorded on site · accuracy ±'+Math.round(existing.accuracy)+' m':'Point selected on the geographic road map'}</p>`:''}<button class="primary" id="capture-parking">I’m at ${esc(name)} · save GPS</button><p>Use this while you are at the named parking${hit.line?' and line '+esc(hit.line):''}. The point is stored on this device.</p><button class="secondary" id="pick-parking">Choose its location on the GPS map</button>${existing&&!existing.automatic?'<button class="inline-button" id="forget-pin" style="margin-top:20px">Remove saved point</button>':''}`);
     $('capture-parking').onclick=()=>capture(hit);
     $('pick-parking').onclick=()=>{
-      $('info-dialog').close();pending=hit;showStreet();setPanel(true);status(`Tap the real location of ${name} on the road map`);$('cancel-pin').hidden=false;
+      $('info-dialog').close();pending=hit;showStreet();setPanel(true);status(`Tap the real location of ${name} on the GPS map`);$('cancel-pin').hidden=false;
       if(fix)getMap().setView([fix.lat,fix.lon],18);else getMap().setView(hit.map.id==='north'?[51.322,3.21]:hit.map.id==='nissan'?[51.334,3.2]:[51.300,3.235],16);
     };
     if(existing&&!existing.automatic)$('forget-pin').onclick=()=>{const next={...pins};delete next[parkingKey(hit)];if(!existing.exactLine&&hit.line)delete next[parkingKey({...hit,line:null})];try{localStorage.setItem('portway-gps-pins',JSON.stringify(next));pins=next;if(active&&parkingKey(active)===parkingKey(hit)){active=null;route=null;navigationLayout(false);}onPinChanged(hit);$('info-dialog').close();draw();toast('Saved GPS point removed.');}catch{toast('Could not update saved points.');}};
@@ -184,10 +183,7 @@ export function createGPS({getMap,getSelected,getCatalogue,showStreet,toast,dial
       $('confirm-map-pin').onclick=()=>{if(save(hit,pin)){pending=null;$('cancel-pin').hidden=true;$('info-dialog').close();navigate(hit);}};
     });
     draw();followView();
-    loadGraph().then(g=>{
-      if(boundMap!==m||!street)return;
-      createRoadMap(m,g);draw();
-    }).catch(()=>{});
+    loadGraph().catch(()=>{});
   }
   function clearRoute(){active=null;route=null;pending=null;$('cancel-pin').hidden=true;navigationLayout(false);draw();}
   function fitRoute(){if(!street||!active||!route?.available)return false;following=false;getMap().stopHeadingUp();getMap().fitBounds(L.latLngBounds(route.points),{paddingTopLeft:[28,85],paddingBottomRight:[75,165],maxZoom:18,animate:false});updateArrow();return true;}

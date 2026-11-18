@@ -1,4 +1,5 @@
 /* Keep the map clear; secondary information lives in one closed-by-default menu. */
+.street-mode,.street-mode #map{background:#edf2ee}.street-mode:before{display:none}
 .sidebar-content{padding-top:24px}.sidebar-content h1{font-size:29px;margin:0 0 24px;letter-spacing:-1px}
 .tip,.coverage-note{display:none}.destination-kicker{display:none}.destination-source{font-size:11px}
 .map-top{top:max(14px,env(safe-area-inset-top));left:max(14px,env(safe-area-inset-left));right:max(14px,env(safe-area-inset-right));align-items:flex-start;gap:10px;z-index:460}

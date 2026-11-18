@@ -96,6 +96,12 @@ An on-site screenshot showed a transverse street between GPS near GC2 and HC3, a
 
 Excluded exactly three perpendicular segments of that way through rows C1-C3. All shared nodes, longitudinal aisles and unrelated way segments remain available. A reproducible rule records the on-site report, supporting plan and expected source node chain; a geometry change requires review. This is a scoped correction, not removal of all grid crossings or a surveyed map of the full terminal.
 
-The external raster tiles also contain the false street. `road-map.mjs` therefore renders an opaque geographic background in the bounded correction area, then draws the corrected graph above it with road casing and fill. The background and road panes rotate with the map at overlay-child depths -2 and -1; the GPS, labels and blue route remain above them. Ordinary tiles remain visible outside the area. Tests reproduce the missing correction before implementation, verify no lateral graph edges and preserved straight travel, and check vector geometry, opaque coverage, route stacking, rotation and offline use in the browser.
+The routing correction remains active independently of how the map background is displayed. Tests verify no lateral graph edges and preserved straight travel.
+
+## Remove the default map grid
+
+User requested removal of the whole default OpenStreetMap grid. Removed the raster tile layer, the blanket road-vector layer and the local tile-replacement renderer. The GPS view now has an opaque neutral background with parking codes, the GPS marker and route overlays. The original ICO plan views remain available. Routing still uses the corrected downloaded graph and retains source attribution.
+
+Removed the obsolete road-renderer module from the offline shell and advanced its cache version. Browser tests verify there are no tile layers, external tile requests, static road lines or leftover patch polygons. They retain checks for visible route/GPS/parking labels, heading-up rotation, fullscreen and offline navigation.
 
 Duplicate parking labels across terminals must not silently select the wrong destination. No route may be claimed for an unsupported parking or line. Numeric parking codes must work without being mistaken for line numbers. Location permissions must fail clearly. Mobile users must be able to dismiss overlays and access the map. Storage failures must not prevent lookup. Only local assets should be cached; public OSM tiles remain online.

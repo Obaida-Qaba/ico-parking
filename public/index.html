@@ -34,7 +34,7 @@
         <button class="primary find-button" type="submit">Find parking <i data-icon="arrow"></i></button>
         <p class="form-error" id="search-error" role="alert" hidden></p>
       </form>
-      <button id="live-gps-start" class="gps-start-button"><i data-icon="locate"></i> Start live GPS <span>Road map</span></button>
+      <button id="live-gps-start" class="gps-start-button"><i data-icon="locate"></i> Start live GPS <span>GPS map</span></button>
       <section id="search-results" class="search-results" aria-label="Search results" hidden><div class="section-heading"><h2>Matching parkings</h2><span id="result-count"></span></div><div id="result-list"></div></section>
       <section id="destination-card" class="destination-card" aria-label="Selected destination" hidden></section>
       <section id="welcome-content">
@@ -60,7 +60,7 @@
     <div id="navigation-panel" class="navigation-panel" hidden><div class="navigation-heading"><span id="navigation-destination"></span><button id="stop-navigation" aria-label="Stop navigation" title="End route">×</button></div><strong id="navigation-instruction">Waiting for GPS…</strong><div id="navigation-distance">—</div></div>
     <section id="map-options-panel" class="map-options-panel" aria-label="Map options" hidden>
       <div class="map-options-heading"><h2>Maps & GPS</h2><button id="close-map-options" class="icon-button" aria-label="Close map options"><i data-icon="close"></i></button></div>
-      <div class="view-switch" role="group" aria-label="Map view"><button id="plan-view" class="active" aria-pressed="true"><i data-icon="layers"></i> Terminal plan</button><button id="street-view" aria-pressed="false"><i data-icon="globe"></i> Road map</button></div>
+      <div class="view-switch" role="group" aria-label="Map view"><button id="plan-view" class="active" aria-pressed="true"><i data-icon="layers"></i> Terminal plan</button><button id="street-view" aria-pressed="false"><i data-icon="globe"></i> GPS map</button></div>
       <div class="map-heading"><span class="live-pill">TERMINAL PLAN</span><h2 id="map-title">Zuidelijke Insteek</h2><p id="map-subtitle">Loading terminal plan…</p></div>
       <div id="street-notice" class="street-notice" hidden>Road routing uses the available parking approaches. A line number stays a reference inside the parking.</div>
       <div id="gps-panel" class="gps-panel" hidden><div class="gps-status-row"><span class="gps-live-dot"></span><strong id="gps-text">GPS is off</strong><button id="gps-toggle">Start GPS</button></div><div class="gps-actions"><button id="follow-gps" hidden>Follow my position</button><button id="cancel-pin" hidden>Cancel location selection</button></div></div>

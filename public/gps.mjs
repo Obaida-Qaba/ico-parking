@@ -24,7 +24,7 @@ export function createGPS({getMap,getSelected,getCatalogue,showStreet,toast,dial
   try{const value=JSON.parse(localStorage.getItem('portway-gps-pins')||'{}');if(value&&typeof value==='object'&&!Array.isArray(value))pins=Object.fromEntries(Object.entries(value).filter(([,p])=>validPin(p)));}catch{}
   const $=id=>document.getElementById(id);
   function pinFor(hit){return resolveDestination(hit,pins,getCatalogue?.());}
-  function label(hit){return hit.parking.code+(hit.line?' · line '+hit.line:'');}
+  function label(hit){return hit.parking.code+(hit.approachName?' · '+hit.approachName:'')+(hit.line?' · line '+hit.line:'');}
   async function loadGraph(){
     if(graph)return graph;
     if(!graphPromise)graphPromise=fetch('./roads.json').then(r=>{if(!r.ok)throw Error('roads');return r.json();}).then(data=>{graph=buildGraph(data);return graph;}).catch(e=>{graphPromise=null;throw e;});

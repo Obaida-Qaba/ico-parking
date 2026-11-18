@@ -17218,6 +17218,812 @@
         ],
         "basis": "Position inside the individually identified parking parcel; display label only, not a surveyed line."
       }
+    },
+    "south:IOS": {
+      "lat": 51.30027193324427,
+      "lon": 3.225050069215693,
+      "method": "landmark-junction-match",
+      "scope": "parking-approach",
+      "parking": "IOS",
+      "sourceMap": "south",
+      "sourceRevision": "V1.09-2026",
+      "roadWay": "897960053",
+      "roadSegment": [
+        "8345226650",
+        "8345226649"
+      ],
+      "lineExact": false,
+      "sourcePoint": [
+        586.7833333333333,
+        254.3033333333333
+      ],
+      "sourceBounds": [
+        560.0,
+        237.0,
+        607.5,
+        271.7
+      ],
+      "region": "south-ios-bank",
+      "basis": "IOS is the northern car bank above IE3, immediately west of the MBZ/ZOUT facilities. Its western I/J column road, outer perimeter and separate eastern one-way aisle identify this bounded cell. The eastern boundary is 746582084; the MBZ loop farther east is not included. The route ends on the matched access road, not at a surveyed parking line.",
+      "junctionMatch": {
+        "cornerNodes": [
+          "6986702453",
+          "6986702430",
+          "6986702452",
+          "6986702454"
+        ],
+        "boundaryLanes": [
+          {
+            "way": "746582127",
+            "nodes": [
+              "6986702453",
+              "6987015299",
+              "6987015301",
+              "6987015303",
+              "6987015305",
+              "6987015307",
+              "6987015309",
+              "6987015311",
+              "6987015313",
+              "6987015315",
+              "6986702430"
+            ],
+            "oneway": false
+          },
+          {
+            "way": "746582084",
+            "nodes": [
+              "6986702430",
+              "6986702452"
+            ],
+            "oneway": true
+          },
+          {
+            "way": "897960053",
+            "nodes": [
+              "6986702454",
+              "6987015298",
+              "6987015300",
+              "6987015302",
+              "8345226650",
+              "8345226649",
+              "8345226648",
+              "6987015312",
+              "6987015314",
+              "6986702452"
+            ],
+            "oneway": false
+          },
+          {
+            "way": "746582086",
+            "nodes": [
+              "6986702453",
+              "6986702454"
+            ],
+            "oneway": false
+          }
+        ]
+      },
+      "labelPosition": {
+        "lat": 51.30008138998497,
+        "lon": 3.2244520683884756,
+        "method": "bounded-parcel-position",
+        "scope": "parking-block-label",
+        "sourcePoint": [
+          586.7833333333333,
+          254.3033333333333
+        ],
+        "basis": "Position inside the individually identified parking parcel; display label only, not a surveyed line."
+      }
+    },
+    "south:JOS": {
+      "lat": 51.29908756377935,
+      "lon": 3.2260121099857226,
+      "method": "landmark-junction-match",
+      "scope": "parking-approach",
+      "parking": "JOS",
+      "sourceMap": "south",
+      "sourceRevision": "V1.09-2026",
+      "roadWay": "897960053",
+      "roadSegment": [
+        "6987015286",
+        "6987015288"
+      ],
+      "lineExact": false,
+      "sourcePoint": [
+        533.8833333333333,
+        254.33333333333334
+      ],
+      "sourceBounds": [
+        508.0,
+        237.0,
+        555.5,
+        271.7
+      ],
+      "region": "south-jos-bank",
+      "basis": "JOS is the northern car bank above JE3, between the J/K and I/J column roads. The two independently matched column junctions on the outer perimeter and the E3-side access aisle identify this cell in the ladder west of MBZ/ZOUT. The route ends on the matched access road, not at a surveyed parking line.",
+      "junctionMatch": {
+        "cornerNodes": [
+          "6986702431",
+          "6986702453",
+          "6986702454",
+          "6986702470"
+        ],
+        "boundaryLanes": [
+          {
+            "way": "746582127",
+            "nodes": [
+              "6986702431",
+              "6987012177",
+              "6987012179",
+              "6987012181",
+              "6987012183",
+              "6987015285",
+              "6987015287",
+              "6987015289",
+              "6987015291",
+              "6987015293",
+              "6987015295",
+              "6987015297",
+              "6986702453"
+            ],
+            "oneway": false
+          },
+          {
+            "way": "746582086",
+            "nodes": [
+              "6986702453",
+              "6986702454"
+            ],
+            "oneway": false
+          },
+          {
+            "way": "897960053",
+            "nodes": [
+              "6986702470",
+              "6987012176",
+              "6987012178",
+              "6987012180",
+              "6987012182",
+              "6987012184",
+              "6987015286",
+              "6987015288",
+              "6987015290",
+              "6987015292",
+              "6987015294",
+              "6987015296",
+              "6986702454"
+            ],
+            "oneway": false
+          },
+          {
+            "way": "746582091",
+            "nodes": [
+              "6986702431",
+              "6986702470"
+            ],
+            "oneway": false
+          }
+        ]
+      },
+      "labelPosition": {
+        "lat": 51.298899080704956,
+        "lon": 3.225423167136053,
+        "method": "bounded-parcel-position",
+        "scope": "parking-block-label",
+        "sourcePoint": [
+          533.8833333333333,
+          254.33333333333334
+        ],
+        "basis": "Position inside the individually identified parking parcel; display label only, not a surveyed line."
+      }
+    },
+    "south:KOS": {
+      "lat": 51.297800346110854,
+      "lon": 3.2270588567143896,
+      "method": "landmark-junction-match",
+      "scope": "parking-approach",
+      "parking": "KOS",
+      "sourceMap": "south",
+      "sourceRevision": "V1.09-2026",
+      "roadWay": "897960053",
+      "roadSegment": [
+        "6987012163",
+        "6987012165"
+      ],
+      "lineExact": false,
+      "sourcePoint": [
+        482.4433333333333,
+        254.4
+      ],
+      "sourceBounds": [
+        456.4,
+        237.0,
+        504.0,
+        271.7
+      ],
+      "region": "south-kos-bank",
+      "basis": "KOS is the northern car bank above KE3, between the K/L and J/K column roads. Its own four junctions on the outer perimeter and E3-side access aisle identify this cell, independently of the central C-row scale. The route ends on the matched access road, not at a surveyed parking line.",
+      "junctionMatch": {
+        "cornerNodes": [
+          "6986702432",
+          "6986702431",
+          "6986702470",
+          "6986702461"
+        ],
+        "boundaryLanes": [
+          {
+            "way": "746582127",
+            "nodes": [
+              "6986702432",
+              "6987012154",
+              "6987012156",
+              "6987012158",
+              "6987012160",
+              "6987012162",
+              "6987012164",
+              "6987012166",
+              "6987012168",
+              "6987012170",
+              "6987012175",
+              "6987012171",
+              "6986702431"
+            ],
+            "oneway": false
+          },
+          {
+            "way": "746582091",
+            "nodes": [
+              "6986702431",
+              "6986702470"
+            ],
+            "oneway": false
+          },
+          {
+            "way": "897960053",
+            "nodes": [
+              "6986702461",
+              "6987012153",
+              "6987012155",
+              "6987012157",
+              "6987012159",
+              "6987012161",
+              "6987012163",
+              "6987012165",
+              "6987012167",
+              "6987012173",
+              "6987012172",
+              "6986702470"
+            ],
+            "oneway": false
+          },
+          {
+            "way": "746582088",
+            "nodes": [
+              "6986702432",
+              "6986702461"
+            ],
+            "oneway": false
+          }
+        ]
+      },
+      "labelPosition": {
+        "lat": 51.29763269548085,
+        "lon": 3.2265342289034664,
+        "method": "bounded-parcel-position",
+        "scope": "parking-block-label",
+        "sourcePoint": [
+          482.4433333333333,
+          254.4
+        ],
+        "basis": "Position inside the individually identified parking parcel; display label only, not a surveyed line."
+      }
+    },
+    "south:LOS": {
+      "lat": 51.296780244504916,
+      "lon": 3.2278880602763063,
+      "method": "landmark-junction-match",
+      "scope": "parking-approach",
+      "parking": "LOS",
+      "sourceMap": "south",
+      "sourceRevision": "V1.09-2026",
+      "roadWay": "897960053",
+      "roadSegment": [
+        "6987012145",
+        "6987012147"
+      ],
+      "lineExact": false,
+      "sourcePoint": [
+        432.99333333333334,
+        254.34666666666666
+      ],
+      "sourceBounds": [
+        404.5,
+        237.0,
+        452.5,
+        271.7
+      ],
+      "region": "south-los-bank",
+      "basis": "LOS is the westernmost northern car bank above LE3. The K/L column road and the actual western perimeter bend at junction 6986702448 distinguish it from KOS and the DRL corridor. Its western boundary follows the real curved perimeter to 12487521007; no rectangular corner or road is invented. The route ends on the matched access road, not at a surveyed parking line.",
+      "junctionMatch": {
+        "cornerNodes": [
+          "6986702448",
+          "6986702432",
+          "6986702461",
+          "12487521007"
+        ],
+        "boundaryLanes": [
+          {
+            "way": "746582127",
+            "nodes": [
+              "6986702448",
+              "12880754248",
+              "12880754250",
+              "6987012142",
+              "6987012144",
+              "6987012146",
+              "6987012148",
+              "6987012150",
+              "6987012152",
+              "6986702432"
+            ],
+            "oneway": false
+          },
+          {
+            "way": "746582088",
+            "nodes": [
+              "6986702432",
+              "6986702461"
+            ],
+            "oneway": false
+          },
+          {
+            "way": "897960053",
+            "nodes": [
+              "12487521007",
+              "6987012141",
+              "6987012143",
+              "6987012145",
+              "6987012147",
+              "6987012149",
+              "6987012151",
+              "6986702461"
+            ],
+            "oneway": false
+          },
+          {
+            "way": "746582127",
+            "nodes": [
+              "6986702448",
+              "12880754247",
+              "12880754249",
+              "12487521007"
+            ],
+            "oneway": false
+          }
+        ]
+      },
+      "labelPosition": {
+        "lat": 51.29664647765557,
+        "lon": 3.227455427851564,
+        "method": "bounded-parcel-position",
+        "scope": "parking-block-label",
+        "sourcePoint": [
+          432.99333333333334,
+          254.34666666666666
+        ],
+        "basis": "Position inside the individually identified parking parcel; display label only, not a surveyed line."
+      }
+    },
+    "south:POS": {
+      "lat": 51.302794,
+      "lon": 3.2226073,
+      "parking": "POS",
+      "scope": "parking-group-approach",
+      "method": "landmark-junction-match",
+      "sourceMap": "south",
+      "sourceRevision": "V1.09-2026",
+      "roadWay": "931027303",
+      "roadSegment": [
+        "6987015338",
+        "2494511763"
+      ],
+      "lineExact": false,
+      "sourceIndices": [
+        0,
+        1,
+        2
+      ],
+      "sourcePoint": [
+        676.27,
+        251.74333333333334
+      ],
+      "sourcePoints": [
+        [
+          743.3066666666667,
+          251.42666666666665
+        ],
+        [
+          819.0266666666666,
+          251.59333333333333
+        ],
+        [
+          676.27,
+          251.74333333333334
+        ]
+      ],
+      "sourceBounds": [
+        647.5,
+        239.2,
+        709.8,
+        265.5
+      ],
+      "region": "south-pos-ge2",
+      "basis": "POS covers two separately approached compounds. Select Near GE2 or Near EE1 / DE1 before routing. The base coordinate is catalogue metadata for the reviewed west approach, not an automatic selection.",
+      "junctionMatch": {
+        "boundaryNodes": [
+          "6987015338",
+          "12487521075",
+          "12487521076",
+          "6986702550",
+          "2494511761",
+          "2494511763",
+          "6987015338"
+        ],
+        "boundaryLanes": [
+          {
+            "way": "746582122",
+            "nodes": [
+              "6987015338",
+              "12487521075",
+              "12487521076",
+              "6986702550",
+              "2494511761"
+            ],
+            "oneway": false,
+            "private": true
+          },
+          {
+            "way": "241873299",
+            "nodes": [
+              "2494511761",
+              "2494511763"
+            ],
+            "oneway": false,
+            "private": true
+          },
+          {
+            "way": "931027303",
+            "nodes": [
+              "6987015338",
+              "2494511763"
+            ],
+            "oneway": false,
+            "private": true
+          }
+        ]
+      },
+      "polygon": [
+        [
+          51.3021551,
+          3.2231291
+        ],
+        [
+          51.3017878,
+          3.2220022
+        ],
+        [
+          51.3017975,
+          3.2219246
+        ],
+        [
+          51.3018287,
+          3.221867
+        ],
+        [
+          51.3030366,
+          3.2208487
+        ],
+        [
+          51.3034329,
+          3.2220855
+        ],
+        [
+          51.3021551,
+          3.2231291
+        ]
+      ],
+      "labelPosition": {
+        "lat": 51.30259982681613,
+        "lon": 3.2219943635839208,
+        "method": "road-boundary-polygon-centroid",
+        "scope": "parking-block-label",
+        "sourcePoint": [
+          676.27,
+          251.74333333333334
+        ],
+        "sourceIndices": [
+          2
+        ],
+        "basis": "Display label inside this independently matched POS compound; not a surveyed parking line."
+      },
+      "chooseApproach": true,
+      "approaches": [
+        {
+          "id": "ge2",
+          "name": "Near GE2",
+          "lat": 51.302794,
+          "lon": 3.2226073,
+          "parking": "POS",
+          "scope": "parking-group-approach",
+          "method": "landmark-junction-match",
+          "sourceMap": "south",
+          "sourceRevision": "V1.09-2026",
+          "roadWay": "931027303",
+          "roadSegment": [
+            "6987015338",
+            "2494511763"
+          ],
+          "lineExact": false,
+          "sourceIndices": [
+            2
+          ],
+          "sourcePoint": [
+            676.27,
+            251.74333333333334
+          ],
+          "sourcePoints": [
+            [
+              676.27,
+              251.74333333333334
+            ]
+          ],
+          "sourceBounds": [
+            647.5,
+            239.2,
+            709.8,
+            265.5
+          ],
+          "region": "south-pos-ge2",
+          "basis": "The west POS chevron compound sits above GE2, east of the MBZ / rest-facility landmarks, and west of the clearly printed gap before the larger POS compound. Its curved northern and western access lane and southern GE2-side road identify this physical polygon. Arrival stays on the existing private southern boundary road; parking lines and current site operations are not surveyed.",
+          "junctionMatch": {
+            "boundaryNodes": [
+              "6987015338",
+              "12487521075",
+              "12487521076",
+              "6986702550",
+              "2494511761",
+              "2494511763",
+              "6987015338"
+            ],
+            "boundaryLanes": [
+              {
+                "way": "746582122",
+                "nodes": [
+                  "6987015338",
+                  "12487521075",
+                  "12487521076",
+                  "6986702550",
+                  "2494511761"
+                ],
+                "oneway": false,
+                "private": true
+              },
+              {
+                "way": "241873299",
+                "nodes": [
+                  "2494511761",
+                  "2494511763"
+                ],
+                "oneway": false,
+                "private": true
+              },
+              {
+                "way": "931027303",
+                "nodes": [
+                  "6987015338",
+                  "2494511763"
+                ],
+                "oneway": false,
+                "private": true
+              }
+            ]
+          },
+          "polygon": [
+            [
+              51.3021551,
+              3.2231291
+            ],
+            [
+              51.3017878,
+              3.2220022
+            ],
+            [
+              51.3017975,
+              3.2219246
+            ],
+            [
+              51.3018287,
+              3.221867
+            ],
+            [
+              51.3030366,
+              3.2208487
+            ],
+            [
+              51.3034329,
+              3.2220855
+            ],
+            [
+              51.3021551,
+              3.2231291
+            ]
+          ],
+          "labelPosition": {
+            "lat": 51.30259982681613,
+            "lon": 3.2219943635839208,
+            "method": "road-boundary-polygon-centroid",
+            "scope": "parking-block-label",
+            "sourcePoint": [
+              676.27,
+              251.74333333333334
+            ],
+            "sourceIndices": [
+              2
+            ],
+            "basis": "Display label inside this independently matched POS compound; not a surveyed parking line."
+          }
+        },
+        {
+          "id": "ee1-de1",
+          "name": "Near EE1 / DE1",
+          "lat": 51.3053671,
+          "lon": 3.22051275,
+          "parking": "POS",
+          "scope": "parking-group-approach",
+          "method": "landmark-junction-match",
+          "sourceMap": "south",
+          "sourceRevision": "V1.09-2026",
+          "roadWay": "931027303",
+          "roadSegment": [
+            "2494511770",
+            "2494511782"
+          ],
+          "lineExact": false,
+          "sourceIndices": [
+            0,
+            1
+          ],
+          "sourcePoint": [
+            781.1666666666667,
+            251.51
+          ],
+          "sourcePoints": [
+            [
+              743.3066666666667,
+              251.42666666666665
+            ],
+            [
+              819.0266666666666,
+              251.59333333333333
+            ]
+          ],
+          "sourceBounds": [
+            719.4,
+            239.2,
+            846.9,
+            265.5
+          ],
+          "region": "south-pos-ee1-de1",
+          "basis": "The two eastern POS labels occupy one uninterrupted chevron compound above EE1 / DE1 and west of CF1. The surrounding northern access lane, CF1-side elbow, southern forecourt road and western divider identify its polygon; repeated labels do not create an internal road or official subdivision. Arrival stays on the existing private southern boundary road; parking lines and current site operations are not surveyed.",
+          "junctionMatch": {
+            "boundaryNodes": [
+              "2494511761",
+              "2494511768",
+              "2494511787",
+              "2494511789",
+              "2494511796",
+              "12487521003",
+              "2494511782",
+              "2494511770",
+              "2494511763",
+              "2494511761"
+            ],
+            "boundaryLanes": [
+              {
+                "way": "746582122",
+                "nodes": [
+                  "2494511761",
+                  "2494511768",
+                  "2494511787",
+                  "2494511789",
+                  "2494511796"
+                ],
+                "oneway": false,
+                "private": true
+              },
+              {
+                "way": "931027303",
+                "nodes": [
+                  "2494511763",
+                  "2494511770",
+                  "2494511782",
+                  "12487521003",
+                  "2494511796"
+                ],
+                "oneway": false,
+                "private": true
+              },
+              {
+                "way": "241873299",
+                "nodes": [
+                  "2494511761",
+                  "2494511763"
+                ],
+                "oneway": false,
+                "private": true
+              }
+            ]
+          },
+          "polygon": [
+            [
+              51.3030366,
+              3.2208487
+            ],
+            [
+              51.3043433,
+              3.2197916
+            ],
+            [
+              51.3063765,
+              3.2181286
+            ],
+            [
+              51.3065037,
+              3.218524
+            ],
+            [
+              51.3067748,
+              3.2193671
+            ],
+            [
+              51.3066742,
+              3.2194492
+            ],
+            [
+              51.3060093,
+              3.2199914
+            ],
+            [
+              51.3047249,
+              3.2210341
+            ],
+            [
+              51.3034329,
+              3.2220855
+            ],
+            [
+              51.3030366,
+              3.2208487
+            ]
+          ],
+          "labelPosition": {
+            "lat": 51.30490686729568,
+            "lon": 3.2201081032845362,
+            "method": "road-boundary-polygon-centroid",
+            "scope": "parking-block-label",
+            "sourcePoint": [
+              781.1666666666667,
+              251.51
+            ],
+            "sourceIndices": [
+              0,
+              1
+            ],
+            "basis": "Display label inside this independently matched POS compound; not a surveyed parking line."
+          }
+        }
+      ]
     }
   },
   "regions": [
@@ -20423,12 +21229,629 @@
       ],
       "model": "bounded-bilinear-parcel",
       "evidence": "The G-L column ladder is identified by the C1 access corridor, the quay perimeter and its A/B distributor. Each source parcel is bounded by four actual lane junctions, independently of the schematic scale."
+    },
+    {
+      "id": "south-ios-bank",
+      "sourceBounds": [
+        560.0,
+        237.0,
+        607.5,
+        271.7
+      ],
+      "cornerNodes": [
+        "6986702453",
+        "6986702430",
+        "6986702452",
+        "6986702454"
+      ],
+      "cornerCoordinates": [
+        [
+          51.2992906,
+          3.2243452
+        ],
+        [
+          51.3003567,
+          3.2234791
+        ],
+        [
+          51.3007363,
+          3.2246756
+        ],
+        [
+          51.2996719,
+          3.2255352
+        ]
+      ],
+      "boundaryLanes": [
+        {
+          "way": "746582127",
+          "nodes": [
+            "6986702453",
+            "6987015299",
+            "6987015301",
+            "6987015303",
+            "6987015305",
+            "6987015307",
+            "6987015309",
+            "6987015311",
+            "6987015313",
+            "6987015315",
+            "6986702430"
+          ],
+          "oneway": false
+        },
+        {
+          "way": "746582084",
+          "nodes": [
+            "6986702430",
+            "6986702452"
+          ],
+          "oneway": true
+        },
+        {
+          "way": "897960053",
+          "nodes": [
+            "6986702454",
+            "6987015298",
+            "6987015300",
+            "6987015302",
+            "8345226650",
+            "8345226649",
+            "8345226648",
+            "6987015312",
+            "6987015314",
+            "6986702452"
+          ],
+          "oneway": false
+        },
+        {
+          "way": "746582086",
+          "nodes": [
+            "6986702453",
+            "6986702454"
+          ],
+          "oneway": false
+        }
+      ],
+      "model": "bounded-bilinear-parcel",
+      "evidence": "IOS is the northern car bank above IE3, immediately west of the MBZ/ZOUT facilities. Its western I/J column road, outer perimeter and separate eastern one-way aisle identify this bounded cell. The eastern boundary is 746582084; the MBZ loop farther east is not included.",
+      "provenance": {
+        "source": "ICO SIT V1.09-2026",
+        "sourceUrl": "https://www.icoterminals.com/sites/default/files/SIT%20terminalplan%20SIT%2021%2009%202026.pdf",
+        "sourceCache": "scripts/sources/south2026.pdf",
+        "sourcePage": 1,
+        "sourceCoordinates": "PDF points before the 3x atlas rendering",
+        "roadSource": "public/roads.json; OpenStreetMap road-junction geometry",
+        "imageryCrossCheck": "Official Flemish orthophoto, OMWRGBMRVL WMS Ortho layer",
+        "imageryUrl": "https://geo.api.vlaanderen.be/OMWRGBMRVL/wms",
+        "reviewed": "2026-11-18",
+        "limitation": "Approach roads and display labels only; not surveyed entrances, parking lines or live operational access."
+      }
+    },
+    {
+      "id": "south-jos-bank",
+      "sourceBounds": [
+        508.0,
+        237.0,
+        555.5,
+        271.7
+      ],
+      "cornerNodes": [
+        "6986702431",
+        "6986702453",
+        "6986702454",
+        "6986702470"
+      ],
+      "cornerCoordinates": [
+        [
+          51.2980181,
+          3.225426
+        ],
+        [
+          51.2992906,
+          3.2243452
+        ],
+        [
+          51.2996719,
+          3.2255352
+        ],
+        [
+          51.2983867,
+          3.2265794
+        ]
+      ],
+      "boundaryLanes": [
+        {
+          "way": "746582127",
+          "nodes": [
+            "6986702431",
+            "6987012177",
+            "6987012179",
+            "6987012181",
+            "6987012183",
+            "6987015285",
+            "6987015287",
+            "6987015289",
+            "6987015291",
+            "6987015293",
+            "6987015295",
+            "6987015297",
+            "6986702453"
+          ],
+          "oneway": false
+        },
+        {
+          "way": "746582086",
+          "nodes": [
+            "6986702453",
+            "6986702454"
+          ],
+          "oneway": false
+        },
+        {
+          "way": "897960053",
+          "nodes": [
+            "6986702470",
+            "6987012176",
+            "6987012178",
+            "6987012180",
+            "6987012182",
+            "6987012184",
+            "6987015286",
+            "6987015288",
+            "6987015290",
+            "6987015292",
+            "6987015294",
+            "6987015296",
+            "6986702454"
+          ],
+          "oneway": false
+        },
+        {
+          "way": "746582091",
+          "nodes": [
+            "6986702431",
+            "6986702470"
+          ],
+          "oneway": false
+        }
+      ],
+      "model": "bounded-bilinear-parcel",
+      "evidence": "JOS is the northern car bank above JE3, between the J/K and I/J column roads. The two independently matched column junctions on the outer perimeter and the E3-side access aisle identify this cell in the ladder west of MBZ/ZOUT.",
+      "provenance": {
+        "source": "ICO SIT V1.09-2026",
+        "sourceUrl": "https://www.icoterminals.com/sites/default/files/SIT%20terminalplan%20SIT%2021%2009%202026.pdf",
+        "sourceCache": "scripts/sources/south2026.pdf",
+        "sourcePage": 1,
+        "sourceCoordinates": "PDF points before the 3x atlas rendering",
+        "roadSource": "public/roads.json; OpenStreetMap road-junction geometry",
+        "imageryCrossCheck": "Official Flemish orthophoto, OMWRGBMRVL WMS Ortho layer",
+        "imageryUrl": "https://geo.api.vlaanderen.be/OMWRGBMRVL/wms",
+        "reviewed": "2026-11-18",
+        "limitation": "Approach roads and display labels only; not surveyed entrances, parking lines or live operational access."
+      }
+    },
+    {
+      "id": "south-kos-bank",
+      "sourceBounds": [
+        456.4,
+        237.0,
+        504.0,
+        271.7
+      ],
+      "cornerNodes": [
+        "6986702432",
+        "6986702431",
+        "6986702470",
+        "6986702461"
+      ],
+      "cornerCoordinates": [
+        [
+          51.296796,
+          3.2267119
+        ],
+        [
+          51.2980181,
+          3.225426
+        ],
+        [
+          51.2983867,
+          3.2265794
+        ],
+        [
+          51.2970907,
+          3.2276342
+        ]
+      ],
+      "boundaryLanes": [
+        {
+          "way": "746582127",
+          "nodes": [
+            "6986702432",
+            "6987012154",
+            "6987012156",
+            "6987012158",
+            "6987012160",
+            "6987012162",
+            "6987012164",
+            "6987012166",
+            "6987012168",
+            "6987012170",
+            "6987012175",
+            "6987012171",
+            "6986702431"
+          ],
+          "oneway": false
+        },
+        {
+          "way": "746582091",
+          "nodes": [
+            "6986702431",
+            "6986702470"
+          ],
+          "oneway": false
+        },
+        {
+          "way": "897960053",
+          "nodes": [
+            "6986702461",
+            "6987012153",
+            "6987012155",
+            "6987012157",
+            "6987012159",
+            "6987012161",
+            "6987012163",
+            "6987012165",
+            "6987012167",
+            "6987012173",
+            "6987012172",
+            "6986702470"
+          ],
+          "oneway": false
+        },
+        {
+          "way": "746582088",
+          "nodes": [
+            "6986702432",
+            "6986702461"
+          ],
+          "oneway": false
+        }
+      ],
+      "model": "bounded-bilinear-parcel",
+      "evidence": "KOS is the northern car bank above KE3, between the K/L and J/K column roads. Its own four junctions on the outer perimeter and E3-side access aisle identify this cell, independently of the central C-row scale.",
+      "provenance": {
+        "source": "ICO SIT V1.09-2026",
+        "sourceUrl": "https://www.icoterminals.com/sites/default/files/SIT%20terminalplan%20SIT%2021%2009%202026.pdf",
+        "sourceCache": "scripts/sources/south2026.pdf",
+        "sourcePage": 1,
+        "sourceCoordinates": "PDF points before the 3x atlas rendering",
+        "roadSource": "public/roads.json; OpenStreetMap road-junction geometry",
+        "imageryCrossCheck": "Official Flemish orthophoto, OMWRGBMRVL WMS Ortho layer",
+        "imageryUrl": "https://geo.api.vlaanderen.be/OMWRGBMRVL/wms",
+        "reviewed": "2026-11-18",
+        "limitation": "Approach roads and display labels only; not surveyed entrances, parking lines or live operational access."
+      }
+    },
+    {
+      "id": "south-los-bank",
+      "sourceBounds": [
+        404.5,
+        237.0,
+        452.5,
+        271.7
+      ],
+      "cornerNodes": [
+        "6986702448",
+        "6986702432",
+        "6986702461",
+        "12487521007"
+      ],
+      "cornerCoordinates": [
+        [
+          51.2961005,
+          3.2274819
+        ],
+        [
+          51.296796,
+          3.2267119
+        ],
+        [
+          51.2970907,
+          3.2276342
+        ],
+        [
+          51.2963253,
+          3.2282543
+        ]
+      ],
+      "boundaryLanes": [
+        {
+          "way": "746582127",
+          "nodes": [
+            "6986702448",
+            "12880754248",
+            "12880754250",
+            "6987012142",
+            "6987012144",
+            "6987012146",
+            "6987012148",
+            "6987012150",
+            "6987012152",
+            "6986702432"
+          ],
+          "oneway": false
+        },
+        {
+          "way": "746582088",
+          "nodes": [
+            "6986702432",
+            "6986702461"
+          ],
+          "oneway": false
+        },
+        {
+          "way": "897960053",
+          "nodes": [
+            "12487521007",
+            "6987012141",
+            "6987012143",
+            "6987012145",
+            "6987012147",
+            "6987012149",
+            "6987012151",
+            "6986702461"
+          ],
+          "oneway": false
+        },
+        {
+          "way": "746582127",
+          "nodes": [
+            "6986702448",
+            "12880754247",
+            "12880754249",
+            "12487521007"
+          ],
+          "oneway": false
+        }
+      ],
+      "model": "bounded-bilinear-parcel",
+      "evidence": "LOS is the westernmost northern car bank above LE3. The K/L column road and the actual western perimeter bend at junction 6986702448 distinguish it from KOS and the DRL corridor. Its western boundary follows the real curved perimeter to 12487521007; no rectangular corner or road is invented.",
+      "provenance": {
+        "source": "ICO SIT V1.09-2026",
+        "sourceUrl": "https://www.icoterminals.com/sites/default/files/SIT%20terminalplan%20SIT%2021%2009%202026.pdf",
+        "sourceCache": "scripts/sources/south2026.pdf",
+        "sourcePage": 1,
+        "sourceCoordinates": "PDF points before the 3x atlas rendering",
+        "roadSource": "public/roads.json; OpenStreetMap road-junction geometry",
+        "imageryCrossCheck": "Official Flemish orthophoto, OMWRGBMRVL WMS Ortho layer",
+        "imageryUrl": "https://geo.api.vlaanderen.be/OMWRGBMRVL/wms",
+        "reviewed": "2026-11-18",
+        "limitation": "Approach roads and display labels only; not surveyed entrances, parking lines or live operational access."
+      }
+    },
+    {
+      "id": "south-pos-ge2",
+      "codes": [
+        "POS"
+      ],
+      "approachId": "ge2",
+      "sourceMap": "south",
+      "sourceRevision": "V1.09-2026",
+      "sourceBounds": [
+        647.5,
+        239.2,
+        709.8,
+        265.5
+      ],
+      "sourceIndices": [
+        2
+      ],
+      "sourcePoints": [
+        [
+          676.27,
+          251.74333333333334
+        ]
+      ],
+      "model": "road-boundary-polygon",
+      "polygon": [
+        [
+          51.3021551,
+          3.2231291
+        ],
+        [
+          51.3017878,
+          3.2220022
+        ],
+        [
+          51.3017975,
+          3.2219246
+        ],
+        [
+          51.3018287,
+          3.221867
+        ],
+        [
+          51.3030366,
+          3.2208487
+        ],
+        [
+          51.3034329,
+          3.2220855
+        ],
+        [
+          51.3021551,
+          3.2231291
+        ]
+      ],
+      "boundaryNodes": [
+        "6987015338",
+        "12487521075",
+        "12487521076",
+        "6986702550",
+        "2494511761",
+        "2494511763",
+        "6987015338"
+      ],
+      "boundaryLanes": [
+        {
+          "way": "746582122",
+          "nodes": [
+            "6987015338",
+            "12487521075",
+            "12487521076",
+            "6986702550",
+            "2494511761"
+          ],
+          "oneway": false,
+          "private": true
+        },
+        {
+          "way": "241873299",
+          "nodes": [
+            "2494511761",
+            "2494511763"
+          ],
+          "oneway": false,
+          "private": true
+        },
+        {
+          "way": "931027303",
+          "nodes": [
+            "6987015338",
+            "2494511763"
+          ],
+          "oneway": false,
+          "private": true
+        }
+      ],
+      "evidence": "The west POS chevron compound sits above GE2, east of the MBZ / rest-facility landmarks, and west of the clearly printed gap before the larger POS compound. Its curved northern and western access lane and southern GE2-side road identify this physical polygon."
+    },
+    {
+      "id": "south-pos-ee1-de1",
+      "codes": [
+        "POS"
+      ],
+      "approachId": "ee1-de1",
+      "sourceMap": "south",
+      "sourceRevision": "V1.09-2026",
+      "sourceBounds": [
+        719.4,
+        239.2,
+        846.9,
+        265.5
+      ],
+      "sourceIndices": [
+        0,
+        1
+      ],
+      "sourcePoints": [
+        [
+          743.3066666666667,
+          251.42666666666665
+        ],
+        [
+          819.0266666666666,
+          251.59333333333333
+        ]
+      ],
+      "model": "road-boundary-polygon",
+      "polygon": [
+        [
+          51.3030366,
+          3.2208487
+        ],
+        [
+          51.3043433,
+          3.2197916
+        ],
+        [
+          51.3063765,
+          3.2181286
+        ],
+        [
+          51.3065037,
+          3.218524
+        ],
+        [
+          51.3067748,
+          3.2193671
+        ],
+        [
+          51.3066742,
+          3.2194492
+        ],
+        [
+          51.3060093,
+          3.2199914
+        ],
+        [
+          51.3047249,
+          3.2210341
+        ],
+        [
+          51.3034329,
+          3.2220855
+        ],
+        [
+          51.3030366,
+          3.2208487
+        ]
+      ],
+      "boundaryNodes": [
+        "2494511761",
+        "2494511768",
+        "2494511787",
+        "2494511789",
+        "2494511796",
+        "12487521003",
+        "2494511782",
+        "2494511770",
+        "2494511763",
+        "2494511761"
+      ],
+      "boundaryLanes": [
+        {
+          "way": "746582122",
+          "nodes": [
+            "2494511761",
+            "2494511768",
+            "2494511787",
+            "2494511789",
+            "2494511796"
+          ],
+          "oneway": false,
+          "private": true
+        },
+        {
+          "way": "931027303",
+          "nodes": [
+            "2494511763",
+            "2494511770",
+            "2494511782",
+            "12487521003",
+            "2494511796"
+          ],
+          "oneway": false,
+          "private": true
+        },
+        {
+          "way": "241873299",
+          "nodes": [
+            "2494511761",
+            "2494511763"
+          ],
+          "oneway": false,
+          "private": true
+        }
+      ],
+      "evidence": "The two eastern POS labels occupy one uninterrupted chevron compound above EE1 / DE1 and west of CF1. The surrounding northern access lane, CF1-side elbow, southern forecourt road and western divider identify its polygon; repeated labels do not create an internal road or official subdivision."
     }
   ],
   "coverageAudit": {
     "south": {
-      "total": 260,
-      "routable": 177,
+      "total": 261,
+      "routable": 182,
       "missing": [
         "AH1",
         "AH2",
@@ -20488,7 +21911,6 @@
         "IE1",
         "IE2",
         "IE3",
-        "IOS",
         "JD1",
         "JD2",
         "JD3",
@@ -20496,7 +21918,6 @@
         "JE1",
         "JE2",
         "JE3",
-        "JOS",
         "KD1",
         "KD2",
         "KD3",
@@ -20504,15 +21925,13 @@
         "KE1",
         "KE2",
         "KE3",
-        "KOS",
         "LD1",
         "LD2",
         "LD3",
         "LD4",
         "LE1",
         "LE2",
-        "LE3",
-        "LOS"
+        "LE3"
       ]
     },
     "north": {
@@ -20545,17 +21964,13 @@
     },
     "bastenaken": {
       "total": 40,
-      "routable": 27,
+      "routable": 31,
       "missing": [
         "AH1",
         "AHH",
         "BDH",
         "DH1",
         "HA2",
-        "IOS",
-        "JOS",
-        "KOS",
-        "LOS",
         "PRE",
         "T15",
         "VPC",

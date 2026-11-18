@@ -3,6 +3,7 @@ import { createGPS } from './gps.mjs';
 import { createMapUI } from './map-ui.mjs';
 import { detectTerminal } from './location-context.mjs';
 import { optimizeDrivingMap } from './map-performance.mjs';
+import { destinationChoices } from './destinations.mjs';
 
 const paths = {
   search:'m21 21-5-5 M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0',
@@ -78,7 +79,14 @@ function closeSearch(){
   const settings=$('search-settings');if(settings)settings.open=false;
 }
 function viewSelectedPlan(){
-  if(!selected)return;closeSearch();street=false;renderMap(selected.map,selected.parking);mapUI.closeOptions();
+  if(!selected)return;closeSearch();street=false;renderMap(selected.map,selectedPlanParking());mapUI.closeOptions();
+}
+function selectedPlanParking(){
+  if(!selected)return null;
+  const indices=selected.approachSourceIndices;
+  if(!Array.isArray(indices))return selected.parking;
+  const points=indices.map(index=>selected.parking.points[index]).filter(Boolean);
+  return points.length?{...selected.parking,points}:selected.parking;
 }
 function setViewButtons() {
   $('plan-view').classList.toggle('active',!street);$('street-view').classList.toggle('active',street);
@@ -158,18 +166,25 @@ function renderRecents() {
   $('recent-list').replaceChildren();
   recents.forEach(item=>{
     const m=atlas.maps.find(m=>m.id===item.map),p=m?.parkings.find(p=>p.code===item.code);if(!m||!p)return;
+    const base={map:m,parking:p,line:item.line,approach:item.approach},choices=destinationChoices(base,catalogue),hit=choices.length===1?choices[0]:base;
     const b=document.createElement('button');b.className='recent-row';
-    b.innerHTML=`<span class="result-icon">${icon('clock')}</span><span><strong>${esc(p.code)}${item.line?` · line ${esc(item.line)}`:''}</strong><small>${esc(m.name)}</small></span>${icon('arrow')}`;
-    b.onclick=()=>choose({map:m,parking:p,line:item.line});$('recent-list').append(b);
+    b.innerHTML=`<span class="result-icon">${icon('clock')}</span><span><strong>${esc(p.code)}${item.line?` · line ${esc(item.line)}`:''}</strong><small>${hit.approachName?esc(hit.approachName)+' · ':''}${esc(m.name)}</small></span>${icon('arrow')}`;
+    b.onclick=()=>choose(hit);$('recent-list').append(b);
   });
 }
 function saveRecent(hit) {
-  recents=[{map:hit.map.id,code:hit.parking.code,line:hit.line ?? null},...recents.filter(r=>!(r.map===hit.map.id&&r.code===hit.parking.code&&r.line===(hit.line??null)))].slice(0,5);
+  recents=[{map:hit.map.id,code:hit.parking.code,line:hit.line ?? null,...(hit.approach?{approach:hit.approach}:{})},...recents.filter(r=>!(r.map===hit.map.id&&r.code===hit.parking.code&&r.line===(hit.line??null)&&(r.approach||null)===(hit.approach||null)))].slice(0,5);
   try {localStorage.setItem('portway-recents',JSON.stringify(recents));} catch {}
   renderRecents();
 }
 function choose(hit, remember=true) {
   clearTimeout(debounce);
+  const choices=destinationChoices(hit,catalogue);
+  if(choices.length>1){
+    $('destination').value=hit.parking.code+(hit.line?' line '+hit.line:'');$('line').value='';
+    renderSearchResults(choices,hit.parking.code);return;
+  }
+  hit=choices[0]||hit;
   gps.clearRoute();
   document.body.classList.add('has-destination');
   selected=hit;closeSearch();
@@ -180,7 +195,7 @@ function choose(hit, remember=true) {
   $('destination-card').hidden=false;
   $('destination-card').innerHTML=`<div class="destination-top"><div><div class="destination-kicker">YOUR DESTINATION</div><div class="destination-code">${esc(hit.parking.code)}</div></div><button class="icon-button" id="clear-destination" aria-label="Clear destination">${icon('close')}</button></div>
     ${hit.line?`<div class="destination-line">Line ${esc(hit.line)} <span style="font-size:10px;color:#829176">· reference saved</span></div>`:''}
-    <div class="destination-meta">${esc(parkingArea(hit))}<br><span class="destination-badge">${icon('check')} Parking located on source plan</span></div>
+    <div class="destination-meta">${hit.approachName?`<small>${esc(hit.approachName)} · </small>`:''}${esc(parkingArea(hit))}<br><span class="destination-badge">${icon('check')} Parking located on source plan</span></div>
     <div class="destination-actions"><button class="primary" id="route-button">${icon('route')} Route coverage ${icon('arrow')}</button><button class="secondary" id="view-plan-button">View plan</button><button class="secondary" id="share-button" aria-label="Share destination">${icon('share')}</button></div>
     <div class="line-note">${hit.line?`Line ${esc(hit.line)} isn’t positioned on this source plan. The marker shows the parking label.`:'The marker shows a parking label, not a verified entrance. Internal road navigation is not available yet.'}${hit.parking.points.length>1?' This reference appears in multiple places on the plan.':''}</div>
     <button class="inline-button destination-source" id="destination-source">${icon('info')} View source & coverage</button>`;
@@ -191,7 +206,7 @@ function choose(hit, remember=true) {
   $('destination-source').onclick=showSource;
   renderGPSActions();
   if(remember)saveRecent(hit);
-  const url=new URL(location.href);url.search='';url.searchParams.set('map',hit.map.id);url.searchParams.set('parking',hit.parking.code);if(hit.line)url.searchParams.set('line',hit.line);history.replaceState(null,'',url);
+  const url=new URL(location.href);url.search='';url.searchParams.set('map',hit.map.id);url.searchParams.set('parking',hit.parking.code);if(hit.line)url.searchParams.set('line',hit.line);if(hit.approach)url.searchParams.set('approach',hit.approach);history.replaceState(null,'',url);
 }
 function renderGPSActions(){
   if(!selected)return;
@@ -225,22 +240,25 @@ function showResults(submitted=false) {
   if(parsed.error){$('search-error').textContent=parsed.error;$('search-results').hidden=true;return;}
   if(!parsed.parking){if(submitted){$('search-error').hidden=false;$('search-error').textContent='Enter a parking reference, for example H61.';$('destination').focus();}return;}
   const filter=$('terminal-filter').value;
-  const results=searchParkings(atlas.maps,$('destination').value,filter,{preferredTerminal:filter==='auto'?nearbyTerminal?.id:null}).map(h=>({...h,line:parsed.line}));
+  const results=searchParkings(atlas.maps,$('destination').value,filter,{preferredTerminal:filter==='auto'?nearbyTerminal?.id:null}).flatMap(h=>destinationChoices({...h,line:parsed.line},catalogue));
   const exact=results.filter(r=>normalizeCode(r.parking.code)===parsed.parking);
   const localExact=exact.filter(r=>r.preferred);
   if(submitted&&localExact.length===1){choose(localExact[0]);return;}
   if(submitted&&localExact.length>1&&localExact.filter(r=>!r.map.historical).length===1){choose(localExact.find(r=>!r.map.historical));return;}
   if(submitted && exact.length===1){choose(exact[0]);return;}
   if(submitted && exact.length>1 && exact.filter(r=>!r.map.historical).length===1){choose(exact.find(r=>!r.map.historical));return;}
+  renderSearchResults(results,parsed.parking);
+}
+function renderSearchResults(results,parking){
   $('search-results').hidden=false;$('welcome-content').hidden=true;$('destination-card').hidden=true;
   document.body.classList.add('searching');
-  $('result-count').textContent=(results.some(r=>r.preferred)?`${nearbyTerminal.name} first · `:'')+(results.length>40?`${results.length} matches · first 40`:`${results.length} found`);
+  $('result-count').textContent=(results.some(r=>r.preferred)&&nearbyTerminal?`${nearbyTerminal.name} first · `:'')+(results.length>40?`${results.length} matches · first 40`:`${results.length} found`);
   $('result-list').replaceChildren();
-  if(!results.length){const p=document.createElement('p');p.className='result-list-note';p.textContent=`No indexed parking matches “${parsed.parking}”${$('terminal-filter').value!=='all'?' in this terminal':''}. Try another map or a shorter reference. The source plans remain available to browse.`;$('result-list').append(p);}
+  if(!results.length){const p=document.createElement('p');p.className='result-list-note';p.textContent=`No indexed parking matches “${parking}”${$('terminal-filter').value!=='all'?' in this terminal':''}. Try another map or a shorter reference. The source plans remain available to browse.`;$('result-list').append(p);}
   for(const hit of results.slice(0,40)){
     const b=document.createElement('button');b.type='button';b.className='result-row';
     b.dataset.terminal=hit.matchedTerminal||hit.map.id;b.dataset.preferred=String(!!hit.preferred);
-    b.innerHTML=`<span class="result-icon">${icon('pin')}</span><span><strong>${esc(hit.parking.code)}${hit.line?` · line ${esc(hit.line)}`:''}</strong><small>${esc(parkingArea(hit))} · ${hit.map.historical?'older plan':'ICO plan'}</small></span>${icon('arrow')}`;
+    b.innerHTML=`<span class="result-icon">${icon('pin')}</span><span><strong>${esc(hit.parking.code)}${hit.line?` · line ${esc(hit.line)}`:''}</strong><small>${hit.approachName?esc(hit.approachName)+' · ':''}${esc(parkingArea(hit))} · ${hit.map.historical?'older plan':'ICO plan'}</small></span>${icon('arrow')}`;
     b.onclick=()=>choose(hit);$('result-list').append(b);
   }
 }
@@ -251,7 +269,7 @@ function showAbout() {
   dialog(`<h2>A clearer way around the port.</h2><p>Portway brings the public ICO Zeebrugge plans into one searchable, phone-friendly map library. This is an independent parking finder, not an official ICO navigation service.</p><h3>Available in this version</h3><p>Search parking labels, keep a line reference, browse six plans, share destinations and reopen downloaded plans offline. The GPS map shows parking codes, your position and the route.</p><h3>Navigation coverage</h3><p>Live GPS updates as you move. Built-in parking approaches let you start a road route directly for mapped destinations. A line number stays a reference within the parking unless an exact line point has been recorded. Routes respect mapped one-way roads and node turn restrictions. Missing road connections are reported. PDF labels are not assumed to be GPS coordinates. Saved destination points stay on this device; they are not included in shared links. Current terminal signs and access changes are not live data.</p><ul class="source-list">${atlas.maps.map(m=>`<li><a href="${esc(m.source)}#page=${m.page}" target="_blank" rel="noopener">${esc(m.name)} ${icon('external')}</a><br>${esc(m.date)} · page ${m.page}</li>`).join('')}</ul><p>Terminal location coordinates: ICO terminal pages. Routing geometry: OpenStreetMap contributors. Source plans: ICO / Cewez.</p>`);
 }
 async function shareDestination() {
-  const text=`ICO ${selected.map.name} · ${selected.parking.code}${selected.line?` · line ${selected.line}`:''}`;
+  const text=`ICO ${selected.map.name} · ${selected.parking.code}${selected.approachName?` · ${selected.approachName}`:''}${selected.line?` · line ${selected.line}`:''}`;
   const url=location.href;
   if(navigator.share){try{await navigator.share({title:'Portway destination',text,url});return;}catch(e){if(e.name==='AbortError')return;}}
   try{await navigator.clipboard.writeText(url);toast('Destination link copied. It opens this parking and keeps the line reference.');}catch{dialog(`<h2>Share this destination</h2><p>${esc(text)}</p><p>Copy the link below. Other devices need access to the server hosting this app.</p><input aria-label="Destination link" readonly value="${esc(url)}" style="width:100%;padding:10px">`);}
@@ -291,15 +309,15 @@ try {
   document.addEventListener('pointerdown',e=>{if(!e.target.closest('.sidebar')&&!e.target.closest('#destination-card'))closeSearch();});
   document.querySelectorAll('[data-quick]').forEach(b=>b.onclick=()=>{$('destination').value=b.dataset.quick;$('line').value='';$('terminal-filter').value='all';showResults(true);});
   $('clear-recents').onclick=()=>{recents=[];try{localStorage.removeItem('portway-recents');}catch{}renderRecents();};
-  $('plan-view').onclick=()=>{if(street){street=false;renderMap(current,selected?.parking);}mapUI.closeOptions();};
+  $('plan-view').onclick=()=>{if(street){street=false;renderMap(current,selectedPlanParking());}mapUI.closeOptions();};
   $('street-view').onclick=()=>{if(!street){street=true;renderMap();}mapUI.closeOptions();};
   $('all-parkings').onclick=()=>{closeSearch();mapUI.closeOptions();if(street){street=false;renderMap(current);}else gps.start({quiet:true});};
   $('zoom-in').onclick=()=>map.zoomIn();$('zoom-out').onclick=()=>map.zoomOut();$('fit-map').onclick=()=>{if(!gps.fitRoute())fit();};$('locate').onclick=()=>gps.start();$('live-gps-start').onclick=()=>gps.start();
   $('source').onclick=showSource;$('about').onclick=showAbout;
   document.addEventListener('keydown',e=>{if(e.key==='/'&&!['INPUT','SELECT','TEXTAREA'].includes(document.activeElement.tagName)){e.preventDefault();$('destination').focus();}if(e.key==='Escape'&&!$('info-dialog').open){if(document.body.classList.contains('searching')){closeSearch();$('destination').blur();}else clearDestination();}});
   const params=new URL(location.href).searchParams, m=atlas.maps.find(m=>m.id===params.get('map'));
-  const p=m?.parkings.find(p=>p.code===params.get('parking'));
-  if(m&&p){const line=params.get('line');choose({map:m,parking:p,line:/^[1-9]\d{0,3}$/.test(line??'')?line:null},false);}
+  const p=m?.parkings.find(p=>normalizeCode(p.code)===normalizeCode(params.get('parking')));
+  if(m&&p){const line=params.get('line');choose({map:m,parking:p,line:/^[1-9]\d{0,3}$/.test(line??'')?line:null,approach:params.get('approach')},false);}
   gps.start({quiet:true});
   offlineSetup();
 } catch(e) {

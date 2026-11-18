@@ -203,6 +203,8 @@ for builder,filename in [
     ('build_south_west_destinations.py','south-west-destinations.json'),
     ('build_south_east_destinations.py','south-east-destinations.json'),
     ('build_central_destinations.py','central-destinations.json'),
+    ('build_os_destinations.py','os-destinations.json'),
+    ('build_pos_destinations.py','pos-destinations.json'),
 ]:
     subprocess.run([sys.executable,str(ROOT/'scripts'/builder)],check=True,cwd=ROOT)
     extra=json.loads((ROOT/'scripts/geo'/filename).read_text(encoding='utf-8'))

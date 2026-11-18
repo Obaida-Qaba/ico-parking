@@ -3,7 +3,7 @@ export function distanceMetres(a,b) {
   return Math.hypot(x,y)*6371008.8;
 }
 export function validPin(pin) {return !!pin && Number.isFinite(pin.lat)&&Number.isFinite(pin.lon)&&Math.abs(pin.lat)<=90&&Math.abs(pin.lon)<=180;}
-export function parkingKey(hit) {return `${['south','hanze','bastenaken'].includes(hit.map.id)?'south':hit.map.id}:${hit.parking.code}:${hit.line||'parking'}`;}
+export function parkingKey(hit) {return `${['south','hanze','bastenaken'].includes(hit.map.id)?'south':hit.map.id}:${hit.parking.code}${hit.approach?'@'+hit.approach:''}:${hit.line||'parking'}`;}
 export function buildGraph(data) {
   const graph={nodes:new Map(),edges:new Map(),segments:[],restrictions:new Map(),mapPatches:data.mapPatches||[]};
   for(const w of data.ways) {

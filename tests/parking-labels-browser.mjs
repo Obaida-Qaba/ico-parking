@@ -5,6 +5,8 @@ import {observeMap} from './observe-map.mjs';
 
 mkdirSync('test-results',{recursive:true});
 const catalogue=JSON.parse(readFileSync('public/destinations.json','utf8'));
+const posCatalogue={destinations:{'south:POS':catalogue.destinations['south:POS']}};
+assert.ok(posCatalogue.destinations['south:POS']?.chooseApproach,'published catalogue includes explicit POS choices');
 const hc1=catalogue.destinations['south:HC1'],gc1=catalogue.destinations['south:GC1'];
 const base=(process.env.PORTWAY_BASE_URL||'http://127.0.0.1:4173').replace(/\/$/,'');
 const browser=await chromium.launch();
@@ -22,6 +24,51 @@ await context.addInitScript(()=>{
 const page=await context.newPage(),errors=[];
 page.on('pageerror',e=>errors.push(e.message));
 try{
+ // Exercise the real label module on its own map, so route/search UI changes
+ // cannot conceal duplicate POS choices or saved approach-key regressions.
+ const fixture=await context.newPage();
+ fixture.on('pageerror',e=>errors.push(e.message));
+ const fixtureUrl=new URL('__parking-labels-fixture',base+'/').href;
+ await fixture.route(fixtureUrl,route=>route.fulfill({contentType:'text/html',body:`<!doctype html><link rel="stylesheet" href="${new URL('vendor/leaflet.css',base+'/').href}"><style>html,body,#fixture-map{margin:0;width:100%;height:100%}</style><div id="fixture-map"></div><script src="${new URL('vendor/leaflet.js',base+'/').href}"></script>`}));
+ await fixture.goto(fixtureUrl);
+ await fixture.evaluate(async({catalogue,moduleUrl})=>{
+  const {createParkingLabels}=await import(moduleUrl);
+  window.__posMap=L.map('fixture-map',{zoomControl:false}).setView([51.304,3.221],11);
+  window.__posLabels=createParkingLabels(window.__posMap,catalogue);window.__posLabels.update();
+ },{catalogue:posCatalogue,moduleUrl:new URL('parking-labels.mjs',base+'/').href});
+ await fixture.waitForTimeout(120);
+ const posNames=['POS · Near GE2','POS · Near EE1 / DE1'];
+ const represented=await fixture.evaluate(()=>[
+  ...[...document.querySelectorAll('.nearby-parking')].filter(el=>!el.hidden).map(el=>el.dataset.parkingName||el.dataset.parking),
+  ...[...document.querySelectorAll('.parking-cluster-button')].flatMap(el=>JSON.parse(el.dataset.parkingNames||'[]')),
+ ]);
+ assert.deepEqual(represented.sort(),[...posNames].sort(),'both actual POS compounds have distinct descriptive labels');
+ const posGroup=fixture.locator('.parking-cluster-button');
+ assert.equal(await posGroup.count(),1,'nearby POS choices share an explicit group at overview zoom');
+ assert.deepEqual(JSON.parse(await posGroup.getAttribute('data-parking-codes')),['POS','POS'],'group codes retain printed POS without approach suffixes');
+ assert.deepEqual(JSON.parse(await posGroup.getAttribute('data-parking-names')).sort(),[...posNames].sort());
+ for(const name of posNames)assert.ok((await posGroup.getAttribute('aria-label')).includes(name),'group aria distinguishes '+name);
+ await posGroup.click();
+ for(const name of posNames)assert.ok(await fixture.getByRole('button',{name:'Show '+name+' on map',exact:true}).isVisible(),'group list distinguishes '+name);
+ await fixture.locator('.leaflet-popup-close-button').click();
+ await fixture.evaluate(catalogue=>{
+  const points=catalogue.destinations['south:POS'].approaches.map(a=>a.labelPosition);
+  window.__posMap.fitBounds(points.map(p=>[p.lat,p.lon]),{padding:[60,60],maxZoom:17,animate:false});
+  window.__posLabels.update({activeKey:'south:POS@ge2'});
+ },posCatalogue);
+ await fixture.waitForTimeout(120);
+ assert.equal(await fixture.locator('.nearby-parking[data-parking-name="POS · Near GE2"]').count(),0,'only the selected POS approach is excluded');
+ assert.equal(await fixture.locator('.nearby-parking[data-parking-name="POS · Near EE1 / DE1"]').count(),1,'other POS compound remains labelled');
+ await fixture.evaluate(catalogue=>{
+  const p=catalogue.destinations['south:POS'].approaches.find(a=>a.id==='ee1-de1').labelPosition;
+  window.__posLabels.update({activeKey:'south:POS@ge2',saved:{'south:POS@ee1-de1:parking':{lat:p.lat+.0001,lon:p.lon}}});
+ },posCatalogue);
+ await fixture.waitForTimeout(120);
+ const savedPOS=fixture.locator('.nearby-parking[data-parking-name="POS · Near EE1 / DE1"]');
+ assert.equal(await savedPOS.getAttribute('data-parking'),'POS','saved approach key keeps the printed code');
+ assert.equal(await savedPOS.innerText(),'POS','saved approach suffix is absent from visible code text');
+ assert.equal(await savedPOS.getAttribute('title'),'POS · Near EE1 / DE1 · parking','saved approach keeps its matching descriptive name');
+ await fixture.close();
  await page.goto(base+'/?map=south&parking=HC1');
  await page.locator('.destination-code').waitFor();
  await page.locator('#route-button').click();
@@ -77,7 +124,7 @@ try{
  const group=page.locator('.parking-cluster-button').first();
  assert.ok(await group.isVisible(),'crowded parkings have a visible count control');
  await page.screenshot({path:'test-results/mobile-parking-groups-overview.png',fullPage:true});
- const members=JSON.parse(await group.getAttribute('data-parking-codes'));
+ const members=JSON.parse(await group.getAttribute('data-parking-names'));
  await group.click();
  await page.waitForTimeout(350);
  const popupBounds=await page.locator('.parking-group-popup').boundingBox();

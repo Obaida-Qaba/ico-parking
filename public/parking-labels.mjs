@@ -9,9 +9,19 @@ const svg=(name,attributes)=>{const element=document.createElementNS('http://www
 export function createParkingLabels(map,catalogue){
   const layer=L.layerGroup().addTo(map),base=new Map(),markers=new Map(),clusters=new Map();
   for(const [key,pin] of Object.entries({...catalogue?.destinations,...catalogue?.labels})){
-    const parts=key.split(':');if(parts.length!==2||!validPin(pin))continue;
+    const parts=key.split(':');if(parts.length!==2)continue;
+    const code=parts[1].split('@')[0],prefix=`${region(parts[0])}:${code}`;
+    if(pin?.chooseApproach){
+      for(const approach of pin.approaches||[]){
+        if(!approach.id||!validPin(approach))continue;
+        const display=validPin(approach.labelPosition)?approach.labelPosition:approach;
+        base.set(`${prefix}@${approach.id}`,{lat:display.lat,lon:display.lon,code,name:code+' · '+(approach.name||approach.id)});
+      }
+      continue;
+    }
+    if(!validPin(pin))continue;
     const display=validPin(pin.labelPosition)?pin.labelPosition:pin;
-    base.set(`${region(parts[0])}:${parts[1]}`,{lat:display.lat,lon:display.lon,code:parts[1]});
+    base.set(`${region(parts[0])}:${parts[1]}`,{lat:display.lat,lon:display.lon,code,name:pin.name||code});
   }
   const emptySaved={};
   let savedReference,activeKey=null,position=null,target=null,revision=0,signature='',frame=null,timer=null,lastLayout=0,disposed=false,popup=null;
@@ -21,16 +31,20 @@ export function createParkingLabels(map,catalogue){
     savedReference=saved;const points=new Map(base);
     for(const [key,pin] of Object.entries(saved)){
       const parts=key.split(':');if(parts.length!==3||parts[2]!=='parking'||!validPin(pin))continue;
-      points.set(`${region(parts[0])}:${parts[1]}`,{lat:pin.lat,lon:pin.lon,code:parts[1]});
+      const labelKey=`${region(parts[0])}:${parts[1]}`,code=parts[1].split('@')[0];
+      points.set(labelKey,{lat:pin.lat,lon:pin.lon,code,name:base.get(labelKey)?.name||pin.name||code});
     }
     for(const [key,item] of markers)if(!points.has(key)){layer.removeLayer(item.marker);markers.delete(key);}
     for(const [key,pin] of points){
       let item=markers.get(key);
       if(!item){
         const text=document.createElement('span');text.textContent=pin.code;
-        const marker=L.marker([pin.lat,pin.lon],{interactive:false,keyboard:false,zIndexOffset:-1000,title:pin.code+' · parking',icon:L.divIcon({className:'nearby-parking',html:text,iconSize:[30,18],iconAnchor:[15,9]})});
-        item={key,code:pin.code,marker};markers.set(key,item);
-      }else if(!item.marker.getLatLng().equals([pin.lat,pin.lon]))item.marker.setLatLng([pin.lat,pin.lon]);
+        const marker=L.marker([pin.lat,pin.lon],{interactive:false,keyboard:false,zIndexOffset:-1000,title:(pin.name||pin.code)+' · parking',icon:L.divIcon({className:'nearby-parking',html:text,iconSize:[30,18],iconAnchor:[15,9]})});
+        item={key,code:pin.code,name:pin.name,marker};markers.set(key,item);
+      }else{
+        if(!item.marker.getLatLng().equals([pin.lat,pin.lon]))item.marker.setLatLng([pin.lat,pin.lon]);
+        item.name=pin.name;
+      }
     }
     revision++;
   }
@@ -47,8 +61,9 @@ export function createParkingLabels(map,catalogue){
     const content=document.createElement('div');content.style.cssText=`min-width:150px;max-height:${Math.max(44,Math.min(230,safe.bottom-safe.top-44))}px;overflow:auto`;
     const heading=document.createElement('strong');heading.textContent=group.members.length===1?'Parking nearby':`${group.members.length} parkings nearby`;content.append(heading);
     for(const member of group.members){
-      const button=document.createElement('button');button.type='button';button.className='parking-group-item';button.textContent=member.code;
-      button.setAttribute('aria-label','Show '+member.code+' on map');button.style.cssText='display:block;width:100%;min-height:44px;border:0;border-bottom:1px solid #e0e9e2;background:white;color:#244c43;text-align:left;font-size:14px;font-weight:600;font-family:inherit;padding:8px 4px;cursor:pointer';
+      const name=member.name||member.code;
+      const button=document.createElement('button');button.type='button';button.className='parking-group-item';button.textContent=name;
+      button.setAttribute('aria-label','Show '+name+' on map');button.style.cssText='display:block;width:100%;min-height:44px;border:0;border-bottom:1px solid #e0e9e2;background:white;color:#244c43;text-align:left;font-size:14px;font-weight:600;font-family:inherit;padding:8px 4px;cursor:pointer';
       button.onclick=()=>{map.fire('dragstart');map.stopHeadingUp?.();map.setView(member.marker.getLatLng(),Math.min(map.getMaxZoom(),Math.max(18,map.getZoom()+1)),{animate:false});popup?.setLatLng(member.marker.getLatLng());};
       content.append(button);
     }
@@ -91,8 +106,8 @@ export function createParkingLabels(map,catalogue){
       }
       if(!layer.hasLayer(item.marker))item.marker.addTo(layer);
       const element=item.marker.getElement(),width=Math.max(28,Math.ceil(item.code.length*font*.64+8));
-      if(item.element!==element||item.font!==font){
-        item.element=element;item.font=font;element.dataset.parking=item.code;
+      if(item.element!==element||item.font!==font||item.renderedName!==item.name){
+        item.element=element;item.font=font;item.renderedName=item.name;element.dataset.parking=item.code;element.dataset.parkingName=item.name||item.code;element.title=(item.name||item.code)+' · parking';
         Object.assign(element.style,{width:width+'px',height:height+'px',marginLeft:-width/2+'px',marginTop:-height/2+'px',fontSize:font+'px',lineHeight:height-2+'px'});
       }
       const rect=rectangle(point,width+2,height+2);
@@ -123,8 +138,11 @@ export function createParkingLabels(map,catalogue){
       if(!chosen){chosen=L.point(Math.max(36,Math.min(size.x-36,point.x)),Math.max(24,Math.min(size.y-24,point.y)));occupied.push(rectangle(chosen,68,46));}
       const x=Math.round(chosen.x-point.x),y=Math.round(chosen.y-point.y),offset=x+','+y;
       if(group.offset!==offset){group.offset=offset;group.displacement=[x,y];group.button.style.left=x-32+'px';group.button.style.top=y-22+'px';group.line.setAttribute('d',`M0 0L${x} ${y}`);group.line.style.display=x===0&&y===0?'none':'';}
-      const codes=members.map(m=>m.code),codesJSON=JSON.stringify(codes);
-      if(group.codes!==codesJSON){group.codes=codesJSON;group.button.dataset.parkingCodes=codesJSON;group.button.textContent=members.length===1?'1 parking':members.length+' parks';group.button.setAttribute('aria-label',members.length+' parkings: '+codes.join(', ')+'. Show parking list.');}
+      if(group.revision!==revision){
+        group.revision=revision;
+        const codes=members.map(m=>m.code),names=members.map(m=>m.name||m.code),codesJSON=JSON.stringify(codes),namesJSON=JSON.stringify(names);
+        if(group.codes!==codesJSON||group.names!==namesJSON){group.codes=codesJSON;group.names=namesJSON;group.button.dataset.parkingCodes=codesJSON;group.button.dataset.parkingNames=namesJSON;group.button.textContent=members.length===1?'1 parking':members.length+' parks';group.button.setAttribute('aria-label',members.length+' parkings: '+names.join(', ')+'. Show parking list.');}
+      }
     }
     for(const [key,group] of clusters)if(!used.has(key)){layer.removeLayer(group.marker);clusters.delete(key);}
   }

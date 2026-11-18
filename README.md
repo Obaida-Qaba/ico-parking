@@ -46,20 +46,22 @@ Open http://127.0.0.1:4173. The app runs directly from `public/`; no build or AP
 
 Terminal detection is a coarse search preference, not an exact operating boundary or a new navigation destination catalogue. `public/terminals.json` records geographic footprint sources and approximate area divisions. Poor or stale fixes do not guess a terminal; uncertain boundaries hold the previous area or fall back to a broad region. Toyota/Hanze use a documented uncertainty band. Outside the port, search covers all terminals. Automatic context works offline after the initial download.
 
-**BB and JC3 now start road routes directly on a fresh device.** The built-in catalogue contains 352 parking-reference approaches, including 47 of the 50 North codes, all indexed Hanze H/HH references, the historical Toyota blocks and additional bounded South/quay compounds. The original 20 checked approaches remain unchanged. No saved parking pin is required for these references.
+**BB, JC3 and IOS/JOS/KOS/LOS start road routes directly on a fresh device. POS offers two explicitly chosen areas.** The built-in catalogue contains 357 parking-reference records, including 47 of the 50 North codes, all indexed Hanze H/HH references, the historical Toyota blocks and additional bounded South/quay compounds. The original 20 checked approaches remain unchanged. No saved parking pin is required for these references.
 
 Coverage is still partial. Counting each source-plan reference separately, including repeated names on historical plans:
 
 | Plan | References with road approaches | Indexed references |
 |---|---:|---:|
-| Current South | 177 | 260 |
+| Current South | 182 | 261 |
 | North | 47 | 50 |
 | Nissan | 0 | 13 |
-| Older Bastenaken | 27 | 40 |
+| Older Bastenaken | 31 | 40 |
 | Older Hanze | 43 | 43 |
 | Toyota brochure | 125 | 125 |
 
-That is 419 of 531 source references; 112 still lack a confirmed geographic approach. `public/destinations.json.coverageAudit` and `npm run audit:coverage` list every remaining code. The audit exits with status 1 while any are missing. Passing unit/browser tests is not a claim of complete parking coverage.
+That is 428 of 532 source references; 104 still lack a confirmed geographic approach. `public/destinations.json.coverageAudit` and `npm run audit:coverage` list every remaining code. The audit exits with status 1 while any are missing. Passing unit/browser tests is not a claim of complete parking coverage.
+
+IOS/JOS/KOS/LOS each use their own northern parking-bank cell, bounded by the perimeter and the E3-side access aisle. The current source prints POS three times across two physical compounds. Search offers **Near GE2** and **Near EE1 / DE1**; these are descriptive choices, not invented official subcodes. Each has its own boundary-road approach, interior label and source-plan focus. A generic or invalid POS link reopens the choices rather than choosing an arbitrary compound. Shared links, recent destinations and optional saved refinements retain that choice.
 
 The new regions use individually identified road-junction parcels, named landmarks and bounded road matching, with separate source positions and arrival points. North BB uses its own lane in the ordered E/DC/DB/DA/CC/CB/CA/BC/BB/BA ladder; it is not routed to the terminal centre. Some historical or revised blocks use a **shared parking-area approach**, explicitly described in the destination and route details. These routes do not establish an individual entrance or exact line. Historical Toyota uses two windmill controls and an independent Bridgestone edge check; the older drawing differs from current lane geometry. These are source-matched estimates, not surveyed positions.
 

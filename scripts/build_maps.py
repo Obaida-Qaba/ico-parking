@@ -69,7 +69,7 @@ for b in pg.get_text('dict')['blocks']:
     for line in b.get('lines',[]):
         spans=line['spans']
         text=''.join(s['text'] for s in spans).strip()
-        if re.fullmatch(r'(?:H\d{1,2}\s*[A-G]?|HH\d|[A-Z]{2}\s*\d{1,2}|[A-Z]{2}X|CH\d{1,2}|B[A-Z]{1,2}|[IJKL]OS|DR[A-Z]+)',text):
+        if re.fullmatch(r'(?:H\d{1,2}\s*[A-G]?|HH\d|[A-Z]{2}\s*\d{1,2}|[A-Z]{2}X|CH\d{1,2}|B[A-Z]{1,2}|[IJKL]OS|POS|DR[A-Z]+)',text):
             box=line['bbox'];south['_add'](text,(box[0]+box[2])/2,(box[1]+box[3])/2)
 
 # Illustrator stores the AA letters and their adjacent number as separate
@@ -139,7 +139,7 @@ for m in maps:
             code=parking['code']
             if re.fullmatch(r'H\d{1,2}[A-G]?|HH\d',code):
                 parking['terminal']='hanze'
-            elif re.fullmatch(r'[A-Z]{2}\d{1,2}|[A-Z]{2}X|CH\d{1,2}|B[A-Z]{1,2}|[IJKL]OS',code):
+            elif re.fullmatch(r'[A-Z]{2}\d{1,2}|[A-Z]{2}X|CH\d{1,2}|B[A-Z]{1,2}|[IJKL]OS|POS',code):
                 parking['terminal']='bastenaken'
     else:
         for parking in m['parkings']:

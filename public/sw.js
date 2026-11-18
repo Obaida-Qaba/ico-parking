@@ -1,4 +1,4 @@
-const CACHE='portway-v18-c3-road-continuations';
+const CACHE='portway-v19-pos-os-routes';
 self.addEventListener('install',event=>{
   event.waitUntil((async()=>{
     const cache=await caches.open(CACHE);

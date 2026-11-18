@@ -66,6 +66,15 @@ test('North single-letter destinations use parking labels rather than fragments 
   assert.ok(north.parkings.find(p=>p.code==='L').y<1000,'the actual L block is in the upper paired grid');
 });
 
+test('POS is searchable in Bastenaken with every actual repeated source label',()=>{
+ const {maps}=JSON.parse(readFileSync(new URL('../public/data.json',import.meta.url)));
+ const south=maps.find(m=>m.id==='south'),pos=south.parkings.find(p=>p.code==='POS');
+ assert.ok(pos,'the printed POS reference is indexed');
+ assert.equal(pos.points.length,3,'three printed labels across the two POS compounds');
+ assert.equal(searchParkings(maps,'POS','bastenaken')[0].parking.code,'POS');
+ assert.equal(south.parkings.some(p=>p.code==='POS01'),false,'the small edge annotation is not invented as a separate parking compound');
+});
+
 test('Toyota includes the printed extra parking blocks and its row markers stay in their source rows',()=>{
   const {maps}=JSON.parse(readFileSync(new URL('../public/data.json',import.meta.url)));
   const toyota=maps.find(m=>m.id==='toyota');

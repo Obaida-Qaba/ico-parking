@@ -54,7 +54,7 @@
       <span id="gps-summary" class="gps-summary" hidden>GPS</span>
       <button id="map-options" class="map-toolbar-button" aria-expanded="false" aria-controls="map-options-panel"><i data-icon="layers"></i> Maps</button>
     </div>
-    <div class="map-controls"><button id="locate" class="map-control" aria-label="Show my GPS location" title="My location"><i data-icon="locate"></i></button><div class="zoom-group"><button id="zoom-in" class="map-control" aria-label="Zoom in"><i data-icon="plus"></i></button><button id="zoom-out" class="map-control" aria-label="Zoom out"><i data-icon="minus"></i></button></div><button id="fit-map" class="map-control" aria-label="Show whole route or map" title="Show whole route or map"><i data-icon="fit"></i></button></div>
+    <div class="map-controls"><button id="locate" class="map-control" aria-label="Show my GPS location" title="Follow my driving direction"><i data-icon="locate"></i></button><div class="zoom-group"><button id="zoom-in" class="map-control" aria-label="Zoom in"><i data-icon="plus"></i></button><button id="zoom-out" class="map-control" aria-label="Zoom out"><i data-icon="minus"></i></button></div><button id="north-up" class="map-control north-up" aria-label="Show north at the top" aria-pressed="false" title="North up" hidden>N</button><button id="fit-map" class="map-control" aria-label="Show whole route or map" title="Show whole route or map"><i data-icon="fit"></i></button></div>
     <div id="map-loading" class="map-loading" role="status">Loading terminal plan…</div>
     <div id="gps-status-alert" class="gps-status-alert" role="status" hidden></div>
     <div id="navigation-panel" class="navigation-panel" hidden><div class="navigation-heading"><span id="navigation-destination"></span><button id="stop-navigation" aria-label="Stop navigation" title="End route">×</button></div><strong id="navigation-instruction">Waiting for GPS…</strong><div id="navigation-distance">—</div></div>
@@ -74,6 +74,7 @@
 <dialog id="info-dialog"><div class="dialog-header"><span class="eyebrow">PORTWAY / MAP INFORMATION</span><button id="close-dialog" class="icon-button" aria-label="Close information"><i data-icon="close"></i></button></div><div id="dialog-content"></div></dialog>
 <noscript><p>This parking finder requires JavaScript to display and search maps.</p></noscript>
 <script src="vendor/leaflet.js"></script>
+<script src="vendor/leaflet-rotate.js"></script>
 <script type="module" src="app.mjs"></script>
 </body>
 </html>

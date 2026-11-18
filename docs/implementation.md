@@ -62,4 +62,10 @@ Full screen uses document-root browser fullscreen so dialogs and toasts remain v
 
 Verified mobile fallback, desktop native fullscreen, portrait/landscape sizing, accessible Maps controls, source dialogs and preserved route/GPS state. The offline shell includes the new CSS and UI module.
 
+## Heading-up driving camera
+
+User requested forward-facing location like Google Maps. Bundled the MIT Leaflet rotation extension and enabled it only on the geographic map. All road panes rotate together; destination labels stay readable. Follow mode uses a reliable GPS course, places the vehicle at 62% of map height and smoothly rotates the map so travel points upward. The blue arrow stays screen-up while following. Meaningful GPS movement supplies course when heading is absent; stopped/poor/out-of-order fixes do not change the course. The app does not require phone compass permission.
+
+Dragging and route overview suspend the follow camera; the location button restores heading-up. N resets to north-up until follow is resumed. Fullscreen preserves camera mode and tracking. Unit tests and browser tests verify angle wrapping, stationary/missing-heading behaviour, real rendered road vectors, arrow direction, lower-centred location and camera controls.
+
 Duplicate parking labels across terminals must not silently select the wrong destination. No route may be claimed for an unsupported parking or line. Numeric parking codes must work without being mistaken for line numbers. Location permissions must fail clearly. Mobile users must be able to dismiss overlays and access the map. Storage failures must not prevent lookup. Only local assets should be cached; public OSM tiles remain online.

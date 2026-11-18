@@ -56,7 +56,7 @@ function renderMap(next=current, focus=null) {
   $('map-subtitle').textContent=street?'GPS road map · local road network':`${current.parkings.length} parking references · ${current.historical?'older source plan':'ICO source plan'}`;
   $('map-date').textContent=street?'© OpenStreetMap contributors · mapped roads':`Plan: ${current.date}`;
   document.querySelectorAll('.map-card').forEach(b=>{b.classList.toggle('active',b.dataset.map===current.id);b.setAttribute('aria-pressed',String(b.dataset.map===current.id));});
-  map=L.map('map',{crs:street?L.CRS.EPSG3857:L.CRS.Simple,zoomControl:false,minZoom:street?8:-5,maxZoom:street?19:2,zoomSnap:.25,zoomDelta:.5,attributionControl:street});
+  map=L.map('map',{crs:street?L.CRS.EPSG3857:L.CRS.Simple,zoomControl:false,minZoom:street?8:-5,maxZoom:street?19:2,zoomSnap:.25,zoomDelta:.5,attributionControl:street,rotate:street,rotateControl:false,dragRotate:false,touchRotate:false,shiftKeyRotate:false,preventPageGestures:false});
   nodes=L.layerGroup().addTo(map);selectedLayers=L.layerGroup().addTo(map);
     $('map-loading').hidden=street;
   if(street) {

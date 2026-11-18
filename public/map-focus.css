@@ -29,6 +29,7 @@ body.map-fullscreen{overflow:hidden}body.map-fullscreen .topbar,body.map-fullscr
 .toast{z-index:2000;font-size:12px}.navigating .toast{bottom:170px}.navigating #install{display:none}
 .gps-target span{width:max-content}
 .destination-options-button{margin-top:12px;width:100%;min-height:44px;font-size:12px}
+.gps-dot.heading-arrow{background:transparent;border:0;border-radius:0;box-shadow:none}.driving-arrow{display:block;width:32px;height:38px;transform-origin:50% 50%;filter:drop-shadow(0 1px 3px #10528d66)}.gps-dot.heading-arrow.stale{opacity:.55}.north-up{font-weight:700;font-size:15px;color:#45615a}.north-up.active{color:#fff;background:var(--teal)}
 @media(max-width:680px){
   .app-shell{min-height:0}.map-workspace{min-height:260px}.topbar{height:56px}.app-shell{height:calc(100dvh - 56px)}
   .workspace{display:none}.brand{font-size:24px}.header-actions #install{display:none}

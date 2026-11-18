@@ -25,6 +25,7 @@ Open http://127.0.0.1:4173. The app runs directly from `public/`; no build or AP
 - Recent destinations saved on the device, deep links and sharing.
 - All six plan images, the app shell and the road network are saved offline after the initial successful download. External background street-map tiles require internet; road geometry and routing work offline. Browser storage can be evicted by the device.
 - Continuous high-accuracy GPS tracking, accuracy display, heading, speed and follow-position mode. Tracking can be stopped explicitly.
+- Heading-up driving view: the geographic road map rotates with the travel course, with a forward-pointing blue arrow lower on the screen to show the road ahead. Stops retain the last reliable course. If the phone supplies no heading, meaningful GPS movement provides a course. Panning pauses the follow camera; the location button resumes it. **N** switches to north-up.
 - Road routing to built-in or saved destinations with distance updates, basic turn prompts and rerouting from updated GPS. Routes follow OSM road geometry, mapped one-way directions and node turn restrictions. They never connect disconnected roads with an invented shortcut.
 - Bastenaken/Hanze searches use the current combined southern plan, including `HC1 Bastenaken`. An explicitly typed terminal takes precedence over a previous dropdown selection.
 - Navigation pauses when GPS accuracy is worse than 35 metres or the last fix is older than 15 seconds.
@@ -56,6 +57,7 @@ This is an independent application, not an official ICO service.
 - https://www.icoterminals.com/nl/terminals/zuidelijke-insteek-terminal - terminal centre coordinate.
 - https://www.icoterminals.com/nl/terminals/noordelijke-insteek-terminal - terminal centre coordinate.
 - Leaflet 1.9.4, BSD 2-Clause license in `public/vendor/leaflet-LICENSE.txt`.
+- Rotation: `@tomickigrzegorz/leaflet-rotate` 0.3.0, MIT license in `public/vendor/leaflet-rotate-LICENSE.txt`, bundled locally for offline use. The source terminal drawings remain unrotated; heading-up applies to the geographic driving map.
 - Street tiles: OpenStreetMap contributors, live attribution displayed in the app.
 - Offline road network: OpenStreetMap contributors, ODbL 1.0, retrieved 18 November 2026 through the OSM map API. `public/roads.json` contains 2,087 motorable ways and 70 node turn restrictions. Source bboxes are recorded in `scripts/build_roads.py`; contributor/account metadata is stripped from the distributed data.
 
@@ -86,6 +88,8 @@ The suites check desktop/mobile search, line references, deep links, missing par
 Automatic-destination checks include HC1/Bastenaken filtering, terminal names typed into search, fresh devices with no saved pins, automatic HC1/H61 routes without the recording dialog, and every built-in target lying on a motorable road. Rebuild matched approaches with `python scripts/build_destinations.py` after the map/road build; this uses `numpy`.
 
 Map UI checks cover native desktop fullscreen, rejected-fullscreen mobile fallback, portrait/landscape map size, accessible map options, visible source dialogs, explicit/Escape exits and preservation of the current GPS watch and route geometry.
+
+Heading checks simulate 90°, 180° and 270° travel and verify both projected coordinates and the actual rendered road/route SVGs point upward. They also check arrow orientation, lower-centred position, north-up/recenter, manual-pan suspension, fullscreen and unchanged GPS tracking. Unit checks cover missing headings, stationary drift, unreliable accuracy, out-of-order fixes and movement-based course estimation. These simulations do not establish a particular phone’s on-site GPS/heading accuracy.
 
 ## Phone access and hosting
 

@@ -1,8 +1,11 @@
 import {buildGraph,routeRoads,distanceMetres,parkingKey,validPin} from './navigation.mjs';
 import {resolveDestination} from './destinations.mjs';
+import {createCourseTracker,screenHeading} from './heading.mjs';
 
 export function createGPS({getMap,getSelected,getCatalogue,showStreet,toast,dialog,onPinChanged,escape:esc}) {
   let watch=null,fix=null,layer=null,boundMap=null,street=false,following=true,active=null,graph=null,graphPromise=null,route=null,pending=null,lastRouteAt=0;
+  const course=createCourseTracker();
+  let headingUp=true,adjustingCamera=false;
   let pins={};
   try{const value=JSON.parse(localStorage.getItem('portway-gps-pins')||'{}');if(value&&typeof value==='object'&&!Array.isArray(value))pins=Object.fromEntries(Object.entries(value).filter(([,p])=>validPin(p)));}catch{}
   const $=id=>document.getElementById(id);
@@ -35,14 +38,33 @@ export function createGPS({getMap,getSelected,getCatalogue,showStreet,toast,dial
     catch{toast('The browser could not save this GPS point. Free storage or allow site storage and try again.');return false;}
   }
   function usable(){return fix&&Date.now()-fix.timestamp<15000&&fix.accuracy<=35;}
+  function arrowAngle(){return headingUp&&following?0:screenHeading(course.heading,getMap()?.getBearing?.()||0);}
+  function updateArrow(){const arrow=document.querySelector('.driving-arrow');if(arrow)arrow.style.transform=`rotate(${arrowAngle()}deg)`;}
+  function anchorAhead(){
+    if(adjustingCamera||!street||!following||!headingUp||!usable()||watch===null||!Number.isFinite(course.heading))return;
+    const m=getMap();if(m!==boundMap)return;
+    const size=m.getSize(),position=m.latLngToContainerPoint([fix.lat,fix.lon]),target=L.point(size.x/2,size.y*.62),offset=position.subtract(target).round();
+    if(Math.abs(offset.x)<1&&Math.abs(offset.y)<1)return;
+    adjustingCamera=true;m.panBy(offset,{animate:false,noMoveStart:true});adjustingCamera=false;
+  }
+  function followView(){
+    if(!street||!following||!usable()||watch===null||getMap()!==boundMap)return;
+    const m=getMap();
+    if(headingUp&&Number.isFinite(course.heading))m.setHeading(course.heading,{ease:.3,deadzone:.8});
+    else{m.stopHeadingUp();if(!headingUp)m.setBearing(0);}
+    m.setView([fix.lat,fix.lon],Math.max(m.getZoom(),17),{animate:false});anchorAhead();updateArrow();
+    $('north-up').setAttribute('aria-pressed',String(!headingUp));
+    $('north-up').classList.toggle('active',!headingUp);
+  }
   function draw(){
     if(!street||!layer||boundMap!==getMap())return;
     layer.clearLayers();
     if(fix){
       const position=[fix.lat,fix.lon],stale=Date.now()-fix.timestamp>15000;
       L.circle(position,{radius:fix.accuracy,color:stale?'#8c969b':'#1683e8',weight:1,fillOpacity:.09,interactive:false}).addTo(layer);
-      L.marker(position,{title:stale?'Last GPS position · signal stale':'Your live GPS position',icon:L.divIcon({className:'gps-dot'+(stale?' stale':''),iconSize:[18,18]})}).addTo(layer);
-      if(Number.isFinite(fix.heading))L.marker(position,{interactive:false,icon:L.divIcon({className:'heading-arrow',html:`<span style="transform:rotate(${fix.heading}deg)">▲</span>`,iconSize:[30,30],iconAnchor:[15,32]})}).addTo(layer);
+      const hasCourse=Number.isFinite(course.heading);
+      const html=hasCourse?`<svg class="driving-arrow" viewBox="0 0 32 38" aria-hidden="true" style="transform:rotate(${arrowAngle()}deg)"><path d="M16 3 29 32 16 26 3 32Z" fill="#1683e8" stroke="white" stroke-width="2.5" stroke-linejoin="round"/></svg>`:'';
+      L.marker(position,{title:stale?'Last GPS position · signal stale':'Your live GPS position',icon:L.divIcon({className:'gps-dot'+(hasCourse?' heading-arrow':'')+(stale?' stale':''),html,iconSize:hasCourse?[32,38]:[18,18],iconAnchor:hasCourse?[16,19]:[9,9]})}).addTo(layer);
     }
     const hit=active||getSelected(),pin=pinFor(hit);
     if(pin)L.marker([pin.lat,pin.lon],{title:label(hit)+(pin.automatic?' · mapped parking approach':' · saved GPS point'),icon:L.divIcon({className:'gps-target',html:`<span>${esc(hit.parking.code)}</span>`,iconSize:[0,0]})}).addTo(layer);
@@ -84,18 +106,20 @@ export function createGPS({getMap,getSelected,getCatalogue,showStreet,toast,dial
         $('navigation-detail').textContent=targetNote+(route.endOffset>10?` Road ends ${Math.round(route.endOffset)} m from the point.`:'')+' Follow current terminal signs.';
       }
       draw();
-      if(firstRoute&&route.available&&street)fitRoute();
+      if(firstRoute&&route.available&&street&&following)followView();
     }catch{$('navigation-instruction').textContent='Road data unavailable';$('navigation-detail').textContent='Reconnect once to download the local road network. GPS tracking can still continue.';}
   }
   function onFix(pos){
     if(watch===null)return;
     const c=pos.coords;if(!Number.isFinite(c.latitude)||!Number.isFinite(c.longitude)||!Number.isFinite(c.accuracy)||c.accuracy<0)return;
-    fix={lat:c.latitude,lon:c.longitude,accuracy:c.accuracy,heading:c.heading,speed:c.speed,timestamp:pos.timestamp||Date.now()};
+    const timestamp=pos.timestamp||Date.now();if(fix&&timestamp<fix.timestamp)return;
+    fix={lat:c.latitude,lon:c.longitude,accuracy:c.accuracy,heading:c.heading,speed:c.speed,timestamp};
+    course.update(fix);
     const speed=Number.isFinite(c.speed)?` · ${Math.round(c.speed*3.6)} km/h`:'';
     status(`GPS live · ±${Math.round(c.accuracy)} m${speed}`);
     $('gps-panel').classList.toggle('weak',c.accuracy>35);$('gps-toggle').textContent='Stop GPS';
     if(c.accuracy>35){$('gps-summary').classList.add('weak');$('gps-status-alert').hidden=false;$('gps-status-alert').textContent='Weak GPS signal · waiting for a more accurate position';}
-    if(street&&following){const m=getMap();m.setView([fix.lat,fix.lon],Math.max(m.getZoom(),17),{animate:false});}
+    followView();
     draw();calculate();
   }
   function onError(err){
@@ -108,8 +132,8 @@ export function createGPS({getMap,getSelected,getCatalogue,showStreet,toast,dial
     setPanel(true);
     if(!window.isSecureContext){status('GPS requires HTTPS');toast('Open the HTTPS GitHub Pages link on your phone for GPS.');return;}
     if(!navigator.geolocation){status('GPS is not supported in this browser');return;}
-    following=true;showStreet();
-    if(watch!==null){if(fix){getMap().setView([fix.lat,fix.lon],17);draw();}return;}
+    following=true;headingUp=true;showStreet();
+    if(watch!==null){followView();draw();return;}
     status('Connecting to live GPS…');watch=-1;
     const id=navigator.geolocation.watchPosition(onFix,onError,{enableHighAccuracy:true,maximumAge:0,timeout:15000});
     if(watch!==null)watch=id;
@@ -118,7 +142,7 @@ export function createGPS({getMap,getSelected,getCatalogue,showStreet,toast,dial
   }
   function stop(){
     document.body.classList.remove('gps-active');
-    if(watch!==null)navigator.geolocation?.clearWatch(watch);watch=null;active=null;route=null;
+    if(watch!==null)navigator.geolocation?.clearWatch(watch);watch=null;active=null;route=null;getMap()?.stopHeadingUp?.();
     $('gps-toggle').textContent='Start GPS';navigationLayout(false);status(fix?'GPS stopped · last position shown':'GPS is off');draw();
   }
   function navigate(hit){
@@ -151,27 +175,31 @@ export function createGPS({getMap,getSelected,getCatalogue,showStreet,toast,dial
   }
   function bind(m,isStreet){
     boundMap=m;street=isStreet;layer=isStreet?L.layerGroup().addTo(m):null;
+    $('north-up').hidden=!isStreet;
     if(!isStreet)return;
-    m.on('dragstart',()=>{following=false;$('follow-gps').classList.remove('following');});
+    m.on('dragstart',()=>{following=false;m.stopHeadingUp();updateArrow();$('follow-gps').classList.remove('following');});
+    m.on('rotate',()=>{anchorAhead();updateArrow();});
+    m.on('resize',()=>requestAnimationFrame(()=>{if(getMap()===m)followView();}));
     m.on('click',event=>{
       if(!pending)return;
       const hit=pending,pin={lat:event.latlng.lat,lon:event.latlng.lng,accuracy:null,method:'map',savedAt:new Date().toISOString()};
       dialog(`<h2>Use this point for ${esc(label(hit))}?</h2><p>${pin.lat.toFixed(6)}, ${pin.lon.toFixed(6)}</p><p>Choose the actual parking or line location. This point comes from your map selection; it is not supplied by ICO.</p><button class="primary" id="confirm-map-pin">Save this destination point</button>`);
       $('confirm-map-pin').onclick=()=>{if(save(hit,pin)){pending=null;$('cancel-pin').hidden=true;$('info-dialog').close();navigate(hit);}};
     });
-    draw();
+    draw();followView();
     loadGraph().then(g=>{
       if(boundMap!==m||!street)return;
-      if(!m.getPane('mappedRoads'))m.createPane('mappedRoads').style.zIndex='350';
+      if(!m.getPane('mappedRoads'))m.createPane('mappedRoads',m.getPane('overlayPane')).style.zIndex='0';
       const roadLayer=L.layerGroup().addTo(m);
       for(const segment of g.segments)L.polyline([segment.pa,segment.pb],{color:'#427b76',weight:2,opacity:.42,interactive:false,pane:'mappedRoads'}).addTo(roadLayer);
       roadLayer.bringToBack?.();layer.bringToFront?.();draw();
     }).catch(()=>{});
   }
   function clearRoute(){active=null;route=null;pending=null;$('cancel-pin').hidden=true;navigationLayout(false);draw();}
-  function fitRoute(){if(!street||!active||!route?.available)return false;getMap().fitBounds(L.latLngBounds(route.points),{paddingTopLeft:[28,85],paddingBottomRight:[75,165],maxZoom:18,animate:false});return true;}
+  function fitRoute(){if(!street||!active||!route?.available)return false;following=false;getMap().stopHeadingUp();getMap().fitBounds(L.latLngBounds(route.points),{paddingTopLeft:[28,85],paddingBottomRight:[75,165],maxZoom:18,animate:false});updateArrow();return true;}
   $('gps-toggle').onclick=()=>watch===null?start():stop();
-  $('follow-gps').onclick=()=>{following=true;$('follow-gps').classList.add('following');if(fix){showStreet();getMap().setView([fix.lat,fix.lon],17);}};
+  $('follow-gps').onclick=()=>{following=true;headingUp=true;$('follow-gps').classList.add('following');showStreet();followView();};
+  $('north-up').onclick=()=>{headingUp=false;getMap().stopHeadingUp();getMap().setBearing(0);$('north-up').setAttribute('aria-pressed','true');$('north-up').classList.add('active');if(following)followView();updateArrow();};
   $('stop-navigation').onclick=clearRoute;
   $('cancel-pin').onclick=()=>{pending=null;$('cancel-pin').hidden=true;status(watch===null?'GPS is off':'GPS tracking active');};
   const timer=setInterval(()=>{

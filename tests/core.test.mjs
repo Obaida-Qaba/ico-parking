@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { parseDestination, searchParkings, routeStatus } from '../public/core.mjs';
+import { parseDestination, searchParkings, routeStatus, terminalFromInput } from '../public/core.mjs';
 
 test('a terminal named in the search overrides a previous dropdown selection',()=>{
   const maps=[{id:'south',parkings:[{code:'HC1',terminal:'bastenaken'}]}];
@@ -86,4 +86,64 @@ test('accepts terminal names before or after a parking without changing the park
   assert.equal(hits[0].map.id,'south');
   assert.equal(hits[0].parking.code,'HC1');
   assert.equal(searchParkings(maps,'Hanze H61 line 15')[0].line,'15');
+});
+
+const nearbyMaps=[
+  {id:'north',name:'North',parkings:[{code:'A01'},{code:'A02'},{code:'N12'}]},
+  {id:'toyota',name:'Toyota',historical:true,parkings:[{code:'A01'},{code:'A03'},{code:'12'}]},
+  {id:'south',name:'South',parkings:[{code:'HC1',terminal:'bastenaken'},{code:'H61',terminal:'hanze'}]},
+  {id:'bastenaken',name:'Older Bastenaken',historical:true,parkings:[{code:'HC1'}]},
+  {id:'hanze',name:'Older Hanze',historical:true,parkings:[{code:'H61'}]}
+];
+
+test('automatic terminal preference puts Toyota parking first while retaining other terminal matches',()=>{
+  const hits=searchParkings(nearbyMaps,'A0','auto',{preferredTerminal:'toyota'});
+  assert.deepEqual(hits.map(h=>`${h.map.id}:${h.parking.code}`),['toyota:A01','toyota:A03','north:A01','north:A02']);
+  assert.deepEqual(hits.map(h=>h.preferred),[true,true,false,false]);
+  const duplicates=searchParkings(nearbyMaps,'A01','all',{preferredTerminal:'toyota'});
+  assert.equal(duplicates[0].map.id,'toyota','a current outside-terminal duplicate must not outrank the local Toyota reference');
+  assert.equal(duplicates[1].map.id,'north');
+});
+
+test('automatic search falls back to other terminals when the local terminal has no match',()=>{
+  const hits=searchParkings(nearbyMaps,'N12','auto',{preferredTerminal:'toyota'});
+  assert.equal(hits.length,1);
+  assert.equal(hits[0].map.id,'north');
+  assert.equal(hits[0].preferred,false);
+});
+
+test('manual and typed terminal choices override the automatic location preference',()=>{
+  const manual=searchParkings(nearbyMaps,'A01','north',{preferredTerminal:'toyota'});
+  assert.deepEqual(manual.map(h=>h.map.id),['north']);
+  assert.equal(manual[0].preferred,false);
+  const typed=searchParkings(nearbyMaps,'Toyota A01','north',{preferredTerminal:'north'});
+  assert.deepEqual(typed.map(h=>h.map.id),['toyota']);
+  assert.equal(typed[0].preferred,false);
+});
+
+test('regional automatic preferences use the current South plan ahead of older regional plans',()=>{
+  for(const [terminal,code] of [['bastenaken','HC1'],['hanze','H61']]){
+    const hits=searchParkings(nearbyMaps,code,'auto',{preferredTerminal:terminal});
+    assert.equal(hits[0].map.id,'south');
+    assert.equal(hits[0].matchedTerminal,terminal);
+    assert.equal(hits[0].preferred,true);
+    assert.equal(hits[1].map.id,terminal);
+    assert.equal(hits[1].preferred,true);
+  }
+});
+
+test('missing or unknown location preference preserves normal all-terminal results',()=>{
+  const normal=searchParkings(nearbyMaps,'A01');
+  for(const preferredTerminal of [null,'unknown-terminal']){
+    const hits=searchParkings(nearbyMaps,'A01','auto',{preferredTerminal});
+    assert.deepEqual(hits.map(h=>h.map.id),normal.map(h=>h.map.id));
+    assert.ok(hits.every(h=>h.preferred===false));
+  }
+});
+
+test('terminal aliases keep Toyota numeric parking codes and line numbers intact',()=>{
+  for(const [input,terminal,code] of [['Toyota 12 line 3','toyota','12'],['Nissan 12 line 3','nissan','12'],['North A01 line 3','north','A01'],['South A01 line 3','south','A01']]){
+    assert.equal(terminalFromInput(input),terminal);
+    assert.deepEqual(parseDestination(input),{parking:code,line:'3',error:null});
+  }
 });

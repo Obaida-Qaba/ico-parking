@@ -1,6 +1,7 @@
 import { normalizeCode, parseDestination, searchParkings } from './core.mjs';
 import { createGPS } from './gps.mjs';
 import { createMapUI } from './map-ui.mjs';
+import { detectTerminal } from './location-context.mjs';
 
 const paths = {
   search:'m21 21-5-5 M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0',
@@ -21,7 +22,7 @@ const esc = value => String(value).replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt
 function icon(name) { return `<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="${paths[name] ?? paths.pin}"/></svg>`; }
 function icons(root=document) { root.querySelectorAll('[data-icon]').forEach(el=>el.outerHTML=icon(el.dataset.icon)); }
 icons();
-let atlas, catalogue, current, map, mapBounds, nodes, selectedLayers, selected=null, street=false, currentImage, fitZoom=0;
+let atlas, catalogue, terminalData, nearbyTerminal=null, locationState='locating', current, map, mapBounds, nodes, selectedLayers, selected=null, street=true, currentImage, fitZoom=0;
 let recents = [];
 try { const saved=JSON.parse(localStorage.getItem('portway-recents') || '[]'); recents=Array.isArray(saved)?saved.filter(x=>x && typeof x.code==='string' && typeof x.map==='string' && (x.line===null || /^[1-9]\d{0,3}$/.test(x.line))).slice(0,5):[]; } catch {}
 let toastTimer, debounce;
@@ -29,12 +30,55 @@ const resizeObserver=new ResizeObserver(()=>map?.invalidateSize());
 resizeObserver.observe($('map'));
 function toast(message) { $('toast').textContent=message;$('toast').hidden=false;clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('toast').hidden=true,6500); }
 function dialog(html) { $('dialog-content').innerHTML=html; if (!$('info-dialog').open) $('info-dialog').showModal(); }
-const gps=createGPS({getMap:()=>map,getSelected:()=>selected,getCatalogue:()=>catalogue,showStreet:()=>{if(!street){street=true;renderMap();}},toast,dialog,escape:esc,onPinChanged:()=>{if(selected)renderGPSActions();}});
+const gps=createGPS({getMap:()=>map,getSelected:()=>selected,getCatalogue:()=>catalogue,showStreet:()=>{if(!street){street=true;renderMap();}},toast,dialog,escape:esc,onPinChanged:()=>{if(selected)renderGPSActions();},onLocation:locationChanged,onLocationState:locationStateChanged});
 const mapUI=createMapUI({getMap:()=>map});
 $('close-dialog').onclick=()=>$('info-dialog').close();
 $('info-dialog').addEventListener('click',e=>{if(e.target===$('info-dialog')) {const r=e.target.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)e.target.close();}});
 
 function toLatLng(point) {return [current.height-point.y, point.x];}
+function updateLocationContext(){
+  const filter=$('terminal-filter').value,automatic=filter==='auto';
+  const manual=atlas?.maps.find(m=>m.id===filter);
+  const context=automatic?(nearbyTerminal?`Near ${nearbyTerminal.name}`:locationState==='locating'?'Finding your location…':locationState==='live'?'All terminals':'Location off'):manual?.name||'All terminals';
+  if($('location-context').textContent!==context)$('location-context').textContent=context;
+  $('location-context').dataset.state=nearbyTerminal||locationState==='live'?'ready':locationState;
+  const option=$('terminal-filter').querySelector('option[value="auto"]');
+  if(option)option.textContent=nearbyTerminal?`Nearby · ${nearbyTerminal.name}`:'Nearby · automatic';
+}
+function markCurrentMap(){
+  document.querySelectorAll('.map-card').forEach(b=>{b.classList.toggle('active',b.dataset.map===current.id);b.setAttribute('aria-pressed',String(b.dataset.map===current.id));});
+}
+function selectContextMap(id){
+  const target=atlas?.maps.find(m=>m.id===(['bastenaken','hanze'].includes(id)?'south':id));
+  if(!target||selected||target.id===current.id)return;
+  if(!street)renderMap(target);else{current=target;markCurrentMap();}
+}
+function locationStateChanged(state){
+  const previous=nearbyTerminal;locationState=state;
+  if(state!=='locating')nearbyTerminal=null;
+  updateLocationContext();
+  if(previous&&!nearbyTerminal&&$('terminal-filter').value==='auto'&&document.body.classList.contains('searching')&&$('destination').value)showResults(false);
+}
+function parkingArea(hit){
+  const names={bastenaken:'Bastenaken',hanze:'Hanze',toyota:'Toyota',north:'Noordelijke Insteek',nissan:'Nissan',south:'Zuidelijke Insteek'};
+  const region=hit.parking.terminal;
+  return (region&&region!==hit.map.id?(names[region]||region)+' · ':'')+hit.map.name;
+}
+function locationChanged(fix){
+  const previous=nearbyTerminal;
+  nearbyTerminal=detectTerminal(fix,terminalData,{previous});locationState='live';updateLocationContext();
+  if($('terminal-filter').value!=='auto'||previous?.id===nearbyTerminal?.id)return;
+  selectContextMap(nearbyTerminal?.mapId||nearbyTerminal?.id);
+  if(document.body.classList.contains('searching')&&$('destination').value)showResults(false);
+}
+function closeSearch(){
+  document.body.classList.remove('searching');$('search-results').hidden=true;$('welcome-content').hidden=true;
+  $('destination-card').hidden=!selected;
+  const settings=$('search-settings');if(settings)settings.open=false;
+}
+function viewSelectedPlan(){
+  if(!selected)return;closeSearch();street=false;renderMap(selected.map,selected.parking);mapUI.closeOptions();
+}
 function setViewButtons() {
   $('plan-view').classList.toggle('active',!street);$('street-view').classList.toggle('active',street);
   $('plan-view').setAttribute('aria-pressed',String(!street));$('street-view').setAttribute('aria-pressed',String(street));
@@ -55,7 +99,7 @@ function renderMap(next=current, focus=null) {
   document.querySelector('.live-pill').textContent=street?'GPS MAP':'TERMINAL PLAN';
   $('map-subtitle').textContent=street?'GPS position · parking codes · route':`${current.parkings.length} parking references · ${current.historical?'older source plan':'ICO source plan'}`;
   $('map-date').textContent=street?'Routing data © OpenStreetMap contributors':`Plan: ${current.date}`;
-  document.querySelectorAll('.map-card').forEach(b=>{b.classList.toggle('active',b.dataset.map===current.id);b.setAttribute('aria-pressed',String(b.dataset.map===current.id));});
+  markCurrentMap();
   map=L.map('map',{crs:street?L.CRS.EPSG3857:L.CRS.Simple,zoomControl:false,minZoom:street?8:-5,maxZoom:street?19:2,zoomSnap:.25,zoomDelta:.5,attributionControl:street,rotate:street,rotateControl:false,dragRotate:false,touchRotate:false,shiftKeyRotate:false,preventPageGestures:false});
   nodes=L.layerGroup().addTo(map);selectedLayers=L.layerGroup().addTo(map);
     $('map-loading').hidden=street;
@@ -123,19 +167,21 @@ function choose(hit, remember=true) {
   clearTimeout(debounce);
   gps.clearRoute();
   document.body.classList.add('has-destination');
-  selected=hit;street=false;
+  selected=hit;closeSearch();
   $('search-results').hidden=true;$('welcome-content').hidden=true;
-  $('destination').value=hit.parking.code;$('line').value=hit.line??'';
-  renderMap(hit.map,hit.parking);
+  $('destination').value=hit.parking.code+(hit.line?' line '+hit.line:'');$('line').value='';
+  current=hit.map;markCurrentMap();
+  if(!street){street=true;renderMap(hit.map);}else gps.draw();
   $('destination-card').hidden=false;
   $('destination-card').innerHTML=`<div class="destination-top"><div><div class="destination-kicker">YOUR DESTINATION</div><div class="destination-code">${esc(hit.parking.code)}</div></div><button class="icon-button" id="clear-destination" aria-label="Clear destination">${icon('close')}</button></div>
     ${hit.line?`<div class="destination-line">Line ${esc(hit.line)} <span style="font-size:10px;color:#829176">· reference saved</span></div>`:''}
-    <div class="destination-meta">${hit.parking.terminal?esc(hit.parking.terminal==='bastenaken'?'Bastenaken':'Hanze')+' · ':''}${esc(hit.map.name)}<br><span class="destination-badge">${icon('check')} Parking located on source plan</span></div>
-    <div class="destination-actions"><button class="primary" id="route-button">${icon('route')} Route coverage ${icon('arrow')}</button><button class="secondary" id="share-button" aria-label="Share destination">${icon('share')}</button></div>
+    <div class="destination-meta">${esc(parkingArea(hit))}<br><span class="destination-badge">${icon('check')} Parking located on source plan</span></div>
+    <div class="destination-actions"><button class="primary" id="route-button">${icon('route')} Route coverage ${icon('arrow')}</button><button class="secondary" id="view-plan-button">View plan</button><button class="secondary" id="share-button" aria-label="Share destination">${icon('share')}</button></div>
     <div class="line-note">${hit.line?`Line ${esc(hit.line)} isn’t positioned on this source plan. The marker shows the parking label.`:'The marker shows a parking label, not a verified entrance. Internal road navigation is not available yet.'}${hit.parking.points.length>1?' This reference appears in multiple places on the plan.':''}</div>
     <button class="inline-button destination-source" id="destination-source">${icon('info')} View source & coverage</button>`;
   $('clear-destination').onclick=clearDestination;
   $('route-button').onclick=()=>gps.navigate(selected);
+  $('view-plan-button').onclick=viewSelectedPlan;
   $('share-button').onclick=shareDestination;
   $('destination-source').onclick=showSource;
   renderGPSActions();
@@ -158,7 +204,8 @@ function clearDestination() {
   document.body.classList.remove('has-destination');
   selected=null;$('destination-card').hidden=true;$('welcome-content').hidden=false;$('search-results').hidden=true;$('destination').value='';$('line').value='';$('search-error').hidden=true;
   $('destination-options').hidden=true;
-  history.replaceState(null,'',location.pathname);if(!street){selectedLayers.clearLayers();fit();}
+  history.replaceState(null,'',location.pathname);if(!street){street=true;renderMap();}
+  closeSearch();gps.draw();
 }
 function query() {
   const parsed=parseDestination($('destination').value);
@@ -171,17 +218,23 @@ function showResults(submitted=false) {
   const parsed=query();$('search-error').hidden=!parsed.error;
   if(parsed.error){$('search-error').textContent=parsed.error;$('search-results').hidden=true;return;}
   if(!parsed.parking){if(submitted){$('search-error').hidden=false;$('search-error').textContent='Enter a parking reference, for example H61.';$('destination').focus();}return;}
-  const results=searchParkings(atlas.maps,$('destination').value,$('terminal-filter').value).map(h=>({...h,line:parsed.line}));
+  const filter=$('terminal-filter').value;
+  const results=searchParkings(atlas.maps,$('destination').value,filter,{preferredTerminal:filter==='auto'?nearbyTerminal?.id:null}).map(h=>({...h,line:parsed.line}));
   const exact=results.filter(r=>normalizeCode(r.parking.code)===parsed.parking);
+  const localExact=exact.filter(r=>r.preferred);
+  if(submitted&&localExact.length===1){choose(localExact[0]);return;}
+  if(submitted&&localExact.length>1&&localExact.filter(r=>!r.map.historical).length===1){choose(localExact.find(r=>!r.map.historical));return;}
   if(submitted && exact.length===1){choose(exact[0]);return;}
   if(submitted && exact.length>1 && exact.filter(r=>!r.map.historical).length===1){choose(exact.find(r=>!r.map.historical));return;}
   $('search-results').hidden=false;$('welcome-content').hidden=true;$('destination-card').hidden=true;
-  $('result-count').textContent=results.length>40?`${results.length} matches · first 40`:`${results.length} found`;
+  document.body.classList.add('searching');
+  $('result-count').textContent=(results.some(r=>r.preferred)?`${nearbyTerminal.name} first · `:'')+(results.length>40?`${results.length} matches · first 40`:`${results.length} found`);
   $('result-list').replaceChildren();
   if(!results.length){const p=document.createElement('p');p.className='result-list-note';p.textContent=`No indexed parking matches “${parsed.parking}”${$('terminal-filter').value!=='all'?' in this terminal':''}. Try another map or a shorter reference. The source plans remain available to browse.`;$('result-list').append(p);}
   for(const hit of results.slice(0,40)){
     const b=document.createElement('button');b.type='button';b.className='result-row';
-    b.innerHTML=`<span class="result-icon">${icon('pin')}</span><span><strong>${esc(hit.parking.code)}${hit.line?` · line ${esc(hit.line)}`:''}</strong><small>${hit.parking.terminal?esc(hit.parking.terminal==='bastenaken'?'Bastenaken':'Hanze')+' · ':''}${esc(hit.map.name)} · ${hit.map.historical?'older plan':'ICO plan'}</small></span>${icon('arrow')}`;
+    b.dataset.terminal=hit.matchedTerminal||hit.map.id;b.dataset.preferred=String(!!hit.preferred);
+    b.innerHTML=`<span class="result-icon">${icon('pin')}</span><span><strong>${esc(hit.parking.code)}${hit.line?` · line ${esc(hit.line)}`:''}</strong><small>${esc(parkingArea(hit))} · ${hit.map.historical?'older plan':'ICO plan'}</small></span>${icon('arrow')}`;
     b.onclick=()=>choose(hit);$('result-list').append(b);
   }
 }
@@ -212,32 +265,35 @@ window.addEventListener('online',()=>$('offline-status').textContent=navigator.s
 window.addEventListener('offline',()=>$('offline-status').textContent=navigator.serviceWorker?.controller?'Offline · saved maps':'Offline');
 
 try {
-  const responses=await Promise.all([fetch('./data.json'),fetch('./destinations.json')]);
+  const responses=await Promise.all([fetch('./data.json'),fetch('./destinations.json'),fetch('./terminals.json')]);
   if(responses.some(r=>!r.ok))throw new Error('catalogue');
-  [atlas,catalogue]=await Promise.all(responses.map(r=>r.json()));
+  [atlas,catalogue,terminalData]=await Promise.all(responses.map(r=>r.json()));
   current=atlas.maps[0];
   for(const m of atlas.maps){
     const option=document.createElement('option');option.value=m.id;option.textContent=m.name+(m.historical&&!['bastenaken','hanze'].includes(m.id)?' · older':'');$('terminal-filter').append(option);
     const b=document.createElement('button');b.className='map-card';b.dataset.map=m.id;b.title=m.name+' · '+m.date;
     b.innerHTML=`<img src="${esc(m.image)}" alt="" loading="lazy"><strong>${esc(m.name)}</strong><span>${m.historical?'Older source plan':m.id==='south'?'Updated Sep 2026':'ICO source plan'}</span>`;
-    b.onclick=()=>{street=false;clearDestination();$('terminal-filter').value=m.id;renderMap(m);mapUI.closeOptions();};$('map-library').append(b);
+    b.onclick=()=>{clearDestination();street=false;$('terminal-filter').value=m.id;updateLocationContext();renderMap(m);mapUI.closeOptions();};$('map-library').append(b);
   }
   $('catalogue-count').textContent=`6 plans · ${atlas.maps.reduce((n,m)=>n+m.parkings.length,0)} references`;
-  renderMap();renderRecents();
+  renderMap();renderRecents();updateLocationContext();
   $('search-form').onsubmit=e=>{e.preventDefault();showResults(true);};
   $('destination').oninput=()=>{clearTimeout(debounce);if(!$('destination').value){clearDestination();return;}debounce=setTimeout(()=>showResults(false),180);};
   $('line').oninput=()=>{if($('destination').value)showResults(false);};
-  $('terminal-filter').onchange=()=>{if($('destination').value)showResults(false);};
+  $('terminal-filter').onchange=()=>{const filter=$('terminal-filter').value;selectContextMap(filter==='auto'?(nearbyTerminal?.mapId||nearbyTerminal?.id):filter);updateLocationContext();if($('destination').value)showResults(false);};
+  $('destination').onfocus=()=>{if($('search-settings'))$('search-settings').open=false;document.body.classList.add('searching');if($('destination').value)showResults(false);else $('welcome-content').hidden=false;};
+  document.addEventListener('pointerdown',e=>{if(!e.target.closest('.sidebar')&&!e.target.closest('#destination-card'))closeSearch();});
   document.querySelectorAll('[data-quick]').forEach(b=>b.onclick=()=>{$('destination').value=b.dataset.quick;$('line').value='';$('terminal-filter').value='all';showResults(true);});
   $('clear-recents').onclick=()=>{recents=[];try{localStorage.removeItem('portway-recents');}catch{}renderRecents();};
   $('plan-view').onclick=()=>{if(street){street=false;renderMap(current,selected?.parking);}mapUI.closeOptions();};
   $('street-view').onclick=()=>{if(!street){street=true;renderMap();}mapUI.closeOptions();};
   $('zoom-in').onclick=()=>map.zoomIn();$('zoom-out').onclick=()=>map.zoomOut();$('fit-map').onclick=()=>{if(!gps.fitRoute())fit();};$('locate').onclick=()=>gps.start();$('live-gps-start').onclick=()=>gps.start();
   $('source').onclick=showSource;$('about').onclick=showAbout;
-  document.addEventListener('keydown',e=>{if(e.key==='/'&&!['INPUT','SELECT','TEXTAREA'].includes(document.activeElement.tagName)){e.preventDefault();$('destination').focus();}if(e.key==='Escape'&&!$('info-dialog').open)clearDestination();});
+  document.addEventListener('keydown',e=>{if(e.key==='/'&&!['INPUT','SELECT','TEXTAREA'].includes(document.activeElement.tagName)){e.preventDefault();$('destination').focus();}if(e.key==='Escape'&&!$('info-dialog').open){if(document.body.classList.contains('searching')){closeSearch();$('destination').blur();}else clearDestination();}});
   const params=new URL(location.href).searchParams, m=atlas.maps.find(m=>m.id===params.get('map'));
   const p=m?.parkings.find(p=>p.code===params.get('parking'));
   if(m&&p){const line=params.get('line');choose({map:m,parking:p,line:/^[1-9]\d{0,3}$/.test(line??'')?line:null},false);}
+  gps.start({quiet:true});
   offlineSetup();
 } catch(e) {
   console.error(e);$('map-loading').hidden=false;$('map-loading').textContent='Could not load the map library. Reconnect and reload.';$('offline-status').textContent='Map library unavailable';

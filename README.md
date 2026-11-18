@@ -18,6 +18,9 @@ Open http://127.0.0.1:4173. The app runs directly from `public/`; no build or AP
 
 ## What works
 
+- Opens on a full-screen GPS map, starts location tracking after browser permission, and keeps one search bar at the top. Selecting a parking preserves the GPS view; **View plan** opens its original drawing. Search remains available during navigation.
+- Automatic search context for Toyota, Hanze, Bastenaken, North and Nissan. Nearby parking matches come first, with other terminals still available. Typed terminal names and manual area choices override automatic priority; **All terminals** removes the location preference. Bastenaken/Hanze use the current southern plan.
+- Compact destination cards, collapsible area/line settings, recent searches, accessible touch controls and reduced-motion support. GPS denial leaves manual search available.
 - Six map views: combined Zuidelijke Insteek, Noordelijke Insteek, Nissan, and older Bastenaken, Hanze and Toyota plans.
 - Search indexed parking references, including `H61 line 15`, `parking H61 lijn 15`, `H61 / 15`, `GE 1`, and `A01`.
 - A separate optional line field. Built-in parking approaches can be used directly; optional on-site points can refine a parking or an exact line.
@@ -31,10 +34,12 @@ Open http://127.0.0.1:4173. The app runs directly from `public/`; no build or AP
 - Bastenaken/Hanze searches use the current combined southern plan, including `HC1 Bastenaken`. An explicitly typed terminal takes precedence over a previous dropdown selection.
 - Navigation pauses when GPS accuracy is worse than 35 metres or the last fix is older than 15 seconds.
 - PWA manifest, installation support where the browser permits it, and home-screen icons.
-- Clear map view: navigation hides the app header/search panel and shows only the next turn, distance and a small destination label. Map choices, GPS details, sources and destination refinements are available through **Maps**.
+- Clear map view: navigation keeps the top search bar and a compact next-turn/distance card. Map choices, GPS details, sources and destination refinements are available through **Maps**.
 - **Full screen** opens the map using browser fullscreen where available, with a full-viewport fallback. **Exit full screen** or Escape restores the normal layout without stopping GPS or changing the route.
 
 ## Current limitations
+
+Terminal detection is a coarse search preference, not an exact operating boundary or a new navigation destination catalogue. `public/terminals.json` records geographic footprint sources and approximate area divisions. Poor or stale fixes do not guess a terminal; uncertain boundaries hold the previous area or fall back to a broad region. Toyota/Hanze use a documented uncertainty band. Outside the port, search covers all terminals. Automatic context works offline after the initial download.
 
 **Automatic parking routing is available for 15 matched approaches:** GC1–GC3, HC1–HC3, IC1–IC2, JC1–JC2, KC1–KC2, LC1–LC2, and H61. Search HC1 under Bastenaken and press **Start GPS route**; no recording step is required. H61 also starts directly, including when a line reference is entered.
 
@@ -103,6 +108,8 @@ Nearby-label browser checks verify other parking codes beside an active HC1 rout
 Parking-position regressions check that C-row labels lie between their own bounding aisles. HC2 browser checks verify both normal and highlighted code positions at 0°, 90° and 270° map bearings, independently of the road endpoint. Display positions are source-matched estimates; LC1 uses the midpoint of paired aisle endpoints at the row edge. These labels do not change routing destinations or locate exact lines.
 
 Road-correction regressions verify that the reported HC3 crossing has no lateral graph edges while straight travel remains available. Browser checks confirm there are no background tile layers, tile requests or static road-grid vectors, while parking codes, GPS and the blue route stay visible during rotation and offline reloads.
+
+Home-screen checks simulate all five terminal locations, Toyota-first results with other-terminal fallback, manual overrides, switching back to automatic selection, nonblocking GPS denial, continuous tracking through plan previews, and offline context detection. Region tests cover unrelated industrial sites, water/outside-port points, stale/poor fixes and boundary jitter. These are simulations, not on-site device validation.
 
 ## Phone access and hosting
 

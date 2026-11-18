@@ -12,37 +12,37 @@
   <link rel="stylesheet" href="vendor/leaflet.css">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="map-focus.css">
+  <link rel="stylesheet" href="home-map.css">
 </head>
 <body>
 <a class="skip" href="#destination">Skip to parking search</a>
-<header class="topbar">
-  <a href="./" class="brand" aria-label="Portway home"><img src="icon.svg" width="35" height="35" alt=""><span>portway<span class="brand-dot">.</span></span></a>
-  <div class="workspace"><span class="tiny-dot"></span> ICO ZEEBRUGGE <span class="workspace-tag">Parking finder</span></div>
-  <div class="header-actions"><span id="offline-status" class="connection">Checking offline maps…</span><button id="install" class="text-button" hidden>Install app</button><button id="about" class="icon-button" aria-label="About maps and coverage" title="About maps and coverage"><i data-icon="info"></i></button></div>
-</header>
 <main class="app-shell">
   <aside class="sidebar" aria-label="Parking search">
     <div class="sidebar-content">
-      <h1>Find parking</h1>
       <form id="search-form" novalidate>
-        <label for="destination">Parking or destination</label>
-        <div class="search-input"><i data-icon="search"></i><input id="destination" type="search" placeholder="Try H61 line 15" autocomplete="off" spellcheck="false" maxlength="80" enterkeyhint="search"><kbd>/</kbd></div>
-        <div class="form-row">
-          <div class="terminal-field"><label for="terminal-filter">Terminal</label><select id="terminal-filter"><option value="all">Search all maps</option></select></div>
-          <div class="line-field"><label for="line">Line <span>(optional)</span></label><input id="line" type="number" min="1" max="9999" step="1" inputmode="numeric" placeholder="e.g. 15"></div>
+        <label class="visually-hidden" for="destination">Search parking or destination</label>
+        <div class="search-input">
+          <a href="./" class="search-brand" aria-label="Portway home"><img src="icon.svg" width="32" height="32" alt=""></a>
+          <div class="search-copy"><input id="destination" type="search" placeholder="Search parking or line" autocomplete="off" spellcheck="false" maxlength="80" enterkeyhint="search" aria-describedby="location-context"><span id="location-context" class="location-context" role="status">Finding your location…</span></div>
+          <button class="primary find-button" type="submit" aria-label="Search parking"><i data-icon="search"></i></button>
+          <details id="search-settings" class="search-options">
+            <summary aria-label="Choose terminal or line" title="Choose terminal or line"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h9m4 0h3M4 17h3m4 0h9M13 4v6M7 14v6"/></svg><span class="visually-hidden">Search options</span></summary>
+            <div class="search-options-content">
+              <div class="form-row">
+                <div class="terminal-field"><label for="terminal-filter">Search area</label><select id="terminal-filter"><option value="auto">Automatic · near me first</option><option value="all">All terminals</option></select></div>
+                <div class="line-field"><label for="line">Line <span>(optional)</span></label><input id="line" type="number" min="1" max="9999" step="1" inputmode="numeric" placeholder="15"></div>
+              </div>
+              <p>Or type a parking and line together, like HC2 line 15.</p>
+            </div>
+          </details>
         </div>
-        <button class="primary find-button" type="submit">Find parking <i data-icon="arrow"></i></button>
         <p class="form-error" id="search-error" role="alert" hidden></p>
       </form>
-      <button id="live-gps-start" class="gps-start-button"><i data-icon="locate"></i> Start live GPS <span>GPS map</span></button>
-      <section id="search-results" class="search-results" aria-label="Search results" hidden><div class="section-heading"><h2>Matching parkings</h2><span id="result-count"></span></div><div id="result-list"></div></section>
+      <section id="search-results" class="search-results" aria-label="Search results" hidden><div class="section-heading"><h2>Parking results</h2><span id="result-count"></span></div><div id="result-list"></div></section>
       <section id="destination-card" class="destination-card" aria-label="Selected destination" hidden></section>
       <section id="welcome-content">
-        <div class="section-heading"><h2>Quick find</h2><span>Southern terminal</span></div>
-        <div class="quick-links"><button data-quick="H61">H61 <i data-icon="arrow-up"></i></button><button data-quick="H26">H26 <i data-icon="arrow-up"></i></button><button data-quick="HA1">HA1 <i data-icon="arrow-up"></i></button></div>
+        <p class="search-hint">Where do you need to park?</p>
         <section id="recents-section" hidden><div class="section-heading"><h2>Recent destinations</h2><button id="clear-recents" class="inline-button">Clear</button></div><div id="recent-list"></div></section>
-        <div class="tip"><div class="tip-icon"><i data-icon="pin"></i></div><div><strong>Your parking, on the plan.</strong><p>Search a reference or tap a parking marker. Pinch or scroll to get a closer look.</p></div></div>
-        <div class="coverage-note"><i data-icon="route"></i><p><strong>Parking lookup is ready.</strong> Internal road navigation and exact line positions still need verified map data.</p></div>
       </section>
     </div>
     <div class="sidebar-footer"><span>ICO ZEEBRUGGE</span><span id="catalogue-count">Loading maps…</span></div>
@@ -64,9 +64,11 @@
       <div class="map-heading"><span class="live-pill">TERMINAL PLAN</span><h2 id="map-title">Zuidelijke Insteek</h2><p id="map-subtitle">Loading terminal plan…</p></div>
       <div id="street-notice" class="street-notice" hidden>Road routing uses the available parking approaches. A line number stays a reference inside the parking.</div>
       <div id="gps-panel" class="gps-panel" hidden><div class="gps-status-row"><span class="gps-live-dot"></span><strong id="gps-text">GPS is off</strong><button id="gps-toggle">Start GPS</button></div><div class="gps-actions"><button id="follow-gps" hidden>Follow my position</button><button id="cancel-pin" hidden>Cancel location selection</button></div></div>
+      <button id="live-gps-start" class="gps-start-button"><i data-icon="locate"></i> Show my location</button>
       <div class="map-bottom"><div class="map-library-heading"><span>Terminal plans</span><button id="source" class="inline-button">Source <i data-icon="external"></i></button></div><div id="map-library" class="map-library" aria-label="Available terminal plans"></div></div>
       <div class="route-information"><h3>Route details</h3><p id="navigation-detail">Choose a parking to see route details.</p><div id="destination-options" hidden></div></div>
       <div class="map-source"><span id="map-date"></span><span>Source: ICO / Cewez · Independent app</span></div>
+      <div class="app-utilities"><span id="offline-status" class="connection">Preparing offline maps…</span><button id="install" class="secondary" hidden>Install app</button><button id="about" class="inline-button" aria-label="About maps and coverage"><i data-icon="info"></i> About Portway</button></div>
     </section>
   </section>
 </main>

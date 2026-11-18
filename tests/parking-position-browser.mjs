@@ -1,12 +1,14 @@
 import {chromium} from '@playwright/test';
 import assert from 'node:assert/strict';
 import {readFileSync,mkdirSync} from 'node:fs';
+import {observeMap} from './observe-map.mjs';
 mkdirSync('test-results',{recursive:true});
 const catalogue=JSON.parse(readFileSync('public/destinations.json','utf8'));
 const target=catalogue.destinations['south:HC2'];
 const base=(process.env.PORTWAY_BASE_URL||'http://127.0.0.1:4173').replace(/\/$/,'');
 const browser=await chromium.launch();
 const context=await browser.newContext({viewport:{width:390,height:844},isMobile:true,hasTouch:true});
+await observeMap(context,'__positionMap');
 await context.addInitScript(()=>{
  navigator.geolocation.watchPosition=ok=>{ok({timestamp:Date.now(),coords:{latitude:51.3017018,longitude:3.2268128,accuracy:3,heading:300,speed:0}});return 31;};
  navigator.geolocation.clearWatch=()=>{};
@@ -14,7 +16,6 @@ await context.addInitScript(()=>{
 const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
 try{
  await page.goto(base+'/?map=south&parking=HC2');await page.locator('.destination-code').waitFor();
- await page.evaluate(()=>{const original=L.map;L.map=function(...args){const m=original.apply(this,args);window.__positionMap=m;return m;};});
  await page.locator('#route-button').click();await page.locator('.road-route').waitFor();
  assert.ok(target.labelPosition,'HC2 has an interior display point independent of its approach');
  for(const bearing of [0,90,270]){

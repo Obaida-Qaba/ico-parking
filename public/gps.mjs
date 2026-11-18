@@ -4,11 +4,12 @@ import {createCourseTracker,screenHeading} from './heading.mjs';
 import {nextInstruction} from './guidance.mjs';
 import {createParkingLabels} from './parking-labels.mjs';
 
-export function createGPS({getMap,getSelected,getCatalogue,showStreet,toast,dialog,onPinChanged,escape:esc}) {
+export function createGPS({getMap,getSelected,getCatalogue,showStreet,toast,dialog,onPinChanged,onLocation,onLocationState,escape:esc}) {
   let watch=null,fix=null,layer=null,boundMap=null,street=false,following=true,active=null,graph=null,graphPromise=null,route=null,pending=null,lastRouteAt=0;
   const course=createCourseTracker();
   let headingUp=true,adjustingCamera=false;
   let parkingLabels=null;
+  let quietErrors=false;
   let pins={};
   try{const value=JSON.parse(localStorage.getItem('portway-gps-pins')||'{}');if(value&&typeof value==='object'&&!Array.isArray(value))pins=Object.fromEntries(Object.entries(value).filter(([,p])=>validPin(p)));}catch{}
   const $=id=>document.getElementById(id);
@@ -110,6 +111,7 @@ export function createGPS({getMap,getSelected,getCatalogue,showStreet,toast,dial
     const timestamp=pos.timestamp||Date.now();if(fix&&timestamp<fix.timestamp)return;
     fix={lat:c.latitude,lon:c.longitude,accuracy:c.accuracy,heading:c.heading,speed:c.speed,timestamp};
     course.update(fix);
+    onLocation?.(fix);
     const speed=Number.isFinite(c.speed)?` · ${Math.round(c.speed*3.6)} km/h`:'';
     status(`GPS live · ±${Math.round(c.accuracy)} m${speed}`);
     $('gps-panel').classList.toggle('weak',c.accuracy>35);$('gps-toggle').textContent='Stop GPS';
@@ -119,17 +121,20 @@ export function createGPS({getMap,getSelected,getCatalogue,showStreet,toast,dial
   }
   function onError(err){
     const messages={1:'GPS permission denied. Allow location for this site in browser settings.',2:'GPS position unavailable. Waiting for a location signal.',3:'GPS timed out. Waiting for a new location update.'};
-    status(messages[err.code]||'GPS error');toast(messages[err.code]||'Could not read GPS.');
+    status(messages[err.code]||'GPS error');if(!quietErrors)toast(messages[err.code]||'Could not read GPS.');
+    if(quietErrors&&!active)$('gps-status-alert').hidden=true;
+    onLocationState?.(err.code===1?'denied':'unavailable');
     if(err.code===1){if(watch!==null)navigator.geolocation.clearWatch(watch);watch=null;$('gps-toggle').textContent='Start GPS';route=null;if(active)$('navigation-instruction').textContent='Allow GPS to navigate';draw();}
   }
-  function start(){
+  function start({quiet=false}={}){
+    quietErrors=quiet;
     document.body.classList.add('gps-active');
     setPanel(true);
-    if(!window.isSecureContext){status('GPS requires HTTPS');toast('Open the HTTPS GitHub Pages link on your phone for GPS.');return;}
-    if(!navigator.geolocation){status('GPS is not supported in this browser');return;}
+    if(!window.isSecureContext){status('GPS requires HTTPS');onLocationState?.('unsupported');if(!quiet)toast('Open the HTTPS GitHub Pages link on your phone for GPS.');return;}
+    if(!navigator.geolocation){status('GPS is not supported in this browser');onLocationState?.('unsupported');return;}
     following=true;headingUp=true;showStreet();
     if(watch!==null){followView();draw();return;}
-    status('Connecting to live GPS…');watch=-1;
+    status('Connecting to live GPS…');onLocationState?.('locating');watch=-1;
     const id=navigator.geolocation.watchPosition(onFix,onError,{enableHighAccuracy:true,maximumAge:0,timeout:15000});
     if(watch!==null)watch=id;
     $('gps-toggle').textContent=watch===null?'Start GPS':'Stop GPS';$('follow-gps').hidden=false;
@@ -138,6 +143,7 @@ export function createGPS({getMap,getSelected,getCatalogue,showStreet,toast,dial
   function stop(){
     document.body.classList.remove('gps-active');
     if(watch!==null)navigator.geolocation?.clearWatch(watch);watch=null;active=null;route=null;getMap()?.stopHeadingUp?.();
+    onLocationState?.('stopped');
     $('gps-toggle').textContent='Start GPS';navigationLayout(false);status(fix?'GPS stopped · last position shown':'GPS is off');draw();
   }
   function navigate(hit){
@@ -193,7 +199,7 @@ export function createGPS({getMap,getSelected,getCatalogue,showStreet,toast,dial
   $('stop-navigation').onclick=clearRoute;
   $('cancel-pin').onclick=()=>{pending=null;$('cancel-pin').hidden=true;status(watch===null?'GPS is off':'GPS tracking active');};
   const timer=setInterval(()=>{
-    if(watch!==null&&fix&&Date.now()-fix.timestamp>15000){status('GPS signal lost · last position shown');if(active){route=null;$('navigation-instruction').textContent='GPS signal lost · route paused';draw();}}
+    if(watch!==null&&fix&&Date.now()-fix.timestamp>15000){status('GPS signal lost · last position shown');onLocationState?.('stale');if(active){route=null;$('navigation-instruction').textContent='GPS signal lost · route paused';draw();}}
   },3000);
   window.addEventListener('pagehide',stop);
   return {start,stop,bind,navigate,setup,pinFor,draw,loadGraph,clearRoute,fitRoute};

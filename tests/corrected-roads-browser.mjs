@@ -1,12 +1,14 @@
 import {chromium} from '@playwright/test';
 import assert from 'node:assert/strict';
 import {mkdirSync} from 'node:fs';
+import {observeMap} from './observe-map.mjs';
 
 mkdirSync('test-results',{recursive:true});
 const base=(process.env.PORTWAY_BASE_URL||'http://127.0.0.1:4173').replace(/\/$/,'');
 const start=[51.303453,3.2249525],crossing=[51.3028818,3.2254166];
 const browser=await chromium.launch();
 const context=await browser.newContext({viewport:{width:390,height:844},isMobile:true,hasTouch:true});
+await observeMap(context,'__cleanMap');
 await context.addInitScript(position=>{
  navigator.geolocation.watchPosition=ok=>{ok({timestamp:Date.now(),coords:{latitude:position[0],longitude:position[1],accuracy:3,heading:153,speed:3}});return 37;};
  navigator.geolocation.clearWatch=()=>{};
@@ -18,7 +20,6 @@ page.on('request',request=>{if(/https?:\/\/[^/]*tile[^/]*\.openstreetmap\.org\//
 async function navigate(){
  await page.goto(base+'/?map=south&parking=HC3');
  await page.locator('.destination-code').waitFor();
- await page.evaluate(()=>{const original=L.map;L.map=function(...args){const m=original.apply(this,args);window.__cleanMap=m;return m;};});
  await page.locator('#route-button').click();await page.locator('.road-route').waitFor();
 }
 

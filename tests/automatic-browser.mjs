@@ -19,15 +19,19 @@ const browser=await chromium.launch();
 const base=(process.env.PORTWAY_BASE_URL||'http://127.0.0.1:4173').replace(/\/$/,'');
 const context=await browser.newContext({viewport:{width:390,height:844},isMobile:true,hasTouch:true});
 await context.addInitScript(p=>{
- navigator.geolocation.watchPosition=ok=>{ok({timestamp:Date.now(),coords:{latitude:p[0],longitude:p[1],accuracy:6,heading:40,speed:2}});return 8;};
+ navigator.geolocation.watchPosition=ok=>{
+   const fixture=JSON.parse(sessionStorage.getItem('portway-test-gps')||'null')||{position:p,accuracy:6,heading:40,speed:2};
+   ok({timestamp:Date.now(),coords:{latitude:fixture.position[0],longitude:fixture.position[1],accuracy:fixture.accuracy,heading:fixture.heading,speed:fixture.speed}});return 8;
+ };
  navigator.geolocation.clearWatch=()=>{};
 },start);
 const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
 try{
  await page.goto(base);
  await page.locator('.map-card').last().waitFor({state:'attached'});
- await page.locator('#terminal-filter').selectOption('bastenaken');
  await page.locator('#destination').fill('HC1');
+ await page.locator('#search-settings').evaluate(el=>el.open=true);
+ await page.locator('#terminal-filter').selectOption('bastenaken');
  await page.locator('#line').fill('15');
  await page.locator('.find-button').click();
  assert.equal(await page.locator('.destination-code').innerText(),'HC1');
@@ -46,9 +50,9 @@ try{
  // The HC1 lane is two-way on the current ICO plan. Starting just southeast
  // of the approach should use this lane directly rather than circle the block.
  const laneStart=[51.3019,3.2270544],laneHeading=courseBetween(laneStart,end);
+ await page.evaluate(({p,heading})=>sessionStorage.setItem('portway-test-gps',JSON.stringify({position:p,accuracy:3,heading,speed:2})),{p:laneStart,heading:laneHeading});
  await page.goto(base+'/?map=south&parking=HC1');
  await page.locator('.destination-code').waitFor();
- await page.evaluate(({p,heading})=>{navigator.geolocation.watchPosition=ok=>{ok({timestamp:Date.now(),coords:{latitude:p[0],longitude:p[1],accuracy:3,heading,speed:2}});return 10;};},{p:laneStart,heading:laneHeading});
  await page.locator('#route-button').click();
  await page.locator('.road-route').waitFor();
  const laneMetres=parseFloat(await page.locator('#navigation-distance').innerText());
@@ -61,9 +65,9 @@ try{
    const candidate=routeRoads(graph,point,hEnd);if(candidate.available&&candidate.distance<1000){hStart=point;break;}
  }
  assert.ok(hStart,'connected H61 starting road');
+ await page.evaluate(p=>sessionStorage.setItem('portway-test-gps',JSON.stringify({position:p,accuracy:6,heading:null,speed:null})),hStart);
  await page.goto(base+'/?map=south&parking=H61&line=15');
  await page.locator('.destination-code').waitFor();
- await page.evaluate(p=>{navigator.geolocation.watchPosition=ok=>{ok({timestamp:Date.now(),coords:{latitude:p[0],longitude:p[1],accuracy:6}});return 9;};},hStart);
  await page.locator('#route-button').click();
  await page.locator('.road-route').waitFor();
  assert.equal(await page.locator('dialog[open]').count(),0);

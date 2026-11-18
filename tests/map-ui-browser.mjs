@@ -82,7 +82,8 @@ async function startNavigation(page){
   await page.locator('.road-route').waitFor();
   await page.waitForFunction(()=>document.body.classList.contains('navigating'));
   assert.equal(await page.locator('.topbar').isVisible(),false,'branding is hidden while navigating');
-  assert.equal(await page.locator('.sidebar').isVisible(),false,'destination sidebar is hidden while navigating');
+  assert.equal(await page.locator('#destination').isVisible(),true,'search remains reachable while navigating');
+  assert.equal(await page.locator('#destination-card').isVisible(),false,'destination preview is hidden while navigating');
   assert.equal(await page.locator('#map-options-panel').isVisible(),false,'map options are initially closed');
   assert.equal(await page.locator('#navigation-detail').isVisible(),false,'long route explanation is not on the driving map');
   assert.ok(await page.locator('#map-options-panel').evaluate(el=>el.contains(document.getElementById('navigation-detail'))),'route details live inside map options');

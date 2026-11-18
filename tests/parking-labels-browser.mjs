@@ -1,6 +1,7 @@
 import {chromium} from '@playwright/test';
 import assert from 'node:assert/strict';
 import {readFileSync,mkdirSync} from 'node:fs';
+import {observeMap} from './observe-map.mjs';
 
 mkdirSync('test-results',{recursive:true});
 const catalogue=JSON.parse(readFileSync('public/destinations.json','utf8'));
@@ -8,6 +9,7 @@ const hc1=catalogue.destinations['south:HC1'],gc1=catalogue.destinations['south:
 const base=(process.env.PORTWAY_BASE_URL||'http://127.0.0.1:4173').replace(/\/$/,'');
 const browser=await chromium.launch();
 const context=await browser.newContext({viewport:{width:390,height:844},isMobile:true,hasTouch:true});
+await observeMap(context,'__parkingMap');
 await context.addInitScript(()=>{
  window.__gpsStarts=0;window.__gpsStops=0;
  navigator.geolocation.watchPosition=ok=>{
@@ -22,7 +24,6 @@ page.on('pageerror',e=>errors.push(e.message));
 try{
  await page.goto(base+'/?map=south&parking=HC1');
  await page.locator('.destination-code').waitFor();
- await page.evaluate(()=>{const original=L.map;L.map=function(...args){const map=original.apply(this,args);window.__parkingMap=map;return map;};});
  await page.locator('#route-button').click();
  await page.locator('.road-route').waitFor();
  await page.waitForTimeout(500);

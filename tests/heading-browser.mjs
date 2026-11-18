@@ -2,6 +2,7 @@ import {chromium} from '@playwright/test';
 import assert from 'node:assert/strict';
 import {readFileSync,mkdirSync} from 'node:fs';
 import {buildGraph,routeRoads,distanceMetres} from '../public/navigation.mjs';
+import {observeMap} from './observe-map.mjs';
 
 mkdirSync('test-results',{recursive:true});
 const catalogue=JSON.parse(readFileSync('public/destinations.json','utf8'));
@@ -19,6 +20,7 @@ assert.ok(start,'connected HC1 starting road');
 const base=(process.env.PORTWAY_BASE_URL||'http://127.0.0.1:4173').replace(/\/$/,'');
 const browser=await chromium.launch();
 const context=await browser.newContext({viewport:{width:390,height:844},isMobile:true,hasTouch:true});
+await observeMap(context,'__headingMap');
 await context.addInitScript(position=>{
   window.__gpsStarts=0;window.__gpsStops=0;
   navigator.geolocation.watchPosition=ok=>{
@@ -82,11 +84,6 @@ async function assertHeadingUp(course){
 try{
   await page.goto(base+'/?map=south&parking=HC1&line=15');
   await page.locator('.destination-code').waitFor();
-  // Capture map objects as app switches from the source plan to the street view.
-  await page.evaluate(()=>{
-    const original=L.map;
-    L.map=function(...args){const map=original.apply(this,args);window.__headingMap=map;return map;};
-  });
   await page.locator('#route-button').click();
   await page.locator('.road-route').waitFor();
   await page.locator('.driving-arrow').waitFor();

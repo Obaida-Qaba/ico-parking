@@ -27,8 +27,8 @@ await context.addInitScript(({start,target})=>{
 try{
   await page.goto(base+'/?map=south&parking=H61&line=15');
   await page.locator('.destination-code').waitFor();
-  assert.match(await page.locator('#route-button').innerText(),/Start GPS route/);
-  await page.locator('#save-gps-button').click();
+  assert.match(await page.locator('#route-button').innerText(),/Start route/);
+  await page.locator('#map-options').click();await page.locator('#save-gps-button').click();
   assert.match(await page.locator('#dialog-content').innerText(),/built-in road approach/);
   assert.equal(await page.locator('.road-route').count(),0);
   await page.locator('#capture-parking').click();
@@ -49,13 +49,13 @@ try{
   await page.evaluate(p=>window.__gpsUpdate({timestamp:Date.now(),coords:{latitude:p[0],longitude:p[1],accuracy:90}}),moved);
   assert.match(await page.locator('#navigation-instruction').innerText(),/more accurate GPS/);
   assert.equal(await page.locator('.road-route').count(),0);
-  await page.locator('#gps-toggle').click();
+  await page.locator('#map-options').click();await page.locator('#gps-toggle').click();
   assert.ok(await page.evaluate(()=>window.__clearCount)>0);
   assert.equal(await page.locator('#navigation-panel').isVisible(),false);
   await page.waitForFunction(()=>document.getElementById('offline-status').textContent==='Maps saved offline');
   await context.setOffline(true);
   await page.reload();await page.locator('.destination-code').waitFor();
-  assert.match(await page.locator('#route-button').innerText(),/Start GPS route/);
+  assert.match(await page.locator('#route-button').innerText(),/Start route/);
   await page.locator('#route-button').click();
   await page.locator('.road-route').waitFor();
   assert.match(await page.locator('#gps-text').innerText(),/GPS live/);

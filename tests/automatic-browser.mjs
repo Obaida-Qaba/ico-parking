@@ -24,14 +24,14 @@ await context.addInitScript(p=>{
 const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
 try{
  await page.goto(base);
- await page.locator('.map-card').last().waitFor();
+ await page.locator('.map-card').last().waitFor({state:'attached'});
  await page.locator('#terminal-filter').selectOption('bastenaken');
  await page.locator('#destination').fill('HC1');
  await page.locator('#line').fill('15');
  await page.locator('.find-button').click();
  assert.equal(await page.locator('.destination-code').innerText(),'HC1');
  assert.match(await page.locator('.destination-meta').innerText(),/Bastenaken/);
- assert.match(await page.locator('#route-button').innerText(),/Start GPS route/);
+ assert.match(await page.locator('#route-button').innerText(),/Start route/);
  assert.equal(await page.evaluate(()=>localStorage.getItem('portway-gps-pins')),null);
  await page.locator('#route-button').click();
  await page.locator('.road-route').waitFor();

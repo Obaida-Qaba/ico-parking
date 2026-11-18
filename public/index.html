@@ -11,6 +11,7 @@
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="stylesheet" href="vendor/leaflet.css">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="map-focus.css">
 </head>
 <body>
 <a class="skip" href="#destination">Skip to parking search</a>
@@ -22,9 +23,7 @@
 <main class="app-shell">
   <aside class="sidebar" aria-label="Parking search">
     <div class="sidebar-content">
-      <div class="eyebrow">YOUR TERMINAL COMPANION</div>
-      <h1>Know where<br>you’re going.</h1>
-      <p class="intro">Find your parking on the ICO terminal plans.</p>
+      <h1>Find parking</h1>
       <form id="search-form" novalidate>
         <label for="destination">Parking or destination</label>
         <div class="search-input"><i data-icon="search"></i><input id="destination" type="search" placeholder="Try H61 line 15" autocomplete="off" spellcheck="false" maxlength="80" enterkeyhint="search"><kbd>/</kbd></div>
@@ -50,14 +49,25 @@
   </aside>
   <section class="map-workspace" aria-label="Terminal map workspace">
     <div id="map" role="region" aria-label="Interactive terminal plan"></div>
-    <div class="map-top"><div class="map-heading"><span class="live-pill">TERMINAL PLAN</span><h2 id="map-title">Zuidelijke Insteek</h2><p id="map-subtitle">Loading terminal plan…</p></div><div class="view-switch" role="group" aria-label="Map view"><button id="plan-view" class="active" aria-pressed="true"><i data-icon="layers"></i> Plan</button><button id="street-view" aria-pressed="false"><i data-icon="globe"></i> Street map</button></div></div>
-    <div class="map-controls"><button id="locate" class="map-control" aria-label="Show my GPS location" title="Show my GPS location"><i data-icon="locate"></i></button><div class="zoom-group"><button id="zoom-in" class="map-control" aria-label="Zoom in"><i data-icon="plus"></i></button><button id="zoom-out" class="map-control" aria-label="Zoom out"><i data-icon="minus"></i></button></div><button id="fit-map" class="map-control" aria-label="Fit whole map" title="Fit whole map"><i data-icon="expand"></i></button></div>
+    <div class="map-top">
+      <button id="map-fullscreen" class="map-toolbar-button" aria-pressed="false"><i data-icon="expand"></i><span>Full screen</span></button>
+      <span id="gps-summary" class="gps-summary" hidden>GPS</span>
+      <button id="map-options" class="map-toolbar-button" aria-expanded="false" aria-controls="map-options-panel"><i data-icon="layers"></i> Maps</button>
+    </div>
+    <div class="map-controls"><button id="locate" class="map-control" aria-label="Show my GPS location" title="My location"><i data-icon="locate"></i></button><div class="zoom-group"><button id="zoom-in" class="map-control" aria-label="Zoom in"><i data-icon="plus"></i></button><button id="zoom-out" class="map-control" aria-label="Zoom out"><i data-icon="minus"></i></button></div><button id="fit-map" class="map-control" aria-label="Show whole route or map" title="Show whole route or map"><i data-icon="fit"></i></button></div>
     <div id="map-loading" class="map-loading" role="status">Loading terminal plan…</div>
-    <div id="street-notice" class="street-notice" hidden>Live GPS uses the geographic road map. Save a parking’s actual GPS point once to route to it; PDF labels alone aren’t precise GPS destinations.</div>
-    <div id="gps-panel" class="gps-panel" hidden><div class="gps-status-row"><span class="gps-live-dot"></span><strong id="gps-text">GPS is off</strong><button id="gps-toggle">Start GPS</button></div><div class="gps-actions"><button id="follow-gps" hidden>Follow my position</button><button id="cancel-pin" hidden>Cancel location selection</button></div></div>
-    <div id="navigation-panel" class="navigation-panel" hidden><div class="navigation-heading"><span id="navigation-destination"></span><button id="stop-navigation" aria-label="Stop navigation">×</button></div><strong id="navigation-instruction">Waiting for GPS…</strong><div id="navigation-distance">—</div><p id="navigation-detail"></p></div>
-    <div class="map-bottom"><div class="map-library-heading"><span><i data-icon="layers"></i> ICO MAP LIBRARY</span><button id="source" class="inline-button">Map source <i data-icon="external"></i></button></div><div id="map-library" class="map-library" aria-label="Available terminal plans"></div></div>
-    <div class="map-source"><span id="map-date"></span><span>Source: ICO / Cewez · Independent app</span></div>
+    <div id="gps-status-alert" class="gps-status-alert" role="status" hidden></div>
+    <div id="navigation-panel" class="navigation-panel" hidden><div class="navigation-heading"><span id="navigation-destination"></span><button id="stop-navigation" aria-label="Stop navigation" title="End route">×</button></div><strong id="navigation-instruction">Waiting for GPS…</strong><div id="navigation-distance">—</div></div>
+    <section id="map-options-panel" class="map-options-panel" aria-label="Map options" hidden>
+      <div class="map-options-heading"><h2>Maps & GPS</h2><button id="close-map-options" class="icon-button" aria-label="Close map options"><i data-icon="close"></i></button></div>
+      <div class="view-switch" role="group" aria-label="Map view"><button id="plan-view" class="active" aria-pressed="true"><i data-icon="layers"></i> Terminal plan</button><button id="street-view" aria-pressed="false"><i data-icon="globe"></i> Road map</button></div>
+      <div class="map-heading"><span class="live-pill">TERMINAL PLAN</span><h2 id="map-title">Zuidelijke Insteek</h2><p id="map-subtitle">Loading terminal plan…</p></div>
+      <div id="street-notice" class="street-notice" hidden>Road routing uses the available parking approaches. A line number stays a reference inside the parking.</div>
+      <div id="gps-panel" class="gps-panel" hidden><div class="gps-status-row"><span class="gps-live-dot"></span><strong id="gps-text">GPS is off</strong><button id="gps-toggle">Start GPS</button></div><div class="gps-actions"><button id="follow-gps" hidden>Follow my position</button><button id="cancel-pin" hidden>Cancel location selection</button></div></div>
+      <div class="map-bottom"><div class="map-library-heading"><span>Terminal plans</span><button id="source" class="inline-button">Source <i data-icon="external"></i></button></div><div id="map-library" class="map-library" aria-label="Available terminal plans"></div></div>
+      <div class="route-information"><h3>Route details</h3><p id="navigation-detail">Choose a parking to see route details.</p><div id="destination-options" hidden></div></div>
+      <div class="map-source"><span id="map-date"></span><span>Source: ICO / Cewez · Independent app</span></div>
+    </section>
   </section>
 </main>
 <div id="toast" class="toast" role="status" hidden></div>

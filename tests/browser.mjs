@@ -7,9 +7,10 @@ const context=await browser.newContext({viewport:{width:1440,height:960}});
 const page=await context.newPage();
 const errors=[];page.on('pageerror',e=>errors.push(e.message));
 const base=(process.env.PORTWAY_BASE_URL || 'http://127.0.0.1:4173').replace(/\/$/,'');
+async function openMaps(p){if(!await p.locator('#map-options-panel').isVisible())await p.locator('#map-options').click();}
 try {
   await page.goto(base);
-  await page.locator('.map-card').last().waitFor();
+  await page.locator('.map-card').last().waitFor({state:'attached'});
   assert.equal(await page.locator('.map-card').count(),6);
   await page.waitForFunction(()=>document.querySelector('.leaflet-image-layer')?.complete);
   await page.screenshot({path:'test-results/desktop-home.png',fullPage:true});
@@ -25,7 +26,7 @@ try {
   assert.match(await page.locator('.destination-line').innerText(),/Line 26/);
   await page.locator('#destination').fill('H61 line 15');
   await page.locator('.find-button').click();
-  assert.match(await page.locator('#route-button').innerText(),/Start GPS route/);
+  assert.match(await page.locator('#route-button').innerText(),/Start route/);
   await page.screenshot({path:'test-results/desktop-h61.png',fullPage:true});
   await page.reload();
   await page.locator('.destination-code').waitFor();
@@ -35,7 +36,7 @@ try {
   await page.locator('#destination').fill('HC1');await page.locator('.find-button').click();
   assert.equal(await page.locator('.destination-code').innerText(),'HC1');
   assert.match(await page.locator('.destination-meta').innerText(),/Bastenaken/);
-  assert.match(await page.locator('#route-button').innerText(),/Start GPS route/);
+  assert.match(await page.locator('#route-button').innerText(),/Start route/);
   await page.locator('#clear-destination').click();
   await page.locator('#terminal-filter').selectOption('all');
   await page.locator('#destination').fill('Bastenaken HC1 line 15');await page.locator('.find-button').click();
@@ -47,11 +48,12 @@ try {
   await page.locator('#destination').fill('H61 line -1');await page.locator('.find-button').click();
   assert.equal(await page.locator('#search-error').isVisible(),true);
   for(const id of ['north','nissan','bastenaken','hanze','toyota','south']){
+    await openMaps(page);
     await page.locator(`[data-map="${id}"]`).click();
     assert.equal(await page.locator(`[data-map="${id}"]`).getAttribute('aria-pressed'),'true');
     await page.waitForFunction(()=>document.querySelector('.leaflet-image-layer')?.complete && document.querySelector('.leaflet-image-layer')?.naturalWidth>0);
   }
-  await page.locator('[data-map="toyota"]').click();
+  await openMaps(page);await page.locator('[data-map="toyota"]').click();
   await page.locator('#destination').fill('A01');await page.locator('.find-button').click();
   assert.equal(await page.locator('.destination-code').innerText(),'A01');
   await page.locator('#clear-destination').click();
@@ -62,8 +64,8 @@ try {
   await page.locator('#locate').click();
   await page.locator('.gps-dot').waitFor();
   assert.equal(await page.locator('#street-view').getAttribute('aria-pressed'),'true');
-  await page.locator('#plan-view').click();
-  await page.locator('[data-map="south"]').click();
+  await openMaps(page);await page.locator('#plan-view').click();
+  await openMaps(page);await page.locator('[data-map="south"]').click();
   await page.waitForFunction(()=>document.getElementById('offline-status').textContent==='Maps saved offline');
   await context.setOffline(true);
   await page.goto(base+'/?map=south&parking=H61&line=15');
@@ -75,7 +77,7 @@ try {
 
   const mobile=await browser.newContext({viewport:{width:390,height:844},isMobile:true,hasTouch:true,deviceScaleFactor:1});
   const mp=await mobile.newPage();mp.on('pageerror',e=>errors.push(e.message));
-  await mp.goto(base);await mp.locator('.map-card').last().waitFor();
+  await mp.goto(base);await mp.locator('.map-card').last().waitFor({state:'attached'});
   await mp.waitForFunction(()=>document.querySelector('.leaflet-image-layer')?.naturalWidth>0);
   await mp.screenshot({path:'test-results/mobile-home.png',fullPage:true});
   assert.ok(await mp.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth),'no horizontal overflow');
@@ -84,9 +86,9 @@ try {
   assert.equal(await mp.locator('.destination-code').innerText(),'H61');
   assert.ok((await mp.locator('#map').boundingBox()).height>=300);
   await mp.screenshot({path:'test-results/mobile-h61.png',fullPage:true});
-  assert.match(await mp.locator('#route-button').innerText(),/Start GPS route/);
+  assert.match(await mp.locator('#route-button').innerText(),/Start route/);
   await mp.locator('#clear-destination').click();
-  await mp.locator('[data-map="toyota"]').scrollIntoViewIfNeeded();await mp.locator('[data-map="toyota"]').click();
+  await openMaps(mp);await mp.locator('[data-map="toyota"]').scrollIntoViewIfNeeded();await mp.locator('[data-map="toyota"]').click();
   assert.equal(await mp.locator('#map-title').innerText(),'Toyota');
   console.log('PASS mobile: search, line field, selected destination, map space, route coverage, library scrolling, no page overflow');
   assert.deepEqual(errors,[]);

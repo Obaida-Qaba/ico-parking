@@ -54,4 +54,12 @@ Added a built-in destination catalogue and resolver. Fifteen bounded parking app
 
 Fresh-browser tests simulate live GPS on nearby connected roads and exercise HC1/Bastenaken and H61 routes without any saved local GPS pins. Every built-in destination is checked against the source reference catalogue and motorable road geometry. Source controls, projection residuals and road segments are stored in the destination catalogue and reproducible builder.
 
+## Clearer navigation and full-screen map
+
+User supplied a mobile screenshot showing too many overlays and requested a clear full-screen map. Added one closed-by-default Maps menu containing layer choices, source information, GPS details and destination refinements. Navigation now hides the app header/search panel and shows a compact destination/turn/distance card. Important GPS errors remain visible; normal accuracy/speed detail lives in Maps.
+
+Full screen uses document-root browser fullscreen so dialogs and toasts remain visible. A fixed viewport fallback handles unsupported/rejected requests. Exit full screen, native fullscreen exit and Escape preserve the current route and GPS watch. Layout changes invalidate Leaflet without resetting the center or route. The old fit-bounds button now has a distinct icon and label; it is not the fullscreen button.
+
+Verified mobile fallback, desktop native fullscreen, portrait/landscape sizing, accessible Maps controls, source dialogs and preserved route/GPS state. The offline shell includes the new CSS and UI module.
+
 Duplicate parking labels across terminals must not silently select the wrong destination. No route may be claimed for an unsupported parking or line. Numeric parking codes must work without being mistaken for line numbers. Location permissions must fail clearly. Mobile users must be able to dismiss overlays and access the map. Storage failures must not prevent lookup. Only local assets should be cached; public OSM tiles remain online.

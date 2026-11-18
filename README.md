@@ -29,6 +29,8 @@ Open http://127.0.0.1:4173. The app runs directly from `public/`; no build or AP
 - Bastenaken/Hanze searches use the current combined southern plan, including `HC1 Bastenaken`. An explicitly typed terminal takes precedence over a previous dropdown selection.
 - Navigation pauses when GPS accuracy is worse than 35 metres or the last fix is older than 15 seconds.
 - PWA manifest, installation support where the browser permits it, and home-screen icons.
+- Clear map view: navigation hides the app header/search panel and shows only the next turn, distance and a small destination label. Map choices, GPS details, sources and destination refinements are available through **Maps**.
+- **Full screen** opens the map using browser fullscreen where available, with a full-viewport fallback. **Exit full screen** or Escape restores the normal layout without stopping GPS or changing the route.
 
 ## Current limitations
 
@@ -82,6 +84,8 @@ npm run test:browser
 The suites check desktop/mobile search, line references, deep links, missing parking, invalid input, every map, denied/granted GPS, live movement, accurate GPS capture, road routing, one-way and turn restrictions, low-accuracy pause, stopping tracking, offline road routing and no uncaught browser errors. GPS browser tests use simulated positions on actual downloaded road geometry; they do not establish on-site accuracy. Screenshots are written to `test-results/` and are not published.
 
 Automatic-destination checks include HC1/Bastenaken filtering, terminal names typed into search, fresh devices with no saved pins, automatic HC1/H61 routes without the recording dialog, and every built-in target lying on a motorable road. Rebuild matched approaches with `python scripts/build_destinations.py` after the map/road build; this uses `numpy`.
+
+Map UI checks cover native desktop fullscreen, rejected-fullscreen mobile fallback, portrait/landscape map size, accessible map options, visible source dialogs, explicit/Escape exits and preservation of the current GPS watch and route geometry.
 
 ## Phone access and hosting
 

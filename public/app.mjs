@@ -1,5 +1,6 @@
 import { normalizeCode, parseDestination, searchParkings } from './core.mjs';
 import { createGPS } from './gps.mjs';
+import { createMapUI } from './map-ui.mjs';
 
 const paths = {
   search:'m21 21-5-5 M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0',
@@ -10,6 +11,7 @@ const paths = {
   locate:'M12 2v3 m0 14v3 M2 12h3 m14 0h3 M19 12a7 7 0 1 1-14 0 7 7 0 0 1 14 0 M14 12a2 2 0 1 1-4 0 2 2 0 0 1 4 0',
   plus:'M12 5v14 M5 12h14', minus:'M5 12h14', expand:'M8 3H3v5 M16 3h5v5 M3 16v5h5 M21 16v5h-5',
   external:'M14 3h7v7 M21 3 10 14 M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5',
+  fit:'M4 8V4h4 M16 4h4v4 M20 16v4h-4 M8 20H4v-4 M8 12h8 M12 8v8',
   info:'M22 12A10 10 0 1 1 2 12a10 10 0 0 1 20 0 M12 11v6 M12 7h.01',
   route:'M5 3a2 2 0 1 1 0 4 2 2 0 0 1 0-4 M19 17a2 2 0 1 1 0 4 2 2 0 0 1 0-4 M5 7v8a4 4 0 0 0 4 4h8 M19 17V9a4 4 0 0 0-4-4h-4',
   close:'m6 6 12 12 M6 18 18 6', check:'m5 12 4 4L19 6', clock:'M22 12A10 10 0 1 1 2 12a10 10 0 0 1 20 0 M12 6v6l4 2', share:'M12 16V3 M7 8l5-5 5 5 M5 13v7h14v-7'
@@ -28,6 +30,7 @@ resizeObserver.observe($('map'));
 function toast(message) { $('toast').textContent=message;$('toast').hidden=false;clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('toast').hidden=true,6500); }
 function dialog(html) { $('dialog-content').innerHTML=html; if (!$('info-dialog').open) $('info-dialog').showModal(); }
 const gps=createGPS({getMap:()=>map,getSelected:()=>selected,getCatalogue:()=>catalogue,showStreet:()=>{if(!street){street=true;renderMap();}},toast,dialog,escape:esc,onPinChanged:()=>{if(selected)renderGPSActions();}});
+const mapUI=createMapUI({getMap:()=>map});
 $('close-dialog').onclick=()=>$('info-dialog').close();
 $('info-dialog').addEventListener('click',e=>{if(e.target===$('info-dialog')) {const r=e.target.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)e.target.close();}});
 
@@ -143,9 +146,10 @@ function choose(hit, remember=true) {
 function renderGPSActions(){
   if(!selected)return;
   const pin=gps.pinFor(selected);
-  $('route-button').innerHTML=`${icon('route')} ${pin?'Start GPS route':'Set GPS destination'} ${icon('arrow')}`;
+  $('route-button').innerHTML=`${icon('route')} ${pin?'Start route':'Set destination'} ${icon('arrow')}`;
   let button=$('save-gps-button');
-  if(!button){button=document.createElement('button');button.id='save-gps-button';button.className='inline-button destination-source';$('destination-card').append(button);}
+  if(!button){button=document.createElement('button');button.id='save-gps-button';button.className='secondary destination-options-button';$('destination-options').append(button);}
+  $('destination-options').hidden=false;
   button.textContent=pin?.automatic?'Refine destination location':pin?'Manage saved GPS point':'Save this parking’s GPS location';button.onclick=()=>gps.setup(selected);
   if(pin){const note=$('destination-card').querySelector('.line-note');note.textContent=pin.automatic?`Built-in route to ${selected.parking.code} parking approach.${selected.line?' Find line '+selected.line+' inside the parking.':''}`:pin.method==='gps'?`GPS location saved on this device (±${Math.round(pin.accuracy)} m). Road routing uses this saved point.`:'Destination point selected on the road map. Road routing uses this saved point.';if(selected.line&&!pin.exactLine&&!pin.automatic)note.textContent+=' Line '+selected.line+' is not separately positioned.';}
 }
@@ -154,6 +158,7 @@ function clearDestination() {
   gps.clearRoute();
   document.body.classList.remove('has-destination');
   selected=null;$('destination-card').hidden=true;$('welcome-content').hidden=false;$('search-results').hidden=true;$('destination').value='';$('line').value='';$('search-error').hidden=true;
+  $('destination-options').hidden=true;
   history.replaceState(null,'',location.pathname);if(!street){selectedLayers.clearLayers();fit();}
 }
 function query() {
@@ -216,7 +221,7 @@ try {
     const option=document.createElement('option');option.value=m.id;option.textContent=m.name+(m.historical&&!['bastenaken','hanze'].includes(m.id)?' · older':'');$('terminal-filter').append(option);
     const b=document.createElement('button');b.className='map-card';b.dataset.map=m.id;b.title=m.name+' · '+m.date;
     b.innerHTML=`<img src="${esc(m.image)}" alt="" loading="lazy"><strong>${esc(m.name)}</strong><span>${m.historical?'Older source plan':m.id==='south'?'Updated Sep 2026':'ICO source plan'}</span>`;
-    b.onclick=()=>{street=false;clearDestination();$('terminal-filter').value=m.id;renderMap(m);};$('map-library').append(b);
+    b.onclick=()=>{street=false;clearDestination();$('terminal-filter').value=m.id;renderMap(m);mapUI.closeOptions();};$('map-library').append(b);
   }
   $('catalogue-count').textContent=`6 plans · ${atlas.maps.reduce((n,m)=>n+m.parkings.length,0)} references`;
   renderMap();renderRecents();
@@ -226,8 +231,8 @@ try {
   $('terminal-filter').onchange=()=>{if($('destination').value)showResults(false);};
   document.querySelectorAll('[data-quick]').forEach(b=>b.onclick=()=>{$('destination').value=b.dataset.quick;$('line').value='';$('terminal-filter').value='all';showResults(true);});
   $('clear-recents').onclick=()=>{recents=[];try{localStorage.removeItem('portway-recents');}catch{}renderRecents();};
-  $('plan-view').onclick=()=>{if(street){street=false;renderMap(current,selected?.parking);}};
-  $('street-view').onclick=()=>{if(!street){street=true;renderMap();}};
+  $('plan-view').onclick=()=>{if(street){street=false;renderMap(current,selected?.parking);}mapUI.closeOptions();};
+  $('street-view').onclick=()=>{if(!street){street=true;renderMap();}mapUI.closeOptions();};
   $('zoom-in').onclick=()=>map.zoomIn();$('zoom-out').onclick=()=>map.zoomOut();$('fit-map').onclick=()=>{if(!gps.fitRoute())fit();};$('locate').onclick=()=>gps.start();$('live-gps-start').onclick=()=>gps.start();
   $('source').onclick=showSource;$('about').onclick=showAbout;
   document.addEventListener('keydown',e=>{if(e.key==='/'&&!['INPUT','SELECT','TEXTAREA'].includes(document.activeElement.tagName)){e.preventDefault();$('destination').focus();}if(e.key==='Escape'&&!$('info-dialog').open)clearDestination();});

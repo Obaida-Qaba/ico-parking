@@ -13,7 +13,21 @@ export function createGPS({getMap,getSelected,getCatalogue,showStreet,toast,dial
     if(!graphPromise)graphPromise=fetch('./roads.json').then(r=>{if(!r.ok)throw Error('roads');return r.json();}).then(data=>{graph=buildGraph(data);return graph;}).catch(e=>{graphPromise=null;throw e;});
     return graphPromise;
   }
-  function status(message){$('gps-text').textContent=message;}
+  function status(message){
+    $('gps-text').textContent=message;
+    const healthy=message.startsWith('GPS live'),off=message.startsWith('GPS stopped')||message==='GPS is off';
+    $('gps-summary').hidden=off;
+    $('gps-summary').textContent=healthy?'GPS':message.startsWith('Connecting')?'GPS…':'GPS';
+    $('gps-summary').title=message;$('gps-summary').setAttribute('aria-label',message);
+    $('gps-summary').classList.toggle('weak',!healthy);
+    $('gps-status-alert').hidden=healthy||off||message.startsWith('Connecting');
+    $('gps-status-alert').textContent=message;
+  }
+  function navigationLayout(value){
+    document.body.classList.toggle('navigating',value);
+    $('navigation-panel').hidden=!value;
+    requestAnimationFrame(()=>getMap()?.invalidateSize({pan:false}));
+  }
   function setPanel(visible){$('gps-panel').hidden=!visible;}
   function save(hit,pin){
     const key=parkingKey(hit),next={...pins,[key]:pin};
@@ -80,13 +94,14 @@ export function createGPS({getMap,getSelected,getCatalogue,showStreet,toast,dial
     const speed=Number.isFinite(c.speed)?` · ${Math.round(c.speed*3.6)} km/h`:'';
     status(`GPS live · ±${Math.round(c.accuracy)} m${speed}`);
     $('gps-panel').classList.toggle('weak',c.accuracy>35);$('gps-toggle').textContent='Stop GPS';
+    if(c.accuracy>35){$('gps-summary').classList.add('weak');$('gps-status-alert').hidden=false;$('gps-status-alert').textContent='Weak GPS signal · waiting for a more accurate position';}
     if(street&&following){const m=getMap();m.setView([fix.lat,fix.lon],Math.max(m.getZoom(),17),{animate:false});}
     draw();calculate();
   }
   function onError(err){
     const messages={1:'GPS permission denied. Allow location for this site in browser settings.',2:'GPS position unavailable. Waiting for a location signal.',3:'GPS timed out. Waiting for a new location update.'};
     status(messages[err.code]||'GPS error');toast(messages[err.code]||'Could not read GPS.');
-    if(err.code===1){if(watch!==null)navigator.geolocation.clearWatch(watch);watch=null;$('gps-toggle').textContent='Start GPS';route=null;draw();}
+    if(err.code===1){if(watch!==null)navigator.geolocation.clearWatch(watch);watch=null;$('gps-toggle').textContent='Start GPS';route=null;if(active)$('navigation-instruction').textContent='Allow GPS to navigate';draw();}
   }
   function start(){
     document.body.classList.add('gps-active');
@@ -104,13 +119,13 @@ export function createGPS({getMap,getSelected,getCatalogue,showStreet,toast,dial
   function stop(){
     document.body.classList.remove('gps-active');
     if(watch!==null)navigator.geolocation?.clearWatch(watch);watch=null;active=null;route=null;
-    $('gps-toggle').textContent='Start GPS';$('navigation-panel').hidden=true;status(fix?'GPS stopped · last position shown':'GPS is off');draw();
+    $('gps-toggle').textContent='Start GPS';navigationLayout(false);status(fix?'GPS stopped · last position shown':'GPS is off');draw();
   }
   function navigate(hit){
     if(!hit){toast('Choose a parking first.');return;}
     const pin=pinFor(hit);
     if(!pin){setup(hit);return;}
-    active=hit;route=null;$('navigation-panel').hidden=false;$('navigation-destination').textContent=label(hit);$('navigation-instruction').textContent='Waiting for live GPS…';$('navigation-distance').textContent='—';$('navigation-detail').textContent=pin.automatic?'Using the built-in parking approach. The route follows mapped roads.':'Using your saved destination point. The route follows mapped roads.';
+    active=hit;route=null;navigationLayout(true);$('map-options-panel').hidden=true;$('map-options').setAttribute('aria-expanded','false');$('navigation-destination').textContent=label(hit);$('navigation-instruction').textContent='Waiting for live GPS…';$('navigation-distance').textContent='—';$('navigation-detail').textContent=pin.automatic?'Using the built-in parking approach. The route follows mapped roads.':'Using your saved destination point. The route follows mapped roads.';
     start();calculate(true);
   }
   function setup(hit){
@@ -121,7 +136,7 @@ export function createGPS({getMap,getSelected,getCatalogue,showStreet,toast,dial
       $('info-dialog').close();pending=hit;showStreet();setPanel(true);status(`Tap the real location of ${name} on the road map`);$('cancel-pin').hidden=false;
       if(fix)getMap().setView([fix.lat,fix.lon],18);else getMap().setView(hit.map.id==='north'?[51.322,3.21]:hit.map.id==='nissan'?[51.334,3.2]:[51.300,3.235],16);
     };
-    if(existing&&!existing.automatic)$('forget-pin').onclick=()=>{const next={...pins};delete next[parkingKey(hit)];if(!existing.exactLine&&hit.line)delete next[parkingKey({...hit,line:null})];try{localStorage.setItem('portway-gps-pins',JSON.stringify(next));pins=next;if(active&&parkingKey(active)===parkingKey(hit)){active=null;route=null;$('navigation-panel').hidden=true;}onPinChanged(hit);$('info-dialog').close();draw();toast('Saved GPS point removed.');}catch{toast('Could not update saved points.');}};
+    if(existing&&!existing.automatic)$('forget-pin').onclick=()=>{const next={...pins};delete next[parkingKey(hit)];if(!existing.exactLine&&hit.line)delete next[parkingKey({...hit,line:null})];try{localStorage.setItem('portway-gps-pins',JSON.stringify(next));pins=next;if(active&&parkingKey(active)===parkingKey(hit)){active=null;route=null;navigationLayout(false);}onPinChanged(hit);$('info-dialog').close();draw();toast('Saved GPS point removed.');}catch{toast('Could not update saved points.');}};
   }
   function capture(hit){
     if(!window.isSecureContext||!navigator.geolocation){toast('Saving GPS requires the HTTPS app and location permission.');return;}
@@ -153,11 +168,11 @@ export function createGPS({getMap,getSelected,getCatalogue,showStreet,toast,dial
       roadLayer.bringToBack?.();layer.bringToFront?.();draw();
     }).catch(()=>{});
   }
-  function clearRoute(){active=null;route=null;pending=null;$('cancel-pin').hidden=true;$('navigation-panel').hidden=true;draw();}
-  function fitRoute(){if(!street||!active||!route?.available)return false;getMap().fitBounds(L.latLngBounds(route.points),{paddingTopLeft:[25,165],paddingBottomRight:[65,225],maxZoom:18,animate:false});return true;}
+  function clearRoute(){active=null;route=null;pending=null;$('cancel-pin').hidden=true;navigationLayout(false);draw();}
+  function fitRoute(){if(!street||!active||!route?.available)return false;getMap().fitBounds(L.latLngBounds(route.points),{paddingTopLeft:[28,85],paddingBottomRight:[75,165],maxZoom:18,animate:false});return true;}
   $('gps-toggle').onclick=()=>watch===null?start():stop();
   $('follow-gps').onclick=()=>{following=true;$('follow-gps').classList.add('following');if(fix){showStreet();getMap().setView([fix.lat,fix.lon],17);}};
-  $('stop-navigation').onclick=()=>{active=null;route=null;$('navigation-panel').hidden=true;draw();};
+  $('stop-navigation').onclick=clearRoute;
   $('cancel-pin').onclick=()=>{pending=null;$('cancel-pin').hidden=true;status(watch===null?'GPS is off':'GPS tracking active');};
   const timer=setInterval(()=>{
     if(watch!==null&&fix&&Date.now()-fix.timestamp>15000){status('GPS signal lost · last position shown');if(active){route=null;$('navigation-instruction').textContent='GPS signal lost · route paused';draw();}}

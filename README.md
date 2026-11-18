@@ -20,20 +20,23 @@ Open http://127.0.0.1:4173. The app runs directly from `public/`; no build or AP
 
 - Six map views: combined Zuidelijke Insteek, Noordelijke Insteek, Nissan, and older Bastenaken, Hanze and Toyota plans.
 - Search indexed parking references, including `H61 line 15`, `parking H61 lijn 15`, `H61 / 15`, `GE 1`, and `A01`.
-- A separate optional line field. Each parking or exact line can have a real on-site GPS point saved on this device.
+- A separate optional line field. Built-in parking approaches can be used directly; optional on-site points can refine a parking or an exact line.
 - Parking markers at the actual source-label positions, zooming, panning, click-to-select, source links and dates.
 - Recent destinations saved on the device, deep links and sharing.
 - All six plan images, the app shell and the road network are saved offline after the initial successful download. External background street-map tiles require internet; road geometry and routing work offline. Browser storage can be evicted by the device.
 - Continuous high-accuracy GPS tracking, accuracy display, heading, speed and follow-position mode. Tracking can be stopped explicitly.
-- Road routing to a saved destination with distance updates, basic turn prompts and rerouting from updated GPS. Routes follow OSM road geometry, mapped one-way directions and node turn restrictions. They never connect disconnected roads with an invented shortcut.
+- Road routing to built-in or saved destinations with distance updates, basic turn prompts and rerouting from updated GPS. Routes follow OSM road geometry, mapped one-way directions and node turn restrictions. They never connect disconnected roads with an invented shortcut.
+- Bastenaken/Hanze searches use the current combined southern plan, including `HC1 Bastenaken`. An explicitly typed terminal takes precedence over a previous dropdown selection.
 - Navigation pauses when GPS accuracy is worse than 35 metres or the last fix is older than 15 seconds.
 - PWA manifest, installation support where the browser permits it, and home-screen icons.
 
 ## Current limitations
 
-**Parking and line GPS coordinates are not supplied by the source PDFs.** The app can navigate along mapped roads to a destination you save on site or select on the geographic map. It cannot automatically turn the schematic PDF label H61 into a precise GPS destination. Matching quay references against OSM showed substantial alignment errors, so that estimated transform is deliberately not used.
+**Automatic parking routing is available for 15 matched approaches:** GC1–GC3, HC1–HC3, IC1–IC2, JC1–JC2, KC1–KC2, LC1–LC2, and H61. Search HC1 under Bastenaken and press **Start GPS route**; no recording step is required. H61 also starts directly, including when a line reference is entered.
 
-To enable a destination: search `H61 line 15`, choose **Set GPS destination**, and save GPS while physically at that parking/line. Saving requires a fresh fix with accuracy of 25 metres or better. Alternatively choose its known actual location on the road map. The point stays on this device; shared links identify the parking/line but do not transfer saved GPS coordinates. Record parking locations only when stationary at the named point.
+These approaches are matched from the September 2026 ICO plan to actual geographic road geometry, using separate local building/dock landmarks for the Bastenaken and Hanze regions. They are not surveyed entrances or exact line coordinates. The builder records its control points and matched road segments in `public/destinations.json`. A small source-to-road projection residual does not establish on-site GPS accuracy. The poor global quay-label transform is not used, and the matched regions are not extrapolated to all terminals.
+
+A line reference routes to the parking approach unless a separate exact line point exists. For a reference outside the built-in catalogue, optional on-site GPS or map selection is still available. Saving requires a fresh fix with accuracy of 25 metres or better. Saved points stay on this device and take precedence over built-in approaches; shared links identify the parking/line but do not transfer private GPS refinements.
 
 Routing covers the downloaded Zeebrugge road network, including internal roads present in OSM. Missing roads, temporary closures, access changes and way-based turn restrictions are not provided as live operational data. The router assumes authorized access to mapped private terminal roads. Explicitly locked/no-access nodes and motor-vehicle prohibitions are excluded. It refuses to route if either endpoint is more than 50 metres from a mapped drivable road. The drawn route ends on the road; any gap to the saved point is reported rather than drawn across a parking block.
 
@@ -46,6 +49,7 @@ This is an independent application, not an official ICO service.
 ## Sources
 
 - https://www.icoterminals.com/upload/ico_safety_regulations.pdf - January 2026 document. Pages 4, 5 and 6 contain southern, northern and Nissan plans. Southern plan date: 8 September 2025; Nissan: 2 February 2024. The northern plan has no printed revision date.
+- https://www.icoterminals.com/sites/default/files/SIT%20terminalplan%20SIT%2021%2009%202026.pdf - current southern plan used in the app, footer V1.09-2026. Replaces the older September 2025 southern drawing above. Found through the live ICO southern terminal page.
 - https://cewez.be/wp-content/uploads/2025/04/Onthaalbrochure-ICO.pdf - historical Bastenaken, Hanze and Toyota plans on pages 23, 24 and 25. These are older layouts; upload date is not a map revision date.
 - https://www.icoterminals.com/nl/terminals/zuidelijke-insteek-terminal - terminal centre coordinate.
 - https://www.icoterminals.com/nl/terminals/noordelijke-insteek-terminal - terminal centre coordinate.
@@ -76,6 +80,8 @@ npm run test:browser
 ```
 
 The suites check desktop/mobile search, line references, deep links, missing parking, invalid input, every map, denied/granted GPS, live movement, accurate GPS capture, road routing, one-way and turn restrictions, low-accuracy pause, stopping tracking, offline road routing and no uncaught browser errors. GPS browser tests use simulated positions on actual downloaded road geometry; they do not establish on-site accuracy. Screenshots are written to `test-results/` and are not published.
+
+Automatic-destination checks include HC1/Bastenaken filtering, terminal names typed into search, fresh devices with no saved pins, automatic HC1/H61 routes without the recording dialog, and every built-in target lying on a motorable road. Rebuild matched approaches with `python scripts/build_destinations.py` after the map/road build; this uses `numpy`.
 
 ## Phone access and hosting
 

@@ -46,4 +46,12 @@ Both map plans and road data work offline after download. Background map tiles r
 
 ## Review focus
 
+## HC1 and automatic-destination correction
+
+User reported HC1 missing under Bastenaken and navigation blocking on an on-site recording step. Bastenaken/Hanze filters now search regional entries in the current combined southern plan rather than only sparse historical indices. Typed terminal names override stale dropdown filters. The current south plan is the newly discovered official V1.09-2026 vector PDF, including its expanded parking references.
+
+Added a built-in destination catalogue and resolver. Fifteen bounded parking approaches are matched to actual OSM road segments using separate local landmarks for the central Bastenaken and H61 areas. HC1 and H61 route immediately with no user recording. Exact line positions remain explicitly unresolved; line input falls back to the parking approach. Optional saved measurements can refine the built-in point. This is not a claim of site-surveyed entrances or fully located parking across every terminal.
+
+Fresh-browser tests simulate live GPS on nearby connected roads and exercise HC1/Bastenaken and H61 routes without any saved local GPS pins. Every built-in destination is checked against the source reference catalogue and motorable road geometry. Source controls, projection residuals and road segments are stored in the destination catalogue and reproducible builder.
+
 Duplicate parking labels across terminals must not silently select the wrong destination. No route may be claimed for an unsupported parking or line. Numeric parking codes must work without being mistaken for line numbers. Location permissions must fail clearly. Mobile users must be able to dismiss overlays and access the map. Storage failures must not prevent lookup. Only local assets should be cached; public OSM tiles remain online.

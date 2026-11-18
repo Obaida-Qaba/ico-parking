@@ -2,8 +2,31 @@ export function normalizeCode(value) {
   return String(value ?? '').toUpperCase().replace(/[^A-Z0-9]/g, '');
 }
 
+const terminalNames = [
+  { id:'bastenaken', pattern:/\bbastenaken(?:\s+terminal)?\b/gi },
+  { id:'hanze', pattern:/\bhanze(?:\s+terminal)?\b/gi },
+  { id:'north', pattern:/\b(?:noordelijke?\s+insteek(?:terminal)?|northern(?:\s+inlet)?\s+terminal|nit)\b/gi },
+  { id:'south', pattern:/\b(?:zuidelijke?\s+insteek(?:terminal)?|southern(?:\s+inlet)?\s+terminal|sit)\b/gi },
+  { id:'nissan', pattern:/\bnissan(?:\s+terminal)?\b/gi },
+  { id:'toyota', pattern:/\btoyota(?:\s+terminal)?\b/gi }
+];
+
+export function terminalFromInput(input) {
+  for(const terminal of terminalNames) {
+    terminal.pattern.lastIndex=0;
+    if(terminal.pattern.test(String(input ?? ''))) return terminal.id;
+  }
+  return null;
+}
+
+function stripTerminalNames(input) {
+  let result=String(input ?? '');
+  for(const terminal of terminalNames) result=result.replace(terminal.pattern,' ');
+  return result.replace(/\s+/g,' ').trim();
+}
+
 export function parseDestination(input) {
-  let raw = String(input ?? '').trim().replace(/^(?:parking|park|parkeerplaats)\s+/i, '');
+  let raw = stripTerminalNames(input).replace(/^(?:parking|park|parkeerplaats)\s+/i, '');
   let line = null;
   const explicit = raw.match(/\s*(?:\b(?:line|lijn|rij)\b|[/,;])\s*(.*)$/i);
   if (explicit) {
@@ -20,12 +43,14 @@ export function searchParkings(maps, input, mapId = 'all') {
   const parsed = parseDestination(input);
   if (parsed.error || !parsed.parking) return [];
   const found = [];
+  const terminalFilter=terminalFromInput(input) || (mapId==='all' ? null : mapId);
   for (const map of maps) {
-    if (mapId !== 'all' && map.id !== mapId) continue;
     for (const parking of map.parkings) {
+      const currentRegionalMatch=map.id==='south' && ['bastenaken','hanze'].includes(terminalFilter) && parking.terminal===terminalFilter;
+      if(terminalFilter && map.id!==terminalFilter && !currentRegionalMatch) continue;
       const code = normalizeCode(parking.code);
       if (!code.startsWith(parsed.parking)) continue;
-      found.push({ map, parking, line: parsed.line,
+      found.push({ map, parking, line: parsed.line, matchedTerminal:currentRegionalMatch?terminalFilter:map.id,
         rank: (code === parsed.parking ? 0 : 10) + (map.historical ? 1 : 0) });
     }
   }

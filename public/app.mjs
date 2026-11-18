@@ -19,7 +19,7 @@ const esc = value => String(value).replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt
 function icon(name) { return `<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="${paths[name] ?? paths.pin}"/></svg>`; }
 function icons(root=document) { root.querySelectorAll('[data-icon]').forEach(el=>el.outerHTML=icon(el.dataset.icon)); }
 icons();
-let atlas, current, map, mapBounds, nodes, selectedLayers, selected=null, street=false, currentImage, fitZoom=0;
+let atlas, catalogue, current, map, mapBounds, nodes, selectedLayers, selected=null, street=false, currentImage, fitZoom=0;
 let recents = [];
 try { const saved=JSON.parse(localStorage.getItem('portway-recents') || '[]'); recents=Array.isArray(saved)?saved.filter(x=>x && typeof x.code==='string' && typeof x.map==='string' && (x.line===null || /^[1-9]\d{0,3}$/.test(x.line))).slice(0,5):[]; } catch {}
 let toastTimer, debounce;
@@ -27,7 +27,7 @@ const resizeObserver=new ResizeObserver(()=>map?.invalidateSize());
 resizeObserver.observe($('map'));
 function toast(message) { $('toast').textContent=message;$('toast').hidden=false;clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('toast').hidden=true,6500); }
 function dialog(html) { $('dialog-content').innerHTML=html; if (!$('info-dialog').open) $('info-dialog').showModal(); }
-const gps=createGPS({getMap:()=>map,getSelected:()=>selected,showStreet:()=>{if(!street){street=true;renderMap();}},toast,dialog,escape:esc,onPinChanged:()=>{if(selected)renderGPSActions();}});
+const gps=createGPS({getMap:()=>map,getSelected:()=>selected,getCatalogue:()=>catalogue,showStreet:()=>{if(!street){street=true;renderMap();}},toast,dialog,escape:esc,onPinChanged:()=>{if(selected)renderGPSActions();}});
 $('close-dialog').onclick=()=>$('info-dialog').close();
 $('info-dialog').addEventListener('click',e=>{if(e.target===$('info-dialog')) {const r=e.target.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)e.target.close();}});
 
@@ -49,6 +49,7 @@ function renderMap(next=current, focus=null) {
   if (currentImage) {currentImage.onload=null;currentImage.onerror=null;}
   setViewButtons();
   $('map-title').textContent=street?'Port of Zeebrugge':current.name;
+  document.querySelector('.live-pill').textContent=street?'GPS ROAD MAP':'TERMINAL PLAN';
   $('map-subtitle').textContent=street?'GPS road map · local road network':`${current.parkings.length} parking references · ${current.historical?'older source plan':'ICO source plan'}`;
   $('map-date').textContent=street?'© OpenStreetMap contributors · mapped roads':`Plan: ${current.date}`;
   document.querySelectorAll('.map-card').forEach(b=>{b.classList.toggle('active',b.dataset.map===current.id);b.setAttribute('aria-pressed',String(b.dataset.map===current.id));});
@@ -127,7 +128,7 @@ function choose(hit, remember=true) {
   $('destination-card').hidden=false;
   $('destination-card').innerHTML=`<div class="destination-top"><div><div class="destination-kicker">YOUR DESTINATION</div><div class="destination-code">${esc(hit.parking.code)}</div></div><button class="icon-button" id="clear-destination" aria-label="Clear destination">${icon('close')}</button></div>
     ${hit.line?`<div class="destination-line">Line ${esc(hit.line)} <span style="font-size:10px;color:#829176">· reference saved</span></div>`:''}
-    <div class="destination-meta">${esc(hit.map.name)}<br><span class="destination-badge">${icon('check')} Parking located on source plan</span></div>
+    <div class="destination-meta">${hit.parking.terminal?esc(hit.parking.terminal==='bastenaken'?'Bastenaken':'Hanze')+' · ':''}${esc(hit.map.name)}<br><span class="destination-badge">${icon('check')} Parking located on source plan</span></div>
     <div class="destination-actions"><button class="primary" id="route-button">${icon('route')} Route coverage ${icon('arrow')}</button><button class="secondary" id="share-button" aria-label="Share destination">${icon('share')}</button></div>
     <div class="line-note">${hit.line?`Line ${esc(hit.line)} isn’t positioned on this source plan. The marker shows the parking label.`:'The marker shows a parking label, not a verified entrance. Internal road navigation is not available yet.'}${hit.parking.points.length>1?' This reference appears in multiple places on the plan.':''}</div>
     <button class="inline-button destination-source" id="destination-source">${icon('info')} View source & coverage</button>`;
@@ -145,8 +146,8 @@ function renderGPSActions(){
   $('route-button').innerHTML=`${icon('route')} ${pin?'Start GPS route':'Set GPS destination'} ${icon('arrow')}`;
   let button=$('save-gps-button');
   if(!button){button=document.createElement('button');button.id='save-gps-button';button.className='inline-button destination-source';$('destination-card').append(button);}
-  button.textContent=pin?'Manage saved GPS point':'Save this parking’s GPS location';button.onclick=()=>gps.setup(selected);
-  if(pin){const note=$('destination-card').querySelector('.line-note');note.textContent=pin.method==='gps'?`GPS location saved on this device (±${Math.round(pin.accuracy)} m). Road routing uses this saved point.`:'Destination point selected on the road map. Road routing uses this saved point.';}
+  button.textContent=pin?.automatic?'Refine destination location':pin?'Manage saved GPS point':'Save this parking’s GPS location';button.onclick=()=>gps.setup(selected);
+  if(pin){const note=$('destination-card').querySelector('.line-note');note.textContent=pin.automatic?`Built-in route to ${selected.parking.code} parking approach.${selected.line?' Find line '+selected.line+' inside the parking.':''}`:pin.method==='gps'?`GPS location saved on this device (±${Math.round(pin.accuracy)} m). Road routing uses this saved point.`:'Destination point selected on the road map. Road routing uses this saved point.';if(selected.line&&!pin.exactLine&&!pin.automatic)note.textContent+=' Line '+selected.line+' is not separately positioned.';}
 }
 function clearDestination() {
   clearTimeout(debounce);
@@ -166,7 +167,7 @@ function showResults(submitted=false) {
   const parsed=query();$('search-error').hidden=!parsed.error;
   if(parsed.error){$('search-error').textContent=parsed.error;$('search-results').hidden=true;return;}
   if(!parsed.parking){if(submitted){$('search-error').hidden=false;$('search-error').textContent='Enter a parking reference, for example H61.';$('destination').focus();}return;}
-  const results=searchParkings(atlas.maps,parsed.parking,$('terminal-filter').value).map(h=>({...h,line:parsed.line}));
+  const results=searchParkings(atlas.maps,$('destination').value,$('terminal-filter').value).map(h=>({...h,line:parsed.line}));
   const exact=results.filter(r=>normalizeCode(r.parking.code)===parsed.parking);
   if(submitted && exact.length===1){choose(exact[0]);return;}
   if(submitted && exact.length>1 && exact.filter(r=>!r.map.historical).length===1){choose(exact.find(r=>!r.map.historical));return;}
@@ -176,7 +177,7 @@ function showResults(submitted=false) {
   if(!results.length){const p=document.createElement('p');p.className='result-list-note';p.textContent=`No indexed parking matches “${parsed.parking}”${$('terminal-filter').value!=='all'?' in this terminal':''}. Try another map or a shorter reference. The source plans remain available to browse.`;$('result-list').append(p);}
   for(const hit of results.slice(0,40)){
     const b=document.createElement('button');b.type='button';b.className='result-row';
-    b.innerHTML=`<span class="result-icon">${icon('pin')}</span><span><strong>${esc(hit.parking.code)}${hit.line?` · line ${esc(hit.line)}`:''}</strong><small>${esc(hit.map.name)} · ${hit.map.historical?'older plan':'ICO plan'}</small></span>${icon('arrow')}`;
+    b.innerHTML=`<span class="result-icon">${icon('pin')}</span><span><strong>${esc(hit.parking.code)}${hit.line?` · line ${esc(hit.line)}`:''}</strong><small>${hit.parking.terminal?esc(hit.parking.terminal==='bastenaken'?'Bastenaken':'Hanze')+' · ':''}${esc(hit.map.name)} · ${hit.map.historical?'older plan':'ICO plan'}</small></span>${icon('arrow')}`;
     b.onclick=()=>choose(hit);$('result-list').append(b);
   }
 }
@@ -184,7 +185,7 @@ function showSource() {
   dialog(`<h2>${esc(current.name)}</h2><p>${esc(current.note)}</p><p><strong>Plan date:</strong> ${esc(current.date)}<br><strong>Source page:</strong> ${current.page}<br><strong>Indexed references:</strong> ${current.parkings.length}</p><h3>What the marker means</h3><p>Markers identify labels on the source drawing. They do not establish the precise entrance, current availability, an exact line position or a verified driving route. Older plans may differ from the current terminal layout.</p><a class="primary" href="${esc(current.source)}#page=${current.page}" target="_blank" rel="noopener">Open original PDF ${icon('external')}</a>`);
 }
 function showAbout() {
-  dialog(`<h2>A clearer way around the port.</h2><p>Portway brings the public ICO Zeebrugge plans into one searchable, phone-friendly map library. This is an independent parking finder, not an official ICO navigation service.</p><h3>Available in this version</h3><p>Search parking labels, keep a line reference, browse six plans, share destinations and reopen downloaded plans offline. GPS is displayed on the street map only.</p><h3>Navigation coverage</h3><p>Live GPS updates as you move. Save a parking or line’s actual GPS point once, then route to it along the local OpenStreetMap road network. Routes respect mapped one-way roads and node turn restrictions. Missing road connections are reported. PDF labels are not assumed to be GPS coordinates. Saved destination points stay on this device; they are not included in shared links. Current terminal signs and access changes are not live data.</p><ul class="source-list">${atlas.maps.map(m=>`<li><a href="${esc(m.source)}#page=${m.page}" target="_blank" rel="noopener">${esc(m.name)} ${icon('external')}</a><br>${esc(m.date)} · page ${m.page}</li>`).join('')}</ul><p>Terminal location coordinates: ICO terminal pages. Street tiles: OpenStreetMap contributors. Source plans: ICO / Cewez.</p>`);
+  dialog(`<h2>A clearer way around the port.</h2><p>Portway brings the public ICO Zeebrugge plans into one searchable, phone-friendly map library. This is an independent parking finder, not an official ICO navigation service.</p><h3>Available in this version</h3><p>Search parking labels, keep a line reference, browse six plans, share destinations and reopen downloaded plans offline. GPS is displayed on the street map only.</p><h3>Navigation coverage</h3><p>Live GPS updates as you move. Built-in parking approaches let you start a road route directly for mapped destinations. A line number stays a reference within the parking unless an exact line point has been recorded. Routes respect mapped one-way roads and node turn restrictions. Missing road connections are reported. PDF labels are not assumed to be GPS coordinates. Saved destination points stay on this device; they are not included in shared links. Current terminal signs and access changes are not live data.</p><ul class="source-list">${atlas.maps.map(m=>`<li><a href="${esc(m.source)}#page=${m.page}" target="_blank" rel="noopener">${esc(m.name)} ${icon('external')}</a><br>${esc(m.date)} · page ${m.page}</li>`).join('')}</ul><p>Terminal location coordinates: ICO terminal pages. Street tiles: OpenStreetMap contributors. Source plans: ICO / Cewez.</p>`);
 }
 async function shareDestination() {
   const text=`ICO ${selected.map.name} · ${selected.parking.code}${selected.line?` · line ${selected.line}`:''}`;
@@ -207,12 +208,14 @@ window.addEventListener('online',()=>$('offline-status').textContent=navigator.s
 window.addEventListener('offline',()=>$('offline-status').textContent=navigator.serviceWorker?.controller?'Offline · saved maps':'Offline');
 
 try {
-  const response=await fetch('./data.json');if(!response.ok)throw new Error('catalogue');atlas=await response.json();
+  const responses=await Promise.all([fetch('./data.json'),fetch('./destinations.json')]);
+  if(responses.some(r=>!r.ok))throw new Error('catalogue');
+  [atlas,catalogue]=await Promise.all(responses.map(r=>r.json()));
   current=atlas.maps[0];
   for(const m of atlas.maps){
-    const option=document.createElement('option');option.value=m.id;option.textContent=m.name+(m.historical?' · older':'');$('terminal-filter').append(option);
+    const option=document.createElement('option');option.value=m.id;option.textContent=m.name+(m.historical&&!['bastenaken','hanze'].includes(m.id)?' · older':'');$('terminal-filter').append(option);
     const b=document.createElement('button');b.className='map-card';b.dataset.map=m.id;b.title=m.name+' · '+m.date;
-    b.innerHTML=`<img src="${esc(m.image)}" alt="" loading="lazy"><strong>${esc(m.name)}</strong><span>${m.historical?'Older source plan':m.id==='south'?'Updated Sep 2025':'ICO source plan'}</span>`;
+    b.innerHTML=`<img src="${esc(m.image)}" alt="" loading="lazy"><strong>${esc(m.name)}</strong><span>${m.historical?'Older source plan':m.id==='south'?'Updated Sep 2026':'ICO source plan'}</span>`;
     b.onclick=()=>{street=false;clearDestination();$('terminal-filter').value=m.id;renderMap(m);};$('map-library').append(b);
   }
   $('catalogue-count').textContent=`6 plans · ${atlas.maps.reduce((n,m)=>n+m.parkings.length,0)} references`;
@@ -225,7 +228,7 @@ try {
   $('clear-recents').onclick=()=>{recents=[];try{localStorage.removeItem('portway-recents');}catch{}renderRecents();};
   $('plan-view').onclick=()=>{if(street){street=false;renderMap(current,selected?.parking);}};
   $('street-view').onclick=()=>{if(!street){street=true;renderMap();}};
-  $('zoom-in').onclick=()=>map.zoomIn();$('zoom-out').onclick=()=>map.zoomOut();$('fit-map').onclick=fit;$('locate').onclick=()=>gps.start();$('live-gps-start').onclick=()=>gps.start();
+  $('zoom-in').onclick=()=>map.zoomIn();$('zoom-out').onclick=()=>map.zoomOut();$('fit-map').onclick=()=>{if(!gps.fitRoute())fit();};$('locate').onclick=()=>gps.start();$('live-gps-start').onclick=()=>gps.start();
   $('source').onclick=showSource;$('about').onclick=showAbout;
   document.addEventListener('keydown',e=>{if(e.key==='/'&&!['INPUT','SELECT','TEXTAREA'].includes(document.activeElement.tagName)){e.preventDefault();$('destination').focus();}if(e.key==='Escape'&&!$('info-dialog').open)clearDestination();});
   const params=new URL(location.href).searchParams, m=atlas.maps.find(m=>m.id===params.get('map'));

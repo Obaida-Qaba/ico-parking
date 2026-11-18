@@ -1,0 +1,417 @@
+{
+  "version": 2,
+  "source": "ICO SIT terminalplan V1.09-2026 and OpenStreetMap road/landmark geometry",
+  "sourceUrl": "https://www.icoterminals.com/sites/default/files/SIT%20terminalplan%20SIT%2021%2009%202026.pdf",
+  "lineExact": false,
+  "coverage": "Bounded individually matched regions only; no global schematic georeference or site validation claimed.",
+  "controlPoints": {
+    "bastenaken": [
+      {
+        "source": [
+          622.57,
+          260.965
+        ],
+        "geo": [
+          3.22399553,
+          51.30117167
+        ],
+        "osmWay": "1349890098",
+        "landmark": "MBZ warehouse footprint"
+      },
+      {
+        "source": [
+          623.91,
+          285.15
+        ],
+        "geo": [
+          3.22475433,
+          51.30135505
+        ],
+        "osmWay": "1349890062",
+        "landmark": "ZOUT warehouse footprint"
+      },
+      {
+        "source": [
+          868.91,
+          302.9
+        ],
+        "geo": [
+          3.22036,
+          51.30795537
+        ],
+        "osmWay": "221621684",
+        "landmark": "Vehicle Processing Center footprint"
+      }
+    ],
+    "hanze": [
+      {
+        "source": [
+          191,
+          555
+        ],
+        "geo": [
+          3.2430322,
+          51.2949252
+        ],
+        "osmWay": "87646848",
+        "landmark": "Southern basin east-bank corner"
+      },
+      {
+        "source": [
+          191,
+          425
+        ],
+        "geo": [
+          3.2379006,
+          51.2932967
+        ],
+        "osmWay": "87646848",
+        "landmark": "Southern basin west-bank corner"
+      },
+      {
+        "source": [
+          357.435,
+          608.755
+        ],
+        "geo": [
+          3.24281056,
+          51.29857674
+        ],
+        "osmWay": "655330274",
+        "landmark": "Natie1 building footprint"
+      }
+    ]
+  },
+  "destinations": {
+    "south:GC1": {
+      "lat": 51.303373970735514,
+      "lon": 3.225851898657356,
+      "method": "source-road-match",
+      "scope": "parking-approach",
+      "parking": "GC1",
+      "sourceMap": "south",
+      "sourceRevision": "V1.09-2026",
+      "roadWay": "746582135",
+      "roadSegment": [
+        "6986702604",
+        "6986702605"
+      ],
+      "sourcePoint": [
+        683.8033,
+        357.07
+      ],
+      "matchDistanceMetres": 1.92,
+      "lineExact": false,
+      "region": "bastenaken-central-c-rows",
+      "basis": "Local ICO parking-block and landmark geometry matched to an identified OSM service-road lane. Parking approach only; exact line positions and current site operations are not verified."
+    },
+    "south:GC2": {
+      "lat": 51.30330701435783,
+      "lon": 3.2255016028834045,
+      "method": "source-road-match",
+      "scope": "parking-approach",
+      "parking": "GC2",
+      "sourceMap": "south",
+      "sourceRevision": "V1.09-2026",
+      "roadWay": "746582136",
+      "roadSegment": [
+        "6986702611",
+        "6986702612"
+      ],
+      "sourcePoint": [
+        683.8033,
+        346.53
+      ],
+      "matchDistanceMetres": 2.53,
+      "lineExact": false,
+      "region": "bastenaken-central-c-rows",
+      "basis": "Local ICO parking-block and landmark geometry matched to an identified OSM service-road lane. Parking approach only; exact line positions and current site operations are not verified."
+    },
+    "south:GC3": {
+      "lat": 51.303229746904506,
+      "lon": 3.2251337169987426,
+      "method": "source-road-match",
+      "scope": "parking-approach",
+      "parking": "GC3",
+      "sourceMap": "south",
+      "sourceRevision": "V1.09-2026",
+      "roadWay": "241873297",
+      "roadSegment": [
+        "2494511760",
+        "2494511767"
+      ],
+      "sourcePoint": [
+        683.8033,
+        337.1
+      ],
+      "matchDistanceMetres": 7.34,
+      "lineExact": false,
+      "region": "bastenaken-central-c-rows",
+      "basis": "Local ICO parking-block and landmark geometry matched to an identified OSM service-road lane. Parking approach only; exact line positions and current site operations are not verified."
+    },
+    "south:HC1": {
+      "lat": 51.302174560703136,
+      "lon": 3.226830235992968,
+      "method": "source-road-match",
+      "scope": "parking-approach",
+      "parking": "HC1",
+      "sourceMap": "south",
+      "sourceRevision": "V1.09-2026",
+      "roadWay": "746582135",
+      "roadSegment": [
+        "6986702605",
+        "6986702606"
+      ],
+      "sourcePoint": [
+        637.9567,
+        357.07
+      ],
+      "matchDistanceMetres": 1.85,
+      "lineExact": false,
+      "region": "bastenaken-central-c-rows",
+      "basis": "Local ICO parking-block and landmark geometry matched to an identified OSM service-road lane. Parking approach only; exact line positions and current site operations are not verified."
+    },
+    "south:HC2": {
+      "lat": 51.30210792352983,
+      "lon": 3.2264808578796735,
+      "method": "source-road-match",
+      "scope": "parking-approach",
+      "parking": "HC2",
+      "sourceMap": "south",
+      "sourceRevision": "V1.09-2026",
+      "roadWay": "746582136",
+      "roadSegment": [
+        "6986702612",
+        "6986702613"
+      ],
+      "sourcePoint": [
+        637.9567,
+        346.53
+      ],
+      "matchDistanceMetres": 1.31,
+      "lineExact": false,
+      "region": "bastenaken-central-c-rows",
+      "basis": "Local ICO parking-block and landmark geometry matched to an identified OSM service-road lane. Parking approach only; exact line positions and current site operations are not verified."
+    },
+    "south:HC3": {
+      "lat": 51.302030225308016,
+      "lon": 3.2261119846514803,
+      "method": "source-road-match",
+      "scope": "parking-approach",
+      "parking": "HC3",
+      "sourceMap": "south",
+      "sourceRevision": "V1.09-2026",
+      "roadWay": "241873297",
+      "roadSegment": [
+        "2494511750",
+        "2494511760"
+      ],
+      "sourcePoint": [
+        637.9567,
+        337.1
+      ],
+      "matchDistanceMetres": 3.58,
+      "lineExact": false,
+      "region": "bastenaken-central-c-rows",
+      "basis": "Local ICO parking-block and landmark geometry matched to an identified OSM service-road lane. Parking approach only; exact line positions and current site operations are not verified."
+    },
+    "south:IC1": {
+      "lat": 51.300822863444026,
+      "lon": 3.2279248010834274,
+      "method": "source-road-match",
+      "scope": "parking-approach",
+      "parking": "IC1",
+      "sourceMap": "south",
+      "sourceRevision": "V1.09-2026",
+      "roadWay": "746582135",
+      "roadSegment": [
+        "6986702606",
+        "6986702607"
+      ],
+      "sourcePoint": [
+        586.3733,
+        357.07
+      ],
+      "matchDistanceMetres": 5.59,
+      "lineExact": false,
+      "region": "bastenaken-central-c-rows",
+      "basis": "Local ICO parking-block and landmark geometry matched to an identified OSM service-road lane. Parking approach only; exact line positions and current site operations are not verified."
+    },
+    "south:IC2": {
+      "lat": 51.30076526545837,
+      "lon": 3.2275733155690722,
+      "method": "source-road-match",
+      "scope": "parking-approach",
+      "parking": "IC2",
+      "sourceMap": "south",
+      "sourceRevision": "V1.09-2026",
+      "roadWay": "746582136",
+      "roadSegment": [
+        "6986702613",
+        "6986702614"
+      ],
+      "sourcePoint": [
+        586.6633,
+        346.53
+      ],
+      "matchDistanceMetres": 5.36,
+      "lineExact": false,
+      "region": "bastenaken-central-c-rows",
+      "basis": "Local ICO parking-block and landmark geometry matched to an identified OSM service-road lane. Parking approach only; exact line positions and current site operations are not verified."
+    },
+    "south:JC1": {
+      "lat": 51.2994790875193,
+      "lon": 3.2290142749552,
+      "method": "source-road-match",
+      "scope": "parking-approach",
+      "parking": "JC1",
+      "sourceMap": "south",
+      "sourceRevision": "V1.09-2026",
+      "roadWay": "746582135",
+      "roadSegment": [
+        "6986702607",
+        "6986702608"
+      ],
+      "sourcePoint": [
+        535.07,
+        357.07
+      ],
+      "matchDistanceMetres": 9.4,
+      "lineExact": false,
+      "region": "bastenaken-central-c-rows",
+      "basis": "Local ICO parking-block and landmark geometry matched to an identified OSM service-road lane. Parking approach only; exact line positions and current site operations are not verified."
+    },
+    "south:JC2": {
+      "lat": 51.299415005008555,
+      "lon": 3.2286724444109938,
+      "method": "source-road-match",
+      "scope": "parking-approach",
+      "parking": "JC2",
+      "sourceMap": "south",
+      "sourceRevision": "V1.09-2026",
+      "roadWay": "746582136",
+      "roadSegment": [
+        "6986702614",
+        "6986702615"
+      ],
+      "sourcePoint": [
+        535.07,
+        346.53
+      ],
+      "matchDistanceMetres": 9.46,
+      "lineExact": false,
+      "region": "bastenaken-central-c-rows",
+      "basis": "Local ICO parking-block and landmark geometry matched to an identified OSM service-road lane. Parking approach only; exact line positions and current site operations are not verified."
+    },
+    "south:KC1": {
+      "lat": 51.29811945788663,
+      "lon": 3.2301181833259176,
+      "method": "source-road-match",
+      "scope": "parking-approach",
+      "parking": "KC1",
+      "sourceMap": "south",
+      "sourceRevision": "V1.09-2026",
+      "roadWay": "746582135",
+      "roadSegment": [
+        "6986702608",
+        "6986702609"
+      ],
+      "sourcePoint": [
+        483.15,
+        357.07
+      ],
+      "matchDistanceMetres": 13.35,
+      "lineExact": false,
+      "region": "bastenaken-central-c-rows",
+      "basis": "Local ICO parking-block and landmark geometry matched to an identified OSM service-road lane. Parking approach only; exact line positions and current site operations are not verified."
+    },
+    "south:KC2": {
+      "lat": 51.298056362853245,
+      "lon": 3.2297792868360684,
+      "method": "source-road-match",
+      "scope": "parking-approach",
+      "parking": "KC2",
+      "sourceMap": "south",
+      "sourceRevision": "V1.09-2026",
+      "roadWay": "746582136",
+      "roadSegment": [
+        "6986702615",
+        "6986702616"
+      ],
+      "sourcePoint": [
+        483.15,
+        346.53
+      ],
+      "matchDistanceMetres": 13.64,
+      "lineExact": false,
+      "region": "bastenaken-central-c-rows",
+      "basis": "Local ICO parking-block and landmark geometry matched to an identified OSM service-road lane. Parking approach only; exact line positions and current site operations are not verified."
+    },
+    "south:LC1": {
+      "lat": 51.2967932,
+      "lon": 3.231195,
+      "method": "source-road-match",
+      "scope": "parking-approach",
+      "parking": "LC1",
+      "sourceMap": "south",
+      "sourceRevision": "V1.09-2026",
+      "roadWay": "746582135",
+      "roadSegment": [
+        "6986702609",
+        "6986702602"
+      ],
+      "sourcePoint": [
+        431.4767,
+        357.07
+      ],
+      "matchDistanceMetres": 17.6,
+      "lineExact": false,
+      "region": "bastenaken-central-c-rows",
+      "basis": "Local ICO parking-block and landmark geometry matched to an identified OSM service-road lane. Parking approach only; exact line positions and current site operations are not verified."
+    },
+    "south:LC2": {
+      "lat": 51.29670420847658,
+      "lon": 3.2308809417629583,
+      "method": "source-road-match",
+      "scope": "parking-approach",
+      "parking": "LC2",
+      "sourceMap": "south",
+      "sourceRevision": "V1.09-2026",
+      "roadWay": "746582136",
+      "roadSegment": [
+        "6986702616",
+        "6986702610"
+      ],
+      "sourcePoint": [
+        431.4767,
+        346.53
+      ],
+      "matchDistanceMetres": 17.81,
+      "lineExact": false,
+      "region": "bastenaken-central-c-rows",
+      "basis": "Local ICO parking-block and landmark geometry matched to an identified OSM service-road lane. Parking approach only; exact line positions and current site operations are not verified."
+    },
+    "south:H61": {
+      "lat": 51.29689337975793,
+      "lon": 3.245084956421715,
+      "method": "source-road-match",
+      "scope": "parking-approach",
+      "parking": "H61",
+      "sourceMap": "south",
+      "sourceRevision": "V1.09-2026",
+      "roadWay": "746744831",
+      "roadSegment": [
+        "6988020151",
+        "6988020150"
+      ],
+      "sourcePoint": [
+        250.6,
+        628
+      ],
+      "matchDistanceMetres": 1.59,
+      "lineExact": false,
+      "region": "hanze-h61",
+      "basis": "Local ICO parking-block and landmark geometry matched to an identified OSM service-road lane. Parking approach only; exact line positions and current site operations are not verified."
+    }
+  }
+}

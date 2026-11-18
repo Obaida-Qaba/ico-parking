@@ -27,8 +27,9 @@ await context.addInitScript(({start,target})=>{
 try{
   await page.goto(base+'/?map=south&parking=H61&line=15');
   await page.locator('.destination-code').waitFor();
-  await page.locator('#route-button').click();
-  assert.match(await page.locator('#dialog-content').innerText(),/Save its real position once/);
+  assert.match(await page.locator('#route-button').innerText(),/Start GPS route/);
+  await page.locator('#save-gps-button').click();
+  assert.match(await page.locator('#dialog-content').innerText(),/built-in road approach/);
   assert.equal(await page.locator('.road-route').count(),0);
   await page.locator('#capture-parking').click();
   await page.locator('.road-route').waitFor();

@@ -13,12 +13,17 @@ CACHE.mkdir(parents=True, exist_ok=True)
 SOURCES = {
     'current': 'https://www.icoterminals.com/upload/ico_safety_regulations.pdf',
     'cewez': 'https://cewez.be/wp-content/uploads/2025/04/Onthaalbrochure-ICO.pdf',
+    'south2026': 'https://www.icoterminals.com/sites/default/files/SIT%20terminalplan%20SIT%2021%2009%202026.pdf',
 }
 docs = {}
 for key, url in SOURCES.items():
     path = CACHE / (key + '.pdf')
     if not path.exists():
-        existing = ROOT.parent / 'tmp' / 'ico-research' / ('ico-2026.pdf' if key == 'current' else 'ico-cewez.pdf')
+        existing = {
+            'current': ROOT.parent/'tmp'/'ico-research'/'ico-2026.pdf',
+            'cewez': ROOT.parent/'tmp'/'ico-research'/'ico-cewez.pdf',
+            'south2026': ROOT/'scripts'/'geo'/'sit-sep2026.pdf',
+        }[key]
         if existing.exists():
             path.write_bytes(existing.read_bytes())
         else:
@@ -58,8 +63,8 @@ def make_map(id, name, short, source, page, crop, date, note, rotation=0):
     maps.append(m)
     return m, pg
 
-south, pg = make_map('south','Zuidelijke Insteek','Southern terminal','current',4,
-                     (35,145,1145,765),'08 Sep 2025','Combined Bastenaken / Hanze plan in ICO’s January 2026 document.')
+south, pg = make_map('south','Zuidelijke Insteek','Bastenaken / Hanze','south2026',1,
+                     (0,0,1190.55,841.89),'Sep 2026','Current combined Bastenaken / Hanze plan, published by ICO. Printed revision V1.09-2026.')
 for b in pg.get_text('dict')['blocks']:
     for line in b.get('lines',[]):
         spans=line['spans']
@@ -123,6 +128,20 @@ for i,y in enumerate([205,273,335,402,465,533,602,659,701,776,838,904,962,1018],
 
 for m in maps:
     del m['_add']
+    if m['id']=='south':
+        m['terminals']=['bastenaken','hanze']
+        for parking in m['parkings']:
+            # The combined plan contains the Hanze H/HH blocks and the Bastenaken
+            # letter-grid blocks. Keep regional filters on the current plan rather
+            # than relying on the sparsely indexed older brochure images.
+            code=parking['code']
+            if re.fullmatch(r'H\d{1,2}[A-G]?|HH\d',code):
+                parking['terminal']='hanze'
+            elif re.fullmatch(r'[A-Z]{2}\d{1,2}|[A-Z]{2}X|CH\d{1,2}|B[A-Z]{1,2}|[IJKL]OS',code):
+                parking['terminal']='bastenaken'
+    else:
+        for parking in m['parkings']:
+            parking['terminal']=m['id']
     m['parkings'].sort(key=lambda p:p['code'])
     print(m['id'],len(m['parkings']),'parkings',m['width'],m['height'])
 (OUT/'data.json').write_text(json.dumps(dict(version=1, maps=maps),indent=2,ensure_ascii=False),encoding='utf-8')

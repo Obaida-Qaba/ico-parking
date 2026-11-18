@@ -1,11 +1,12 @@
 import {buildGraph,routeRoads,distanceMetres,parkingKey,validPin} from './navigation.mjs';
+import {resolveDestination} from './destinations.mjs';
 
-export function createGPS({getMap,getSelected,showStreet,toast,dialog,onPinChanged,escape:esc}) {
+export function createGPS({getMap,getSelected,getCatalogue,showStreet,toast,dialog,onPinChanged,escape:esc}) {
   let watch=null,fix=null,layer=null,boundMap=null,street=false,following=true,active=null,graph=null,graphPromise=null,route=null,pending=null,lastRouteAt=0;
   let pins={};
   try{const value=JSON.parse(localStorage.getItem('portway-gps-pins')||'{}');if(value&&typeof value==='object'&&!Array.isArray(value))pins=Object.fromEntries(Object.entries(value).filter(([,p])=>validPin(p)));}catch{}
   const $=id=>document.getElementById(id);
-  function pinFor(hit){return hit?pins[parkingKey(hit)]??null:null;}
+  function pinFor(hit){return resolveDestination(hit,pins,getCatalogue?.());}
   function label(hit){return hit.parking.code+(hit.line?' · line '+hit.line:'');}
   async function loadGraph(){
     if(graph)return graph;
@@ -30,7 +31,7 @@ export function createGPS({getMap,getSelected,showStreet,toast,dialog,onPinChang
       if(Number.isFinite(fix.heading))L.marker(position,{interactive:false,icon:L.divIcon({className:'heading-arrow',html:`<span style="transform:rotate(${fix.heading}deg)">▲</span>`,iconSize:[30,30],iconAnchor:[15,32]})}).addTo(layer);
     }
     const hit=active||getSelected(),pin=pinFor(hit);
-    if(pin)L.marker([pin.lat,pin.lon],{title:label(hit)+' · saved GPS point',icon:L.divIcon({className:'gps-target',html:`<span>${esc(hit.parking.code)}</span>`,iconSize:[0,0]})}).addTo(layer);
+    if(pin)L.marker([pin.lat,pin.lon],{title:label(hit)+(pin.automatic?' · mapped parking approach':' · saved GPS point'),icon:L.divIcon({className:'gps-target',html:`<span>${esc(hit.parking.code)}</span>`,iconSize:[0,0]})}).addTo(layer);
     if(active&&route?.available&&usable()){
       L.polyline(route.points,{color:'#fff',weight:10,opacity:.95,interactive:false}).addTo(layer);
       L.polyline(route.points,{color:'#1478e9',weight:6,opacity:1,className:'road-route',interactive:false}).addTo(layer);
@@ -56,17 +57,20 @@ export function createGPS({getMap,getSelected,showStreet,toast,dialog,onPinChang
     if(!force&&Date.now()-lastRouteAt<2000){draw();return;}lastRouteAt=Date.now();
     const hit=active,pin=pinFor(hit);if(!pin)return;
     try{
-      const g=await loadGraph();if(active!==hit)return;
+      const g=await loadGraph();if(active!==hit)return;if(!usable())return calculate(true);
+      const firstRoute=!route?.available;
       route=routeRoads(g,[fix.lat,fix.lon],[pin.lat,pin.lon],{maxSnap:50});
       $('navigation-destination').textContent=label(hit);
       if(!route.available){$('navigation-instruction').textContent='No connected road route';$('navigation-detail').textContent=route.reason;$('navigation-distance').textContent='—';}
       else{
         $('navigation-distance').textContent=route.distance>=1000?(route.distance/1000).toFixed(1)+' km':Math.round(route.distance)+' m';
         const near=distanceMetres([fix.lat,fix.lon],[pin.lat,pin.lon])<=Math.max(12,fix.accuracy);
-        $('navigation-instruction').textContent=near?'You are near your saved destination':nextTurn(route.points);
-        $('navigation-detail').textContent=route.endOffset>10?`Road route ends ${Math.round(route.endOffset)} m from your saved point. Follow site access instructions for the final approach.`:'Route follows mapped roads and recorded one-way / turn restrictions. Follow current terminal signs.';
+        $('navigation-instruction').textContent=near?(pin.automatic?'You are near the parking approach':'You are near your saved destination'):nextTurn(route.points);
+        const targetNote=pin.automatic?`Route to ${hit.parking.code} parking approach.${hit.line?' Line '+hit.line+' remains a reference inside the parking.':''}`:(!pin.exactLine&&hit.line?`Route to ${hit.parking.code} parking; line ${hit.line} is not separately positioned.`:'Route follows mapped roads.');
+        $('navigation-detail').textContent=targetNote+(route.endOffset>10?` Road ends ${Math.round(route.endOffset)} m from the point.`:'')+' Follow current terminal signs.';
       }
       draw();
+      if(firstRoute&&route.available&&street)fitRoute();
     }catch{$('navigation-instruction').textContent='Road data unavailable';$('navigation-detail').textContent='Reconnect once to download the local road network. GPS tracking can still continue.';}
   }
   function onFix(pos){
@@ -106,18 +110,18 @@ export function createGPS({getMap,getSelected,showStreet,toast,dialog,onPinChang
     if(!hit){toast('Choose a parking first.');return;}
     const pin=pinFor(hit);
     if(!pin){setup(hit);return;}
-    active=hit;route=null;$('navigation-panel').hidden=false;$('navigation-destination').textContent=label(hit);$('navigation-instruction').textContent='Waiting for live GPS…';$('navigation-distance').textContent='—';$('navigation-detail').textContent='Using your saved destination point. The route will follow mapped roads.';
+    active=hit;route=null;$('navigation-panel').hidden=false;$('navigation-destination').textContent=label(hit);$('navigation-instruction').textContent='Waiting for live GPS…';$('navigation-distance').textContent='—';$('navigation-detail').textContent=pin.automatic?'Using the built-in parking approach. The route follows mapped roads.':'Using your saved destination point. The route follows mapped roads.';
     start();calculate(true);
   }
   function setup(hit){
     const name=label(hit),existing=pinFor(hit);
-    dialog(`<h2>${existing?'Saved GPS location':'Locate '+esc(name)}</h2><p>${existing?'This destination has a GPS point saved on this device.':'The ICO drawing labels this parking but does not give its exact GPS coordinates. Save its real position once to enable road routing.'}</p>${existing?`<p>${esc(name)}<br>${existing.lat.toFixed(6)}, ${existing.lon.toFixed(6)}<br>${existing.method==='gps'?'Recorded on site · accuracy ±'+Math.round(existing.accuracy)+' m':'Point selected on the geographic road map'}</p>`:''}<button class="primary" id="capture-parking">I’m at ${esc(name)} · save GPS</button><p>Use this while you are at the named parking${hit.line?' and line '+esc(hit.line):''}. The point is stored on this device.</p><button class="secondary" id="pick-parking">Choose its location on the road map</button>${existing?'<button class="inline-button" id="forget-pin" style="margin-top:20px">Remove saved point</button>':''}`);
+    dialog(`<h2>${existing?'Destination location':'Locate '+esc(name)}</h2><p>${existing?(existing.automatic?'A built-in road approach is available for this parking. You can optionally refine it with an on-site GPS measurement.':'This destination has a GPS point saved on this device.'):'This reference is not yet in the built-in destination catalogue. You can optionally add its actual location here.'}</p>${existing?`<p>${esc(name)}<br>${existing.lat.toFixed(6)}, ${existing.lon.toFixed(6)}<br>${existing.automatic?'Matched from the ICO terminal plan to the geographic road layout':existing.method==='gps'?'Recorded on site · accuracy ±'+Math.round(existing.accuracy)+' m':'Point selected on the geographic road map'}</p>`:''}<button class="primary" id="capture-parking">I’m at ${esc(name)} · save GPS</button><p>Use this while you are at the named parking${hit.line?' and line '+esc(hit.line):''}. The point is stored on this device.</p><button class="secondary" id="pick-parking">Choose its location on the road map</button>${existing&&!existing.automatic?'<button class="inline-button" id="forget-pin" style="margin-top:20px">Remove saved point</button>':''}`);
     $('capture-parking').onclick=()=>capture(hit);
     $('pick-parking').onclick=()=>{
       $('info-dialog').close();pending=hit;showStreet();setPanel(true);status(`Tap the real location of ${name} on the road map`);$('cancel-pin').hidden=false;
       if(fix)getMap().setView([fix.lat,fix.lon],18);else getMap().setView(hit.map.id==='north'?[51.322,3.21]:hit.map.id==='nissan'?[51.334,3.2]:[51.300,3.235],16);
     };
-    if(existing)$('forget-pin').onclick=()=>{const next={...pins};delete next[parkingKey(hit)];try{localStorage.setItem('portway-gps-pins',JSON.stringify(next));pins=next;if(active&&parkingKey(active)===parkingKey(hit)){active=null;route=null;$('navigation-panel').hidden=true;}onPinChanged(hit);$('info-dialog').close();draw();toast('Saved GPS point removed.');}catch{toast('Could not update saved points.');}};
+    if(existing&&!existing.automatic)$('forget-pin').onclick=()=>{const next={...pins};delete next[parkingKey(hit)];if(!existing.exactLine&&hit.line)delete next[parkingKey({...hit,line:null})];try{localStorage.setItem('portway-gps-pins',JSON.stringify(next));pins=next;if(active&&parkingKey(active)===parkingKey(hit)){active=null;route=null;$('navigation-panel').hidden=true;}onPinChanged(hit);$('info-dialog').close();draw();toast('Saved GPS point removed.');}catch{toast('Could not update saved points.');}};
   }
   function capture(hit){
     if(!window.isSecureContext||!navigator.geolocation){toast('Saving GPS requires the HTTPS app and location permission.');return;}
@@ -149,7 +153,8 @@ export function createGPS({getMap,getSelected,showStreet,toast,dialog,onPinChang
       roadLayer.bringToBack?.();layer.bringToFront?.();draw();
     }).catch(()=>{});
   }
-  function clearRoute(){active=null;route=null;$('navigation-panel').hidden=true;draw();}
+  function clearRoute(){active=null;route=null;pending=null;$('cancel-pin').hidden=true;$('navigation-panel').hidden=true;draw();}
+  function fitRoute(){if(!street||!active||!route?.available)return false;getMap().fitBounds(L.latLngBounds(route.points),{paddingTopLeft:[25,165],paddingBottomRight:[65,225],maxZoom:18,animate:false});return true;}
   $('gps-toggle').onclick=()=>watch===null?start():stop();
   $('follow-gps').onclick=()=>{following=true;$('follow-gps').classList.add('following');if(fix){showStreet();getMap().setView([fix.lat,fix.lon],17);}};
   $('stop-navigation').onclick=()=>{active=null;route=null;$('navigation-panel').hidden=true;draw();};
@@ -158,5 +163,5 @@ export function createGPS({getMap,getSelected,showStreet,toast,dialog,onPinChang
     if(watch!==null&&fix&&Date.now()-fix.timestamp>15000){status('GPS signal lost · last position shown');if(active){route=null;$('navigation-instruction').textContent='GPS signal lost · route paused';draw();}}
   },3000);
   window.addEventListener('pagehide',stop);
-  return {start,stop,bind,navigate,setup,pinFor,draw,loadGraph,clearRoute};
+  return {start,stop,bind,navigate,setup,pinFor,draw,loadGraph,clearRoute,fitRoute};
 }

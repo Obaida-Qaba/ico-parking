@@ -1,6 +1,6 @@
 {
-  "base": "http://127.0.0.1:4173",
-  "generatedAt": "2026-11-18T17:32:52.893Z",
+  "base": "https://obaida-qaba.github.io/ico-parking",
+  "generatedAt": "2026-11-18T17:38:37.361Z",
   "inputHashFormat": "SHA256 of JSON.stringify(JSON.parse(file)); whitespace and line endings ignored.",
   "inputSHA256": {
     "data.json": "eddbd6533b2f501411c17d5c449e67adcb50ce2e513df08aebb521373a2450ae",
@@ -5053,5 +5053,5 @@
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     }
   ],
-  "verification": "Simulated GPS UI checks, connected-road geometry and explicit source-plan fallbacks. This is not an on-site accuracy survey. Missing or internally restricted destinations remain incomplete."
+  "verification": "Simulated GPS checks on the deployed GitHub Pages app, connected-road geometry and explicit source-plan fallbacks. This is not an on-site accuracy survey. Missing and internally restricted destinations remain incomplete."
 }

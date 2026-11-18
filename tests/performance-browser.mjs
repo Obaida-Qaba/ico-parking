@@ -28,11 +28,12 @@ try{
   for(let i=0;i<100;i++)map.fire('rotate');
   await new Promise(resolve=>setTimeout(resolve,100));
   const sameParkingLayer=stableParking&&map.hasLayer(stableParking)&&stableParkingElement===stableParking.getElement();
+  const waitForParking=async predicate=>{const deadline=performance.now()+300;while(!predicate()&&performance.now()<deadline)await new Promise(requestAnimationFrame);};
   map.setView([51.34,3.221],16,{animate:false});
-  await new Promise(requestAnimationFrame);await new Promise(requestAnimationFrame);
+  await waitForParking(()=>stableParking&&!map.hasLayer(stableParking));
   const parkingDetachedOffscreen=stableParking&&!map.hasLayer(stableParking);
   map.setView([51.3074,3.221],16,{animate:false});
-  await new Promise(requestAnimationFrame);await new Promise(requestAnimationFrame);
+  await waitForParking(()=>stableParking&&map.hasLayer(stableParking));
   const parkingReusedAfterReturn=stableParking&&map.hasLayer(stableParking);
   const counts={roadProject:0,roadProjectMs:0,roadClip:0,roadClipMs:0,otherProject:0};
   for(const [method,count,time] of [['_project','roadProject','roadProjectMs'],['_clipPoints','roadClip','roadClipMs']]){

@@ -1,19 +1,25 @@
-import {buildGraph,routeRoads,distanceMetres,parkingKey,validPin} from './navigation.mjs';
+import {buildGraph,distanceMetres,parkingKey,validPin} from './navigation.mjs';
 import {resolveDestination} from './destinations.mjs';
 import {createCourseTracker,screenHeading} from './heading.mjs';
 import {nextInstruction} from './guidance.mjs';
 import {createParkingLabels} from './parking-labels.mjs';
 import {createRoadMap} from './road-map.mjs';
+import {createRouteClient} from './route-client.mjs';
+import {createPositionMotion} from './position-motion.mjs';
+import {panDrivingMap} from './map-performance.mjs';
 
 export function createGPS({getMap,getSelected,getCatalogue,showStreet,toast,dialog,onPinChanged,onLocation,onLocationState,onUnmapped,escape:esc}) {
   let watch=null,fix=null,layer=null,boundMap=null,street=false,following=true,active=null,graph=null,graphPromise=null,route=null,pending=null,lastRouteAt=0;
   const course=createCourseTracker();
   let headingUp=true,adjustingCamera=false;
   let movingCamera=false;
+  let cameraReady=false,headingCommand=null;
   let parkingLabels=null;
   let quietErrors=false;
   let accuracyCircle=null,positionMarker=null,targetMarker=null,routeHalo=null,routeLine=null,arrivalMarker=null;
   let markerMode=null,accuracyState=null,targetCode=null,routeGeometry=null;
+  const routeClient=createRouteClient();
+  const positionMotion=createPositionMotion({onFrame:()=>{drawPosition();followView();}});
   let pins={};
   try{const value=JSON.parse(localStorage.getItem('portway-gps-pins')||'{}');if(value&&typeof value==='object'&&!Array.isArray(value))pins=Object.fromEntries(Object.entries(value).filter(([,p])=>validPin(p)));}catch{}
   const $=id=>document.getElementById(id);
@@ -49,29 +55,34 @@ export function createGPS({getMap,getSelected,getCatalogue,showStreet,toast,dial
   function arrowAngle(){return headingUp&&following?0:screenHeading(course.heading,getMap()?.getBearing?.()||0);}
   function updateArrow(){const arrow=document.querySelector('.driving-arrow');if(arrow)arrow.style.transform=`rotate(${arrowAngle()}deg)`;}
   function anchorAhead(){
-    if(adjustingCamera||!street||!following||!headingUp||!usable()||watch===null||!Number.isFinite(course.heading))return;
+    if(adjustingCamera||!street||!following||!usable()||watch===null)return;
     const m=getMap();if(m!==boundMap)return;
-    const size=m.getSize(),position=m.latLngToContainerPoint([fix.lat,fix.lon]),target=L.point(size.x/2,size.y*.62),offset=position.subtract(target).round();
-    if(Math.abs(offset.x)<1&&Math.abs(offset.y)<1)return;
-    adjustingCamera=true;m.panBy(offset,{animate:false,noMoveStart:true});adjustingCamera=false;
+    const visual=positionMotion.position||fix;
+    const yFraction=headingUp&&Number.isFinite(course.heading) ? .62 : .5;
+    const projected=m.project([visual.lat,visual.lon]).subtract(m.getPixelOrigin());
+    const size=m.getSize(),position=m.layerPointToContainerPoint(projected),target=L.point(size.x/2,size.y*yFraction),offset=position.subtract(target);
+    if(Math.abs(offset.x)<.01&&Math.abs(offset.y)<.01)return;
+    adjustingCamera=true;panDrivingMap(m,offset);adjustingCamera=false;
   }
   function followView(){
     if(!street||!following||!usable()||watch===null||getMap()!==boundMap)return;
     const m=getMap();
     movingCamera=true;
     try{
-    if(headingUp&&Number.isFinite(course.heading))m.setHeading(course.heading,{ease:.3,deadzone:.8});
+    if(headingUp&&Number.isFinite(course.heading)){if(headingCommand!==course.heading||!m.getHeadingUp()){m.setHeading(course.heading,{ease:.3,deadzone:.8});headingCommand=course.heading;}}
     else{m.stopHeadingUp();if(!headingUp)m.setBearing(0);}
-    m.setView([fix.lat,fix.lon],Math.max(m.getZoom(),17),{animate:false});anchorAhead();updateArrow();
+    if(!cameraReady||m.getZoom()<17){const visual=positionMotion.position||fix;m.setView([visual.lat,visual.lon],Math.max(m.getZoom(),17),{animate:false});cameraReady=true;}
+    anchorAhead();updateArrow();
     $('north-up').setAttribute('aria-pressed',String(!headingUp));
     $('north-up').classList.toggle('active',!headingUp);
     }finally{movingCamera=false;}
   }
-  function draw(){
+  function drawPosition(){
     if(!street||!layer||boundMap!==getMap())return;
     const move=(item,position)=>{const previous=item.getLatLng();if(previous.lat!==position[0]||previous.lng!==position[1])item.setLatLng(position);};
     if(fix){
-      const position=[fix.lat,fix.lon],stale=Date.now()-fix.timestamp>15000;
+      const visual=positionMotion.position||fix;
+      const position=[visual.lat,visual.lon],stale=Date.now()-fix.timestamp>15000;
       const color=stale?'#8c969b':'#1683e8';
       if(!accuracyCircle)accuracyCircle=L.circle(position,{radius:fix.accuracy,color,weight:1,fillOpacity:.09,interactive:false}).addTo(layer);
       else{move(accuracyCircle,position);if(accuracyCircle.getRadius()!==fix.accuracy)accuracyCircle.setRadius(fix.accuracy);if(accuracyState!==stale)accuracyCircle.setStyle({color});}
@@ -88,6 +99,11 @@ export function createGPS({getMap,getSelected,getCatalogue,showStreet,toast,dial
       move(positionMarker,position);
       const element=positionMarker.getElement();element.classList.toggle('stale',stale);element.title=stale?'Last GPS position · signal stale':'Your live GPS position';updateArrow();
     }
+  }
+  function draw(){
+    if(!street||!layer||boundMap!==getMap())return;
+    drawPosition();
+    const move=(item,position)=>{const previous=item.getLatLng();if(previous.lat!==position[0]||previous.lng!==position[1])item.setLatLng(position);};
     const hit=active||getSelected(),pin=pinFor(hit);
     const display=pin?.automatic&&validPin(pin.labelPosition)?pin.labelPosition:pin;
     parkingLabels?.update({activeKey:hit?parkingKey({...hit,line:null}).replace(/:parking$/,''):null,saved:pins,gpsPosition:fix,destination:display});
@@ -110,17 +126,21 @@ export function createGPS({getMap,getSelected,getCatalogue,showStreet,toast,dial
     }
   }
   async function calculate(force=false){
-    if(!active||!fix)return;
+    if(!active||!fix||watch===null)return;
     if(!usable()){
       route=null;$('navigation-instruction').textContent=fix.accuracy>35?'Waiting for more accurate GPS':'GPS signal lost · route paused';$('navigation-distance').textContent='—';draw();return;
     }
     if(!force&&Date.now()-lastRouteAt<2000){draw();return;}lastRouteAt=Date.now();
     const hit=active,pin=pinFor(hit);if(!pin)return;
     try{
-      const g=await loadGraph();if(active!==hit)return;if(!usable())return calculate(true);
-      const firstRoute=!route?.available;
-      const travelHeading=Number.isFinite(fix.speed)&&fix.speed<.7?null:course.heading;
-      route=routeRoads(g,[fix.lat,fix.lon],[pin.lat,pin.lon],{maxSnap:50,heading:travelHeading,accuracy:fix.accuracy});
+      const g=await loadGraph();if(active!==hit||watch===null)return;if(!usable())return calculate(true);
+      routeClient.loadGraph(g);
+      const firstRoute=!route?.available,calculationFix=fix;
+      const travelHeading=Number.isFinite(calculationFix.speed)&&calculationFix.speed<.7?null:course.heading;
+      const computed=await routeClient.route([calculationFix.lat,calculationFix.lon],[pin.lat,pin.lon],{maxSnap:50,heading:travelHeading,accuracy:calculationFix.accuracy});
+      if(!computed||active!==hit||watch===null)return;
+      if(fix!==calculationFix||!usable())return calculate(true);
+      route=computed;
       $('navigation-destination').textContent=label(hit);
       if(!route.available){$('navigation-instruction').textContent='No connected road route';$('navigation-detail').textContent=route.reason;$('navigation-distance').textContent='—';}
       else{
@@ -133,12 +153,13 @@ export function createGPS({getMap,getSelected,getCatalogue,showStreet,toast,dial
       }
       draw();
       if(firstRoute&&route.available&&street&&following)followView();
-    }catch{$('navigation-instruction').textContent='Road data unavailable';$('navigation-detail').textContent='Reconnect once to download the local road network. GPS tracking can still continue.';}
+    }catch{if(active!==hit||watch===null)return;$('navigation-instruction').textContent='Road data unavailable';$('navigation-detail').textContent='Reconnect once to download the local road network. GPS tracking can still continue.';}
   }
   function onFix(pos){
     if(watch===null)return;
     const c=pos.coords;if(!Number.isFinite(c.latitude)||!Number.isFinite(c.longitude)||!Number.isFinite(c.accuracy)||c.accuracy<0)return;
     const timestamp=pos.timestamp||Date.now();if(fix&&timestamp<fix.timestamp)return;
+    const interval=fix?timestamp-fix.timestamp:1000;
     fix={lat:c.latitude,lon:c.longitude,accuracy:c.accuracy,heading:c.heading,speed:c.speed,timestamp};
     course.update(fix);
     onLocation?.(fix);
@@ -146,6 +167,8 @@ export function createGPS({getMap,getSelected,getCatalogue,showStreet,toast,dial
     status(`GPS live · ±${Math.round(c.accuracy)} m${speed}`);
     $('gps-panel').classList.toggle('weak',c.accuracy>35);$('gps-toggle').textContent='Stop GPS';
     if(c.accuracy>35){$('gps-summary').classList.add('weak');$('gps-status-alert').hidden=false;$('gps-status-alert').textContent='Weak GPS signal · waiting for a more accurate position';}
+    const animate=street&&fix.accuracy<=35&&!matchMedia('(prefers-reduced-motion: reduce)').matches;
+    positionMotion.set(fix,{duration:animate?Math.max(300,Math.min(900,interval*.8)):0});
     followView();
     draw();calculate();
   }
@@ -154,7 +177,7 @@ export function createGPS({getMap,getSelected,getCatalogue,showStreet,toast,dial
     status(messages[err.code]||'GPS error');if(!quietErrors)toast(messages[err.code]||'Could not read GPS.');
     if(quietErrors&&!active)$('gps-status-alert').hidden=true;
     onLocationState?.(err.code===1?'denied':'unavailable');
-    if(err.code===1){if(watch!==null)navigator.geolocation.clearWatch(watch);watch=null;$('gps-toggle').textContent='Start GPS';route=null;if(active)$('navigation-instruction').textContent='Allow GPS to navigate';draw();}
+    if(err.code===1){if(watch!==null)navigator.geolocation.clearWatch(watch);watch=null;routeClient.cancel();positionMotion.cancel();getMap()?.stopHeadingUp?.();$('gps-toggle').textContent='Start GPS';route=null;if(active)$('navigation-instruction').textContent='Allow GPS to navigate';draw();}
   }
   function start({quiet=false}={}){
     quietErrors=quiet;
@@ -172,7 +195,7 @@ export function createGPS({getMap,getSelected,getCatalogue,showStreet,toast,dial
   }
   function stop(){
     document.body.classList.remove('gps-active');
-    if(watch!==null)navigator.geolocation?.clearWatch(watch);watch=null;active=null;route=null;getMap()?.stopHeadingUp?.();
+    if(watch!==null)navigator.geolocation?.clearWatch(watch);watch=null;active=null;route=null;routeClient.cancel();positionMotion.cancel();if(fix)positionMotion.set(fix,{duration:0});getMap()?.stopHeadingUp?.();
     onLocationState?.('stopped');
     $('gps-toggle').textContent='Start GPS';navigationLayout(false);status(fix?'GPS stopped · last position shown':'GPS is off');draw();
   }
@@ -180,7 +203,7 @@ export function createGPS({getMap,getSelected,getCatalogue,showStreet,toast,dial
     if(!hit){toast('Choose a parking first.');return;}
     const pin=pinFor(hit);
     if(!pin){clearRoute();onUnmapped?.(hit);return;}
-    active=hit;route=null;navigationLayout(true);$('map-options-panel').hidden=true;$('map-options').setAttribute('aria-expanded','false');$('navigation-destination').textContent=label(hit);$('navigation-instruction').textContent='Waiting for live GPS…';$('navigation-distance').textContent='—';$('navigation-detail').textContent=pin.automatic?'Using the built-in parking approach. The route follows mapped roads.':'Using your saved destination point. The route follows mapped roads.';
+    routeClient.cancel();active=hit;route=null;navigationLayout(true);$('map-options-panel').hidden=true;$('map-options').setAttribute('aria-expanded','false');$('navigation-destination').textContent=label(hit);$('navigation-instruction').textContent='Waiting for live GPS…';$('navigation-distance').textContent='—';$('navigation-detail').textContent=pin.automatic?'Using the built-in parking approach. The route follows mapped roads.':'Using your saved destination point. The route follows mapped roads.';
     start();calculate(true);
   }
   function setup(hit){
@@ -205,6 +228,7 @@ export function createGPS({getMap,getSelected,getCatalogue,showStreet,toast,dial
     },err=>{button.disabled=false;button.textContent='Try GPS again';toast(err.code===1?'Location permission was denied.':'Could not capture an accurate GPS location. Try again outdoors.');},{enableHighAccuracy:true,maximumAge:0,timeout:20000});
   }
   function bind(m,isStreet){
+    positionMotion.cancel();cameraReady=false;headingCommand=null;
     boundMap=m;street=isStreet;layer=isStreet?L.layerGroup().addTo(m):null;
     accuracyCircle=positionMarker=targetMarker=routeHalo=routeLine=arrivalMarker=null;
     markerMode=accuracyState=targetCode=routeGeometry=null;
@@ -221,10 +245,11 @@ export function createGPS({getMap,getSelected,getCatalogue,showStreet,toast,dial
       dialog(`<h2>Use this point for ${esc(label(hit))}?</h2><p>${pin.lat.toFixed(6)}, ${pin.lon.toFixed(6)}</p><p>Choose the actual parking or line location. This point comes from your map selection; it is not supplied by ICO.</p><button class="primary" id="confirm-map-pin">Save this destination point</button>`);
       $('confirm-map-pin').onclick=()=>{if(save(hit,pin)){pending=null;$('cancel-pin').hidden=true;$('info-dialog').close();navigate(hit);}};
     });
+    if(fix)positionMotion.set(fix,{duration:0});
     draw();followView();
     loadGraph().then(g=>{if(boundMap===m&&street){createRoadMap(m,g);draw();}}).catch(()=>{});
   }
-  function clearRoute(){active=null;route=null;pending=null;$('cancel-pin').hidden=true;navigationLayout(false);draw();}
+  function clearRoute(){routeClient.cancel();active=null;route=null;pending=null;$('cancel-pin').hidden=true;navigationLayout(false);draw();}
   function fitRoute(){if(!street||!active||!route?.available)return false;following=false;getMap().stopHeadingUp();getMap().fitBounds(L.latLngBounds(route.points),{paddingTopLeft:[28,85],paddingBottomRight:[75,165],maxZoom:18,animate:false});updateArrow();return true;}
   $('gps-toggle').onclick=()=>watch===null?start():stop();
   $('follow-gps').onclick=()=>{following=true;headingUp=true;$('follow-gps').classList.add('following');showStreet();followView();};

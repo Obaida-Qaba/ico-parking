@@ -2,6 +2,7 @@ import { normalizeCode, parseDestination, searchParkings } from './core.mjs';
 import { createGPS } from './gps.mjs';
 import { createMapUI } from './map-ui.mjs';
 import { detectTerminal } from './location-context.mjs';
+import { optimizeDrivingMap } from './map-performance.mjs';
 
 const paths = {
   search:'m21 21-5-5 M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0',
@@ -104,6 +105,7 @@ function renderMap(next=current, focus=null) {
   $('map-date').textContent=street?'Routing data © OpenStreetMap contributors':`Plan: ${current.date}`;
   markCurrentMap();
   map=L.map('map',{crs:street?L.CRS.EPSG3857:L.CRS.Simple,zoomControl:false,minZoom:street?8:-5,maxZoom:street?19:2,zoomSnap:.25,zoomDelta:.5,attributionControl:street,rotate:street,rotateControl:false,dragRotate:false,touchRotate:false,shiftKeyRotate:false,preventPageGestures:false});
+  if(street)optimizeDrivingMap(map);
   nodes=L.layerGroup().addTo(map);selectedLayers=L.layerGroup().addTo(map);
     $('map-loading').hidden=street;
   if(street) {

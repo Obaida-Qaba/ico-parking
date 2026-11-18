@@ -136,7 +136,9 @@ export function createParkingLabels(map,catalogue){
     if(delay)timer=setTimeout(()=>{timer=null;frame=requestAnimationFrame(layout);},delay);else frame=requestAnimationFrame(layout);
   }
   const moving=()=>schedule(),settled=()=>schedule(true);
-  map.on('move zoom rotate',moving);map.on('moveend zoomend resize',settled);
-  map.once('unload',()=>{disposed=true;if(frame!==null)cancelAnimationFrame(frame);if(timer!==null)clearTimeout(timer);map.off('move zoom rotate',moving);map.off('moveend zoomend resize',settled);});
+  // A following camera completes tiny pans every frame. Their moveend events
+  // must keep the same cadence as movement instead of forcing full layouts.
+  map.on('move moveend zoom rotate',moving);map.on('zoomend resize',settled);
+  map.once('unload',()=>{disposed=true;if(frame!==null)cancelAnimationFrame(frame);if(timer!==null)clearTimeout(timer);map.off('move moveend zoom rotate',moving);map.off('zoomend resize',settled);});
   return {update({activeKey:nextActive=null,saved=emptySaved,gpsPosition=null,destination=null}={}){sync(saved);activeKey=nextActive;position=gpsPosition;target=destination;schedule(true);}};
 }

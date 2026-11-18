@@ -30,7 +30,7 @@ const resizeObserver=new ResizeObserver(()=>map?.invalidateSize());
 resizeObserver.observe($('map'));
 function toast(message) { $('toast').textContent=message;$('toast').hidden=false;clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('toast').hidden=true,6500); }
 function dialog(html) { $('dialog-content').innerHTML=html; if (!$('info-dialog').open) $('info-dialog').showModal(); }
-const gps=createGPS({getMap:()=>map,getSelected:()=>selected,getCatalogue:()=>catalogue,showStreet:()=>{if(!street){street=true;renderMap();}},toast,dialog,escape:esc,onPinChanged:()=>{if(selected)renderGPSActions();},onLocation:locationChanged,onLocationState:locationStateChanged});
+const gps=createGPS({getMap:()=>map,getSelected:()=>selected,getCatalogue:()=>catalogue,showStreet:()=>{if(!street){street=true;renderMap();}},toast,dialog,escape:esc,onPinChanged:()=>{if(selected)renderGPSActions();},onLocation:locationChanged,onLocationState:locationStateChanged,onUnmapped:hit=>{if(selected!==hit)choose(hit);viewSelectedPlan();}});
 const mapUI=createMapUI({getMap:()=>map});
 $('close-dialog').onclick=()=>$('info-dialog').close();
 $('info-dialog').addEventListener('click',e=>{if(e.target===$('info-dialog')) {const r=e.target.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)e.target.close();}});
@@ -191,7 +191,8 @@ function choose(hit, remember=true) {
 function renderGPSActions(){
   if(!selected)return;
   const pin=gps.pinFor(selected);
-  $('route-button').innerHTML=`${icon('route')} ${pin?'Start route':'Set destination'} ${icon('arrow')}`;
+  $('route-button').innerHTML=`${icon(pin?'route':'layers')} ${pin?'Start route':'View parking'} ${icon('arrow')}`;
+  $('view-plan-button').hidden=!pin;
   let button=$('save-gps-button');
   if(!button){button=document.createElement('button');button.id='save-gps-button';button.className='secondary destination-options-button';$('destination-options').append(button);}
   $('destination-options').hidden=false;

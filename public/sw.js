@@ -1,4 +1,4 @@
-const CACHE='portway-v13-visible-roads';
+const CACHE='portway-v14-vpc-destinations';
 self.addEventListener('install',event=>{
   event.waitUntil((async()=>{
     const cache=await caches.open(CACHE);

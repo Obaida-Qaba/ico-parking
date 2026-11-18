@@ -79,6 +79,44 @@ def add_block_label(code,source,coeff,lower_way,upper_way):
         'basis':'The ICO parking row lies between these matched OSM aisles. Display label only; road routing retains its separate approach point. Not surveyed.'
     }
 
+def require_road_chain(wayid,nodes,oneway):
+    """Require the individually identified lane and real adjacent junctions."""
+    way=next((w for w in ROADS['ways'] if w['id']==wayid),None)
+    if way is None or way['oneway']!=oneway:
+        raise ValueError('Curated parking lane direction needs review: '+wayid)
+    directed=way['nodes'][::-1] if oneway==-1 else way['nodes']
+    chains=[directed[i:i+len(nodes)] for i in range(len(directed)-len(nodes)+1)]
+    if nodes not in chains and (oneway or nodes[::-1] not in chains):
+        raise ValueError('Curated parking junction chain needs review: '+wayid)
+    excluded={tuple(sorted(pair)) for pair in way.get('excludedSegments',[])}
+    if any(n in way.get('blocked',[]) for n in nodes) or any(tuple(sorted(pair)) in excluded for pair in zip(nodes,nodes[1:])):
+        raise ValueError('Curated parking approach is no longer drivable: '+wayid)
+    return {n:np.array(way['points'][way['nodes'].index(n)][::-1]) for n in nodes}
+
+def add_junction_match(code,source_bounds,approach_way,approach_nodes,corners,lanes,approach_oneway=False,source_index=0):
+    """Match a bounded VPC-side block by lane topology, without an affine fit."""
+    anchors={}
+    for wayid,nodes,oneway in lanes:anchors.update(require_road_chain(wayid,nodes,oneway))
+    access=require_road_chain(approach_way,approach_nodes,approach_oneway)
+    point=(access[approach_nodes[0]]+access[approach_nodes[1]])/2
+    label=np.mean([anchors[n] for n in corners],axis=0)
+    parking=next(p for p in CURRENT['parkings'] if p['code']==code)
+    source=parking['points'][source_index]
+    label_source=[source['x']/3,source['y']/3]
+    out['south:'+code]={
+        'lat':float(point[1]),'lon':float(point[0]),'method':'landmark-junction-match',
+        'scope':'parking-group-approach' if len(parking['points'])>1 else 'parking-approach','parking':code,'sourceMap':'south','sourceRevision':'V1.09-2026',
+        'roadWay':approach_way,'roadSegment':approach_nodes,'sourcePoint':[round(x,4) for x in label_source],
+        'sourceBounds':source_bounds,'sourcePoints':[[round(p['x']/3,4),round(p['y']/3,4)] for p in parking['points']],
+        'lineExact':False,'region':'bastenaken-vpc-compound',
+        'basis':'The named VPC landmark and the directions/topology of its surrounding access lanes identify this parking strip. Approach is a midpoint of actual adjacent road junctions; no global affine extrapolation. Repeated-code groups use the individually matched sub-block, not every group entrance. Not surveyed; exact lines are unverified.',
+        'junctionMatch':{'landmark':'Vehicle Processing Center','landmarkWay':'221621684','cornerNodes':corners,
+                         'boundaryLanes':[{'way':way,'nodes':nodes,'oneway':oneway} for way,nodes,oneway in lanes]},
+        'labelPosition':{'lat':float(label[1]),'lon':float(label[0]),'method':'matched-junction-block-centre',
+                         'scope':'parking-block-label','sourcePoint':[round(x,4) for x in label_source],
+                         'basis':'Centre of the bounded parking strip between the individually matched VPC-side lanes. Display label only; routing ends on its separate access-road segment. Not surveyed.'}
+    }
+
 bc=fit(BASTENAKEN_CONTROLS)
 # Narrow C-row blocks: each bottom access lane corresponds to an identifiable
 # continuous OSM parking aisle. Do not reuse this mapping for changed E/F blocks,
@@ -95,8 +133,45 @@ for p in CURRENT['parkings']:
 
 # H61 is reached at its north access lane in the current revised H zone.
 add('H61',[250.6,628],fit(HANZE_CONTROLS),'746744831','hanze-h61')
+
+# CD1/CD2 are the two strips directly east of the named VPC compound. The
+# schematic spacing differs here, so do not extrapolate the C-row affine fit.
+# Directions independently agree: the VPC east lane is one-way southbound in
+# the drawing; the middle, outer and shared north/south lanes are two-way.
+add_junction_match('CD1',[899.26,290.01,912.91,315.35],'1349890081',
+    ['2494511854','12431454000'],['6986702536','2494511854','12431454000','6986702539'],[
+        ('1349890082',['6986702536','2494511854'],True),
+        ('746582113',['12431454000','6986702539'],False),
+        ('746582117',['6986702539','6986702536'],False),
+        ('1349890081',['2494511854','12431454000'],False)])
+add_junction_match('CD2',[916.77,290.28,929.01,315.55],'1349890081',
+    ['12431454000','12487520998'],['6986702539','12431454000','12487520998','6986702535'],[
+        ('746582113',['12431454000','6986702539'],False),
+        ('241873267',['6986702535','2494511865','12487520998'],False),
+        ('746582117',['6986702535','6986702539'],False),
+        ('1349890081',['12431454000','12487520998'],False)])
+add_junction_match('DD1',[820.15,290.37,835.68,315.77],'746582118',
+    ['6986702543','6986702544'],['6986702540','6986702545','6986702544','6986702543'],[
+        ('746582117',['6986702545','6986702540'],False),
+        ('241873296',['6986702540','11393709897','2494511786','11393709900','6986702595','6986702597','6986702543'],False),
+        ('746582119',['6986702544','6986702545'],False),
+        ('746582118',['6986702544','6986702543'],False)])
+# DC2 and CC2 each repeat across adjacent source sub-blocks. These bounded
+# approaches identify one confirmed part of each code group, not every line.
+add_junction_match('DC2',[819.87,319.19,837.62,343.45],'746582120',
+    ['6986702547','12487521006'],['6986702543','6986702544','12487521006','6986702547'],[
+        ('746582118',['6986702544','6986702543'],False),
+        ('241873296',['6986702543','2494511793','6986702599','6986702547'],False),
+        ('1349890087',['6986702544','12487521006'],True),
+        ('746582120',['6986702547','12487521006'],False)],source_index=1)
+add_junction_match('CC2',[881.71,319.19,896.19,343.45],'241873275',
+    ['2494511854','12431453998'],['12431453998','2494511854','6986702537','12431453999'],[
+        ('241873275',['2494511854','12431453998'],True),
+        ('1349890063',['12431453999','12431453998'],False),
+        ('746582110',['2494511854','6986702537'],False),
+        ('746582120',['12431453999','6986702537'],False)],approach_oneway=True)
 result={
- 'version':3,'source':'ICO SIT terminalplan V1.09-2026 and OpenStreetMap road/landmark geometry',
+ 'version':4,'source':'ICO SIT terminalplan V1.09-2026 and OpenStreetMap road/landmark geometry',
  'sourceUrl':'https://www.icoterminals.com/sites/default/files/SIT%20terminalplan%20SIT%2021%2009%202026.pdf',
  'lineExact':False,'coverage':'Bounded individually matched regions only; no global schematic georeference or site validation claimed.',
  'controlPoints':{'bastenaken':BASTENAKEN_CONTROLS,'hanze':HANZE_CONTROLS},

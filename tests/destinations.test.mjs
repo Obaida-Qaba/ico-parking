@@ -60,3 +60,32 @@ test('C-row parking names sit inside their own blocks, separately from the share
  assert.ok(distanceMetres([hc2.lat,hc2.lon],[51.3021079235,3.2264808579])<.1,'HC2 route still ends on its own access road');
  assert.ok(distanceMetres([hc2.lat,hc2.lon],[hc2.labelPosition.lat,hc2.labelPosition.lon])>8,'parking label is not the access-road endpoint');
 });
+
+test('VPC parking approaches start navigation without recording a GPS point',()=>{
+ const catalogue=JSON.parse(readFileSync(new URL('../public/destinations.json',import.meta.url)));
+ const roads=JSON.parse(readFileSync(new URL('../public/roads.json',import.meta.url)));
+ const access=buildGraph({ways:roads.ways.filter(w=>['1349890081','746582118','746582120','241873275'].includes(w.id))});
+ const cases={
+  CD1:{approach:[51.30879865,3.2202856],label:[51.3086017,3.21967515],way:'1349890081',segment:['2494511854','12431454000']},
+  CD2:{approach:[51.3091943,3.2199584],label:[51.30899795,3.21934995],way:'1349890081',segment:['12431454000','12487520998']},
+  DD1:{approach:[51.30697285,3.22177475],label:[51.306777,3.2211593],way:'746582118',segment:['6986702543','6986702544']},
+  DC2:{approach:[51.30725745,3.2226664],label:[51.30711515,3.222220575],way:'746582120',segment:['6986702547','12487521006'],group:2},
+  CC2:{approach:[51.3083677,3.22063935],label:[51.308508125,3.221085575],way:'241873275',segment:['2494511854','12431453998'],group:3}
+ };
+ for(const [code,expected] of Object.entries(cases)){
+  const found=resolveDestination({map:{id:'south'},parking:{code},line:null},{},catalogue);
+  assert.ok(found,code+' has a built-in destination');
+  assert.equal(found.automatic,true,code+' does not require a saved GPS pin');
+  assert.equal(found.roadWay,expected.way);
+  assert.deepEqual(found.roadSegment,expected.segment,code+' uses its own segment beside the VPC');
+  assert.ok(distanceMetres([found.lat,found.lon],expected.approach)<.1,code+' matches the independently checked access segment');
+  assert.ok(nearestRoad(access,[found.lat,found.lon]).distance<.1);
+  assert.ok(validPin(found.labelPosition));
+  assert.ok(distanceMetres([found.labelPosition.lat,found.labelPosition.lon],expected.label)<.1,code+' label is in its own parking strip');
+  assert.ok(distanceMetres([found.lat,found.lon],[found.labelPosition.lat,found.labelPosition.lon])>30,'large parking block label remains separate from road arrival point');
+  if(expected.group){
+   assert.equal(catalogue.destinations['south:'+code].scope,'parking-group-approach');
+   assert.equal(found.sourcePoints.length,expected.group,code+' records all repeated source labels rather than pretending to locate every sub-block');
+  }
+ }
+});

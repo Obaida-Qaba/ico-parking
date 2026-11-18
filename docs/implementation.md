@@ -114,4 +114,12 @@ Automatic mode ranks local results first and retains matches elsewhere. Manual a
 
 Unit tests cover regional ranking, overrides, area interiors, uncertain boundaries and invalid fixes. The home browser test verifies Toyota-first search, other-terminal fallback, continuous GPS through plan previews, all five areas, outside-port behavior, denied location and offline reload. Existing route, heading, label-placement, fullscreen and grid-removal checks remain active. Map-first UI was inspected at mobile, desktop and landscape sizes; motion respects reduced-motion settings.
 
+## CD1 and the missing-destination recording flow
+
+CD1 exposed the gap between the searchable source catalogue and the smaller geographic destination catalogue. Added five individually matched VPC compounds: CD1/CD2 east of the identified VPC, DD1 west of it, and DC2/CC2 sub-blocks south of it. Their approaches use actual adjacent road-junction midpoints; interior labels use matched block corners. Explicit lane/node/direction guards require review if the source topology changes. The local C-row affine transform is not used for these compounds because its CD1 projection can land in CD2.
+
+All 15 existing approaches remain unchanged, bringing the built-in catalogue to 20. Repeated-code DC2/CC2 records identify one matched sub-block and retain all source-label positions; neither exact line coordinates nor every entrance is claimed.
+
+For any remaining reference without a GPS point, the primary action is View parking. It opens the correct marked source plan while GPS tracking continues. The GPS navigation API also falls back through an explicit onUnmapped callback rather than automatically opening setup. Manual GPS recording is an optional Maps refinement only. Browser regressions cover CD1 direct routing on a fresh device, no recording prompt, line preservation, visible roads, offline routing and the generic source-plan fallback.
+
 Duplicate parking labels across terminals must not silently select the wrong destination. No route may be claimed for an unsupported parking or line. Numeric parking codes must work without being mistaken for line numbers. Location permissions must fail clearly. Mobile users must be able to dismiss overlays and access the map. Storage failures must not prevent lookup. Only local assets should be cached; public OSM tiles remain online.

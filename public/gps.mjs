@@ -5,7 +5,7 @@ import {nextInstruction} from './guidance.mjs';
 import {createParkingLabels} from './parking-labels.mjs';
 import {createRoadMap} from './road-map.mjs';
 
-export function createGPS({getMap,getSelected,getCatalogue,showStreet,toast,dialog,onPinChanged,onLocation,onLocationState,escape:esc}) {
+export function createGPS({getMap,getSelected,getCatalogue,showStreet,toast,dialog,onPinChanged,onLocation,onLocationState,onUnmapped,escape:esc}) {
   let watch=null,fix=null,layer=null,boundMap=null,street=false,following=true,active=null,graph=null,graphPromise=null,route=null,pending=null,lastRouteAt=0;
   const course=createCourseTracker();
   let headingUp=true,adjustingCamera=false;
@@ -150,7 +150,7 @@ export function createGPS({getMap,getSelected,getCatalogue,showStreet,toast,dial
   function navigate(hit){
     if(!hit){toast('Choose a parking first.');return;}
     const pin=pinFor(hit);
-    if(!pin){setup(hit);return;}
+    if(!pin){clearRoute();onUnmapped?.(hit);return;}
     active=hit;route=null;navigationLayout(true);$('map-options-panel').hidden=true;$('map-options').setAttribute('aria-expanded','false');$('navigation-destination').textContent=label(hit);$('navigation-instruction').textContent='Waiting for live GPS…';$('navigation-distance').textContent='—';$('navigation-detail').textContent=pin.automatic?'Using the built-in parking approach. The route follows mapped roads.':'Using your saved destination point. The route follows mapped roads.';
     start();calculate(true);
   }

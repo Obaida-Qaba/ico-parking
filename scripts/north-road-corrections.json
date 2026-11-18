@@ -1,0 +1,170 @@
+{
+  "version": 1,
+  "reviewed": "2026-11-18",
+  "source": "Official Flemish23Feb2025 orthophoto cross-checked against the ICO northern plan in current.pdf p5; reviewed physical approach roads, not surveyed lines or live operational permissions.",
+  "sourcePlan": {
+    "url": "https://www.icoterminals.com/upload/ico_safety_regulations.pdf",
+    "cache": "scripts/sources/current.pdf",
+    "page": 5
+  },
+  "imagery": [
+    {
+      "service": "https://geo.api.vlaanderen.be/OMWRGBMRVL/wms",
+      "serviceVersion": "1.3.0",
+      "layer": "Ortho",
+      "crs": "EPSG:4326",
+      "flightDate": "2025-02-23",
+      "flightDateEvidence": "Vliegdagcontour GetFeatureInfo at Nissan/adjacent-NIT area returns OpnDatum23/2/2025,FID5.",
+      "reviewed": "2026-11-18",
+      "id": "q2",
+      "bbox": [
+        51.3235,
+        3.2086,
+        51.3242,
+        3.2097
+      ],
+      "width": 1500,
+      "height": 1500
+    },
+    {
+      "service": "https://geo.api.vlaanderen.be/OMWRGBMRVL/wms",
+      "serviceVersion": "1.3.0",
+      "layer": "Ortho",
+      "crs": "EPSG:4326",
+      "flightDate": "2025-02-23",
+      "flightDateEvidence": "Vliegdagcontour GetFeatureInfo at Nissan/adjacent-NIT area returns OpnDatum23/2/2025,FID5.",
+      "reviewed": "2026-11-18",
+      "id": "p",
+      "bbox": [
+        51.324,
+        3.2082,
+        51.32545,
+        3.2095
+      ],
+      "width": 1500,
+      "height": 1900
+    }
+  ],
+  "guards": [
+    {
+      "way": "241878125",
+      "expectedNodes": [
+        "2494558978",
+        "2494558983",
+        "2984583056",
+        "2984583057",
+        "2984583058",
+        "2494558991",
+        "2494558996",
+        "2494559000",
+        "2984603496",
+        "2494559013"
+      ],
+      "expectedOneway": false,
+      "expectedPrivate": true
+    },
+    {
+      "way": "241878113",
+      "expectedNodes": [
+        "2494558938",
+        "2984569066",
+        "2984569067",
+        "2984569068",
+        "2494558944",
+        "2494558948"
+      ],
+      "expectedOneway": false,
+      "expectedPrivate": true
+    }
+  ],
+  "anchorCoordinates": {
+    "2984583057": [
+      51.3253655,
+      3.2089436
+    ],
+    "2494558948": [
+      51.3240786,
+      3.2090794
+    ]
+  },
+  "segmentExclusions": [
+    {
+      "way": "241878109",
+      "expectedNodes": [
+        "2494558935",
+        "2494558948",
+        "2494558983"
+      ],
+      "expectedOneway": false,
+      "excludedSegments": [
+        [
+          "2494558935",
+          "2494558948"
+        ],
+        [
+          "2494558948",
+          "2494558983"
+        ]
+      ],
+      "source": "https://geo.api.vlaanderen.be/OMWRGBMRVL/wms",
+      "sourceRevision": "Orthophoto23Feb2025; ICO northern source current.pdf p5",
+      "reason": "Both exact segments cross multiple occupied vehicle-storage rows in the23Feb2025 official orthophoto. This is a misplaced/obsolete road alignment, not merely an omitted road on the schematic. The true parallel quay aisle is visible about20-30m east."
+    }
+  ],
+  "additions": [
+    {
+      "id": "portway-nit-quay-west-aisle",
+      "nodes": [
+        "2984583057",
+        "portway-nit-quay-divider",
+        "portway-nit-quay-south"
+      ],
+      "points": [
+        [
+          51.3253655,
+          3.2089436
+        ],
+        [
+          51.3241137,
+          3.2093407
+        ],
+        [
+          51.3235723,
+          3.2095093
+        ]
+      ],
+      "oneway": false,
+      "private": true,
+      "name": "ICO west quay access aisle",
+      "basis": "Continuous visibly open marked quay-side aisle east of the stored cars, independently followed in two overlapping official orthophoto requests; starts at the existing northern cross-road node. New digitization candidate, not copied from obsolete109."
+    },
+    {
+      "id": "portway-nit-q2-divider-link",
+      "nodes": [
+        "2494558948",
+        "portway-nit-quay-divider"
+      ],
+      "points": [
+        [
+          51.3240786,
+          3.2090794
+        ],
+        [
+          51.3241137,
+          3.2093407
+        ]
+      ],
+      "oneway": false,
+      "private": true,
+      "name": "ICO P/Q2 divider continuation",
+      "basis": "The same visible cross-aisle continues east from the existing241878113 endpoint to the actual quay-side aisle, through clear asphalt outside the parked rows."
+    }
+  ],
+  "trafficEvidence": {
+    "oneway": false,
+    "basis": "The ICO northern plan shows paired opposing travel arrows on the K408/K409 quay-side access corridor and its parking cross-aisles. The orthophoto shows a continuous clear paved lane with the transverse connections. Bidirectional road data follows those source directions; no present-day traffic order or unrestricted access permission is claimed.",
+    "private": true,
+    "limitations": "Historical source plan has no printed revision date. Imagery is23Feb2025, predating this18Nov2026 review. Road geometry does not prove current gate opening, parking operations, or exact numbered line positions."
+  },
+  "scope": "Only the two exact109 segments are removed from the drivable graph. Existing076 shadowed warehouse-corner segments are retained. New quay lane terminates at the last reviewed Q2-side point, with no invented southern connection."
+}

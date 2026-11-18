@@ -491,7 +491,7 @@
         "https://www.apzi.be/en/leden/toyota-motor-europe-2845",
         "https://www.openstreetmap.org/way/241873308"
       ],
-      "basis": "Approximate search area: northern part of the Southern Inlet east-bank ICO footprint, matching Toyota on the port operator plan and its Aziëstraat address. Southern seam is approximate; not an operational boundary or routing location."
+      "basis": "Approximate search area: northern part of the Southern Inlet east-bank ICO footprint, matching Toyota on the port operator plan and its Azi\u00ebstraat address. Southern seam is approximate; not an operational boundary or routing location."
     },
     {
       "id": "hanze",
@@ -1173,125 +1173,166 @@
       "mapId": "nissan",
       "polygon": [
         [
-          51.3195466,
-          3.211591
+          51.32217570759357,
+          3.2065379166883177
         ],
         [
-          51.3170037,
-          3.2126061
+          51.316851440493394,
+          3.2086689088465823
         ],
         [
-          51.3148867,
-          3.2134128
+          51.31607666065502,
+          3.2037350001911697
         ],
         [
-          51.3147935,
-          3.2133392
+          51.31735050814428,
+          3.2034098371020936
         ],
         [
-          51.3144703,
-          3.2118507
+          51.31735157033095,
+          3.203409114454158
         ],
         [
-          51.31459,
-          3.2117544
+          51.31735249843766,
+          3.2034082261532486
         ],
         [
-          51.3143264,
-          3.210576
+          51.317353266924215,
+          3.203407196644153
         ],
         [
-          51.3143331,
-          3.2104231
+          51.31735385464296,
+          3.2034060542575076
         ],
         [
-          51.3143759,
-          3.2103011
+          51.317354245420695,
+          3.20340483043018
         ],
         [
-          51.3144035,
-          3.2101643
+          51.317354428503776,
+          3.2034035588401704
         ],
         [
-          51.3144069,
-          3.2100114
+          51.31735439885401,
+          3.2034022744798403
         ],
         [
-          51.3144178,
-          3.2098867
+          51.31735415728732,
+          3.203401012692972
         ],
         [
-          51.314469,
-          3.2098186
+          51.3173355606395,
+          3.203282605027901
         ],
         [
-          51.314558,
-          3.2097634
+          51.32121682475246,
+          3.20228674331476
         ],
         [
-          51.3157006,
-          3.2093076
+          51.32121922452279,
+          3.204510306070681
         ],
         [
-          51.3189799,
-          3.2080186
+          51.32121923074433,
+          3.204511591169437
         ],
         [
-          51.3189978,
-          3.2081385
+          51.32121944917756,
+          3.204512857583447
         ],
         [
-          51.3191965,
-          3.2093946
+          51.32121987382003,
+          3.204514070512256
         ],
         [
-          51.319331,
-          3.2093392
+          51.32122049300276,
+          3.204515196625155
         ],
         [
-          51.3193357,
-          3.2093879
+          51.32122128971092,
+          3.2045162049770965
         ],
         [
-          51.3195727,
-          3.2109346
+          51.32122224205133,
+          3.2045170678590487
         ],
         [
-          51.3194671,
-          3.2109772
+          51.32161212473148,
+          3.2047335089747038
         ],
         [
-          51.3194538,
-          3.2110141
+          51.32167017694388,
+          3.205103147828423
         ],
         [
-          51.3194751,
-          3.2111546
+          51.32167033414302,
+          3.2051041795726336
         ],
         [
-          51.3194818,
-          3.2111953
+          51.321670651736326,
+          3.2051051737266345
         ],
         [
-          51.3194846,
-          3.2112158
+          51.32167112181046,
+          3.205106105519526
         ],
         [
-          51.3194992,
-          3.2112888
+          51.321671732652796,
+          3.2051069517342308
         ],
         [
-          51.3195123,
-          3.2113602
+          51.32167246904324,
+          3.205107691285988
+        ],
+        [
+          51.32167331263347,
+          3.20510830574771
+        ],
+        [
+          51.32238056696353,
+          3.2054277554743273
+        ],
+        [
+          51.322854120286856,
+          3.2056994671949752
+        ],
+        [
+          51.32287716944382,
+          3.2057178352747235
+        ],
+        [
+          51.3228972008114,
+          3.2057394545786764
+        ],
+        [
+          51.3229137606194,
+          3.2057638353651545
+        ],
+        [
+          51.32292647373882,
+          3.2057904253366694
+        ],
+        [
+          51.32293505217959,
+          3.2058186221511047
+        ],
+        [
+          51.32304100006482,
+          3.2061915426175767
+        ],
+        [
+          51.32217570759357,
+          3.2065379166883177
         ]
       ],
-      "priority": 30,
+      "priority": 100,
       "boundaryUncertaintyMetres": 15,
       "sources": [
         "https://www.icoterminals.com/upload/ico_safety_regulations.pdf",
-        "https://www.openstreetmap.org/way/1385650554"
+        "https://webapps.portofantwerpbruges.com/arcgis/rest/services/extern/havenmeesterkaart/MapServer/20",
+        "https://geo.api.vlaanderen.be/OMWRGBMRVL/wms"
       ],
-      "basis": "Conservative mapped industrial plot beside Jozef Verschaveweg, immediately south of the main Northern Inlet footprint; matched to the Nissan plan road frontage and outline. Search context only."
+      "basis": "Official ICO terminal4070 western concession, west of Jozef Verschaveweg. Independently matched to the Nissan source plan by its long road frontage, three parking bands, western fence, northern cut-out and northern road-side forecourt. Includes the adjoining ICO northern service forecourt; approximate local search context only, never individual parking coordinates or access permissions."
     },
     {
       "id": "north",
@@ -2889,14 +2930,33 @@
     "copyright": "https://www.openstreetmap.org/copyright",
     "ways": [
       "241873308",
-      "366953480",
-      "1385650554"
+      "366953480"
     ],
-    "note": "Footprint geometry is used only for coarse search context. It is not a measured operating boundary."
+    "note": "OSM footprints for northern/southern context plus the corrected official port concession footprint for Nissan; approximate search context only, not surveyed operating boundaries.",
+    "additionalSources": [
+      "https://webapps.portofantwerpbruges.com/arcgis/rest/services/extern/havenmeesterkaart/MapServer/20"
+    ]
   },
   "subregionMethod": {
     "southernBankDivision": "west when lon <= 3.2404664 - 0.8 * (lat - 51.29411095), within the mapped southern industrial footprint; dividing line passes through the basin",
     "toyotaHanzeSeam": "Toyota when lat >= 51.2977 + 0.99 * (lon - 3.2420) on the east bank, Hanze below; approximate operator-area seam based on named port map, quay521 and the adjoining Bridgestone plot",
     "boundaryPolicy": "45m source uncertainty plus GPS accuracy around Toyota/Hanze; retain previous context in the uncertainty band or use broad South fallback. No exact boundary claim."
-  }
+  },
+  "boundaryCorrections": [
+    {
+      "terminal": "nissan",
+      "reviewed": "2026-11-18",
+      "reason": "Replaced the eastern BNFW4130 plot with the western official ICO4070 compound independently matched to the Nissan source plan.",
+      "rejectedOSMWay": "1385650554",
+      "negativeControl": [
+        51.317,
+        3.2105
+      ],
+      "sources": [
+        "https://www.icoterminals.com/upload/ico_safety_regulations.pdf",
+        "https://webapps.portofantwerpbruges.com/arcgis/rest/services/extern/havenmeesterkaart/MapServer/20",
+        "https://geo.api.vlaanderen.be/OMWRGBMRVL/wms"
+      ]
+    }
+  ]
 }

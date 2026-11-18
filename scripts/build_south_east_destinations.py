@@ -112,6 +112,15 @@ def add(code, r, edge='south', source_index=0, fraction=None, source_override=No
     }
 
 
+def label_quay_reference(code):
+    """A narrow quay lane must not inherit the neighbouring A-row interior."""
+    point=OUT['south:'+code]
+    point['labelPosition'].update(
+        lat=point['lat'],lon=point['lon'],method='matched-quay-road-band',
+        scope='parking-lane-reference',
+        basis='Printed quay-band reference on its independently matched perimeter road; not inside the adjacent A-row parking.')
+
+
 GRID_EVIDENCE = ('The VPC landmark, six lettered column boundaries, the continuous A/B divider, '
                  'and the K.507-K.510 quay identify this bounded parcel by road-junction topology. '
                  'Its source footprint is matched independently of the central affine fit.')
@@ -138,6 +147,7 @@ for letter, xs, ns, west, east in cols:
     # quay edge follows the parcel's independently identified southern road.
     q = dict(a, sourceBounds=[xs[0],417.0,xs[1],423.6])
     add('BK'+letter,q,'south')
+    label_quay_reference('BK'+letter)
     if letter == 'D': add('TP7',a,'north')
 
 ab = region('east-a-b', [990.2,359.7,1032.1,385.8], [1905,1943,1948,1916],
@@ -149,6 +159,7 @@ for code, source in [('AA1',[1010.30,410.45]),('AA2',[1010.20,394.40])]:
     add(code,aa,'west',source_override=source)
 add('TP6',aa,'west')
 add('BKA',dict(aa,sourceBounds=[990.2,417.0,1026.1,423.6]),'south')
+label_quay_reference('BKA')
 
 # Three C strips are individually observable in both the plan and the roads.
 # Match them by ordinal lane topology, rather than extrapolating a scale from

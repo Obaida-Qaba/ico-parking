@@ -161,6 +161,18 @@ APPROACHES = [
              'The two eastern POS labels occupy one uninterrupted chevron compound above EE1 / DE1 and west of CF1. The surrounding northern access lane, CF1-side elbow, southern forecourt road and western divider identify its polygon; repeated labels do not create an internal road or official subdivision.'),
 ]
 
+# The older rotated drawing prints west/main/main, while the current drawing's
+# text extraction orders the same compounds main/main/west. Source highlighting
+# must retain each drawing's own index order without changing the GPS choice.
+legacy_map=next(m for m in DATA['maps'] if m['id']=='bastenaken')
+legacy_pos=next(p for p in legacy_map['parkings'] if p['code']=='POS')
+legacy_west=[i for i,p in enumerate(legacy_pos['points']) if p['y']/3+90>480]
+legacy_main=[i for i,p in enumerate(legacy_pos['points']) if p['y']/3+90<=480]
+if len(legacy_west)!=1 or len(legacy_main)!=2:
+    raise ValueError('Review older POS source grouping after index revision.')
+for item in APPROACHES:
+    item['sourceIndicesByMap']={'south':item['sourceIndices'],'bastenaken':legacy_west if item['id']=='ge2' else legacy_main}
+
 # The base coordinates retain a real reviewed point for catalogue metadata.
 # chooseApproach prevents those coordinates from becoming an arbitrary route.
 DESTINATION = {

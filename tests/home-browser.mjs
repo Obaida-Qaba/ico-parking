@@ -56,7 +56,7 @@ try{
  assert.equal(await page.evaluate(()=>window.__homeStarts),1,'search and plan previews do not restart GPS');
  assert.equal(await page.evaluate(()=>window.__homeStops),0);
  await page.locator('#stop-navigation').click();await page.locator('#clear-destination').click();
- for(const [lat,lon,name] of [[51.326,3.213,'Noordelijke'],[51.317,3.2105,'Nissan'],[50.85,4.35,'All terminals']]){
+ for(const [lat,lon,name] of [[51.326,3.213,'Noordelijke'],[51.3187,3.2059,'Nissan'],[50.85,4.35,'All terminals']]){
   await move(lat,lon);
   assert.match(await page.locator('#location-context').innerText(),new RegExp(name,'i'),'context follows reliable locations without choosing a terminal outside the port');
  }

@@ -113,20 +113,35 @@ def screenshot_point(m, code, x, y):
     # Points read from the original source page rendered at 1.4x, not inferred geographic coordinates.
     m['_add'](code,x/1.4,y/1.4,'manual-source-label')
 
-bast=legacy('bastenaken','Bastenaken','Bastenaken · older plan',23,'Historical detail from Cewez’s ICO brochure. Use the combined southern plan for the newer layout.')
-# Source labels on the rotated Bastenaken drawing.
-for code,x,y in [('BDH',139,266),('HA2',180,266),('AH1',222,265),('AG1',265,245),('BG1',266,306),('AF1',362,245),('BF1',362,306),('AE1',408,245),('BE1',409,306),('AD1',454,245),('BD1',454,306),('AB1',590,266),('BA1',660,318),('AA1',660,266),('DH1',166,384),('AHH',131,375),('T15',408,400),('VPC1',363,427),('VPC',408,476),('PRE',498,400),('CB1',591,400),('CA1',660,400),('DB1',590,500),('DA1',660,500),('EB1',590,591),('EA1',660,591),('FB1',590,684),('FA1',660,684),('GB1',590,781),('GA1',660,781),('HB1',590,875),('HA1',660,875),('IB1',590,967),('IA1',660,967),('JB1',590,1024),('JA1',660,1024),('LOS',336,980),('KOS',336,885),('JOS',336,790),('IOS',336,695)]:
-    screenshot_point(bast,code,x,y)
-# Smaller legacy row labels are retained in the image, not assigned speculative positions.
+def apply_source_points(m, filename):
+    manifest=json.loads((ROOT/'scripts'/filename).read_text(encoding='utf-8'))
+    for code,points in manifest['points'].items():
+        for point in points:m['_add'](code,*point,'reviewed-source-label')
 
+bast=legacy('bastenaken','Bastenaken','Bastenaken · older plan',23,'Historical detail from Cewez’s ICO brochure. Use the combined southern plan for the newer layout.')
+apply_source_points(bast,'bastenaken-source-points.json')
 hanze=legacy('hanze','Hanze','Hanze · older plan',24,'Historical detail from Cewez’s ICO brochure. H61 is also on the newer combined southern plan.')
-for code,x,y in [('H1',323,212),('H2',323,267),('H3',323,319),('H4',323,370),('H5',323,424),('H6',323,477),('H7',323,531),('H8',323,586),('HH1',323,512),('HH2',323,555),('HH3',323,600),('HH4',323,645),('HH5',323,687),('H10',380,512),('H11',380,555),('H12',380,600),('H13',380,645),('H14',380,687),('H15',380,728),('H16',380,775),('H17',380,816),('H18',380,855),('H19',380,898),('H20',380,941),('H21',323,728),('H22',323,775),('H23',323,816),('H24',323,898),('H25',269,941),('H26',269,984),('H27',269,1026),('H28',186,941),('H29',186,984),('H30',186,1026),('H31',186,1068),('H45',158,1068),('H60',458,728),('H61',458,775),('H62',458,816),('H63',458,855),('H64',453,898),('H65',264,898),('HH6',186,898)]:
-    screenshot_point(hanze,code,x,y)
+apply_source_points(hanze,'hanze-source-points.json')
 
 toyota=legacy('toyota','Toyota','Toyota terminal · older plan',25,'Cewez brochure plan. Parking labels are indexed from the drawing; internal line positions are unverified.')
 toyota_points=json.loads((ROOT/'scripts/toyota-source-points.json').read_text(encoding='utf-8'))['points']
 for code,point in toyota_points.items():
     toyota['_add'](code,*point,'manual-source-label')
+
+# Complete reviewed source inventory. These are drawing labels only; adding a
+# label never assigns a geographic destination through a generic projection.
+apply_source_points(toyota,'toyota-additional-source-points.json')
+extra_index=json.loads((ROOT/'scripts/north-nissan-source-points.json').read_text(encoding='utf-8'))
+for entry in extra_index['additions']:
+    target=next(m for m in maps if m['id']==entry['mapId'])
+    for point in entry['points']:target['_add'](entry['code'],*point,'reviewed-source-label')
+
+# Illustrator retains one old GE1 glyph beneath the opaque current GE2 box.
+# Only the visible bold GE1 at the southern strip is a current source label.
+ge1=next(p for p in south['parkings'] if p['code']=='GE1')
+visible=[point for point in ge1['points'] if 678<point['x']/3<682 and 289<point['y']/3<293]
+if len(visible)!=1:raise ValueError('Review GE1 source overpaint correction after source revision.')
+ge1.update(**visible[0],points=visible)
 
 for m in maps:
     del m['_add']

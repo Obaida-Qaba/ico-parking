@@ -234,6 +234,40 @@ def source_parking(map_id, code):
     return next((p for p in MAPS[map_id]['parkings'] if p['code'] == code), None)
 
 
+HANZE_MODEL_COORDINATES = {
+    'space': 'hanze-local-landmark-plane',
+    'basis': 'Manually matched lane-topology positions in the plane defined by HANZE_CONTROLS and mapped through hgeo(). These boxes are not current PDF parking footprints; schematic label coordinates can differ from this local matching plane.',
+    'controls': 'controls.hanze',
+}
+_source_glyphs = None
+
+
+def source_glyph_bounds(code, point):
+    """Verify the actual indexed PDF label point against its text-line bounds."""
+    global _source_glyphs
+    if _source_glyphs is None:
+        import pymupdf
+        source_path = ROOT / 'scripts/sources/south2026.pdf'
+        if not source_path.exists():
+            source_path = ROOT / 'scripts/geo/sit-sep2026.pdf'
+        _source_glyphs = {}
+        with pymupdf.open(source_path) as document:
+            for block in document[0].get_text('dict')['blocks']:
+                for line in block.get('lines', []):
+                    text = re.sub(r'\s+', '', ''.join(span['text'] for span in line['spans']).upper())
+                    box = list(line['bbox'])
+                    centre = [(box[0] + box[2]) / 2, (box[1] + box[3]) / 2]
+                    _source_glyphs.setdefault(text, []).append((box, centre))
+    matches = [(box, centre) for box, centre in _source_glyphs.get(code, [])
+               if max(abs(a - b) for a, b in zip(centre, point)) < 0.02]
+    if len(matches) != 1:
+        raise ValueError('Current Hanze source label point/glyph changed: ' + code)
+    box = matches[0][0]
+    if not (box[0] <= point[0] <= box[2] and box[1] <= point[1] <= box[3]):
+        raise ValueError('Current Hanze source label point is outside its glyph: ' + code)
+    return [round(value, 6) for value in box]
+
+
 def add(map_id, code, source, label, approach, road_ids, region, historical=False, group=False, bounds=None):
     distance, point, way_id, segment = road_match(approach, road_ids)
     prefix = 'Historical brochure parking layout; current internal aisle positions may differ. ' if historical else ''
@@ -251,6 +285,13 @@ def add(map_id, code, source, label, approach, road_ids, region, historical=Fals
         'basis': prefix + 'Parking block matched within a bounded landmark region and projected to an identified adjacent existing road segment. Approach only; no surveyed coordinates, exact lines or current access permission claimed.',
         'labelPosition': {'lat': float(label[1]), 'lon': float(label[0]), 'method': 'bounded-landmark-block-position', 'scope': 'parking-block-label', 'basis': prefix + 'Display position within the individually matched block; route retains a separate real-road approach. Not surveyed.'},
     }
+    if map_id == 'south' and region.startswith('hanze-'):
+        record = OUT[f'{map_id}:{code}']
+        record['matchModelBounds'] = bounds
+        record['matchModelCoordinates'] = HANZE_MODEL_COORDINATES
+        record['sourceBounds'] = source_glyph_bounds(code, source)
+        record['sourceBoundsScope'] = 'printed-parking-label-glyph'
+        record['sourceBoundsBasis'] = 'Exact text-line bounding box in the current source PDF, checked against the indexed label point. These are label glyph bounds, not a physical parking footprint or the separate local matching-model box.'
 
 
 def hanze(code, box, road_ids, approach=None, group=False):
@@ -343,6 +384,23 @@ if source_parking('south', 'DRS'):
         _, point, way, segment = road_match(hgeo([25, y]), ['1396678610'])
         OUT['south:DRS']['approaches'].append({'lat': float(point[1]), 'lon': float(point[0]), 'roadWay': way, 'roadSegment': segment})
 
+# H65 is an external source callout pointing into the H64-side corner. Its
+# former model-box centre put the display label beyond the fence on the
+# railway side. Retain its actual perimeter-road arrival, and identify only
+# the supported shared H64 compound rather than inventing an individual strip.
+if 'south:H65' in OUT and 'south:H64' in OUT:
+    h65 = OUT['south:H65']
+    h65['scope'] = 'parking-group-approach'
+    h65['basis'] = 'The current source H65 callout points into the H64-side corner. This is a shared H64 compound approach, not an independently surveyed H65 strip. Arrival retains the existing real perimeter-road point; parking lines, exact entrances and current access are not surveyed.'
+    h65['parkingGroupReference'] = {'sourceMap': 'south', 'parking': 'H64',
+                                     'basis': 'External H65 callout target at the H64-side compound corner; individual physical strip is unverified.'}
+    h65['labelPosition'] = {
+        **OUT['south:H64']['labelPosition'],
+        'method': 'matched-shared-compound-reference',
+        'sharedParking': 'H64',
+        'basis': 'Display reference inside the supported H64 compound shared by the H65 callout. This does not locate an independently verified H65 strip or parking line.',
+    }
+
 # Accurate source points read from the source page, correcting the old manually
 # indexed catalogue's accumulating row drift. Coordinates remain PDF points.
 TOYOTA_POINTS = json.loads((ROOT / 'scripts/toyota-source-points.json').read_text(encoding='utf-8'))['points']
@@ -352,7 +410,9 @@ TOYOTA_ROADS = {
     'central': ['241869946', '241869944', '241869968', '241869958', '241869962', '241869964', '241869917', '241869926', '746744824', '746744858', '746744859', '746744860', '746744861', '746744868'],
     'south': ['241869916', '241869924', '241869942', '746744795', '746744796', '746744825', '746744826', '746744827', '746744828', '746744830', '746744831', '746744832', '505952613'],
 }
+TOYOTA_EXCLUSIONS=json.loads((ROOT/'scripts/destination-evidence-exclusions.json').read_text(encoding='utf-8'))['excludedAutomaticDestinations']
 for code, source in TOYOTA_POINTS.items():
+    if 'toyota:'+code in TOYOTA_EXCLUSIONS:continue
     region = 'north' if source[1] < 230 else 'south' if source[1] > 530 else 'central'
     raw = tgeo(source)
     add('toyota', code, source, raw, raw, TOYOTA_ROADS[region], 'toyota-' + region + '-windmill-block-match', historical=True, group=True)
@@ -369,7 +429,9 @@ for code, source, box, road, approach in [
     p = source_parking('hanze', code)
     if p:
         x0, y0, x1, y1 = box
-        add('hanze', code, source, hgeo([(x0 + x1) / 2, (y0 + y1) / 2]), hgeo(approach), [road], 'historical-hanze-basin-bend-compound', historical=True, group=True, bounds=box)
+        actual_source=[p['x']/3+45,p['y']/3+90]
+        add('hanze', code, actual_source, hgeo([(x0 + x1) / 2, (y0 + y1) / 2]), hgeo(approach), [road], 'historical-hanze-basin-bend-compound', historical=True, group=True)
+        OUT['hanze:'+code].update(matchModelBounds=box,matchModelCoordinates=HANZE_MODEL_COORDINATES)
 
 result = {
     'version': 1,
@@ -380,6 +442,7 @@ result = {
     'independentCheck': {'osmWay': '240813032', 'landmark': 'Bridgestone warehouse northern edge adjacent to Toyota I/J field', 'source': [395, 534], 'boundaryResidualMetres': 7.52, 'westernEdgeSchematicOffsetMetres': 44, 'basis': 'Northern edge lies within 7.52m of the independently turbine-matched source point; not a fit input. The western edge differs by about44m, confirming this historical drawing supports block approaches rather than surveyed block corners.'},
     'regions': [{'id': 'hanze-basin-natie-lane-topology', 'method': 'Individually ordered road strips and named basin/Natie1 landmarks; separate west-bank ladder.'}, {'id': 'toyota', 'method': 'Local two-windmill reflected similarity, independent Bridgestone northern-edge check, and bounded north/central/south service-road lists.', 'historical': True}],
     'destinations': OUT,
+    'unresolved':list(TOYOTA_EXCLUSIONS.values()),
 }
 target = ROOT / 'scripts/geo/south-west-destinations.json'
 target.write_text(json.dumps(result, indent=2), encoding='utf-8')

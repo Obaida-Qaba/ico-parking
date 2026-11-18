@@ -12,7 +12,7 @@ export function destinationChoices(hit,catalogue={}) {
   if(!point?.chooseApproach)return [hit];
   const options=(point.approaches||[]).filter(option=>validPin(option)&&option.id&&option.name);
   const selected=options.find(option=>option.id===hit.approach);
-  return (selected?[selected]:options).map(option=>({...hit,approach:option.id,approachName:option.name,approachSourceIndices:option.sourceIndices}));
+  return (selected?[selected]:options).map(option=>({...hit,approach:option.id,approachName:option.name,approachSourceIndices:option.sourceIndicesByMap?.[hit.map.id]||option.sourceIndices}));
 }
 
 /** Saved measurements can refine a built-in parking approach; PDF line labels are never treated as GPS fixes. */

@@ -1,0 +1,795 @@
+{
+  "version": 1,
+  "reviewed": "2026-11-18",
+  "status": "REVIEWED INTERNAL ISLAND; public gate transfer not proved",
+  "routingScope": "terminal-internal",
+  "publicConnectionVerified": false,
+  "sourcePlan": {
+    "url": "https://www.icoterminals.com/upload/ico_safety_regulations.pdf",
+    "cache": "scripts/sources/current.pdf",
+    "page": 6,
+    "revision": "V02022024"
+  },
+  "imagery": {
+    "service": "https://geo.api.vlaanderen.be/OMWRGBMRVL/wms",
+    "layer": "Ortho",
+    "version": "1.3.0",
+    "crs": "EPSG:4326",
+    "bbox": [
+      51.3158,
+      3.2018,
+      51.3224,
+      3.21
+    ],
+    "width": 1800,
+    "height": 1900,
+    "flightDate": "2025-02-23"
+  },
+  "ownership": {
+    "service": "https://webapps.portofantwerpbruges.com/arcgis/rest/services/extern/havenmeesterkaart/MapServer/20",
+    "OBJECTID": 445,
+    "TERMINALCODE": "4070",
+    "BEDRIJFSNAAM": "ICO",
+    "basis": "All controls are in the western ICO carfield. The earlier eastern BNFW4130 plot is excluded."
+  },
+  "junctionControls": [
+    {
+      "node": "portway-nissan-j00",
+      "photoPixel": [
+        423,
+        1777
+      ],
+      "coordinate": [
+        51.3162272632,
+        3.203727
+      ],
+      "classification": "reviewed-lane-shape-or-terminal-control"
+    },
+    {
+      "node": "portway-nissan-j01",
+      "photoPixel": [
+        355,
+        1404
+      ],
+      "coordinate": [
+        51.3175229474,
+        3.2034172222
+      ],
+      "classification": "reviewed-lane-shape-or-terminal-control"
+    },
+    {
+      "node": "portway-nissan-j02",
+      "photoPixel": [
+        305,
+        1148
+      ],
+      "coordinate": [
+        51.3184122105,
+        3.2031894444
+      ],
+      "classification": "observed-main-aisle-junction"
+    },
+    {
+      "node": "portway-nissan-j03",
+      "photoPixel": [
+        185,
+        351
+      ],
+      "coordinate": [
+        51.3211807368,
+        3.2026427778
+      ],
+      "classification": "observed-main-aisle-junction"
+    },
+    {
+      "node": "portway-nissan-j10",
+      "photoPixel": [
+        809,
+        1706
+      ],
+      "coordinate": [
+        51.3164738947,
+        3.2054854444
+      ],
+      "classification": "reviewed-lane-shape-or-terminal-control"
+    },
+    {
+      "node": "portway-nissan-j11",
+      "photoPixel": [
+        708,
+        1341
+      ],
+      "coordinate": [
+        51.3177417895,
+        3.2050253333
+      ],
+      "classification": "reviewed-lane-shape-or-terminal-control"
+    },
+    {
+      "node": "portway-nissan-j12",
+      "photoPixel": [
+        633,
+        1096
+      ],
+      "coordinate": [
+        51.3185928421,
+        3.2046836667
+      ],
+      "classification": "observed-main-aisle-junction"
+    },
+    {
+      "node": "portway-nissan-j13",
+      "photoPixel": [
+        425,
+        352
+      ],
+      "coordinate": [
+        51.3211772632,
+        3.2037361111
+      ],
+      "classification": "observed-main-aisle-junction"
+    },
+    {
+      "node": "portway-nissan-j20",
+      "photoPixel": [
+        1178,
+        1633
+      ],
+      "coordinate": [
+        51.3167274737,
+        3.2071664444
+      ],
+      "classification": "reviewed-lane-shape-or-terminal-control"
+    },
+    {
+      "node": "portway-nissan-j21",
+      "photoPixel": [
+        1078,
+        1268
+      ],
+      "coordinate": [
+        51.3179953684,
+        3.2067108889
+      ],
+      "classification": "reviewed-lane-shape-or-terminal-control"
+    },
+    {
+      "node": "portway-nissan-j22",
+      "photoPixel": [
+        1005,
+        1012
+      ],
+      "coordinate": [
+        51.3188846316,
+        3.2063783333
+      ],
+      "classification": "observed-main-aisle-junction"
+    },
+    {
+      "node": "portway-nissan-j23",
+      "photoPixel": [
+        787,
+        231
+      ],
+      "coordinate": [
+        51.3215975789,
+        3.2053852222
+      ],
+      "classification": "observed-main-aisle-junction"
+    },
+    {
+      "node": "portway-nissan-j30",
+      "photoPixel": [
+        1483,
+        1575
+      ],
+      "coordinate": [
+        51.3169289474,
+        3.2085558889
+      ],
+      "classification": "reviewed-lane-shape-or-terminal-control"
+    },
+    {
+      "node": "portway-nissan-j31",
+      "photoPixel": [
+        1380,
+        1210
+      ],
+      "coordinate": [
+        51.3181968421,
+        3.2080866667
+      ],
+      "classification": "reviewed-lane-shape-or-terminal-control"
+    },
+    {
+      "node": "portway-nissan-j32",
+      "photoPixel": [
+        1295,
+        993
+      ],
+      "coordinate": [
+        51.3189506316,
+        3.2076994444
+      ],
+      "classification": "observed-main-aisle-junction"
+    },
+    {
+      "node": "portway-nissan-j33",
+      "photoPixel": [
+        1060,
+        213
+      ],
+      "coordinate": [
+        51.3216601053,
+        3.2066288889
+      ],
+      "classification": "observed-main-aisle-junction"
+    }
+  ],
+  "additions": [
+    {
+      "id": "portway-nissan-west-south",
+      "nodes": [
+        "portway-nissan-j02",
+        "portway-nissan-j01",
+        "portway-nissan-j00"
+      ],
+      "points": [
+        [
+          51.3184122105,
+          3.2031894444
+        ],
+        [
+          51.3175229474,
+          3.2034172222
+        ],
+        [
+          51.3162272632,
+          3.203727
+        ]
+      ],
+      "oneway": true,
+      "private": true,
+      "name": "Nissan internal west south",
+      "routingScope": "terminal-internal",
+      "publicConnectionVerified": false,
+      "basis": "Source upper perimeter arrows on the VH002/V field side point toward the V end; preserve this outward branch from the VE/VD cross-aisle."
+    },
+    {
+      "id": "portway-nissan-west-north",
+      "nodes": [
+        "portway-nissan-j02",
+        "portway-nissan-j03"
+      ],
+      "points": [
+        [
+          51.3184122105,
+          3.2031894444
+        ],
+        [
+          51.3211807368,
+          3.2026427778
+        ]
+      ],
+      "oneway": true,
+      "private": true,
+      "name": "Nissan internal west north",
+      "routingScope": "terminal-internal",
+      "publicConnectionVerified": false,
+      "basis": "Source upper perimeter arrows beside VH001 point toward the northern VE end; preserve this outward branch from the VE/VD cross-aisle."
+    },
+    {
+      "id": "portway-nissan-west-north-return",
+      "nodes": [
+        "portway-nissan-j03",
+        "portway-nissan-j13"
+      ],
+      "points": [
+        [
+          51.3211807368,
+          3.2026427778
+        ],
+        [
+          51.3211772632,
+          3.2037361111
+        ]
+      ],
+      "oneway": false,
+      "private": true,
+      "name": "Nissan internal west north return",
+      "routingScope": "terminal-internal",
+      "publicConnectionVerified": false,
+      "basis": "Visible clear northern perimeter aisle connects the outer western road to the first long internal aisle. No source-stall connector is invented."
+    },
+    {
+      "id": "portway-nissan-spine-1",
+      "nodes": [
+        "portway-nissan-j10",
+        "portway-nissan-j11",
+        "portway-nissan-j12",
+        "portway-nissan-j13"
+      ],
+      "points": [
+        [
+          51.3164738947,
+          3.2054854444
+        ],
+        [
+          51.3177417895,
+          3.2050253333
+        ],
+        [
+          51.3185928421,
+          3.2046836667
+        ],
+        [
+          51.3211772632,
+          3.2037361111
+        ]
+      ],
+      "oneway": false,
+      "private": true,
+      "name": "Nissan internal spine 1",
+      "routingScope": "terminal-internal",
+      "publicConnectionVerified": false,
+      "basis": "Individually traced continuous main private aisle; source main-aisle paired opposing arrows support bidirectional access. No one-way storage-row lane is included."
+    },
+    {
+      "id": "portway-nissan-spine-2",
+      "nodes": [
+        "portway-nissan-j20",
+        "portway-nissan-j21",
+        "portway-nissan-j22",
+        "portway-nissan-j23"
+      ],
+      "points": [
+        [
+          51.3167274737,
+          3.2071664444
+        ],
+        [
+          51.3179953684,
+          3.2067108889
+        ],
+        [
+          51.3188846316,
+          3.2063783333
+        ],
+        [
+          51.3215975789,
+          3.2053852222
+        ]
+      ],
+      "oneway": false,
+      "private": true,
+      "name": "Nissan internal spine 2",
+      "routingScope": "terminal-internal",
+      "publicConnectionVerified": false,
+      "basis": "Individually traced continuous main private aisle; source main-aisle paired opposing arrows support bidirectional access. No one-way storage-row lane is included."
+    },
+    {
+      "id": "portway-nissan-spine-3",
+      "nodes": [
+        "portway-nissan-j30",
+        "portway-nissan-j31",
+        "portway-nissan-j32",
+        "portway-nissan-j33"
+      ],
+      "points": [
+        [
+          51.3169289474,
+          3.2085558889
+        ],
+        [
+          51.3181968421,
+          3.2080866667
+        ],
+        [
+          51.3189506316,
+          3.2076994444
+        ],
+        [
+          51.3216601053,
+          3.2066288889
+        ]
+      ],
+      "oneway": false,
+      "private": true,
+      "name": "Nissan internal spine 3",
+      "routingScope": "terminal-internal",
+      "publicConnectionVerified": false,
+      "basis": "Individually traced continuous main private aisle; source main-aisle paired opposing arrows support bidirectional access. No one-way storage-row lane is included."
+    },
+    {
+      "id": "portway-nissan-main-divider",
+      "nodes": [
+        "portway-nissan-j02",
+        "portway-nissan-j12",
+        "portway-nissan-j22",
+        "portway-nissan-j32"
+      ],
+      "points": [
+        [
+          51.3184122105,
+          3.2031894444
+        ],
+        [
+          51.3185928421,
+          3.2046836667
+        ],
+        [
+          51.3188846316,
+          3.2063783333
+        ],
+        [
+          51.3189506316,
+          3.2076994444
+        ]
+      ],
+      "oneway": false,
+      "private": true,
+      "name": "Nissan internal main divider",
+      "routingScope": "terminal-internal",
+      "publicConnectionVerified": false,
+      "basis": "Visible continuous transverse main aisle and its four actual junctions. Source block ordering and paired crossing arrows distinguish this from narrow one-way storage rows."
+    }
+  ],
+  "sourceLabelPoints": {
+    "V": [
+      [
+        183.0567,
+        489.6967
+      ],
+      [
+        183.72,
+        647.1567
+      ],
+      [
+        182.84,
+        332.5933
+      ]
+    ],
+    "VA": [
+      [
+        671.1967,
+        669.29
+      ]
+    ],
+    "VAX": [
+      [
+        672.5133,
+        718.92
+      ]
+    ],
+    "VB": [
+      [
+        948.2033,
+        610.28
+      ]
+    ],
+    "VC": [
+      [
+        668.41,
+        599.0
+      ]
+    ],
+    "VD": [
+      [
+        647.8133,
+        482.64
+      ],
+      [
+        374.52,
+        485.91
+      ]
+    ],
+    "VE": [
+      [
+        641.6,
+        332.49
+      ],
+      [
+        370.3267,
+        332.88
+      ]
+    ],
+    "VF": [
+      [
+        904.91,
+        368.8767
+      ]
+    ],
+    "VG": [
+      [
+        1062.2433,
+        631.2
+      ]
+    ],
+    "VH001": [
+      [
+        704.6233,
+        255.0133
+      ]
+    ],
+    "VH002": [
+      [
+        321.74,
+        222.6433
+      ]
+    ],
+    "VK": [
+      [
+        370.68,
+        647.34
+      ]
+    ],
+    "VZ001": [
+      [
+        261.1267,
+        718.92
+      ]
+    ],
+    "VZ002": [
+      [
+        56.1933,
+        463.81
+      ]
+    ]
+  },
+  "destinationSpecs": {
+    "VE": {
+      "way": "main-divider",
+      "nodes": [
+        "02",
+        "12"
+      ],
+      "scope": "parking-group-approach",
+      "sourceBounds": [
+        [
+          300,
+          239,
+          450,
+          400
+        ],
+        [
+          460,
+          250,
+          890,
+          400
+        ]
+      ],
+      "association": "Western bank. The two printed VE sub-blocks lie on opposite sides of this independently matched main cross-aisle, between the western perimeter and first long internal spine. Shared approach to that named group, not a terminal-centre fallback."
+    },
+    "VD": {
+      "way": "main-divider",
+      "nodes": [
+        "12",
+        "22"
+      ],
+      "scope": "parking-group-approach",
+      "sourceBounds": [
+        [
+          300,
+          412,
+          450,
+          562
+        ],
+        [
+          460,
+          425,
+          855,
+          562
+        ]
+      ],
+      "association": "Middle bank. Its repeated VD blocks share the actual main cross-aisle between the first and second long internal spines; source neighbours VE and VC/VA fix the ordinal bank independently."
+    },
+    "VK": {
+      "way": "main-divider",
+      "nodes": [
+        "22",
+        "32"
+      ],
+      "scope": "parking-approach",
+      "sourceBounds": [
+        [
+          300,
+          575,
+          450,
+          708
+        ]
+      ],
+      "association": "Roadside bank immediately on the V-field side of the main cross-aisle, between the second long internal spine and roadside perimeter. The source VK block is distinct from the larger VC/VA strips beyond this divider."
+    },
+    "VC": {
+      "way": "spine-2",
+      "nodes": [
+        "22",
+        "23"
+      ],
+      "scope": "parking-approach",
+      "sourceBounds": [
+        [
+          460,
+          575,
+          880,
+          630
+        ]
+      ],
+      "association": "Inner half of the long roadside bank north of the main divider. The source assigns VC to the inner row strips adjoining the VD/VC main spine; the approach uses that actual bank boundary, not an inferred internal row."
+    },
+    "VA": {
+      "way": "spine-3",
+      "nodes": [
+        "32",
+        "33"
+      ],
+      "scope": "parking-approach",
+      "sourceBounds": [
+        [
+          460,
+          640,
+          880,
+          708
+        ]
+      ],
+      "association": "Road-facing half of the same long roadside bank north of the main divider. Its actual roadside private aisle is separate from VC on the inner side."
+    },
+    "VAX": {
+      "way": "spine-3",
+      "nodes": [
+        "32",
+        "33"
+      ],
+      "scope": "parking-lane-reference",
+      "sourceBounds": [
+        [
+          460,
+          708,
+          900,
+          735
+        ]
+      ],
+      "association": "Named frontage strip along the VA side of the Jozef-facing private perimeter. It shares that real access aisle with VA; it is not a separately invented car-row centre."
+    },
+    "VH001": {
+      "way": "west-north",
+      "nodes": [
+        "02",
+        "03"
+      ],
+      "scope": "parking-lane-reference",
+      "sourceBounds": [
+        [
+          450,
+          220,
+          900,
+          270
+        ]
+      ],
+      "association": "Named outer frontage along the main VE bank, on the northern branch of the western perimeter. Actual outward road direction is retained from the source arrows."
+    },
+    "VH002": {
+      "way": "west-south",
+      "nodes": [
+        "02",
+        "01"
+      ],
+      "scope": "parking-lane-reference",
+      "sourceBounds": [
+        [
+          70,
+          200,
+          450,
+          245
+        ]
+      ],
+      "association": "Named outer frontage along the smaller VE/V side of the same western perimeter, on its separate southern branch. This is distinct from VH001 beyond the main divider."
+    },
+    "VZ001": {
+      "way": "spine-3",
+      "nodes": [
+        "30",
+        "31"
+      ],
+      "scope": "parking-lane-reference",
+      "sourceBounds": [
+        [
+          80,
+          708,
+          450,
+          735
+        ]
+      ],
+      "association": "Road-facing perimeter strip at the V end of the field, separate from the VAX/VA frontage beyond the main divider. Arrival stays on the reviewed private roadside aisle."
+    },
+    "VZ002": {
+      "way": "spine-1",
+      "nodes": [
+        "10",
+        "11"
+      ],
+      "scope": "parking-group-approach",
+      "sourceBounds": [
+        [
+          30,
+          239,
+          80,
+          730
+        ]
+      ],
+      "association": "Named terminal-end VZ002 frontage across the seven-bay V field. Arrival is on the visible first long aisle about6m before its terminal end, as an access-side reference. The shadowed fence-side transverse strip is NOT drawn as a new road.",
+      "fraction": 0.05
+    }
+  },
+  "vApproaches": {
+    "west": {
+      "name": "Western bank",
+      "way": "spine-1",
+      "nodes": [
+        "10",
+        "11"
+      ],
+      "sourceY": [
+        200,
+        410
+      ]
+    },
+    "middle": {
+      "name": "Middle bank",
+      "way": "spine-2",
+      "nodes": [
+        "20",
+        "21"
+      ],
+      "sourceY": [
+        410,
+        575
+      ]
+    },
+    "roadside": {
+      "name": "Roadside bank",
+      "way": "spine-3",
+      "nodes": [
+        "30",
+        "31"
+      ],
+      "sourceY": [
+        575,
+        740
+      ]
+    }
+  },
+  "unresolved": {
+    "VB": "The source triangular northern roadside wedge and its numbered VB strip cannot be bounded independently in the2025 rectilinear office-side layout. Do not reuse the office forecourt or VA point.",
+    "VF": "The northern western/middle-bank cut-out has changed around the industrial edge. The current road is visible, but the exact printed VF frontage cannot be individually identified from the source shape.",
+    "VG": "The source office/gate-side angled frontage cannot be reconciled to a unique current private parcel boundary; the northern staging-yard driveway is not automatically the Nissan carfield gate."
+  },
+  "publicGateAudit": {
+    "connect": false,
+    "rejectedAutomaticAnchor": "12425906417",
+    "reason": "The northern Jozef opening serves a staging forecourt. A continuous road-side fence exists south of the office, and the transfer around the office-west gate/fence needs positive verification. No public-road split or exterior connection is proposed."
+  },
+  "trafficEvidence": {
+    "basis": "Preserve the source perimeter outward arrows for VH001 and VH002; use only the wider main aisles/crossings with paired travel arrows. Narrow one-way storage aisles and their prohibited turn shortcuts are not digitized. Current on-site signs and gate permissions remain unverified.",
+    "limits": "Internal road approaches and lane references only; no surveyed parking-line coordinates or cross-port route certification."
+  },
+  "rejectedCrossings": [
+    {
+      "id": "v-divider",
+      "reason": "Close-up review shows vehicle-storage rows and painted empty storage bays at this apparent cross line; no continuous drivable cross-aisle is proved."
+    },
+    {
+      "id": "south-cross",
+      "reason": "The source terminal-end perimeter band lies largely in fence shadow in the photo. Do not invent a drivable connection across that shadow; use visible long-aisle-side arrivals."
+    }
+  ],
+  "limitations": [
+    "The West-south one-way perimeter is retained only through observed clear asphalt. Its onward terminal-end connection is not digitized. Routes leaving that spur may be unavailable; no false loop or traffic reversal is added.",
+    "Internal arrival certification is tested independently from VA and VH001 origins. No external Jozef transfer is certified."
+  ],
+  "guards": [],
+  "anchorCoordinates": {},
+  "mustNotConnectToExternalNodes": true,
+  "coordinateMethod": "Exact pixel georeference of the official WMS raster. These are independently observed road controls, not an affine fit from source labels.",
+  "roadControlPrecisionMetres": 5
+}

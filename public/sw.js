@@ -1,4 +1,4 @@
-const CACHE='portway-v19-pos-os-routes';
+const CACHE='portway-v20-full-terminal-audit';
 self.addEventListener('install',event=>{
   event.waitUntil((async()=>{
     const cache=await caches.open(CACHE);

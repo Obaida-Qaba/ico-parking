@@ -142,14 +142,15 @@ export function createGPS({getMap,getSelected,getCatalogue,showStreet,toast,dial
       if(fix!==calculationFix||!usable())return calculate(true);
       route=computed;
       $('navigation-destination').textContent=label(hit);
-      if(!route.available){$('navigation-instruction').textContent='No connected road route';$('navigation-detail').textContent=route.reason;$('navigation-distance').textContent='—';}
+      const internal=pin.automatic&&pin.routingScope==='terminal-internal';
+      if(!route.available){$('navigation-instruction').textContent=internal?'No route from here':'No connected road route';$('navigation-detail').textContent=(internal?'Routes use reviewed roads inside Nissan. Entrance and some onward connections are unconfirmed. ':'')+route.reason;$('navigation-distance').textContent='—';}
       else{
         $('navigation-distance').textContent=route.distance>=1000?(route.distance/1000).toFixed(1)+' km':Math.round(route.distance)+' m';
         const near=distanceMetres([fix.lat,fix.lon],[pin.lat,pin.lon])<=Math.max(12,fix.accuracy);
         $('navigation-instruction').textContent=near?(pin.automatic?'You are near the parking approach':'You are near your saved destination'):nextInstruction(route.points,{heading:travelHeading});
         const area=pin.scope==='parking-group-approach';
         const targetNote=pin.automatic?`Route to ${hit.parking.code} parking ${area?'area ':''}approach.${area?' Shared area access; exact entrance is not mapped.':''}${hit.line?' Line '+hit.line+' remains a reference inside the parking.':''}`:(!pin.exactLine&&hit.line?`Route to ${hit.parking.code} parking; line ${hit.line} is not separately positioned.`:'Route follows mapped roads.');
-        $('navigation-detail').textContent=targetNote+(route.endOffset>10?` Road ends ${Math.round(route.endOffset)} m from the point.`:'')+' Follow current terminal signs.';
+        $('navigation-detail').textContent=targetNote+(internal?' Within Nissan only.':'')+(route.endOffset>10?` Road ends ${Math.round(route.endOffset)} m from the point.`:'')+' Follow current terminal signs.';
       }
       draw();
       if(firstRoute&&route.available&&street&&following)followView();
@@ -203,7 +204,7 @@ export function createGPS({getMap,getSelected,getCatalogue,showStreet,toast,dial
     if(!hit){toast('Choose a parking first.');return;}
     const pin=pinFor(hit);
     if(!pin){clearRoute();onUnmapped?.(hit);return;}
-    routeClient.cancel();active=hit;route=null;navigationLayout(true);$('map-options-panel').hidden=true;$('map-options').setAttribute('aria-expanded','false');$('navigation-destination').textContent=label(hit);$('navigation-instruction').textContent='Waiting for live GPS…';$('navigation-distance').textContent='—';$('navigation-detail').textContent=pin.automatic?'Using the built-in parking approach. The route follows mapped roads.':'Using your saved destination point. The route follows mapped roads.';
+    routeClient.cancel();active=hit;route=null;navigationLayout(true);$('map-options-panel').hidden=true;$('map-options').setAttribute('aria-expanded','false');$('navigation-destination').textContent=label(hit);$('navigation-instruction').textContent='Waiting for live GPS…';$('navigation-distance').textContent='—';$('navigation-detail').textContent=pin.automatic&&pin.routingScope==='terminal-internal'?'Routes use reviewed roads inside Nissan. Entrance and some onward connections are unconfirmed.':pin.automatic?'Using the built-in parking approach. The route follows mapped roads.':'Using your saved destination point. The route follows mapped roads.';
     start();calculate(true);
   }
   function setup(hit){

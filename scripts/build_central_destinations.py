@@ -1,7 +1,7 @@
 """Rebuild the checked G-L quay and A/B compounds from actual corner nodes."""
 from pathlib import Path
 import json
-from build_south_east_destinations import region,add,OUT,REGIONS
+from build_south_east_destinations import region,add,label_quay_reference,OUT,REGIONS
 
 ROOT=Path(__file__).resolve().parents[1]
 previous=set(OUT);start_regions=len(REGIONS)
@@ -32,6 +32,7 @@ for letter,xs,nodes,west,east,divider,quay in columns:
   [(divider,sw,se),(east,se,qe),(quay,qw,qe),(west,sw,qw)],evidence)
  add(letter+'B1',b,'south');add(letter+'A1',a,'north')
  add('BK'+letter,dict(a,sourceBounds=[xs[0],417,xs[1],423.7]),'south')
+ label_quay_reference('BK'+letter)
 
 output=ROOT/'scripts/geo/central-destinations.json'
 output.write_text(json.dumps({'destinations':{k:v for k,v in OUT.items() if k not in previous},'regions':REGIONS[start_regions:]},indent=2),encoding='utf-8')

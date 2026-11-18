@@ -1,0 +1,292 @@
+{
+  "source": "https://cewez.be/wp-content/uploads/2025/04/Onthaalbrochure-ICO.pdf",
+  "sourcePage": 25,
+  "sourceUnits": "uncropped PDF points, x right/y down",
+  "basis": "Additional visible printed parking, staging-bay and perimeter-lane references from full raster page review. Label positions only, no automatic GPS projection. Existing 125 source labels remain in toyota-source-points.json.",
+  "points": {
+    "W01": [
+      [
+        264,
+        227.5
+      ]
+    ],
+    "W02": [
+      [
+        264,
+        234.5
+      ]
+    ],
+    "W03": [
+      [
+        264,
+        241.5
+      ]
+    ],
+    "W04": [
+      [
+        264,
+        248.5
+      ]
+    ],
+    "W05": [
+      [
+        264,
+        255.5
+      ]
+    ],
+    "W06": [
+      [
+        264,
+        262.5
+      ]
+    ],
+    "X06": [
+      [
+        312,
+        241
+      ]
+    ],
+    "X04": [
+      [
+        323,
+        241
+      ]
+    ],
+    "X02": [
+      [
+        334,
+        241
+      ]
+    ],
+    "Y02": [
+      [
+        218.5,
+        338.1
+      ]
+    ],
+    "Y04": [
+      [
+        225.8,
+        338.2
+      ]
+    ],
+    "Y06": [
+      [
+        233.0,
+        338.2
+      ]
+    ],
+    "Y08": [
+      [
+        240.4,
+        338.2
+      ]
+    ],
+    "Y10": [
+      [
+        250.6,
+        338.2
+      ]
+    ],
+    "Y12": [
+      [
+        258.0,
+        338.2
+      ]
+    ],
+    "Y14": [
+      [
+        265.1,
+        338.3
+      ]
+    ],
+    "Y16": [
+      [
+        272.5,
+        338.2
+      ]
+    ],
+    "Y18": [
+      [
+        282.9,
+        338.3
+      ]
+    ],
+    "Y20": [
+      [
+        290.3,
+        338.3
+      ]
+    ],
+    "Y22": [
+      [
+        297.4,
+        338.3
+      ]
+    ],
+    "Y24": [
+      [
+        304.8,
+        338.3
+      ]
+    ],
+    "Y26": [
+      [
+        315.0,
+        338.3
+      ]
+    ],
+    "Y28": [
+      [
+        322.4,
+        338.4
+      ]
+    ],
+    "Y30": [
+      [
+        329.5,
+        338.4
+      ]
+    ],
+    "Y32": [
+      [
+        336.7,
+        338.4
+      ]
+    ],
+    "Y34": [
+      [
+        347.0,
+        338.5
+      ]
+    ],
+    "Y35": [
+      [
+        354.4,
+        338.5
+      ]
+    ],
+    "Y36": [
+      [
+        361.6,
+        338.5
+      ]
+    ],
+    "Y37": [
+      [
+        368.8,
+        338.5
+      ]
+    ],
+    "Y38": [
+      [
+        376.1,
+        338.5
+      ]
+    ],
+    "P10": [
+      [
+        342,
+        292
+      ]
+    ],
+    "P20": [
+      [
+        349,
+        292
+      ]
+    ],
+    "P30": [
+      [
+        356,
+        292
+      ]
+    ],
+    "P40": [
+      [
+        363,
+        292
+      ]
+    ],
+    "P50": [
+      [
+        370,
+        292
+      ]
+    ],
+    "P60": [
+      [
+        377,
+        292
+      ]
+    ],
+    "P70": [
+      [
+        384,
+        292
+      ]
+    ],
+    "R01": [
+      [
+        157,
+        502
+      ],
+      [
+        229,
+        502
+      ],
+      [
+        315,
+        502
+      ]
+    ],
+    "Z01": [
+      [
+        496.7,
+        271.2
+      ],
+      [
+        543,
+        479.5
+      ]
+    ],
+    "Z02": [
+      [
+        565,
+        371
+      ]
+    ],
+    "Z03": [
+      [
+        532.7,
+        502.6
+      ],
+      [
+        557,
+        497
+      ],
+      [
+        534,
+        524
+      ]
+    ],
+    "Z04": [
+      [
+        565,
+        398
+      ],
+      [
+        546,
+        501
+      ]
+    ],
+    "Z05": [
+      [
+        536,
+        513.5
+      ]
+    ]
+  },
+  "gpsPolicy": "Index only until each code is independently associated with current physical roads and a destination area. A source glyph does not become a GPS fix.",
+  "independentReview": "All43 labels re-read on20x source renders; Y group gaps, W centres and repeated Z labels checked independently."
+}

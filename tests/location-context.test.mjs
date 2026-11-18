@@ -7,7 +7,7 @@ const data=JSON.parse(readFileSync(new URL('../public/terminals.json',import.met
 const fix=(lat,lon,accuracy=5)=>({lat,lon,accuracy,timestamp:Date.now()});
 
 test('real terminal interiors choose their own local search context',()=>{
- for(const [lat,lon,id] of [[51.301,3.242,'toyota'],[51.29689,3.24508,'hanze'],[51.30217,3.22683,'bastenaken'],[51.326,3.213,'north'],[51.317,3.2105,'nissan']]){
+ for(const [lat,lon,id] of [[51.301,3.242,'toyota'],[51.29689,3.24508,'hanze'],[51.30217,3.22683,'bastenaken'],[51.326,3.213,'north'],[51.3187,3.2059,'nissan']]){
   const terminal=detectTerminal(fix(lat,lon),data);
   assert.equal(terminal?.id,id,`${lat}, ${lon}`);
   assert.equal(terminal.mapId,['bastenaken','hanze'].includes(id)?'south':id,'southern regions select the current combined plan');

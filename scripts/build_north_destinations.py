@@ -105,9 +105,11 @@ for code,nodes in [('KCB',['2494558991','2494558996']),('KCA',['2494558996','249
     add_block('north',code,('241878125',nodes),group='nit-dock405-side-strips')
 
 # P is bounded by the four identifiable junctions beside the dock408 corner.
-add_block('north','P',('241878109',['2494558948','2494558983']),
-          ('241878076',['2494558944','2494558973','2494558978']),group='nit-dock408-p-o-compound')
-add_block('north','Q2',('241878109',['2494558935','2494558948']),group='nit-looods-c-q2-compound')
+if 'portway-nit-quay-west-aisle' not in WAYS:
+    # Retired by the independently reviewed quay-side geometry/target builder.
+    add_block('north','P',('241878109',['2494558948','2494558983']),
+              ('241878076',['2494558944','2494558973','2494558978']),group='nit-dock408-p-o-compound')
+    add_block('north','Q2',('241878109',['2494558935','2494558948']),group='nit-looods-c-q2-compound')
 add_block('north','O',('241878125',['2494558978','2494558983']),group='nit-dock408-p-o-compound')
 add_block('north','N',('241878071',['2494559014','2494559082']),
           ('241878098',['2494559008','2984583110','2494559079']),group='nit-north-eastern-outer-blocks')

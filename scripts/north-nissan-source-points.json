@@ -1,0 +1,354 @@
+{
+  "version": 1,
+  "reviewed": "2026-11-18",
+  "sourceCache": "scripts/sources/current.pdf",
+  "sourceUrl": "https://www.icoterminals.com/upload/ico_safety_regulations.pdf",
+  "coordinates": "Uncropped original PDF points, x/y before atlas cropping, scaling or rotation. Points identify printed labels only, not GPS fixes.",
+  "additions": [
+    {
+      "mapId": "north",
+      "code": "A1",
+      "sourcePage": 5,
+      "points": [
+        [
+          806.9378,
+          322.1354
+        ]
+      ],
+      "sourceBounds": [
+        [
+          801.9088,
+          317.1624,
+          811.9669,
+          327.1084
+        ]
+      ],
+      "scope": "parking-row-reference",
+      "basis": "The separate A and1 glyph lines form the visibly printed A1 row label. Do not index generic A from this fragment."
+    },
+    {
+      "mapId": "north",
+      "code": "A46",
+      "sourcePage": 5,
+      "points": [
+        [
+          800.3303,
+          525.1765
+        ]
+      ],
+      "sourceBounds": [
+        [
+          793.05,
+          520.167,
+          807.6105,
+          530.186
+        ]
+      ],
+      "scope": "parking-row-reference",
+      "basis": "The text extractor splits the visibly printed A46 into A 6 and a separate4 in its gap. Do not index A6."
+    },
+    {
+      "mapId": "north",
+      "code": "B",
+      "sourcePage": 5,
+      "points": [
+        [
+          778.0442,
+          162.5275
+        ]
+      ],
+      "sourceBounds": [
+        [
+          768.5732,
+          158.5659,
+          787.5152,
+          166.489
+        ]
+      ],
+      "scope": "parking-group-approach",
+      "basis": "Large standalone B parking label beside47-to-65 annotation near the gate; distinct from numbered B1/B23/B46 row references."
+    },
+    {
+      "mapId": "north",
+      "code": "Q9",
+      "sourcePage": 5,
+      "points": [
+        [
+          195.5399,
+          488.9341
+        ]
+      ],
+      "sourceBounds": [
+        [
+          176.5662,
+          483.8084,
+          214.5137,
+          494.0598
+        ]
+      ],
+      "scope": "parking-approach",
+      "basis": "Join Q and9 on the same rotated printed label; not a generic Q group."
+    },
+    {
+      "mapId": "north",
+      "code": "Q10",
+      "sourcePage": 5,
+      "points": [
+        [
+          195.5531,
+          510.6184
+        ]
+      ],
+      "sourceBounds": [
+        [
+          176.5651,
+          504.1917,
+          214.5412,
+          517.045
+        ]
+      ],
+      "scope": "parking-approach",
+      "basis": "Join Q and10 on the same rotated printed label; not a generic Q group."
+    },
+    {
+      "mapId": "north",
+      "code": "DRU",
+      "sourcePage": 5,
+      "points": [
+        [
+          49.0156,
+          541.4828
+        ],
+        [
+          45.2179,
+          682.249
+        ]
+      ],
+      "sourceBounds": [
+        [
+          44.8962,
+          535.3399,
+          53.1349,
+          547.6256
+        ],
+        [
+          41.0986,
+          676.1061,
+          49.3373,
+          688.3919
+        ]
+      ],
+      "scope": "parking-lane-reference",
+      "basis": "Named access/truck lane printed along the corresponding perimeter road. Index as lane-ref, not an ordinary parking block."
+    },
+    {
+      "mapId": "north",
+      "code": "DRQ",
+      "sourcePage": 5,
+      "points": [
+        [
+          146.354,
+          483.2793
+        ],
+        [
+          147.565,
+          415.4629
+        ]
+      ],
+      "sourceBounds": [
+        [
+          142.3278,
+          477.087,
+          150.3803,
+          489.4716
+        ],
+        [
+          143.5387,
+          409.2706,
+          151.5912,
+          421.6552
+        ]
+      ],
+      "scope": "parking-lane-reference",
+      "basis": "Named access/truck lane printed along the corresponding perimeter road. Index as lane-ref, not an ordinary parking block."
+    },
+    {
+      "mapId": "north",
+      "code": "DRA001",
+      "sourcePage": 5,
+      "points": [
+        [
+          891.5169,
+          255.677
+        ]
+      ],
+      "sourceBounds": [
+        [
+          887.7999,
+          244.214,
+          895.2339,
+          267.14
+        ]
+      ],
+      "scope": "parking-lane-reference",
+      "basis": "Named access/truck lane printed along the corresponding perimeter road. Index as lane-ref, not an ordinary parking block."
+    },
+    {
+      "mapId": "north",
+      "code": "DRA002",
+      "sourcePage": 5,
+      "points": [
+        [
+          902.9663,
+          360.1503
+        ],
+        [
+          865.1431,
+          472.4774
+        ]
+      ],
+      "sourceBounds": [
+        [
+          895.7198,
+          348.1017,
+          910.2128,
+          372.1989
+        ],
+        [
+          857.8966,
+          460.4288,
+          872.3896,
+          484.526
+        ]
+      ],
+      "scope": "parking-lane-reference",
+      "basis": "Named access/truck lane printed along the corresponding perimeter road. Index as lane-ref, not an ordinary parking block."
+    },
+    {
+      "mapId": "north",
+      "code": "DRA003",
+      "sourcePage": 5,
+      "points": [
+        [
+          751.7386,
+          538.5983
+        ]
+      ],
+      "sourceBounds": [
+        [
+          740.153,
+          534.4835,
+          763.3243,
+          542.7131
+        ]
+      ],
+      "scope": "parking-lane-reference",
+      "basis": "Named access/truck lane printed along the corresponding perimeter road. Index as lane-ref, not an ordinary parking block."
+    },
+    {
+      "mapId": "nissan",
+      "code": "V",
+      "sourcePage": 6,
+      "points": [
+        [
+          183.0568,
+          489.6963
+        ],
+        [
+          183.7185,
+          647.1552
+        ],
+        [
+          182.8405,
+          332.5927
+        ]
+      ],
+      "sourceBounds": [
+        [
+          153.0068,
+          428.5963,
+          213.1068,
+          550.7963
+        ],
+        [
+          153.6685,
+          586.0552,
+          213.7685,
+          708.2552
+        ],
+        [
+          152.7905,
+          271.4927,
+          212.8905,
+          393.6927
+        ]
+      ],
+      "scope": "parking-group-approach",
+      "basis": "Three large standalone V labels cover the western seven-bay field in the Nissan plan. Current V[A-Z] indexing excludes this real printed destination."
+    }
+  ],
+  "exclude": [
+    {
+      "mapId": "north",
+      "code": "HHW",
+      "sourcePage": 5,
+      "classification": "facility",
+      "points": [
+        [
+          220.6162,
+          543.5535
+        ],
+        [
+          220.3472,
+          595.4632
+        ]
+      ],
+      "sourceBounds": [
+        [
+          208.2440185546875,
+          536.0630493164062,
+          232.98831176757812,
+          551.0439453125
+        ],
+        [
+          207.97491455078125,
+          587.9727783203125,
+          232.71942138671875,
+          602.9536743164062
+        ]
+      ],
+      "basis": "HH plus W combines into HHW on two small sheds beside Loods C. These are facility labels; exclude from the parking-code index unless a facility search mode is explicitly added. The isolated HH and W fragments are not new parking codes."
+    },
+    {
+      "mapId": "north",
+      "code": "A",
+      "classification": "fragment",
+      "basis": "Combined into A1 above."
+    },
+    {
+      "mapId": "north",
+      "code": "A6",
+      "classification": "fragment",
+      "basis": "Combined into A46 above."
+    },
+    {
+      "mapId": "north",
+      "code": "Q",
+      "classification": "fragment",
+      "basis": "Combined into Q9/Q10 above."
+    }
+  ],
+  "existingNumberedReferences": [
+    {
+      "mapId": "north",
+      "codes": [
+        "B1",
+        "B23",
+        "B46",
+        "A23"
+      ],
+      "scope": "parking-row-reference",
+      "basis": "These exact labels are printed on numbered A/B rows. Their current broad shared-road destinations do not prove individual row/line coordinates. Preserve the source labels, and distinguish shared parking-area access from exact row arrival."
+    }
+  ]
+}

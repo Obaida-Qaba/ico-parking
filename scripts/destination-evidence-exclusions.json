@@ -1,0 +1,92 @@
+{
+  "version": 1,
+  "reviewed": "2026-11-18",
+  "sourceUrls": [
+    "https://cewez.be/wp-content/uploads/2025/04/Onthaalbrochure-ICO.pdf",
+    "https://geo.api.vlaanderen.be/OMWRGBMRVL/wms",
+    "https://webapps.portofantwerpbruges.com/arcgis/rest/services/extern/havenmeesterkaart/MapServer/20"
+  ],
+  "imageryFlightDate": "2025-02-23",
+  "excludedAutomaticDestinations": {
+    "toyota:A05": {
+      "sourceMap": "toyota",
+      "code": "A05",
+      "reason": "The historical drawing extrapolation places this reference inside the fenced Fluxys gas facility, visibly containing a tank, plant and storage yard rather than the printed Toyota bays. Source references remain indexed; neither a current destination nor a replacement arrival point has been proved.",
+      "evidence": [
+        "Official Flemish orthophoto, exact projected point controls checked on18Nov2026",
+        "Official port company concession polygons, layer20",
+        "Historical source does not have georeferenced parking entrances"
+      ]
+    },
+    "toyota:A06": {
+      "sourceMap": "toyota",
+      "code": "A06",
+      "reason": "The historical drawing extrapolation places this reference inside the fenced Fluxys gas facility, visibly containing a tank, plant and storage yard rather than the printed Toyota bays. Source references remain indexed; neither a current destination nor a replacement arrival point has been proved.",
+      "evidence": [
+        "Official Flemish orthophoto, exact projected point controls checked on18Nov2026",
+        "Official port company concession polygons, layer20",
+        "Historical source does not have georeferenced parking entrances"
+      ]
+    },
+    "toyota:A07": {
+      "sourceMap": "toyota",
+      "code": "A07",
+      "reason": "The historical drawing extrapolation places this reference inside the fenced Fluxys gas facility, visibly containing a tank, plant and storage yard rather than the printed Toyota bays. Source references remain indexed; neither a current destination nor a replacement arrival point has been proved.",
+      "evidence": [
+        "Official Flemish orthophoto, exact projected point controls checked on18Nov2026",
+        "Official port company concession polygons, layer20",
+        "Historical source does not have georeferenced parking entrances"
+      ]
+    },
+    "toyota:A08": {
+      "sourceMap": "toyota",
+      "code": "A08",
+      "reason": "The historical drawing extrapolation places this reference inside the fenced Fluxys gas facility, visibly containing a tank, plant and storage yard rather than the printed Toyota bays. Source references remain indexed; neither a current destination nor a replacement arrival point has been proved.",
+      "evidence": [
+        "Official Flemish orthophoto, exact projected point controls checked on18Nov2026",
+        "Official port company concession polygons, layer20",
+        "Historical source does not have georeferenced parking entrances"
+      ]
+    },
+    "toyota:A09": {
+      "sourceMap": "toyota",
+      "code": "A09",
+      "reason": "The historical drawing extrapolation places this reference inside the fenced Fluxys gas facility, visibly containing a tank, plant and storage yard rather than the printed Toyota bays. Source references remain indexed; neither a current destination nor a replacement arrival point has been proved.",
+      "evidence": [
+        "Official Flemish orthophoto, exact projected point controls checked on18Nov2026",
+        "Official port company concession polygons, layer20",
+        "Historical source does not have georeferenced parking entrances"
+      ]
+    },
+    "toyota:A01PPO": {
+      "sourceMap": "toyota",
+      "code": "A01PPO",
+      "reason": "The historical drawing extrapolation places this reference inside the fenced Fluxys gas facility, visibly containing a tank, plant and storage yard rather than the printed Toyota bays. Source references remain indexed; neither a current destination nor a replacement arrival point has been proved.",
+      "evidence": [
+        "Official Flemish orthophoto, exact projected point controls checked on18Nov2026",
+        "Official port company concession polygons, layer20",
+        "Historical source does not have georeferenced parking entrances"
+      ]
+    },
+    "toyota:P04": {
+      "sourceMap": "toyota",
+      "code": "P04",
+      "reason": "The historical drawing extrapolation places this reference north of the terminal fence in a Gassco/Fluxys industrial yard, not in an independently matched Toyota parking parcel. Source references remain indexed; neither a current destination nor a replacement arrival point has been proved.",
+      "evidence": [
+        "Official Flemish orthophoto, exact projected point controls checked on18Nov2026",
+        "Official port company concession polygons, layer20",
+        "Historical source does not have georeferenced parking entrances"
+      ]
+    },
+    "toyota:P05": {
+      "sourceMap": "toyota",
+      "code": "P05",
+      "reason": "The historical drawing extrapolation places this reference north of the terminal fence in a Gassco/Fluxys industrial yard, not in an independently matched Toyota parking parcel. Source references remain indexed; neither a current destination nor a replacement arrival point has been proved.",
+      "evidence": [
+        "Official Flemish orthophoto, exact projected point controls checked on18Nov2026",
+        "Official port company concession polygons, layer20",
+        "Historical source does not have georeferenced parking entrances"
+      ]
+    }
+  }
+}

@@ -43,9 +43,15 @@ test('the coverage audit lists every missing parking and validates every availab
 test('every offered built-in approach is reachable from its connected terminal road network',()=>{
   const disconnected=[];
   for(const [key,entry] of Object.entries(catalogue.destinations))for(const point of entry.chooseApproach?entry.approaches:[entry]){
-    const start=catalogue.destinations[key.startsWith('north:')?'north:BB':'south:CD1'];
+    const internal=point.routingScope==='terminal-internal';
+    const start=catalogue.destinations[internal?'nissan:VA':key.startsWith('north:')?'north:BB':'south:CD1'];
     const route=routeRoads(graph,[start.lat,start.lon],[point.lat,point.lon]);
     if(!route.available)disconnected.push(key);
+    if(internal){
+      const outside=catalogue.destinations['north:BB'];
+      assert.equal(point.publicConnectionVerified,false);
+      assert.equal(routeRoads(graph,[outside.lat,outside.lon],[point.lat,point.lon]).available,false,'internal approaches must not gain an invented gate connection');
+    }
   }
   assert.deepEqual(disconnected,[],'a Start route button must not end on an unreachable directed lane');
 });

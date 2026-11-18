@@ -28,6 +28,8 @@ jobs:
           cache: npm
       - run: npm ci --no-audit --no-fund
       - run: npm test
+      - name: Verify per-parking audit snapshot
+        run: npm run audit:report-check
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v4
         with:

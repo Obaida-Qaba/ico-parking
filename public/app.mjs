@@ -4,6 +4,7 @@ import { createMapUI } from './map-ui.mjs';
 import { detectTerminal } from './location-context.mjs';
 import { optimizeDrivingMap } from './map-performance.mjs';
 import { destinationChoices } from './destinations.mjs';
+import { parkingKey } from './navigation.mjs';
 
 const paths = {
   search:'m21 21-5-5 M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0',
@@ -117,7 +118,7 @@ function renderMap(next=current, focus=null) {
   nodes=L.layerGroup().addTo(map);selectedLayers=L.layerGroup().addTo(map);
     $('map-loading').hidden=street;
   if(street) {
-    map.attributionControl.addAttribution('Routing data &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap contributors</a>');
+    map.attributionControl.addAttribution('Routing data &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap contributors</a> · Alignment: <a href="https://geo.api.vlaanderen.be/OMWRGBMRVL/wms" target="_blank" rel="noopener">Digitaal Vlaanderen</a>');
     for(const t of [{name:'ICO · Zuidelijke Insteek',pos:[51.2946906,3.2413519]},{name:'ICO · Noordelijke Insteek',pos:[51.3218156,3.2131578]}]) {
       L.marker(t.pos,{icon:L.divIcon({className:'terminal-dot',iconSize:[16,16]}),title:t.name+' · approximate terminal location'}).addTo(map).bindTooltip(t.name+' · approximate terminal location');
     }
@@ -211,7 +212,14 @@ function choose(hit, remember=true) {
 function renderGPSActions(){
   if(!selected)return;
   const pin=gps.pinFor(selected);
-  $('route-button').innerHTML=`${icon(pin?'route':'layers')} ${pin?'Start route':'View parking'} ${icon('arrow')}`;
+  const internal=pin?.automatic&&pin.routingScope==='terminal-internal';
+  $('route-button').innerHTML=internal?'Route inside Nissan':`${icon(pin?'route':'layers')} ${pin?'Start route':'View parking'} ${icon('arrow')}`;
+  let scope=$('destination-card').querySelector('.destination-routing-scope');
+  if(internal&&!scope){
+    scope=document.createElement('small');scope.className='destination-routing-scope';scope.textContent='Within Nissan only';
+    scope.style.cssText='display:inline-block;margin-left:6px;padding:2px 6px;border:1px solid #cbd6c8;border-radius:5px;font-size:10px;font-weight:600;white-space:nowrap';
+    $('destination-card').querySelector('.destination-meta').append(scope);
+  }else if(!internal)scope?.remove();
   $('view-plan-button').hidden=!pin;
   let button=$('save-gps-button');
   if(!button){button=document.createElement('button');button.id='save-gps-button';button.className='secondary destination-options-button';$('destination-options').append(button);}
@@ -240,7 +248,9 @@ function showResults(submitted=false) {
   if(parsed.error){$('search-error').textContent=parsed.error;$('search-results').hidden=true;return;}
   if(!parsed.parking){if(submitted){$('search-error').hidden=false;$('search-error').textContent='Enter a parking reference, for example H61.';$('destination').focus();}return;}
   const filter=$('terminal-filter').value;
-  const results=searchParkings(atlas.maps,$('destination').value,filter,{preferredTerminal:filter==='auto'?nearbyTerminal?.id:null}).flatMap(h=>destinationChoices({...h,line:parsed.line},catalogue));
+  const expanded=searchParkings(atlas.maps,$('destination').value,filter,{preferredTerminal:filter==='auto'?nearbyTerminal?.id:null}).flatMap(h=>destinationChoices({...h,line:parsed.line},catalogue));
+  const currentKeys=new Set(expanded.filter(hit=>!hit.map.historical).map(hit=>parkingKey({...hit,line:null})));
+  const results=expanded.filter(hit=>!hit.map.historical||!currentKeys.has(parkingKey({...hit,line:null})));
   const exact=results.filter(r=>normalizeCode(r.parking.code)===parsed.parking);
   const localExact=exact.filter(r=>r.preferred);
   if(submitted&&localExact.length===1){choose(localExact[0]);return;}

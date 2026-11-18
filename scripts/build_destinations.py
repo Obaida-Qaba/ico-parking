@@ -195,6 +195,18 @@ add_junction_match('CC2',[881.71,319.19,896.19,343.45],'241873275',
         ('746582120',['12431453999','6986702537'],False)],approach_oneway=True)
 # Independent schematic regions have independent topology matches. Preserve the
 # existing checked C-row/VPC points when merging the wider source catalogue.
+# Fitting controls are deliberately distinct from the actual printed glyphs.
+# Keep both; adjusted C-row controls must not be serialized as source labels.
+for key,point in out.items():
+    if point.get('method')!='source-road-match':continue
+    parking=next(p for p in CURRENT['parkings'] if p['code']==key.split(':')[1])
+    actual=[round(parking['x']/3,4),round(parking['y']/3,4)]
+    if max(abs(a-b) for a,b in zip(point['sourcePoint'],actual))>.01:
+        point['matchModelPoint']=point['sourcePoint']
+        point['sourcePoint']=actual
+        point['matchModelPointScope']='Local fitted-row control, not a printed source-label position.'
+        if 'labelPosition' in point:
+            label=point['labelPosition'];label['matchModelPoint']=label['sourcePoint'];label['sourcePoint']=actual
 regions=[]
 evidence_gaps=[]
 for builder,filename in [
@@ -205,6 +217,10 @@ for builder,filename in [
     ('build_central_destinations.py','central-destinations.json'),
     ('build_os_destinations.py','os-destinations.json'),
     ('build_pos_destinations.py','pos-destinations.json'),
+    ('build_de_destinations.py','de-destinations.json'),
+    ('build_north_remaining_destinations.py','north-remaining-destinations.json'),
+    ('build_central_remaining_destinations.py','central-remaining-destinations.json'),
+    ('build_nissan_destinations.py','nissan-destinations.json'),
 ]:
     subprocess.run([sys.executable,str(ROOT/'scripts'/builder)],check=True,cwd=ROOT)
     extra=json.loads((ROOT/'scripts/geo'/filename).read_text(encoding='utf-8'))
@@ -212,6 +228,9 @@ for builder,filename in [
         if key not in out:out[key]=point
     regions.extend(extra.get('regions',[]))
     evidence_gaps.extend(extra.get('unresolved',[]))
+
+# A later independently reviewed builder may resolve an earlier producer's gap.
+evidence_gaps=list({gap.get('key',gap.get('sourceMap','south')+':'+gap.get('code','')):gap for gap in evidence_gaps if gap.get('key',gap.get('sourceMap','south')+':'+gap.get('code','')) not in out}.values())
 
 audit={}
 for source_map in DATA['maps']:
@@ -223,6 +242,7 @@ result={
  'version':5,'source':'ICO terminal plans and individually matched geographic road/landmark geometry',
  'sourceUrl':'https://www.icoterminals.com/sites/default/files/SIT%20terminalplan%20SIT%2021%2009%202026.pdf',
  'lineExact':False,'coverage':'Bounded individually matched regions only; no global schematic georeference or site validation claimed.',
+ 'coverageDefinition':'coverageAudit counts built-in road approaches, including restricted within-terminal networks. parking-audit.json separately checks external connectivity, missing destinations and accuracy limitations.',
  'controlPoints':{'bastenaken':BASTENAKEN_CONTROLS,'hanze':HANZE_CONTROLS},
  'destinations':out,'regions':regions,'coverageAudit':audit,'evidenceGaps':evidence_gaps
 }

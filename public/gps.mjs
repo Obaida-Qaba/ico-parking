@@ -9,8 +9,11 @@ export function createGPS({getMap,getSelected,getCatalogue,showStreet,toast,dial
   let watch=null,fix=null,layer=null,boundMap=null,street=false,following=true,active=null,graph=null,graphPromise=null,route=null,pending=null,lastRouteAt=0;
   const course=createCourseTracker();
   let headingUp=true,adjustingCamera=false;
+  let movingCamera=false;
   let parkingLabels=null;
   let quietErrors=false;
+  let accuracyCircle=null,positionMarker=null,targetMarker=null,routeHalo=null,routeLine=null,arrivalMarker=null;
+  let markerMode=null,accuracyState=null,targetCode=null,routeGeometry=null;
   let pins={};
   try{const value=JSON.parse(localStorage.getItem('portway-gps-pins')||'{}');if(value&&typeof value==='object'&&!Array.isArray(value))pins=Object.fromEntries(Object.entries(value).filter(([,p])=>validPin(p)));}catch{}
   const $=id=>document.getElementById(id);
@@ -55,30 +58,55 @@ export function createGPS({getMap,getSelected,getCatalogue,showStreet,toast,dial
   function followView(){
     if(!street||!following||!usable()||watch===null||getMap()!==boundMap)return;
     const m=getMap();
+    movingCamera=true;
+    try{
     if(headingUp&&Number.isFinite(course.heading))m.setHeading(course.heading,{ease:.3,deadzone:.8});
     else{m.stopHeadingUp();if(!headingUp)m.setBearing(0);}
     m.setView([fix.lat,fix.lon],Math.max(m.getZoom(),17),{animate:false});anchorAhead();updateArrow();
     $('north-up').setAttribute('aria-pressed',String(!headingUp));
     $('north-up').classList.toggle('active',!headingUp);
+    }finally{movingCamera=false;}
   }
   function draw(){
     if(!street||!layer||boundMap!==getMap())return;
-    layer.clearLayers();
+    const move=(item,position)=>{const previous=item.getLatLng();if(previous.lat!==position[0]||previous.lng!==position[1])item.setLatLng(position);};
     if(fix){
       const position=[fix.lat,fix.lon],stale=Date.now()-fix.timestamp>15000;
-      L.circle(position,{radius:fix.accuracy,color:stale?'#8c969b':'#1683e8',weight:1,fillOpacity:.09,interactive:false}).addTo(layer);
+      const color=stale?'#8c969b':'#1683e8';
+      if(!accuracyCircle)accuracyCircle=L.circle(position,{radius:fix.accuracy,color,weight:1,fillOpacity:.09,interactive:false}).addTo(layer);
+      else{move(accuracyCircle,position);if(accuracyCircle.getRadius()!==fix.accuracy)accuracyCircle.setRadius(fix.accuracy);if(accuracyState!==stale)accuracyCircle.setStyle({color});}
+      accuracyState=stale;
       const hasCourse=Number.isFinite(course.heading);
-      const html=hasCourse?`<svg class="driving-arrow" viewBox="0 0 32 38" aria-hidden="true" style="transform:rotate(${arrowAngle()}deg)"><path d="M16 3 29 32 16 26 3 32Z" fill="#1683e8" stroke="white" stroke-width="2.5" stroke-linejoin="round"/></svg>`:'';
-      L.marker(position,{title:stale?'Last GPS position · signal stale':'Your live GPS position',icon:L.divIcon({className:'gps-dot'+(hasCourse?' heading-arrow':'')+(stale?' stale':''),html,iconSize:hasCourse?[32,38]:[18,18],iconAnchor:hasCourse?[16,19]:[9,9]})}).addTo(layer);
+      const mode=hasCourse?'arrow':'dot';
+      if(!positionMarker||markerMode!==mode){
+        const html=hasCourse?`<svg class="driving-arrow" viewBox="0 0 32 38" aria-hidden="true"><path d="M16 3 29 32 16 26 3 32Z" fill="#1683e8" stroke="white" stroke-width="2.5" stroke-linejoin="round"/></svg>`:'';
+        const icon=L.divIcon({className:'gps-dot'+(hasCourse?' heading-arrow':''),html,iconSize:hasCourse?[32,38]:[18,18],iconAnchor:hasCourse?[16,19]:[9,9]});
+        if(positionMarker)positionMarker.setIcon(icon);
+        else positionMarker=L.marker(position,{icon}).addTo(layer);
+        markerMode=mode;
+      }
+      move(positionMarker,position);
+      const element=positionMarker.getElement();element.classList.toggle('stale',stale);element.title=stale?'Last GPS position · signal stale':'Your live GPS position';updateArrow();
     }
     const hit=active||getSelected(),pin=pinFor(hit);
     const display=pin?.automatic&&validPin(pin.labelPosition)?pin.labelPosition:pin;
     parkingLabels?.update({activeKey:hit?parkingKey({...hit,line:null}).replace(/:parking$/,''):null,saved:pins,gpsPosition:fix,destination:display});
-    if(display)L.marker([display.lat,display.lon],{title:label(hit)+(display!==pin?' · parking area':pin.automatic?' · mapped parking approach':' · saved GPS point'),icon:L.divIcon({className:'gps-target',html:`<span>${esc(hit.parking.code)}</span>`,iconSize:[0,0]})}).addTo(layer);
+    if(display){
+      const position=[display.lat,display.lon],code=hit.parking.code;
+      if(!targetMarker)targetMarker=L.marker(position,{icon:L.divIcon({className:'gps-target',html:`<span>${esc(code)}</span>`,iconSize:[0,0]})}).addTo(layer);
+      else{move(targetMarker,position);if(targetCode!==code)targetMarker.getElement().querySelector('span').textContent=code;}
+      targetCode=code;targetMarker.getElement().title=label(hit)+(display!==pin?' · parking area':pin.automatic?' · mapped parking approach':' · saved GPS point');
+    }else if(targetMarker){layer.removeLayer(targetMarker);targetMarker=null;targetCode=null;}
     if(active&&route?.available&&usable()){
-      L.polyline(route.points,{color:'#fff',weight:10,opacity:.95,interactive:false}).addTo(layer);
-      L.polyline(route.points,{color:'#1478e9',weight:6,opacity:1,className:'road-route',interactive:false}).addTo(layer);
-      L.circleMarker(route.points.at(-1),{radius:5,color:'#fff',weight:2,fillColor:'#1478e9',fillOpacity:1,className:'route-endpoint',interactive:false}).addTo(layer);
+      if(!routeLine){
+        routeHalo=L.polyline(route.points,{color:'#fff',weight:10,opacity:.95,interactive:false}).addTo(layer);
+        routeLine=L.polyline(route.points,{color:'#1478e9',weight:6,opacity:1,className:'road-route',interactive:false}).addTo(layer);
+        arrivalMarker=L.circleMarker(route.points.at(-1),{radius:5,color:'#fff',weight:2,fillColor:'#1478e9',fillOpacity:1,className:'route-endpoint',interactive:false}).addTo(layer);
+      }else if(routeGeometry!==route){routeHalo.setLatLngs(route.points);routeLine.setLatLngs(route.points);move(arrivalMarker,route.points.at(-1));}
+      routeGeometry=route;
+    }else if(routeLine){
+      for(const item of [routeHalo,routeLine,arrivalMarker])layer.removeLayer(item);
+      routeHalo=routeLine=arrivalMarker=routeGeometry=null;
     }
   }
   async function calculate(force=false){
@@ -177,10 +205,13 @@ export function createGPS({getMap,getSelected,getCatalogue,showStreet,toast,dial
   }
   function bind(m,isStreet){
     boundMap=m;street=isStreet;layer=isStreet?L.layerGroup().addTo(m):null;
+    accuracyCircle=positionMarker=targetMarker=routeHalo=routeLine=arrivalMarker=null;
+    markerMode=accuracyState=targetCode=routeGeometry=null;
     parkingLabels=isStreet?createParkingLabels(m,getCatalogue?.()):null;
     $('north-up').hidden=!isStreet;
     if(!isStreet)return;
     m.on('dragstart',()=>{following=false;m.stopHeadingUp();updateArrow();$('follow-gps').classList.remove('following');});
+    m.on('zoomstart',()=>{if(movingCamera||adjustingCamera)return;following=false;m.stopHeadingUp();updateArrow();$('follow-gps').classList.remove('following');});
     m.on('rotate',()=>{anchorAhead();updateArrow();});
     m.on('resize',()=>requestAnimationFrame(()=>{if(getMap()===m)followView();}));
     m.on('click',event=>{

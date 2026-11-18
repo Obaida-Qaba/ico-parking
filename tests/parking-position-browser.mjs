@@ -20,6 +20,7 @@ try{
  assert.ok(target.labelPosition,'HC2 has an interior display point independent of its approach');
  for(const bearing of [0,90,270]){
   await page.evaluate(({label,bearing})=>{const m=window.__positionMap;m.fire('dragstart');m.stopHeadingUp();m.setBearing(bearing);m.setView([label.lat,label.lon],18,{animate:false});},{label:target.labelPosition,bearing});
+  await page.evaluate(()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve))));
   const geometry=await page.evaluate(({label,approach,neighbor})=>{
    const m=window.__positionMap,origin=m.getContainer().getBoundingClientRect(),expected=m.latLngToContainerPoint([label.lat,label.lon]);
    const badge=document.querySelector('.gps-target span').getBoundingClientRect();

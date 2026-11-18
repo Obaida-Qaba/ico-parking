@@ -83,6 +83,9 @@ function setViewButtons() {
   $('plan-view').classList.toggle('active',!street);$('street-view').classList.toggle('active',street);
   $('plan-view').setAttribute('aria-pressed',String(!street));$('street-view').setAttribute('aria-pressed',String(street));
   $('street-notice').hidden=!street;
+  $('all-parkings').setAttribute('aria-pressed',String(!street));
+  $('all-parkings').querySelector('span').textContent=street?'All parkings':'GPS map';
+  $('all-parkings').title=street?'Open the complete terminal plan':'Return to my GPS location';
 }
 function fit() {
   if(street) {map.fitBounds([[51.265,3.18],[51.33,3.265]],{padding:[35,100]});return;}
@@ -288,6 +291,7 @@ try {
   $('clear-recents').onclick=()=>{recents=[];try{localStorage.removeItem('portway-recents');}catch{}renderRecents();};
   $('plan-view').onclick=()=>{if(street){street=false;renderMap(current,selected?.parking);}mapUI.closeOptions();};
   $('street-view').onclick=()=>{if(!street){street=true;renderMap();}mapUI.closeOptions();};
+  $('all-parkings').onclick=()=>{closeSearch();mapUI.closeOptions();if(street){street=false;renderMap(current);}else gps.start({quiet:true});};
   $('zoom-in').onclick=()=>map.zoomIn();$('zoom-out').onclick=()=>map.zoomOut();$('fit-map').onclick=()=>{if(!gps.fitRoute())fit();};$('locate').onclick=()=>gps.start();$('live-gps-start').onclick=()=>gps.start();
   $('source').onclick=showSource;$('about').onclick=showAbout;
   document.addEventListener('keydown',e=>{if(e.key==='/'&&!['INPUT','SELECT','TEXTAREA'].includes(document.activeElement.tagName)){e.preventDefault();$('destination').focus();}if(e.key==='Escape'&&!$('info-dialog').open){if(document.body.classList.contains('searching')){closeSearch();$('destination').blur();}else clearDestination();}});

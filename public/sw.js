@@ -1,4 +1,4 @@
-const CACHE='portway-v14-vpc-destinations';
+const CACHE='portway-v15-smooth-map-labels';
 self.addEventListener('install',event=>{
   event.waitUntil((async()=>{
     const cache=await caches.open(CACHE);

@@ -54,6 +54,39 @@ try{
  assert.ok(await page.locator('.nearby-parking').count()>1,'GPS redraw keeps other parking labels');
  assert.equal(await page.evaluate(()=>window.__gpsStarts),1);
  assert.equal(await page.evaluate(()=>window.__gpsStops),0);
+ // Around the VPC, the old collision pass silently dropped half the known
+ // parking names. Every in-view point must have a label or an explicit group.
+ await page.evaluate(()=>{
+  const m=window.__parkingMap;m.fire('dragstart');m.stopHeadingUp();
+  window.__sendParkingFix({timestamp:Date.now(),coords:{latitude:51.3071,longitude:3.2215,accuracy:3,heading:333,speed:2}});
+  m.setBearing(27);m.setView([51.3071,3.2215],16,{animate:false});
+ });
+ await page.waitForTimeout(150);
+ const coverage=await page.evaluate(()=>{
+  const m=window.__parkingMap,size=m.getSize(),expected=[],shown=new Set();
+  m.eachLayer(marker=>{const el=marker.getElement?.();if(!el?.classList.contains('nearby-parking'))return;const p=m.latLngToContainerPoint(marker.getLatLng());if(p.x>=0&&p.x<=size.x&&p.y>=0&&p.y<=size.y)expected.push(el.dataset.parking);if(!el.hidden)shown.add(el.dataset.parking);});
+  for(const button of document.querySelectorAll('.parking-cluster-button'))if(!button.closest('[hidden]'))for(const code of JSON.parse(button.dataset.parkingCodes))shown.add(code);
+  return {expected,shown:[...shown]};
+ });
+ assert.ok(coverage.expected.length>=8,'fixture includes the VPC compounds and adjacent C rows');
+ assert.deepEqual(coverage.expected.filter(code=>!coverage.shown.includes(code)),[],'known parking points are represented by a readable label or explicit group instead of disappearing');
+ const group=page.locator('.parking-cluster-button').first();
+ assert.ok(await group.isVisible(),'crowded parkings have a visible count control');
+ await page.screenshot({path:'test-results/mobile-parking-groups-overview.png',fullPage:true});
+ const members=JSON.parse(await group.getAttribute('data-parking-codes'));
+ await group.click();
+ for(const code of members)assert.ok(await page.getByRole('button',{name:'Show '+code+' on map',exact:true}).isVisible(),'the group exposes '+code);
+ await page.getByRole('button',{name:'Show '+members[0]+' on map',exact:true}).click();
+ assert.equal(await page.locator('#navigation-destination').innerText(),'HC1','inspecting a parking group does not change the current route');
+ await page.locator('.leaflet-popup-close-button').click();
+ const writes=await page.evaluate(async()=>{
+  let count=0;const observer=new MutationObserver(records=>count+=records.length);
+  for(const el of document.querySelectorAll('.nearby-parking'))observer.observe(el,{attributes:true,attributeFilter:['hidden']});
+  for(let i=0;i<100;i++)window.__parkingMap.fire('rotate');
+  await new Promise(resolve=>setTimeout(resolve,120));observer.disconnect();return count;
+ });
+ assert.ok(writes<40,'unchanged rotation events do not repeatedly rewrite every label visibility attribute');
+ await page.screenshot({path:'test-results/mobile-parking-groups-no-missing-labels.png',fullPage:true});
  await context.setOffline(true);await page.reload();
  await page.locator('.destination-code').waitFor();await page.locator('#route-button').click();
  await page.locator('.road-route').waitFor();

@@ -100,9 +100,9 @@ The routing correction remains active independently of how the map background is
 
 ## Remove the default map grid
 
-User requested removal of the whole default OpenStreetMap grid. Removed the raster tile layer, the blanket road-vector layer and the local tile-replacement renderer. The GPS view now has an opaque neutral background with parking codes, the GPS marker and route overlays. The original ICO plan views remain available. Routing still uses the corrected downloaded graph and retains source attribution.
+The default raster tiles and local tile-replacement patches are removed. The user clarified that removing the roads themselves left the map unusable, so the GPS view draws the corrected downloaded road graph over a neutral background. The original ICO plans remain available.
 
-Removed the obsolete road-renderer module from the offline shell and advanced its cache version. Browser tests verify there are no tile layers, external tile requests, static road lines or leftover patch polygons. They retain checks for visible route/GPS/parking labels, heading-up rotation, fullscreen and offline navigation.
+`road-map.mjs` renders all valid graph segments as independent subpaths in two aggregate SVG layers: road casing and white fill. This preserves disconnected and excluded links while avoiding thousands of individual DOM nodes on phones. The roads rotate inside an overlay-child pane below the blue route; their width adapts to zoom. They are available offline with source attribution. Browser tests verify visibly painted aisles, the reported crossing's absence, route stacking, heading rotation and offline use without raster tiles.
 
 ## Location-first home and terminal-aware search
 

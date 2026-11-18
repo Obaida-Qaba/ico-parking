@@ -1,11 +1,11 @@
-const CACHE='portway-v12-location-home';
+const CACHE='portway-v13-visible-roads';
 self.addEventListener('install',event=>{
   event.waitUntil((async()=>{
     const cache=await caches.open(CACHE);
     const response=await fetch('./data.json',{cache:'no-cache'});
     if(!response.ok)throw new Error('Map catalogue unavailable');
     const atlas=await response.clone().json();
-    await cache.addAll(['./','./index.html','./styles.css','./map-focus.css','./home-map.css','./map-ui.mjs','./app.mjs','./core.mjs','./gps.mjs','./heading.mjs','./guidance.mjs','./parking-labels.mjs','./navigation.mjs','./location-context.mjs','./terminals.json','./destinations.mjs','./destinations.json','./roads.json','./data.json','./vendor/leaflet.js','./vendor/leaflet.css','./vendor/leaflet-rotate.js','./icon.svg','./icon-192.png','./icon-512.png','./manifest.webmanifest',...atlas.maps.map(m=>'./'+m.image)]);
+    await cache.addAll(['./','./index.html','./styles.css','./map-focus.css','./home-map.css','./map-ui.mjs','./app.mjs','./core.mjs','./gps.mjs','./heading.mjs','./guidance.mjs','./parking-labels.mjs','./road-map.mjs','./navigation.mjs','./location-context.mjs','./terminals.json','./destinations.mjs','./destinations.json','./roads.json','./data.json','./vendor/leaflet.js','./vendor/leaflet.css','./vendor/leaflet-rotate.js','./icon.svg','./icon-192.png','./icon-512.png','./manifest.webmanifest',...atlas.maps.map(m=>'./'+m.image)]);
     await self.skipWaiting();
   })());
 });

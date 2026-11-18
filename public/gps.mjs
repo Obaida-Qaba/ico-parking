@@ -3,6 +3,7 @@ import {resolveDestination} from './destinations.mjs';
 import {createCourseTracker,screenHeading} from './heading.mjs';
 import {nextInstruction} from './guidance.mjs';
 import {createParkingLabels} from './parking-labels.mjs';
+import {createRoadMap} from './road-map.mjs';
 
 export function createGPS({getMap,getSelected,getCatalogue,showStreet,toast,dialog,onPinChanged,onLocation,onLocationState,escape:esc}) {
   let watch=null,fix=null,layer=null,boundMap=null,street=false,following=true,active=null,graph=null,graphPromise=null,route=null,pending=null,lastRouteAt=0;
@@ -189,7 +190,7 @@ export function createGPS({getMap,getSelected,getCatalogue,showStreet,toast,dial
       $('confirm-map-pin').onclick=()=>{if(save(hit,pin)){pending=null;$('cancel-pin').hidden=true;$('info-dialog').close();navigate(hit);}};
     });
     draw();followView();
-    loadGraph().catch(()=>{});
+    loadGraph().then(g=>{if(boundMap===m&&street){createRoadMap(m,g);draw();}}).catch(()=>{});
   }
   function clearRoute(){active=null;route=null;pending=null;$('cancel-pin').hidden=true;navigationLayout(false);draw();}
   function fitRoute(){if(!street||!active||!route?.available)return false;following=false;getMap().stopHeadingUp();getMap().fitBounds(L.latLngBounds(route.points),{paddingTopLeft:[28,85],paddingBottomRight:[75,165],maxZoom:18,animate:false});updateArrow();return true;}

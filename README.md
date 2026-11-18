@@ -26,7 +26,7 @@ Open http://127.0.0.1:4173. The app runs directly from `public/`; no build or AP
 - A separate optional line field. Built-in parking approaches can be used directly; optional on-site points can refine a parking or an exact line.
 - Parking markers at the actual source-label positions, zooming, panning, click-to-select, source links and dates.
 - Recent destinations saved on the device, deep links and sharing.
-- All six plan images, the app shell and the routing network are saved offline after the initial successful download. The GPS view uses a plain background with parking codes, your position and the highlighted route; it loads no external street-map tiles and draws no default road grid. Browser storage can be evicted by the device.
+- All six plan images, the app shell and the routing network are saved offline after the initial successful download. The GPS view draws the corrected road network with clear outlines, parking codes, your position and the highlighted route. It loads no external street-map tiles. Browser storage can be evicted by the device.
 - Continuous high-accuracy GPS tracking, accuracy display, heading, speed and follow-position mode. Tracking can be stopped explicitly.
 - Heading-up driving view: the geographic road map rotates with the travel course, with a forward-pointing blue arrow lower on the screen to show the road ahead. Stops retain the last reliable course. If the phone supplies no heading, meaningful GPS movement provides a course. Panning pauses the follow camera; the location button resumes it. **N** switches to north-up.
 - Nearby mapped parking codes remain visible on the geographic driving map, including during navigation and fullscreen. The 14 matched C-row blocks have separate label positions between their actual bordering aisles; H61 and saved parking points use their approach coordinates. The destination label is centred geographically, while a blue endpoint dot marks the road arrival point. Labels are spaced to avoid overlapping each other, the vehicle and the destination, with more becoming visible as you zoom in. Uncalibrated PDF labels are not placed on the GPS map.
@@ -51,7 +51,7 @@ Routing covers the downloaded Zeebrugge road network, including internal roads p
 
 The C1 access corridor beside HC1 follows the paired two-way arrows in ICO's V1.09-2026 plan, correcting the OSM one-way tag for way 746582135. `scripts/terminal-road-rules.json` records the source and expected node chain; rebuilding fails for review if that geometry changes. The original OSM direction and correction provenance remain in `roads.json`. This is a documented source correction, not live closure or traffic information.
 
-Three nonexistent perpendicular links through the paired HC/GC C-row blocks are excluded from routing after an on-site report supported by the ICO plan. The valid straight aisles and unrelated road segments remain connected. Correction provenance and expected node chains remain stored with the road data. The GPS view displays the chosen route without an underlying street grid; hiding that grid does not establish that every routing connection has been checked on site.
+Three nonexistent perpendicular links through the paired HC/GC C-row blocks are excluded from routing after an on-site report supported by the ICO plan. The valid straight aisles and unrelated road segments remain connected. Correction provenance and expected node chains remain stored with the road data. Roads are drawn from the same corrected graph used for routing; this does not establish that every connection has been checked on site.
 
 PDF parking markers identify source drawing labels, not verified entrances. Some labels appear at multiple positions. Live GPS is shown on the geographic road map, which also shows saved destination points. The schematic PDF drawings remain separate and are not presented as GPS-aligned.
 
@@ -68,7 +68,7 @@ This is an independent application, not an official ICO service.
 - https://www.icoterminals.com/nl/terminals/noordelijke-insteek-terminal - terminal centre coordinate.
 - Leaflet 1.9.4, BSD 2-Clause license in `public/vendor/leaflet-LICENSE.txt`.
 - Rotation: `@tomickigrzegorz/leaflet-rotate` 0.3.0, MIT license in `public/vendor/leaflet-rotate-LICENSE.txt`, bundled locally for offline use. The source terminal drawings remain unrotated; heading-up applies to the geographic driving map.
-- Routing geometry: OpenStreetMap contributors, attribution displayed in the GPS view. No default background tiles or road-grid vectors are displayed.
+- Routing geometry: OpenStreetMap contributors, attribution displayed in the GPS view. Corrected road vectors are drawn locally without default background tiles.
 - Offline road network: OpenStreetMap contributors, ODbL 1.0, retrieved 18 November 2026 through the OSM map API. `public/roads.json` contains 2,087 motorable ways and 70 node turn restrictions. Source bboxes are recorded in `scripts/build_roads.py`; contributor/account metadata is stripped from the distributed data.
 
 ## Rebuild the map catalogue
@@ -107,7 +107,7 @@ Nearby-label browser checks verify other parking codes beside an active HC1 rout
 
 Parking-position regressions check that C-row labels lie between their own bounding aisles. HC2 browser checks verify both normal and highlighted code positions at 0°, 90° and 270° map bearings, independently of the road endpoint. Display positions are source-matched estimates; LC1 uses the midpoint of paired aisle endpoints at the row edge. These labels do not change routing destinations or locate exact lines.
 
-Road-correction regressions verify that the reported HC3 crossing has no lateral graph edges while straight travel remains available. Browser checks confirm there are no background tile layers, tile requests or static road-grid vectors, while parking codes, GPS and the blue route stay visible during rotation and offline reloads.
+Road-correction regressions verify that the reported HC3 crossing has no lateral graph edges while straight travel remains available. Browser checks verify visibly painted surrounding roads, absence of the excluded crossing, road/route stacking and no external tile requests. Parking codes, GPS and the blue route stay visible during rotation and offline reloads.
 
 Home-screen checks simulate all five terminal locations, Toyota-first results with other-terminal fallback, manual overrides, switching back to automatic selection, nonblocking GPS denial, continuous tracking through plan previews, and offline context detection. Region tests cover unrelated industrial sites, water/outside-port points, stale/poor fixes and boundary jitter. These are simulations, not on-site device validation.
 

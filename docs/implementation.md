@@ -36,7 +36,13 @@ Indexed current PDF vector labels directly. Removed speculative small legacy gri
 
 The browser suite caught a race between delayed live search and form submission; selecting a destination now cancels the pending update. Switched Leaflet markers from canvas to SVG after rapid map switching exposed a canvas teardown exception. Offline precaching, GPS permission states, source-plan switching and mobile overflow were tested in Chromium.
 
-Full road/line navigation remains outside the delivered first-version coverage. No internal road graph or geographic map alignment is represented as verified.
+## GPS upgrade requested by the user
+
+The user made GPS and following real roads the priority and authorized updating GitHub. Implement continuous watchPosition tracking on the geographic road map and routing over actual downloaded OSM road geometry. Do not georeference schematic PDFs using a poor fit: a quay-label affine alignment showed errors over 100 metres. Do not publish guessed H61/line coordinates.
+
+`navigation.mjs` implements directed road routing with projected segment endpoints, one-way rules and node turn restrictions. `gps.mjs` manages live fixes, saved destination points, route updates and the GPS UI. `build_roads.py` prepares OSM roads with explicit driving prohibitions filtered. Save fresh accurate on-site GPS (25 m or better) or a user-selected map point for a parking/line. Store points on the device only. Pause routing for GPS accuracy worse than 35 m or stale fixes older than 15 seconds. Refuse disconnected routes and endpoints over 50 m from road coverage.
+
+Both map plans and road data work offline after download. Background map tiles require internet. Source road data is not confirmed against live terminal operations; field testing and a verified destination coordinate catalogue remain necessary for automatic navigation to every ICO parking/line.
 
 ## Review focus
 

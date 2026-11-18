@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "start": "node server.mjs",
-    "test": "node --test tests/core.test.mjs",
-    "test:browser": "node tests/browser.mjs"
+    "test": "node --test tests/core.test.mjs tests/navigation.test.mjs",
+    "test:browser": "node tests/browser.mjs && node tests/gps-browser.mjs"
   },
   "dependencies": { "leaflet": "1.9.4" },
   "devDependencies": { "@playwright/test": "1.58.2" }

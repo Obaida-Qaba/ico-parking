@@ -27,8 +27,8 @@ try {
   await page.locator('.find-button').click();
   await page.locator('#route-button').click();
   await page.locator('dialog[open]').waitFor();
-  assert.match(await page.locator('#dialog-content').innerText(),/not available yet/);
-  await page.locator('#back-to-plan').click();
+  assert.match(await page.locator('#dialog-content').innerText(),/Save its real position once/);
+  await page.locator('#close-dialog').click();
   await page.screenshot({path:'test-results/desktop-h61.png',fullPage:true});
   await page.reload();
   await page.locator('.destination-code').waitFor();
@@ -47,10 +47,10 @@ try {
   await page.locator('#destination').fill('A01');await page.locator('.find-button').click();
   assert.equal(await page.locator('.destination-code').innerText(),'A01');
   await page.locator('#clear-destination').click();
-  await page.evaluate(()=>{navigator.geolocation.getCurrentPosition=(ok,fail)=>fail({code:1});});
+  await page.evaluate(()=>{navigator.geolocation.watchPosition=(ok,fail)=>{fail({code:1});return 1;};navigator.geolocation.clearWatch=()=>{};});
   await page.locator('#locate').click();
-  assert.match(await page.locator('#toast').innerText(),/permission was denied/);
-  await page.evaluate(()=>{navigator.geolocation.getCurrentPosition=ok=>ok({coords:{latitude:51.2947,longitude:3.2413,accuracy:9}});});
+  assert.match(await page.locator('#toast').innerText(),/permission denied/);
+  await page.evaluate(()=>{navigator.geolocation.watchPosition=ok=>{ok({timestamp:Date.now(),coords:{latitude:51.2947,longitude:3.2413,accuracy:9}});return 2;};});
   await page.locator('#locate').click();
   await page.locator('.gps-dot').waitFor();
   assert.equal(await page.locator('#street-view').getAttribute('aria-pressed'),'true');
@@ -76,7 +76,7 @@ try {
   assert.equal(await mp.locator('.destination-code').innerText(),'H61');
   assert.ok((await mp.locator('#map').boundingBox()).height>=300);
   await mp.screenshot({path:'test-results/mobile-h61.png',fullPage:true});
-  await mp.locator('#route-button').click();await mp.locator('dialog[open]').waitFor();await mp.locator('#back-to-plan').click();
+  await mp.locator('#route-button').click();await mp.locator('dialog[open]').waitFor();await mp.locator('#close-dialog').click();
   await mp.locator('#clear-destination').click();
   await mp.locator('[data-map="toyota"]').scrollIntoViewIfNeeded();await mp.locator('[data-map="toyota"]').click();
   assert.equal(await mp.locator('#map-title').innerText(),'Toyota');

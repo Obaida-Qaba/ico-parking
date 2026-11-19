@@ -2,6 +2,42 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { parseDestination, searchParkings, routeStatus, terminalFromInput } from '../public/core.mjs';
+import {resolveDestination} from '../public/destinations.mjs';
+
+test('B5 finds the existing Toyota B05 route and preserves the official code and line',()=>{
+  const {maps}=JSON.parse(readFileSync(new URL('../public/data.json',import.meta.url)));
+  const catalogue=JSON.parse(readFileSync(new URL('../public/destinations.json',import.meta.url)));
+  const hits=searchParkings(maps,'Toyota B5 line 12','north');
+  assert.equal(hits.length,1);
+  assert.equal(hits[0].parking.code,'B05');
+  assert.equal(hits[0].line,'12');
+  assert.equal(hits[0].exactMatch,true,'a full numeric equivalent can be selected on submit');
+  assert.equal(resolveDestination(hits[0],{},catalogue)?.parking,'B05');
+});
+
+test('omitted leading zeroes never merge distinct official codes in one map',()=>{
+  const maps=[{id:'toyota',name:'Toyota',parkings:[{code:'B5'},{code:'B05'},{code:'B50'}]}];
+  assert.deepEqual(searchParkings(maps,'B5').map(h=>h.parking.code),['B5','B50']);
+  assert.deepEqual(searchParkings(maps,'B05').map(h=>h.parking.code),['B05']);
+  const alternatives=searchParkings([{id:'toyota',name:'Toyota',parkings:[{code:'B005'},{code:'B05'},{code:'B50'}]}],'B5');
+  assert.equal(alternatives.filter(h=>h.exactMatch).length,2,'ambiguous padded codes remain explicit choices');
+});
+
+test('literal Toyota A01 and H01 remain exact even near North A1 or Hanze H1',()=>{
+  const {maps}=JSON.parse(readFileSync(new URL('../public/data.json',import.meta.url)));
+  for(const [query,preferredTerminal] of [['A01','north'],['H01','hanze']]){
+    const hits=searchParkings(maps,query,'auto',{preferredTerminal});
+    assert.deepEqual(hits.filter(hit=>hit.exactMatch).map(hit=>`${hit.map.id}:${hit.parking.code}`),[`toyota:${query}`]);
+  }
+});
+
+test('a literal code outside an explicit terminal filter does not block its local numeric equivalent',()=>{
+  const maps=[
+    {id:'north',name:'North',parkings:[{code:'B5'}]},
+    {id:'toyota',name:'Toyota',parkings:[{code:'B05'}]}
+  ];
+  assert.deepEqual(searchParkings(maps,'Toyota B5').filter(hit=>hit.exactMatch).map(hit=>`${hit.map.id}:${hit.parking.code}`),['toyota:B05']);
+});
 
 test('a terminal named in the search overrides a previous dropdown selection',()=>{
   const maps=[{id:'south',parkings:[{code:'HC1',terminal:'bastenaken'}]}];

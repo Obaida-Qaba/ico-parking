@@ -251,7 +251,7 @@ function showResults(submitted=false) {
   const expanded=searchParkings(atlas.maps,$('destination').value,filter,{preferredTerminal:filter==='auto'?nearbyTerminal?.id:null}).flatMap(h=>destinationChoices({...h,line:parsed.line},catalogue));
   const currentKeys=new Set(expanded.filter(hit=>!hit.map.historical).map(hit=>parkingKey({...hit,line:null})));
   const results=expanded.filter(hit=>!hit.map.historical||!currentKeys.has(parkingKey({...hit,line:null})));
-  const exact=results.filter(r=>normalizeCode(r.parking.code)===parsed.parking);
+  const exact=results.filter(r=>r.exactMatch);
   const localExact=exact.filter(r=>r.preferred);
   if(submitted&&localExact.length===1){choose(localExact[0]);return;}
   if(submitted&&localExact.length>1&&localExact.filter(r=>!r.map.historical).length===1){choose(localExact.find(r=>!r.map.historical));return;}

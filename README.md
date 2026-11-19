@@ -23,6 +23,7 @@ Open http://127.0.0.1:4173. The app runs directly from `public/`; no build or AP
 - Compact destination cards, collapsible area/line settings, recent searches, accessible touch controls and reduced-motion support. GPS denial leaves manual search available.
 - Six map views: combined Zuidelijke Insteek, Noordelijke Insteek, Nissan, and older Bastenaken, Hanze and Toyota plans.
 - Search indexed parking references, including `H61 line 15`, `parking H61 lijn 15`, `H61 / 15`, `GE 1`, and `A01`.
+- Search accepts omitted leading zeroes, so `B5` finds Toyota `B05` and retains its existing road route and official code. Literal codes across the selected terminals take priority over numeric alternatives; ambiguous matches stay as choices.
 - A separate optional line field. Built-in parking approaches can be used directly; optional on-site points can refine a parking or an exact line.
 - Parking markers at the actual source-label positions, zooming, panning, click-to-select, source links and dates.
 - Recent destinations saved on the device, deep links and sharing.

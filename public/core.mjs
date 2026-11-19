@@ -2,6 +2,11 @@ export function normalizeCode(value) {
   return String(value ?? '').toUpperCase().replace(/[^A-Z0-9]/g, '');
 }
 
+function numericCodeKey(code) {
+  const parts=code.match(/^([A-Z]+)(\d+)$/);
+  return parts?parts[1]+parts[2].replace(/^0+(?=\d)/,''):null;
+}
+
 const terminalNames = [
   { id:'bastenaken', pattern:/\bbastenaken(?:\s+terminal)?\b/gi },
   { id:'hanze', pattern:/\bhanze(?:\s+terminal)?\b/gi },
@@ -45,16 +50,22 @@ export function searchParkings(maps, input, mapId = 'all', {preferredTerminal=nu
   const found = [];
   const terminalFilter=terminalFromInput(input) || (['all','auto'].includes(mapId) ? null : mapId);
   const localTerminal=terminalFilter?null:preferredTerminal;
+  const numericQuery=numericCodeKey(parsed.parking);
+  const eligible=(map,parking)=>!terminalFilter||map.id===terminalFilter||
+    (map.id==='south'&&['bastenaken','hanze'].includes(terminalFilter)&&parking.terminal===terminalFilter);
+  const hasLiteralMatch=maps.some(map=>map.parkings.some(parking=>eligible(map,parking)&&normalizeCode(parking.code)===parsed.parking));
   for (const map of maps) {
     for (const parking of map.parkings) {
       const currentRegionalMatch=map.id==='south' && ['bastenaken','hanze'].includes(terminalFilter) && parking.terminal===terminalFilter;
-      if(terminalFilter && map.id!==terminalFilter && !currentRegionalMatch) continue;
+      if(!eligible(map,parking)) continue;
       const code = normalizeCode(parking.code);
-      if (!code.startsWith(parsed.parking)) continue;
+      const literal=code===parsed.parking;
+      const numericMatch=!hasLiteralMatch&&!!numericQuery&&numericCodeKey(code)===numericQuery;
+      if (!code.startsWith(parsed.parking)&&!numericMatch) continue;
       const localRegionalMatch=map.id==='south' && ['bastenaken','hanze'].includes(localTerminal) && parking.terminal===localTerminal;
       const preferred=!!localTerminal&&(map.id===localTerminal||localRegionalMatch);
-      found.push({ map, parking, line: parsed.line, matchedTerminal:currentRegionalMatch?terminalFilter:localRegionalMatch?localTerminal:map.id,preferred,
-        rank: (code === parsed.parking ? 0 : 10) + (map.historical ? 1 : 0) });
+      found.push({ map, parking, line: parsed.line, matchedTerminal:currentRegionalMatch?terminalFilter:localRegionalMatch?localTerminal:map.id,preferred,exactMatch:literal||numericMatch,
+        rank: (literal ? 0 : numericMatch ? 2 : 10) + (map.historical ? 1 : 0) });
     }
   }
   return found.sort((a,b)=>Number(b.preferred)-Number(a.preferred) || a.rank-b.rank || a.parking.code.localeCompare(b.parking.code,undefined,{numeric:true}) || a.map.name.localeCompare(b.map.name));

@@ -9,6 +9,7 @@ boundary segment. Regenerate after reviewing a changed plan or OSM lane chain.
 from pathlib import Path
 import json
 import math
+import hashlib
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = json.loads((ROOT / 'public/data.json').read_text(encoding='utf-8'))
@@ -194,22 +195,57 @@ for code,bounds,corners,lanes in [
     r=region('east-'+code.lower(),bounds,corners,lanes,GRID_EVIDENCE)
     add(code,r)
 
+# The CF1/VPC cross-road is an independent vertical control: CF1's printed
+# southern edge264.9 and AF/BF's265.1 align at931027303/1860, immediately
+# beside241873282/1857. The former model skipped the real D band above C3,
+# shifting D/E/F/G one entire field north and incorrectly consuming H as G.
+UPPER_LADDER_GUARDS = {
+    '241873267': ('bfbadabcb9b853ede9acf2c473420e5c9012ea12b3ed0524a0615b25ff035a37', False),
+    '392480112': ('a9666be5cb68932453cf347ff025f755d8dad3c4848a9857eb1b6a1cc7208b2d', False),
+    '241873290': ('eaa41b208831352ae314b964bcde3a511a20934f7f3c6268aa8307e43fef057a', False),
+    '241873292': ('c37a3c63c34a498bc556cee650808d43f6358afc05ce43b66695d6a462e70545', False),
+    '746582093': ('33aead46bced02ae6e7ceed1e9834c28da7b957be393b3ce68875d0d8b865253', False),
+    '241873282': ('ad03e0c74b62270045e37a9ce59c43ebe5bfdf8c0c5e8fb1a32c42b271acf1b9', False),
+    '241873278': ('05c578f980e7ca43c869da911c4974f43a7d60dc9fd6038ac43c75b2ca243f79', False),
+    '746582112': ('c4c4278b8f25f9822390765e60e5197bf3f12975e0cadee139495427c1c14fbb', False),
+    '746641410': ('ae47302139cf379c6fdef8475ed43ffc1088930d629afe34495ab57e936efe91', False),
+    '931027303': ('e259f16fa4337012e68fde71036a146afec73fdbaf406387c253ef2f743b1d2a', False),
+    '241873283': ('3f31b3ba70a2bc4b402eb1ec15fc9205855e81bef147696cc26dc67084a7c4f7', True),
+}
+for ident, (expected, oneway) in UPPER_LADDER_GUARDS.items():
+    road = WAYS.get(ident)
+    if not road or road.get('oneway') is not oneway or road.get('private') is not True:
+        raise ValueError('Upper field alignment road direction/access changed: ' + ident)
+    digest = hashlib.sha256(json.dumps({'nodes': road['nodes'], 'points': road['points']}, separators=(',', ':')).encode()).hexdigest()
+    if digest != expected or road.get('blocked') or road.get('excludedSegments'):
+        raise ValueError('Upper field alignment geometry/closure changed: ' + ident)
+UPPER_ALIGNMENT_REVIEW = {
+    'reviewed': '2026-11-19', 'sourceRevision': 'V1.09-2026',
+    'anchor': 'CF1 south PDF264.9 and AF/BF south265.1 share the drawn cross-road;931027303/1860 meets241873282/1857 within10m.',
+    'outerControl': 'The curved392 outer edge, K504 quay cap, VPC/CF1 landmark and C3 upper boundary identify FIVE whole fields H/G/F/E/D, rather than the former four-field fit.',
+    'imageryService': 'https://geo.api.vlaanderen.be/ofw/wms', 'imageryFlightDate': '2026-03-05',
+    'limitation': 'Named parking approaches and bounded display labels only; not surveyed entrances or exact parking lines.',
+}
+
 # The A/B mid-line is a painted parcel divider in these upper rows, not an
 # invented north/south street. Keep the two parking labels inside one compound
 # and route each to its own position on the existing horizontal access road.
 for row,bounds,corners,lanes,edge in [
-    ('D',[938.6,301.7,1039.9,325.2],[1857,1913,1921,1865],
-     [('241873282',1857,1913),('392480112',1913,1921),('241873278',1865,1921),('241873267',1857,1865)],'north'),
-    ('E',[938.6,268.9,1044.0,292.3],[1842,6986702477,1913,1857],
+    ('D',[938.6,301.7,1039.9,325.2],[1865,1921,1933,1869],
+     [('241873278',1865,1921),('392480112',1921,1933),[('746582112',1869,1891),('746641410',1891,1933)],('241873267',1865,1869)],'north'),
+    ('E',[938.6,268.9,1044.0,292.3],[1857,1913,1921,1865],
+     [('241873282',1857,1913),('392480112',1913,1921),('241873278',1865,1921),('241873267',1857,1865)],'south'),
+    ('F',[938.6,237.1,1048.0,265.1],[1842,6986702477,1913,1857],
      [[('241873292',1842,1894),('746582093',1894,6986702477)],('392480112',6986702477,1913),('241873282',1857,1913),('241873267',1842,1857)],'south'),
-    ('F',[938.6,237.1,1048.0,265.1],[1830,1892,6986702477,1842],
+    ('G',[940.7,205.2,1052.8,232.5],[1830,1892,6986702477,1842],
      [('241873290',1830,1892),('392480112',1892,6986702477),[('241873292',1842,1894),('746582093',1894,6986702477)],('241873267',1830,1842)],'north'),
-    ('G',[940.7,205.2,1052.8,232.5],[1819,1887,1892,1830],
-     [('392480112',1819,1887),('392480112',1887,1892),('241873290',1830,1892),('241873267',1819,1830)],'south'),
 ]:
     r=region('east-ab-'+row.lower(),bounds,corners,lanes,
-             'The VPC-side access spine, continuous eastern quay perimeter, and ordered cross roads identify this A/B compound. The printed A/B divider is not treated as a road.')
-    for letter in 'AB':add(letter+row+'1',r,edge)
+             'The independently aligned CF1/VPC cross-road, eastern quay, C3 boundary and ordered access roads identify this A/B compound. The outer northern cap belongs to AH/BH. The printed A/B divider is not treated as a road.')
+    for letter in 'AB':
+        code=letter+row+'1'
+        add(code,r,edge)
+        OUT['south:'+code]['alignmentReview']=UPPER_ALIGNMENT_REVIEW
 
 # Direct quay-side bands follow the real perimeter between the corresponding
 # individually matched parking rows. Their source labels describe one linear
@@ -237,11 +273,14 @@ for code,ys,way,start,end in [
     ('BWA',[389.5,415.6],'746582115',1948,6986702534),
     ('BWB',[359.7,385.8],'392480112',1943,1948),
     ('BWC',[329.8,354.2],'392480112',1933,1943),
-    ('BWD',[301.7,325.2],'392480112',1913,1921),
-    ('BWE',[268.9,292.3],'392480112',6986702477,1913),
-    ('BWF',[210.3,262.0],'392480112',1892,6986702477),
-    ('MAX',[210.3,262.0],'392480112',1892,6986702477),
-]:add_road_band(code,ys,way,start,end,QUAY_EVIDENCE)
+    ('BWD',[301.7,325.2],'392480112',1921,1933),
+    ('BWE',[268.9,292.3],'392480112',1913,1921),
+    ('BWF',[210.3,262.0],'392480112',1892,1913),
+    ('MAX',[210.3,262.0],'392480112',1892,1913),
+]:
+    add_road_band(code,ys,way,start,end,QUAY_EVIDENCE)
+    if code in ['BWD','BWE','BWF','MAX']:
+        OUT['south:'+code]['alignmentReview']=UPPER_ALIGNMENT_REVIEW
 
 # VPC forecourt: the west DE1 strip and west CE1 strip have individually
 # identifiable one-way dividers in the OSM access-road ladder. Repeated codes

@@ -4,22 +4,22 @@
   "verification": "Routes are simulated on the corrected road graph. Source matches and shared-area approaches are not surveyed entrances or parking-line coordinates. No field-accuracy or current gate-access claim is made.",
   "summary": {
     "references": 713,
-    "targets": 594,
-    "routeReady": 579,
-    "withinTerminalRouteReady": 589,
-    "missing": 123,
+    "targets": 608,
+    "routeReady": 593,
+    "withinTerminalRouteReady": 603,
+    "missing": 109,
     "evidenceInconsistent": 0,
     "surveyedDestinations": 0,
-    "routeCases": 3518,
+    "routeCases": 3602,
     "routeFailures": 14,
-    "areaEntranceReferences": 79,
+    "areaEntranceReferences": 93,
     "complete": false
   },
   "terminals": {
     "south": {
       "references": 261,
-      "routeReady": 220,
-      "missing": 41
+      "routeReady": 230,
+      "missing": 31
     },
     "north": {
       "references": 60,
@@ -33,8 +33,8 @@
     },
     "bastenaken": {
       "references": 168,
-      "routeReady": 123,
-      "missing": 45
+      "routeReady": 127,
+      "missing": 41
     },
     "hanze": {
       "references": 43,
@@ -994,7 +994,7 @@
             3.2202856
           ],
           "available": true,
-          "distanceMetres": 484.31,
+          "distanceMetres": 390.16,
           "arrivalErrorMetres": 0,
           "reason": null
         },
@@ -1006,7 +1006,7 @@
             3.226830235992968
           ],
           "available": true,
-          "distanceMetres": 1416.67,
+          "distanceMetres": 1322.52,
           "arrivalErrorMetres": 0,
           "reason": null
         },
@@ -1018,7 +1018,7 @@
             3.245084956421715
           ],
           "available": true,
-          "distanceMetres": 3774.35,
+          "distanceMetres": 3699.08,
           "arrivalErrorMetres": 0,
           "reason": null
         },
@@ -1030,43 +1030,43 @@
             3.2180945999999997
           ],
           "available": true,
-          "distanceMetres": 4726.38,
+          "distanceMetres": 4802.85,
           "arrivalErrorMetres": 0,
           "reason": null
         },
         {
-          "origin": "arrival-lane:2494511913",
+          "origin": "arrival-lane:2494511921",
           "scope": "terminal",
           "start": [
-            51.3113346,
-            3.2155985
+            51.3116062,
+            3.2168135
           ],
           "available": true,
-          "distanceMetres": 77.26,
+          "distanceMetres": 74.5,
           "arrivalErrorMetres": 0,
           "reason": null
         },
         {
-          "origin": "arrival-lane:2494511857",
+          "origin": "arrival-lane:2494511865",
           "scope": "terminal",
           "start": [
-            51.3087356,
-            3.2177133
+            51.3090855,
+            3.2188055
           ],
           "available": true,
-          "distanceMetres": 246.97,
+          "distanceMetres": 238.13,
           "arrivalErrorMetres": 0,
           "reason": null
         }
       ],
       "issues": [],
       "target": {
-        "lat": 51.31071560387787,
-        "lon": 3.2161035583440176,
-        "roadWay": "241873282",
+        "lat": 51.311004333832145,
+        "lon": 3.217284404998948,
+        "roadWay": "241873278",
         "roadSegment": [
-          "2494511878",
-          "2494511913"
+          "2494511886",
+          "2494511921"
         ]
       },
       "routingScope": "connected-road-network",
@@ -1076,7 +1076,7 @@
         "revision": "V1.09-2026",
         "method": "landmark-junction-match",
         "region": "east-ab-d",
-        "basis": "The VPC-side access spine, continuous eastern quay perimeter, and ordered cross roads identify this A/B compound. The printed A/B divider is not treated as a road. The route ends on the matched access road, not at a surveyed parking line.",
+        "basis": "The independently aligned CF1/VPC cross-road, eastern quay, C3 boundary and ordered access roads identify this A/B compound. The outer northern cap belongs to AH/BH. The printed A/B divider is not treated as a road. The route ends on the matched access road, not at a surveyed parking line.",
         "scope": "parking-approach"
       },
       "exactLine": false,
@@ -1109,7 +1109,7 @@
             3.2202856
           ],
           "available": true,
-          "distanceMetres": 483.19,
+          "distanceMetres": 389.08,
           "arrivalErrorMetres": 0,
           "reason": null
         },
@@ -1121,7 +1121,7 @@
             3.226830235992968
           ],
           "available": true,
-          "distanceMetres": 1415.56,
+          "distanceMetres": 1321.45,
           "arrivalErrorMetres": 0,
           "reason": null
         },
@@ -1133,7 +1133,7 @@
             3.245084956421715
           ],
           "available": true,
-          "distanceMetres": 3773.24,
+          "distanceMetres": 3698.01,
           "arrivalErrorMetres": 0,
           "reason": null
         },
@@ -1145,43 +1145,43 @@
             3.2180945999999997
           ],
           "available": true,
-          "distanceMetres": 4725.26,
+          "distanceMetres": 4801.77,
           "arrivalErrorMetres": 0,
           "reason": null
         },
         {
-          "origin": "arrival-lane:2494511913",
+          "origin": "arrival-lane:2494511921",
           "scope": "terminal",
           "start": [
-            51.3113346,
-            3.2155985
+            51.3116062,
+            3.2168135
           ],
           "available": true,
-          "distanceMetres": 78.38,
+          "distanceMetres": 75.58,
           "arrivalErrorMetres": 0,
           "reason": null
         },
         {
-          "origin": "arrival-lane:2494511857",
+          "origin": "arrival-lane:2494511865",
           "scope": "terminal",
           "start": [
-            51.3087356,
-            3.2177133
+            51.3090855,
+            3.2188055
           ],
           "available": true,
-          "distanceMetres": 245.85,
+          "distanceMetres": 237.05,
           "arrivalErrorMetres": 0,
           "reason": null
         }
       ],
       "issues": [],
       "target": {
-        "lat": 51.31070665888376,
-        "lon": 3.2161108568451677,
-        "roadWay": "241873282",
+        "lat": 51.310995636379715,
+        "lon": 3.2172912099566666,
+        "roadWay": "241873278",
         "roadSegment": [
-          "2494511878",
-          "2494511913"
+          "2494511886",
+          "2494511921"
         ]
       },
       "routingScope": "connected-road-network",
@@ -1191,7 +1191,7 @@
         "revision": "V1.09-2026",
         "method": "landmark-junction-match",
         "region": "east-ab-e",
-        "basis": "The VPC-side access spine, continuous eastern quay perimeter, and ordered cross roads identify this A/B compound. The printed A/B divider is not treated as a road. The route ends on the matched access road, not at a surveyed parking line.",
+        "basis": "The independently aligned CF1/VPC cross-road, eastern quay, C3 boundary and ordered access roads identify this A/B compound. The outer northern cap belongs to AH/BH. The printed A/B divider is not treated as a road. The route ends on the matched access road, not at a surveyed parking line.",
         "scope": "parking-approach"
       },
       "exactLine": false,
@@ -1224,7 +1224,7 @@
             3.2202856
           ],
           "available": true,
-          "distanceMetres": 662.67,
+          "distanceMetres": 474.19,
           "arrivalErrorMetres": 0,
           "reason": null
         },
@@ -1236,7 +1236,7 @@
             3.226830235992968
           ],
           "available": true,
-          "distanceMetres": 1595.04,
+          "distanceMetres": 1406.56,
           "arrivalErrorMetres": 0,
           "reason": null
         },
@@ -1248,7 +1248,7 @@
             3.245084956421715
           ],
           "available": true,
-          "distanceMetres": 3952.72,
+          "distanceMetres": 3764.24,
           "arrivalErrorMetres": 0,
           "reason": null
         },
@@ -1260,43 +1260,43 @@
             3.2180945999999997
           ],
           "available": true,
-          "distanceMetres": 4560.87,
+          "distanceMetres": 4716.26,
           "arrivalErrorMetres": 0,
           "reason": null
         },
         {
-          "origin": "arrival-lane:2494511830",
+          "origin": "arrival-lane:2494511913",
           "scope": "terminal",
           "start": [
-            51.3080322,
-            3.2155107
+            51.3113346,
+            3.2155985
           ],
           "available": true,
-          "distanceMetres": 253.4,
+          "distanceMetres": 87.38,
           "arrivalErrorMetres": 0,
           "reason": null
         },
         {
-          "origin": "arrival-lane:2494511892",
+          "origin": "arrival-lane:2494511857",
           "scope": "terminal",
           "start": [
-            51.3108155,
-            3.2132571
+            51.3087356,
+            3.2177133
           ],
           "available": true,
-          "distanceMetres": 93.49,
+          "distanceMetres": 236.85,
           "arrivalErrorMetres": 0,
           "reason": null
         }
       ],
       "issues": [],
       "target": {
-        "lat": 51.3100618457173,
-        "lon": 3.213853173453212,
-        "roadWay": "241873290",
+        "lat": 51.310634565621854,
+        "lon": 3.2161696799979658,
+        "roadWay": "241873282",
         "roadSegment": [
-          "2494511867",
-          "2494511882"
+          "2494511878",
+          "2494511913"
         ]
       },
       "routingScope": "connected-road-network",
@@ -1306,7 +1306,7 @@
         "revision": "V1.09-2026",
         "method": "landmark-junction-match",
         "region": "east-ab-f",
-        "basis": "The VPC-side access spine, continuous eastern quay perimeter, and ordered cross roads identify this A/B compound. The printed A/B divider is not treated as a road. The route ends on the matched access road, not at a surveyed parking line.",
+        "basis": "The independently aligned CF1/VPC cross-road, eastern quay, C3 boundary and ordered access roads identify this A/B compound. The outer northern cap belongs to AH/BH. The printed A/B divider is not treated as a road. The route ends on the matched access road, not at a surveyed parking line.",
         "scope": "parking-approach"
       },
       "exactLine": false,
@@ -1421,7 +1421,7 @@
         "revision": "V1.09-2026",
         "method": "landmark-junction-match",
         "region": "east-ab-g",
-        "basis": "The VPC-side access spine, continuous eastern quay perimeter, and ordered cross roads identify this A/B compound. The printed A/B divider is not treated as a road. The route ends on the matched access road, not at a surveyed parking line.",
+        "basis": "The independently aligned CF1/VPC cross-road, eastern quay, C3 boundary and ordered access roads identify this A/B compound. The outer northern cap belongs to AH/BH. The printed A/B divider is not treated as a road. The route ends on the matched access road, not at a surveyed parking line.",
         "scope": "parking-approach"
       },
       "exactLine": false,
@@ -1440,15 +1440,108 @@
       "sourceDate": "Sep 2026",
       "sourceIndexed": true,
       "searchable": true,
-      "routeReady": false,
-      "withinTerminalReady": false,
-      "locationEvidenceConsistent": false,
+      "routeReady": true,
+      "withinTerminalReady": true,
+      "locationEvidenceConsistent": true,
       "surveyedDestination": false,
-      "precision": "unlocated",
-      "routes": [],
-      "issues": [
-        "missing-destination"
-      ]
+      "precision": "area-entry-only",
+      "routes": [
+        {
+          "origin": "south:CD1",
+          "scope": "terminal",
+          "start": [
+            51.30879865,
+            3.2202856
+          ],
+          "available": true,
+          "distanceMetres": 522.93,
+          "arrivalErrorMetres": 0,
+          "reason": null
+        },
+        {
+          "origin": "south:HC1",
+          "scope": "terminal",
+          "start": [
+            51.302174560703136,
+            3.226830235992968
+          ],
+          "available": true,
+          "distanceMetres": 1455.3,
+          "arrivalErrorMetres": 0,
+          "reason": null
+        },
+        {
+          "origin": "south:H61",
+          "scope": "terminal",
+          "start": [
+            51.29689337975793,
+            3.245084956421715
+          ],
+          "available": true,
+          "distanceMetres": 3812.97,
+          "arrivalErrorMetres": 0,
+          "reason": null
+        },
+        {
+          "origin": "north:BB",
+          "scope": "inter-terminal",
+          "start": [
+            51.32706215,
+            3.2180945999999997
+          ],
+          "available": true,
+          "distanceMetres": 4193.82,
+          "arrivalErrorMetres": 0,
+          "reason": null
+        },
+        {
+          "origin": "arrival-lane:12487520987",
+          "scope": "terminal",
+          "start": [
+            51.3074696,
+            3.2136887
+          ],
+          "available": true,
+          "distanceMetres": 27.68,
+          "arrivalErrorMetres": 0,
+          "reason": null
+        },
+        {
+          "origin": "arrival-lane:2494511869",
+          "scope": "terminal",
+          "start": [
+            51.3094544,
+            3.2199576
+          ],
+          "available": true,
+          "distanceMetres": 460.87,
+          "arrivalErrorMetres": 0,
+          "reason": null
+        }
+      ],
+      "issues": [],
+      "target": {
+        "lat": 51.3075696,
+        "lon": 3.2140528,
+        "roadWay": "241873267",
+        "roadSegment": [
+          "12487520988",
+          "2494511819"
+        ]
+      },
+      "routingScope": "connected-road-network",
+      "individualParkingVerified": false,
+      "evidence": {
+        "sourceMap": "south",
+        "revision": "V1.09-2026",
+        "method": "source-topology-shared-area-entrance",
+        "region": "south-h-shared-field-entrance",
+        "basis": "The curved BDR/BDA outer perimeter, BWH quay cap, staff/rail-side approach and straight G/H divider identify the whole H field. The independent CF1/VPC cross-road control corrects the earlier one-field-shifted G assignment. Vehicle storage is inside the outer road392480112, not in the grass outside it. Shared AH/BH area entrance only; individual numbered AH/BH strips, exact lines and current access permission are not established.",
+        "scope": "parking-group-approach"
+      },
+      "exactLine": false,
+      "roadOffsetMetres": 0,
+      "arrivalRoadConsistent": true
     },
     {
       "reference": "south:AH2",
@@ -1462,15 +1555,108 @@
       "sourceDate": "Sep 2026",
       "sourceIndexed": true,
       "searchable": true,
-      "routeReady": false,
-      "withinTerminalReady": false,
-      "locationEvidenceConsistent": false,
+      "routeReady": true,
+      "withinTerminalReady": true,
+      "locationEvidenceConsistent": true,
       "surveyedDestination": false,
-      "precision": "unlocated",
-      "routes": [],
-      "issues": [
-        "missing-destination"
-      ]
+      "precision": "area-entry-only",
+      "routes": [
+        {
+          "origin": "south:CD1",
+          "scope": "terminal",
+          "start": [
+            51.30879865,
+            3.2202856
+          ],
+          "available": true,
+          "distanceMetres": 522.93,
+          "arrivalErrorMetres": 0,
+          "reason": null
+        },
+        {
+          "origin": "south:HC1",
+          "scope": "terminal",
+          "start": [
+            51.302174560703136,
+            3.226830235992968
+          ],
+          "available": true,
+          "distanceMetres": 1455.3,
+          "arrivalErrorMetres": 0,
+          "reason": null
+        },
+        {
+          "origin": "south:H61",
+          "scope": "terminal",
+          "start": [
+            51.29689337975793,
+            3.245084956421715
+          ],
+          "available": true,
+          "distanceMetres": 3812.97,
+          "arrivalErrorMetres": 0,
+          "reason": null
+        },
+        {
+          "origin": "north:BB",
+          "scope": "inter-terminal",
+          "start": [
+            51.32706215,
+            3.2180945999999997
+          ],
+          "available": true,
+          "distanceMetres": 4193.82,
+          "arrivalErrorMetres": 0,
+          "reason": null
+        },
+        {
+          "origin": "arrival-lane:12487520987",
+          "scope": "terminal",
+          "start": [
+            51.3074696,
+            3.2136887
+          ],
+          "available": true,
+          "distanceMetres": 27.68,
+          "arrivalErrorMetres": 0,
+          "reason": null
+        },
+        {
+          "origin": "arrival-lane:2494511869",
+          "scope": "terminal",
+          "start": [
+            51.3094544,
+            3.2199576
+          ],
+          "available": true,
+          "distanceMetres": 460.87,
+          "arrivalErrorMetres": 0,
+          "reason": null
+        }
+      ],
+      "issues": [],
+      "target": {
+        "lat": 51.3075696,
+        "lon": 3.2140528,
+        "roadWay": "241873267",
+        "roadSegment": [
+          "12487520988",
+          "2494511819"
+        ]
+      },
+      "routingScope": "connected-road-network",
+      "individualParkingVerified": false,
+      "evidence": {
+        "sourceMap": "south",
+        "revision": "V1.09-2026",
+        "method": "source-topology-shared-area-entrance",
+        "region": "south-h-shared-field-entrance",
+        "basis": "The curved BDR/BDA outer perimeter, BWH quay cap, staff/rail-side approach and straight G/H divider identify the whole H field. The independent CF1/VPC cross-road control corrects the earlier one-field-shifted G assignment. Vehicle storage is inside the outer road392480112, not in the grass outside it. Shared AH/BH area entrance only; individual numbered AH/BH strips, exact lines and current access permission are not established.",
+        "scope": "parking-group-approach"
+      },
+      "exactLine": false,
+      "roadOffsetMetres": 0,
+      "arrivalRoadConsistent": true
     },
     {
       "reference": "south:AH3",
@@ -1484,15 +1670,108 @@
       "sourceDate": "Sep 2026",
       "sourceIndexed": true,
       "searchable": true,
-      "routeReady": false,
-      "withinTerminalReady": false,
-      "locationEvidenceConsistent": false,
+      "routeReady": true,
+      "withinTerminalReady": true,
+      "locationEvidenceConsistent": true,
       "surveyedDestination": false,
-      "precision": "unlocated",
-      "routes": [],
-      "issues": [
-        "missing-destination"
-      ]
+      "precision": "area-entry-only",
+      "routes": [
+        {
+          "origin": "south:CD1",
+          "scope": "terminal",
+          "start": [
+            51.30879865,
+            3.2202856
+          ],
+          "available": true,
+          "distanceMetres": 522.93,
+          "arrivalErrorMetres": 0,
+          "reason": null
+        },
+        {
+          "origin": "south:HC1",
+          "scope": "terminal",
+          "start": [
+            51.302174560703136,
+            3.226830235992968
+          ],
+          "available": true,
+          "distanceMetres": 1455.3,
+          "arrivalErrorMetres": 0,
+          "reason": null
+        },
+        {
+          "origin": "south:H61",
+          "scope": "terminal",
+          "start": [
+            51.29689337975793,
+            3.245084956421715
+          ],
+          "available": true,
+          "distanceMetres": 3812.97,
+          "arrivalErrorMetres": 0,
+          "reason": null
+        },
+        {
+          "origin": "north:BB",
+          "scope": "inter-terminal",
+          "start": [
+            51.32706215,
+            3.2180945999999997
+          ],
+          "available": true,
+          "distanceMetres": 4193.82,
+          "arrivalErrorMetres": 0,
+          "reason": null
+        },
+        {
+          "origin": "arrival-lane:12487520987",
+          "scope": "terminal",
+          "start": [
+            51.3074696,
+            3.2136887
+          ],
+          "available": true,
+          "distanceMetres": 27.68,
+          "arrivalErrorMetres": 0,
+          "reason": null
+        },
+        {
+          "origin": "arrival-lane:2494511869",
+          "scope": "terminal",
+          "start": [
+            51.3094544,
+            3.2199576
+          ],
+          "available": true,
+          "distanceMetres": 460.87,
+          "arrivalErrorMetres": 0,
+          "reason": null
+        }
+      ],
+      "issues": [],
+      "target": {
+        "lat": 51.3075696,
+        "lon": 3.2140528,
+        "roadWay": "241873267",
+        "roadSegment": [
+          "12487520988",
+          "2494511819"
+        ]
+      },
+      "routingScope": "connected-road-network",
+      "individualParkingVerified": false,
+      "evidence": {
+        "sourceMap": "south",
+        "revision": "V1.09-2026",
+        "method": "source-topology-shared-area-entrance",
+        "region": "south-h-shared-field-entrance",
+        "basis": "The curved BDR/BDA outer perimeter, BWH quay cap, staff/rail-side approach and straight G/H divider identify the whole H field. The independent CF1/VPC cross-road control corrects the earlier one-field-shifted G assignment. Vehicle storage is inside the outer road392480112, not in the grass outside it. Shared AH/BH area entrance only; individual numbered AH/BH strips, exact lines and current access permission are not established.",
+        "scope": "parking-group-approach"
+      },
+      "exactLine": false,
+      "roadOffsetMetres": 0,
+      "arrivalRoadConsistent": true
     },
     {
       "reference": "south:AH4",
@@ -1506,15 +1785,108 @@
       "sourceDate": "Sep 2026",
       "sourceIndexed": true,
       "searchable": true,
-      "routeReady": false,
-      "withinTerminalReady": false,
-      "locationEvidenceConsistent": false,
+      "routeReady": true,
+      "withinTerminalReady": true,
+      "locationEvidenceConsistent": true,
       "surveyedDestination": false,
-      "precision": "unlocated",
-      "routes": [],
-      "issues": [
-        "missing-destination"
-      ]
+      "precision": "area-entry-only",
+      "routes": [
+        {
+          "origin": "south:CD1",
+          "scope": "terminal",
+          "start": [
+            51.30879865,
+            3.2202856
+          ],
+          "available": true,
+          "distanceMetres": 522.93,
+          "arrivalErrorMetres": 0,
+          "reason": null
+        },
+        {
+          "origin": "south:HC1",
+          "scope": "terminal",
+          "start": [
+            51.302174560703136,
+            3.226830235992968
+          ],
+          "available": true,
+          "distanceMetres": 1455.3,
+          "arrivalErrorMetres": 0,
+          "reason": null
+        },
+        {
+          "origin": "south:H61",
+          "scope": "terminal",
+          "start": [
+            51.29689337975793,
+            3.245084956421715
+          ],
+          "available": true,
+          "distanceMetres": 3812.97,
+          "arrivalErrorMetres": 0,
+          "reason": null
+        },
+        {
+          "origin": "north:BB",
+          "scope": "inter-terminal",
+          "start": [
+            51.32706215,
+            3.2180945999999997
+          ],
+          "available": true,
+          "distanceMetres": 4193.82,
+          "arrivalErrorMetres": 0,
+          "reason": null
+        },
+        {
+          "origin": "arrival-lane:12487520987",
+          "scope": "terminal",
+          "start": [
+            51.3074696,
+            3.2136887
+          ],
+          "available": true,
+          "distanceMetres": 27.68,
+          "arrivalErrorMetres": 0,
+          "reason": null
+        },
+        {
+          "origin": "arrival-lane:2494511869",
+          "scope": "terminal",
+          "start": [
+            51.3094544,
+            3.2199576
+          ],
+          "available": true,
+          "distanceMetres": 460.87,
+          "arrivalErrorMetres": 0,
+          "reason": null
+        }
+      ],
+      "issues": [],
+      "target": {
+        "lat": 51.3075696,
+        "lon": 3.2140528,
+        "roadWay": "241873267",
+        "roadSegment": [
+          "12487520988",
+          "2494511819"
+        ]
+      },
+      "routingScope": "connected-road-network",
+      "individualParkingVerified": false,
+      "evidence": {
+        "sourceMap": "south",
+        "revision": "V1.09-2026",
+        "method": "source-topology-shared-area-entrance",
+        "region": "south-h-shared-field-entrance",
+        "basis": "The curved BDR/BDA outer perimeter, BWH quay cap, staff/rail-side approach and straight G/H divider identify the whole H field. The independent CF1/VPC cross-road control corrects the earlier one-field-shifted G assignment. Vehicle storage is inside the outer road392480112, not in the grass outside it. Shared AH/BH area entrance only; individual numbered AH/BH strips, exact lines and current access permission are not established.",
+        "scope": "parking-group-approach"
+      },
+      "exactLine": false,
+      "roadOffsetMetres": 0,
+      "arrivalRoadConsistent": true
     },
     {
       "reference": "south:AH5",
@@ -1528,15 +1900,108 @@
       "sourceDate": "Sep 2026",
       "sourceIndexed": true,
       "searchable": true,
-      "routeReady": false,
-      "withinTerminalReady": false,
-      "locationEvidenceConsistent": false,
+      "routeReady": true,
+      "withinTerminalReady": true,
+      "locationEvidenceConsistent": true,
       "surveyedDestination": false,
-      "precision": "unlocated",
-      "routes": [],
-      "issues": [
-        "missing-destination"
-      ]
+      "precision": "area-entry-only",
+      "routes": [
+        {
+          "origin": "south:CD1",
+          "scope": "terminal",
+          "start": [
+            51.30879865,
+            3.2202856
+          ],
+          "available": true,
+          "distanceMetres": 522.93,
+          "arrivalErrorMetres": 0,
+          "reason": null
+        },
+        {
+          "origin": "south:HC1",
+          "scope": "terminal",
+          "start": [
+            51.302174560703136,
+            3.226830235992968
+          ],
+          "available": true,
+          "distanceMetres": 1455.3,
+          "arrivalErrorMetres": 0,
+          "reason": null
+        },
+        {
+          "origin": "south:H61",
+          "scope": "terminal",
+          "start": [
+            51.29689337975793,
+            3.245084956421715
+          ],
+          "available": true,
+          "distanceMetres": 3812.97,
+          "arrivalErrorMetres": 0,
+          "reason": null
+        },
+        {
+          "origin": "north:BB",
+          "scope": "inter-terminal",
+          "start": [
+            51.32706215,
+            3.2180945999999997
+          ],
+          "available": true,
+          "distanceMetres": 4193.82,
+          "arrivalErrorMetres": 0,
+          "reason": null
+        },
+        {
+          "origin": "arrival-lane:12487520987",
+          "scope": "terminal",
+          "start": [
+            51.3074696,
+            3.2136887
+          ],
+          "available": true,
+          "distanceMetres": 27.68,
+          "arrivalErrorMetres": 0,
+          "reason": null
+        },
+        {
+          "origin": "arrival-lane:2494511869",
+          "scope": "terminal",
+          "start": [
+            51.3094544,
+            3.2199576
+          ],
+          "available": true,
+          "distanceMetres": 460.87,
+          "arrivalErrorMetres": 0,
+          "reason": null
+        }
+      ],
+      "issues": [],
+      "target": {
+        "lat": 51.3075696,
+        "lon": 3.2140528,
+        "roadWay": "241873267",
+        "roadSegment": [
+          "12487520988",
+          "2494511819"
+        ]
+      },
+      "routingScope": "connected-road-network",
+      "individualParkingVerified": false,
+      "evidence": {
+        "sourceMap": "south",
+        "revision": "V1.09-2026",
+        "method": "source-topology-shared-area-entrance",
+        "region": "south-h-shared-field-entrance",
+        "basis": "The curved BDR/BDA outer perimeter, BWH quay cap, staff/rail-side approach and straight G/H divider identify the whole H field. The independent CF1/VPC cross-road control corrects the earlier one-field-shifted G assignment. Vehicle storage is inside the outer road392480112, not in the grass outside it. Shared AH/BH area entrance only; individual numbered AH/BH strips, exact lines and current access permission are not established.",
+        "scope": "parking-group-approach"
+      },
+      "exactLine": false,
+      "roadOffsetMetres": 0,
+      "arrivalRoadConsistent": true
     },
     {
       "reference": "south:AH6",
@@ -1550,15 +2015,108 @@
       "sourceDate": "Sep 2026",
       "sourceIndexed": true,
       "searchable": true,
-      "routeReady": false,
-      "withinTerminalReady": false,
-      "locationEvidenceConsistent": false,
+      "routeReady": true,
+      "withinTerminalReady": true,
+      "locationEvidenceConsistent": true,
       "surveyedDestination": false,
-      "precision": "unlocated",
-      "routes": [],
-      "issues": [
-        "missing-destination"
-      ]
+      "precision": "area-entry-only",
+      "routes": [
+        {
+          "origin": "south:CD1",
+          "scope": "terminal",
+          "start": [
+            51.30879865,
+            3.2202856
+          ],
+          "available": true,
+          "distanceMetres": 522.93,
+          "arrivalErrorMetres": 0,
+          "reason": null
+        },
+        {
+          "origin": "south:HC1",
+          "scope": "terminal",
+          "start": [
+            51.302174560703136,
+            3.226830235992968
+          ],
+          "available": true,
+          "distanceMetres": 1455.3,
+          "arrivalErrorMetres": 0,
+          "reason": null
+        },
+        {
+          "origin": "south:H61",
+          "scope": "terminal",
+          "start": [
+            51.29689337975793,
+            3.245084956421715
+          ],
+          "available": true,
+          "distanceMetres": 3812.97,
+          "arrivalErrorMetres": 0,
+          "reason": null
+        },
+        {
+          "origin": "north:BB",
+          "scope": "inter-terminal",
+          "start": [
+            51.32706215,
+            3.2180945999999997
+          ],
+          "available": true,
+          "distanceMetres": 4193.82,
+          "arrivalErrorMetres": 0,
+          "reason": null
+        },
+        {
+          "origin": "arrival-lane:12487520987",
+          "scope": "terminal",
+          "start": [
+            51.3074696,
+            3.2136887
+          ],
+          "available": true,
+          "distanceMetres": 27.68,
+          "arrivalErrorMetres": 0,
+          "reason": null
+        },
+        {
+          "origin": "arrival-lane:2494511869",
+          "scope": "terminal",
+          "start": [
+            51.3094544,
+            3.2199576
+          ],
+          "available": true,
+          "distanceMetres": 460.87,
+          "arrivalErrorMetres": 0,
+          "reason": null
+        }
+      ],
+      "issues": [],
+      "target": {
+        "lat": 51.3075696,
+        "lon": 3.2140528,
+        "roadWay": "241873267",
+        "roadSegment": [
+          "12487520988",
+          "2494511819"
+        ]
+      },
+      "routingScope": "connected-road-network",
+      "individualParkingVerified": false,
+      "evidence": {
+        "sourceMap": "south",
+        "revision": "V1.09-2026",
+        "method": "source-topology-shared-area-entrance",
+        "region": "south-h-shared-field-entrance",
+        "basis": "The curved BDR/BDA outer perimeter, BWH quay cap, staff/rail-side approach and straight G/H divider identify the whole H field. The independent CF1/VPC cross-road control corrects the earlier one-field-shifted G assignment. Vehicle storage is inside the outer road392480112, not in the grass outside it. Shared AH/BH area entrance only; individual numbered AH/BH strips, exact lines and current access permission are not established.",
+        "scope": "parking-group-approach"
+      },
+      "exactLine": false,
+      "roadOffsetMetres": 0,
+      "arrivalRoadConsistent": true
     },
     {
       "reference": "south:BA1",
@@ -2161,7 +2719,7 @@
             3.2202856
           ],
           "available": true,
-          "distanceMetres": 315.29,
+          "distanceMetres": 227.19,
           "arrivalErrorMetres": 0,
           "reason": null
         },
@@ -2173,7 +2731,7 @@
             3.226830235992968
           ],
           "available": true,
-          "distanceMetres": 1247.65,
+          "distanceMetres": 1159.56,
           "arrivalErrorMetres": 0,
           "reason": null
         },
@@ -2185,7 +2743,7 @@
             3.245084956421715
           ],
           "available": true,
-          "distanceMetres": 3605.33,
+          "distanceMetres": 3536.12,
           "arrivalErrorMetres": 0,
           "reason": null
         },
@@ -2197,43 +2755,43 @@
             3.2180945999999997
           ],
           "available": true,
-          "distanceMetres": 4557.36,
+          "distanceMetres": 4639.88,
           "arrivalErrorMetres": 0,
           "reason": null
         },
         {
-          "origin": "arrival-lane:2494511913",
+          "origin": "arrival-lane:2494511921",
           "scope": "terminal",
           "start": [
-            51.3113346,
-            3.2155985
+            51.3116062,
+            3.2168135
           ],
           "available": true,
-          "distanceMetres": 246.28,
+          "distanceMetres": 237.47,
           "arrivalErrorMetres": 0,
           "reason": null
         },
         {
-          "origin": "arrival-lane:2494511857",
+          "origin": "arrival-lane:2494511865",
           "scope": "terminal",
           "start": [
-            51.3087356,
-            3.2177133
+            51.3090855,
+            3.2188055
           ],
           "available": true,
-          "distanceMetres": 77.95,
+          "distanceMetres": 75.16,
           "arrivalErrorMetres": 0,
           "reason": null
         }
       ],
       "issues": [],
       "target": {
-        "lat": 51.30936078456327,
-        "lon": 3.2172060232656072,
-        "roadWay": "241873282",
+        "lat": 51.30969035777416,
+        "lon": 3.218322941276138,
+        "roadWay": "241873278",
         "roadSegment": [
-          "2494511857",
-          "2494511878"
+          "2494511865",
+          "2494511886"
         ]
       },
       "routingScope": "connected-road-network",
@@ -2243,7 +2801,7 @@
         "revision": "V1.09-2026",
         "method": "landmark-junction-match",
         "region": "east-ab-d",
-        "basis": "The VPC-side access spine, continuous eastern quay perimeter, and ordered cross roads identify this A/B compound. The printed A/B divider is not treated as a road. The route ends on the matched access road, not at a surveyed parking line.",
+        "basis": "The independently aligned CF1/VPC cross-road, eastern quay, C3 boundary and ordered access roads identify this A/B compound. The outer northern cap belongs to AH/BH. The printed A/B divider is not treated as a road. The route ends on the matched access road, not at a surveyed parking line.",
         "scope": "parking-approach"
       },
       "exactLine": false,
@@ -2298,7 +2856,7 @@
             3.2202856
           ],
           "available": true,
-          "distanceMetres": 318.7,
+          "distanceMetres": 230.47,
           "arrivalErrorMetres": 0,
           "reason": null
         },
@@ -2310,7 +2868,7 @@
             3.226830235992968
           ],
           "available": true,
-          "distanceMetres": 1251.06,
+          "distanceMetres": 1162.84,
           "arrivalErrorMetres": 0,
           "reason": null
         },
@@ -2322,7 +2880,7 @@
             3.245084956421715
           ],
           "available": true,
-          "distanceMetres": 3608.74,
+          "distanceMetres": 3539.4,
           "arrivalErrorMetres": 0,
           "reason": null
         },
@@ -2334,43 +2892,43 @@
             3.2180945999999997
           ],
           "available": true,
-          "distanceMetres": 4560.77,
+          "distanceMetres": 4643.16,
           "arrivalErrorMetres": 0,
           "reason": null
         },
         {
-          "origin": "arrival-lane:2494511913",
+          "origin": "arrival-lane:2494511921",
           "scope": "terminal",
           "start": [
-            51.3113346,
-            3.2155985
+            51.3116062,
+            3.2168135
           ],
           "available": true,
-          "distanceMetres": 242.88,
+          "distanceMetres": 234.18,
           "arrivalErrorMetres": 0,
           "reason": null
         },
         {
-          "origin": "arrival-lane:2494511857",
+          "origin": "arrival-lane:2494511865",
           "scope": "terminal",
           "start": [
-            51.3087356,
-            3.2177133
+            51.3090855,
+            3.2188055
           ],
           "available": true,
-          "distanceMetres": 81.36,
+          "distanceMetres": 78.44,
           "arrivalErrorMetres": 0,
           "reason": null
         }
       ],
       "issues": [],
       "target": {
-        "lat": 51.30938811366156,
-        "lon": 3.2171838483487085,
-        "roadWay": "241873282",
+        "lat": 51.30971679831434,
+        "lon": 3.2183018468736653,
+        "roadWay": "241873278",
         "roadSegment": [
-          "2494511857",
-          "2494511878"
+          "2494511865",
+          "2494511886"
         ]
       },
       "routingScope": "connected-road-network",
@@ -2380,7 +2938,7 @@
         "revision": "V1.09-2026",
         "method": "landmark-junction-match",
         "region": "east-ab-e",
-        "basis": "The VPC-side access spine, continuous eastern quay perimeter, and ordered cross roads identify this A/B compound. The printed A/B divider is not treated as a road. The route ends on the matched access road, not at a surveyed parking line.",
+        "basis": "The independently aligned CF1/VPC cross-road, eastern quay, C3 boundary and ordered access roads identify this A/B compound. The outer northern cap belongs to AH/BH. The printed A/B divider is not treated as a road. The route ends on the matched access road, not at a surveyed parking line.",
         "scope": "parking-approach"
       },
       "exactLine": false,
@@ -2413,7 +2971,7 @@
             3.2202856
           ],
           "available": true,
-          "distanceMetres": 493.12,
+          "distanceMetres": 315.71,
           "arrivalErrorMetres": 0,
           "reason": null
         },
@@ -2425,7 +2983,7 @@
             3.226830235992968
           ],
           "available": true,
-          "distanceMetres": 1425.49,
+          "distanceMetres": 1248.08,
           "arrivalErrorMetres": 0,
           "reason": null
         },
@@ -2437,7 +2995,7 @@
             3.245084956421715
           ],
           "available": true,
-          "distanceMetres": 3783.17,
+          "distanceMetres": 3605.76,
           "arrivalErrorMetres": 0,
           "reason": null
         },
@@ -2449,43 +3007,43 @@
             3.2180945999999997
           ],
           "available": true,
-          "distanceMetres": 4391.32,
+          "distanceMetres": 4557.78,
           "arrivalErrorMetres": 0,
           "reason": null
         },
         {
-          "origin": "arrival-lane:2494511830",
+          "origin": "arrival-lane:2494511913",
           "scope": "terminal",
           "start": [
-            51.3080322,
-            3.2155107
+            51.3113346,
+            3.2155985
           ],
           "available": true,
-          "distanceMetres": 83.85,
+          "distanceMetres": 245.86,
           "arrivalErrorMetres": 0,
           "reason": null
         },
         {
-          "origin": "arrival-lane:2494511892",
+          "origin": "arrival-lane:2494511857",
           "scope": "terminal",
           "start": [
-            51.3108155,
-            3.2132571
+            51.3087356,
+            3.2177133
           ],
           "available": true,
-          "distanceMetres": 263.04,
+          "distanceMetres": 78.37,
           "arrivalErrorMetres": 0,
           "reason": null
         }
       ],
       "issues": [],
       "target": {
-        "lat": 51.30870431196593,
-        "lon": 3.2149638952769988,
-        "roadWay": "241873290",
+        "lat": 51.309364176522365,
+        "lon": 3.2172032710192524,
+        "roadWay": "241873282",
         "roadSegment": [
-          "2494511830",
-          "2494511867"
+          "2494511857",
+          "2494511878"
         ]
       },
       "routingScope": "connected-road-network",
@@ -2495,7 +3053,7 @@
         "revision": "V1.09-2026",
         "method": "landmark-junction-match",
         "region": "east-ab-f",
-        "basis": "The VPC-side access spine, continuous eastern quay perimeter, and ordered cross roads identify this A/B compound. The printed A/B divider is not treated as a road. The route ends on the matched access road, not at a surveyed parking line.",
+        "basis": "The independently aligned CF1/VPC cross-road, eastern quay, C3 boundary and ordered access roads identify this A/B compound. The outer northern cap belongs to AH/BH. The printed A/B divider is not treated as a road. The route ends on the matched access road, not at a surveyed parking line.",
         "scope": "parking-approach"
       },
       "exactLine": false,
@@ -2610,7 +3168,7 @@
         "revision": "V1.09-2026",
         "method": "landmark-junction-match",
         "region": "east-ab-g",
-        "basis": "The VPC-side access spine, continuous eastern quay perimeter, and ordered cross roads identify this A/B compound. The printed A/B divider is not treated as a road. The route ends on the matched access road, not at a surveyed parking line.",
+        "basis": "The independently aligned CF1/VPC cross-road, eastern quay, C3 boundary and ordered access roads identify this A/B compound. The outer northern cap belongs to AH/BH. The printed A/B divider is not treated as a road. The route ends on the matched access road, not at a surveyed parking line.",
         "scope": "parking-approach"
       },
       "exactLine": false,
@@ -2629,15 +3187,108 @@
       "sourceDate": "Sep 2026",
       "sourceIndexed": true,
       "searchable": true,
-      "routeReady": false,
-      "withinTerminalReady": false,
-      "locationEvidenceConsistent": false,
+      "routeReady": true,
+      "withinTerminalReady": true,
+      "locationEvidenceConsistent": true,
       "surveyedDestination": false,
-      "precision": "unlocated",
-      "routes": [],
-      "issues": [
-        "missing-destination"
-      ]
+      "precision": "area-entry-only",
+      "routes": [
+        {
+          "origin": "south:CD1",
+          "scope": "terminal",
+          "start": [
+            51.30879865,
+            3.2202856
+          ],
+          "available": true,
+          "distanceMetres": 522.93,
+          "arrivalErrorMetres": 0,
+          "reason": null
+        },
+        {
+          "origin": "south:HC1",
+          "scope": "terminal",
+          "start": [
+            51.302174560703136,
+            3.226830235992968
+          ],
+          "available": true,
+          "distanceMetres": 1455.3,
+          "arrivalErrorMetres": 0,
+          "reason": null
+        },
+        {
+          "origin": "south:H61",
+          "scope": "terminal",
+          "start": [
+            51.29689337975793,
+            3.245084956421715
+          ],
+          "available": true,
+          "distanceMetres": 3812.97,
+          "arrivalErrorMetres": 0,
+          "reason": null
+        },
+        {
+          "origin": "north:BB",
+          "scope": "inter-terminal",
+          "start": [
+            51.32706215,
+            3.2180945999999997
+          ],
+          "available": true,
+          "distanceMetres": 4193.82,
+          "arrivalErrorMetres": 0,
+          "reason": null
+        },
+        {
+          "origin": "arrival-lane:12487520987",
+          "scope": "terminal",
+          "start": [
+            51.3074696,
+            3.2136887
+          ],
+          "available": true,
+          "distanceMetres": 27.68,
+          "arrivalErrorMetres": 0,
+          "reason": null
+        },
+        {
+          "origin": "arrival-lane:2494511869",
+          "scope": "terminal",
+          "start": [
+            51.3094544,
+            3.2199576
+          ],
+          "available": true,
+          "distanceMetres": 460.87,
+          "arrivalErrorMetres": 0,
+          "reason": null
+        }
+      ],
+      "issues": [],
+      "target": {
+        "lat": 51.3075696,
+        "lon": 3.2140528,
+        "roadWay": "241873267",
+        "roadSegment": [
+          "12487520988",
+          "2494511819"
+        ]
+      },
+      "routingScope": "connected-road-network",
+      "individualParkingVerified": false,
+      "evidence": {
+        "sourceMap": "south",
+        "revision": "V1.09-2026",
+        "method": "source-topology-shared-area-entrance",
+        "region": "south-h-shared-field-entrance",
+        "basis": "The curved BDR/BDA outer perimeter, BWH quay cap, staff/rail-side approach and straight G/H divider identify the whole H field. The independent CF1/VPC cross-road control corrects the earlier one-field-shifted G assignment. Vehicle storage is inside the outer road392480112, not in the grass outside it. Shared AH/BH area entrance only; individual numbered AH/BH strips, exact lines and current access permission are not established.",
+        "scope": "parking-group-approach"
+      },
+      "exactLine": false,
+      "roadOffsetMetres": 0,
+      "arrivalRoadConsistent": true
     },
     {
       "reference": "south:BH2",
@@ -2651,15 +3302,108 @@
       "sourceDate": "Sep 2026",
       "sourceIndexed": true,
       "searchable": true,
-      "routeReady": false,
-      "withinTerminalReady": false,
-      "locationEvidenceConsistent": false,
+      "routeReady": true,
+      "withinTerminalReady": true,
+      "locationEvidenceConsistent": true,
       "surveyedDestination": false,
-      "precision": "unlocated",
-      "routes": [],
-      "issues": [
-        "missing-destination"
-      ]
+      "precision": "area-entry-only",
+      "routes": [
+        {
+          "origin": "south:CD1",
+          "scope": "terminal",
+          "start": [
+            51.30879865,
+            3.2202856
+          ],
+          "available": true,
+          "distanceMetres": 522.93,
+          "arrivalErrorMetres": 0,
+          "reason": null
+        },
+        {
+          "origin": "south:HC1",
+          "scope": "terminal",
+          "start": [
+            51.302174560703136,
+            3.226830235992968
+          ],
+          "available": true,
+          "distanceMetres": 1455.3,
+          "arrivalErrorMetres": 0,
+          "reason": null
+        },
+        {
+          "origin": "south:H61",
+          "scope": "terminal",
+          "start": [
+            51.29689337975793,
+            3.245084956421715
+          ],
+          "available": true,
+          "distanceMetres": 3812.97,
+          "arrivalErrorMetres": 0,
+          "reason": null
+        },
+        {
+          "origin": "north:BB",
+          "scope": "inter-terminal",
+          "start": [
+            51.32706215,
+            3.2180945999999997
+          ],
+          "available": true,
+          "distanceMetres": 4193.82,
+          "arrivalErrorMetres": 0,
+          "reason": null
+        },
+        {
+          "origin": "arrival-lane:12487520987",
+          "scope": "terminal",
+          "start": [
+            51.3074696,
+            3.2136887
+          ],
+          "available": true,
+          "distanceMetres": 27.68,
+          "arrivalErrorMetres": 0,
+          "reason": null
+        },
+        {
+          "origin": "arrival-lane:2494511869",
+          "scope": "terminal",
+          "start": [
+            51.3094544,
+            3.2199576
+          ],
+          "available": true,
+          "distanceMetres": 460.87,
+          "arrivalErrorMetres": 0,
+          "reason": null
+        }
+      ],
+      "issues": [],
+      "target": {
+        "lat": 51.3075696,
+        "lon": 3.2140528,
+        "roadWay": "241873267",
+        "roadSegment": [
+          "12487520988",
+          "2494511819"
+        ]
+      },
+      "routingScope": "connected-road-network",
+      "individualParkingVerified": false,
+      "evidence": {
+        "sourceMap": "south",
+        "revision": "V1.09-2026",
+        "method": "source-topology-shared-area-entrance",
+        "region": "south-h-shared-field-entrance",
+        "basis": "The curved BDR/BDA outer perimeter, BWH quay cap, staff/rail-side approach and straight G/H divider identify the whole H field. The independent CF1/VPC cross-road control corrects the earlier one-field-shifted G assignment. Vehicle storage is inside the outer road392480112, not in the grass outside it. Shared AH/BH area entrance only; individual numbered AH/BH strips, exact lines and current access permission are not established.",
+        "scope": "parking-group-approach"
+      },
+      "exactLine": false,
+      "roadOffsetMetres": 0,
+      "arrivalRoadConsistent": true
     },
     {
       "reference": "south:BH3",
@@ -2673,15 +3417,108 @@
       "sourceDate": "Sep 2026",
       "sourceIndexed": true,
       "searchable": true,
-      "routeReady": false,
-      "withinTerminalReady": false,
-      "locationEvidenceConsistent": false,
+      "routeReady": true,
+      "withinTerminalReady": true,
+      "locationEvidenceConsistent": true,
       "surveyedDestination": false,
-      "precision": "unlocated",
-      "routes": [],
-      "issues": [
-        "missing-destination"
-      ]
+      "precision": "area-entry-only",
+      "routes": [
+        {
+          "origin": "south:CD1",
+          "scope": "terminal",
+          "start": [
+            51.30879865,
+            3.2202856
+          ],
+          "available": true,
+          "distanceMetres": 522.93,
+          "arrivalErrorMetres": 0,
+          "reason": null
+        },
+        {
+          "origin": "south:HC1",
+          "scope": "terminal",
+          "start": [
+            51.302174560703136,
+            3.226830235992968
+          ],
+          "available": true,
+          "distanceMetres": 1455.3,
+          "arrivalErrorMetres": 0,
+          "reason": null
+        },
+        {
+          "origin": "south:H61",
+          "scope": "terminal",
+          "start": [
+            51.29689337975793,
+            3.245084956421715
+          ],
+          "available": true,
+          "distanceMetres": 3812.97,
+          "arrivalErrorMetres": 0,
+          "reason": null
+        },
+        {
+          "origin": "north:BB",
+          "scope": "inter-terminal",
+          "start": [
+            51.32706215,
+            3.2180945999999997
+          ],
+          "available": true,
+          "distanceMetres": 4193.82,
+          "arrivalErrorMetres": 0,
+          "reason": null
+        },
+        {
+          "origin": "arrival-lane:12487520987",
+          "scope": "terminal",
+          "start": [
+            51.3074696,
+            3.2136887
+          ],
+          "available": true,
+          "distanceMetres": 27.68,
+          "arrivalErrorMetres": 0,
+          "reason": null
+        },
+        {
+          "origin": "arrival-lane:2494511869",
+          "scope": "terminal",
+          "start": [
+            51.3094544,
+            3.2199576
+          ],
+          "available": true,
+          "distanceMetres": 460.87,
+          "arrivalErrorMetres": 0,
+          "reason": null
+        }
+      ],
+      "issues": [],
+      "target": {
+        "lat": 51.3075696,
+        "lon": 3.2140528,
+        "roadWay": "241873267",
+        "roadSegment": [
+          "12487520988",
+          "2494511819"
+        ]
+      },
+      "routingScope": "connected-road-network",
+      "individualParkingVerified": false,
+      "evidence": {
+        "sourceMap": "south",
+        "revision": "V1.09-2026",
+        "method": "source-topology-shared-area-entrance",
+        "region": "south-h-shared-field-entrance",
+        "basis": "The curved BDR/BDA outer perimeter, BWH quay cap, staff/rail-side approach and straight G/H divider identify the whole H field. The independent CF1/VPC cross-road control corrects the earlier one-field-shifted G assignment. Vehicle storage is inside the outer road392480112, not in the grass outside it. Shared AH/BH area entrance only; individual numbered AH/BH strips, exact lines and current access permission are not established.",
+        "scope": "parking-group-approach"
+      },
+      "exactLine": false,
+      "roadOffsetMetres": 0,
+      "arrivalRoadConsistent": true
     },
     {
       "reference": "south:BH4",
@@ -2695,15 +3532,108 @@
       "sourceDate": "Sep 2026",
       "sourceIndexed": true,
       "searchable": true,
-      "routeReady": false,
-      "withinTerminalReady": false,
-      "locationEvidenceConsistent": false,
+      "routeReady": true,
+      "withinTerminalReady": true,
+      "locationEvidenceConsistent": true,
       "surveyedDestination": false,
-      "precision": "unlocated",
-      "routes": [],
-      "issues": [
-        "missing-destination"
-      ]
+      "precision": "area-entry-only",
+      "routes": [
+        {
+          "origin": "south:CD1",
+          "scope": "terminal",
+          "start": [
+            51.30879865,
+            3.2202856
+          ],
+          "available": true,
+          "distanceMetres": 522.93,
+          "arrivalErrorMetres": 0,
+          "reason": null
+        },
+        {
+          "origin": "south:HC1",
+          "scope": "terminal",
+          "start": [
+            51.302174560703136,
+            3.226830235992968
+          ],
+          "available": true,
+          "distanceMetres": 1455.3,
+          "arrivalErrorMetres": 0,
+          "reason": null
+        },
+        {
+          "origin": "south:H61",
+          "scope": "terminal",
+          "start": [
+            51.29689337975793,
+            3.245084956421715
+          ],
+          "available": true,
+          "distanceMetres": 3812.97,
+          "arrivalErrorMetres": 0,
+          "reason": null
+        },
+        {
+          "origin": "north:BB",
+          "scope": "inter-terminal",
+          "start": [
+            51.32706215,
+            3.2180945999999997
+          ],
+          "available": true,
+          "distanceMetres": 4193.82,
+          "arrivalErrorMetres": 0,
+          "reason": null
+        },
+        {
+          "origin": "arrival-lane:12487520987",
+          "scope": "terminal",
+          "start": [
+            51.3074696,
+            3.2136887
+          ],
+          "available": true,
+          "distanceMetres": 27.68,
+          "arrivalErrorMetres": 0,
+          "reason": null
+        },
+        {
+          "origin": "arrival-lane:2494511869",
+          "scope": "terminal",
+          "start": [
+            51.3094544,
+            3.2199576
+          ],
+          "available": true,
+          "distanceMetres": 460.87,
+          "arrivalErrorMetres": 0,
+          "reason": null
+        }
+      ],
+      "issues": [],
+      "target": {
+        "lat": 51.3075696,
+        "lon": 3.2140528,
+        "roadWay": "241873267",
+        "roadSegment": [
+          "12487520988",
+          "2494511819"
+        ]
+      },
+      "routingScope": "connected-road-network",
+      "individualParkingVerified": false,
+      "evidence": {
+        "sourceMap": "south",
+        "revision": "V1.09-2026",
+        "method": "source-topology-shared-area-entrance",
+        "region": "south-h-shared-field-entrance",
+        "basis": "The curved BDR/BDA outer perimeter, BWH quay cap, staff/rail-side approach and straight G/H divider identify the whole H field. The independent CF1/VPC cross-road control corrects the earlier one-field-shifted G assignment. Vehicle storage is inside the outer road392480112, not in the grass outside it. Shared AH/BH area entrance only; individual numbered AH/BH strips, exact lines and current access permission are not established.",
+        "scope": "parking-group-approach"
+      },
+      "exactLine": false,
+      "roadOffsetMetres": 0,
+      "arrivalRoadConsistent": true
     },
     {
       "reference": "south:BKA",
@@ -4456,7 +5386,7 @@
             3.2202856
           ],
           "available": true,
-          "distanceMetres": 518.09,
+          "distanceMetres": 442.22,
           "arrivalErrorMetres": 0,
           "reason": null
         },
@@ -4468,7 +5398,7 @@
             3.226830235992968
           ],
           "available": true,
-          "distanceMetres": 1431.29,
+          "distanceMetres": 1342.74,
           "arrivalErrorMetres": 0,
           "reason": null
         },
@@ -4480,7 +5410,7 @@
             3.245084956421715
           ],
           "available": true,
-          "distanceMetres": 3779.8,
+          "distanceMetres": 3691.26,
           "arrivalErrorMetres": 0,
           "reason": null
         },
@@ -4492,7 +5422,7 @@
             3.2180945999999997
           ],
           "available": true,
-          "distanceMetres": 4839.9,
+          "distanceMetres": 4912.46,
           "arrivalErrorMetres": 0,
           "reason": null
         },
@@ -4504,7 +5434,7 @@
             3.2140528
           ],
           "available": true,
-          "distanceMetres": 646.08,
+          "distanceMetres": 718.63,
           "arrivalErrorMetres": 0,
           "reason": null
         },
@@ -4516,19 +5446,19 @@
             3.2286188
           ],
           "available": true,
-          "distanceMetres": 1579.34,
+          "distanceMetres": 1490.8,
           "arrivalErrorMetres": 0,
           "reason": null
         }
       ],
       "issues": [],
       "target": {
-        "lat": 51.31144534255264,
-        "lon": 3.2160891281960478,
+        "lat": 51.311714661702126,
+        "lon": 3.2172878936170215,
         "roadWay": "392480112",
         "roadSegment": [
-          "2494511915",
-          "2494511921"
+          "2494511921",
+          "2494511933"
         ]
       },
       "routingScope": "connected-road-network",
@@ -4571,7 +5501,7 @@
             3.2202856
           ],
           "available": true,
-          "distanceMetres": 589.31,
+          "distanceMetres": 506.1,
           "arrivalErrorMetres": 0,
           "reason": null
         },
@@ -4583,7 +5513,7 @@
             3.226830235992968
           ],
           "available": true,
-          "distanceMetres": 1502.51,
+          "distanceMetres": 1419.3,
           "arrivalErrorMetres": 0,
           "reason": null
         },
@@ -4595,7 +5525,7 @@
             3.245084956421715
           ],
           "available": true,
-          "distanceMetres": 3851.02,
+          "distanceMetres": 3767.81,
           "arrivalErrorMetres": 0,
           "reason": null
         },
@@ -4607,7 +5537,7 @@
             3.2180945999999997
           ],
           "available": true,
-          "distanceMetres": 4775.35,
+          "distanceMetres": 4851.89,
           "arrivalErrorMetres": 0,
           "reason": null
         },
@@ -4619,7 +5549,7 @@
             3.2140528
           ],
           "available": true,
-          "distanceMetres": 581.53,
+          "distanceMetres": 658.06,
           "arrivalErrorMetres": 0,
           "reason": null
         },
@@ -4631,19 +5561,19 @@
             3.2286188
           ],
           "available": true,
-          "distanceMetres": 1650.56,
+          "distanceMetres": 1567.35,
           "arrivalErrorMetres": 0,
           "reason": null
         }
       ],
       "issues": [],
       "target": {
-        "lat": 51.3112319009399,
-        "lon": 3.2151230694315522,
+        "lat": 51.31148142581764,
+        "lon": 3.216251618029075,
         "roadWay": "392480112",
         "roadSegment": [
-          "2494511909",
-          "2494511913"
+          "2494511915",
+          "2494511921"
         ]
       },
       "routingScope": "connected-road-network",
@@ -4686,7 +5616,7 @@
             3.2202856
           ],
           "available": true,
-          "distanceMetres": 679.25,
+          "distanceMetres": 641.99,
           "arrivalErrorMetres": 0,
           "reason": null
         },
@@ -4698,7 +5628,7 @@
             3.226830235992968
           ],
           "available": true,
-          "distanceMetres": 1592.45,
+          "distanceMetres": 1555.19,
           "arrivalErrorMetres": 0,
           "reason": null
         },
@@ -4710,7 +5640,7 @@
             3.245084956421715
           ],
           "available": true,
-          "distanceMetres": 3940.96,
+          "distanceMetres": 3903.7,
           "arrivalErrorMetres": 0,
           "reason": null
         },
@@ -4722,7 +5652,7 @@
             3.2180945999999997
           ],
           "available": true,
-          "distanceMetres": 4690.56,
+          "distanceMetres": 4727.82,
           "arrivalErrorMetres": 0,
           "reason": null
         },
@@ -4734,7 +5664,7 @@
             3.2140528
           ],
           "available": true,
-          "distanceMetres": 496.73,
+          "distanceMetres": 533.99,
           "arrivalErrorMetres": 0,
           "reason": null
         },
@@ -4746,19 +5676,19 @@
             3.2286188
           ],
           "available": true,
-          "distanceMetres": 1740.5,
+          "distanceMetres": 1703.24,
           "arrivalErrorMetres": 0,
           "reason": null
         }
       ],
       "issues": [],
       "target": {
-        "lat": 51.31096046828271,
-        "lon": 3.213904186302179,
+        "lat": 51.31107115264414,
+        "lon": 3.2144101517511032,
         "roadWay": "392480112",
         "roadSegment": [
-          "2494511898",
-          "2494511904"
+          "2494511904",
+          "6986702477"
         ]
       },
       "routingScope": "connected-road-network",
@@ -24383,7 +25313,7 @@
             3.2202856
           ],
           "available": true,
-          "distanceMetres": 686.51,
+          "distanceMetres": 654.92,
           "arrivalErrorMetres": 0,
           "reason": null
         },
@@ -24395,7 +25325,7 @@
             3.226830235992968
           ],
           "available": true,
-          "distanceMetres": 1599.71,
+          "distanceMetres": 1568.11,
           "arrivalErrorMetres": 0,
           "reason": null
         },
@@ -24407,7 +25337,7 @@
             3.245084956421715
           ],
           "available": true,
-          "distanceMetres": 3948.22,
+          "distanceMetres": 3916.62,
           "arrivalErrorMetres": 0,
           "reason": null
         },
@@ -24419,7 +25349,7 @@
             3.2180945999999997
           ],
           "available": true,
-          "distanceMetres": 4683.3,
+          "distanceMetres": 4714.89,
           "arrivalErrorMetres": 0,
           "reason": null
         },
@@ -24431,7 +25361,7 @@
             3.2140528
           ],
           "available": true,
-          "distanceMetres": 489.47,
+          "distanceMetres": 521.07,
           "arrivalErrorMetres": 0,
           "reason": null
         },
@@ -24443,15 +25373,15 @@
             3.2286188
           ],
           "available": true,
-          "distanceMetres": 1747.76,
+          "distanceMetres": 1716.17,
           "arrivalErrorMetres": 0,
           "reason": null
         }
       ],
       "issues": [],
       "target": {
-        "lat": 51.31093897067018,
-        "lon": 3.213805523397571,
+        "lat": 51.31103249834073,
+        "lon": 3.214234766953079,
         "roadWay": "392480112",
         "roadSegment": [
           "2494511898",
@@ -34384,7 +35314,7 @@
             3.2202856
           ],
           "available": true,
-          "distanceMetres": 484.31,
+          "distanceMetres": 390.16,
           "arrivalErrorMetres": 0,
           "reason": null
         },
@@ -34396,7 +35326,7 @@
             3.226830235992968
           ],
           "available": true,
-          "distanceMetres": 1416.67,
+          "distanceMetres": 1322.52,
           "arrivalErrorMetres": 0,
           "reason": null
         },
@@ -34408,7 +35338,7 @@
             3.2310317489583333
           ],
           "available": true,
-          "distanceMetres": 2015.35,
+          "distanceMetres": 1940.09,
           "arrivalErrorMetres": 0,
           "reason": null
         },
@@ -34420,43 +35350,43 @@
             3.2180945999999997
           ],
           "available": true,
-          "distanceMetres": 4726.38,
+          "distanceMetres": 4802.85,
           "arrivalErrorMetres": 0,
           "reason": null
         },
         {
-          "origin": "arrival-lane:2494511913",
+          "origin": "arrival-lane:2494511921",
           "scope": "terminal",
           "start": [
-            51.3113346,
-            3.2155985
+            51.3116062,
+            3.2168135
           ],
           "available": true,
-          "distanceMetres": 77.26,
+          "distanceMetres": 74.5,
           "arrivalErrorMetres": 0,
           "reason": null
         },
         {
-          "origin": "arrival-lane:2494511857",
+          "origin": "arrival-lane:2494511865",
           "scope": "terminal",
           "start": [
-            51.3087356,
-            3.2177133
+            51.3090855,
+            3.2188055
           ],
           "available": true,
-          "distanceMetres": 246.97,
+          "distanceMetres": 238.13,
           "arrivalErrorMetres": 0,
           "reason": null
         }
       ],
       "issues": [],
       "target": {
-        "lat": 51.31071560387787,
-        "lon": 3.2161035583440176,
-        "roadWay": "241873282",
+        "lat": 51.311004333832145,
+        "lon": 3.217284404998948,
+        "roadWay": "241873278",
         "roadSegment": [
-          "2494511878",
-          "2494511913"
+          "2494511886",
+          "2494511921"
         ]
       },
       "routingScope": "connected-road-network",
@@ -34466,7 +35396,7 @@
         "revision": "V1.09-2026",
         "method": "landmark-junction-match",
         "region": "east-ab-d",
-        "basis": "The VPC-side access spine, continuous eastern quay perimeter, and ordered cross roads identify this A/B compound. The printed A/B divider is not treated as a road. The route ends on the matched access road, not at a surveyed parking line.",
+        "basis": "The independently aligned CF1/VPC cross-road, eastern quay, C3 boundary and ordered access roads identify this A/B compound. The outer northern cap belongs to AH/BH. The printed A/B divider is not treated as a road. The route ends on the matched access road, not at a surveyed parking line.",
         "scope": "parking-approach"
       },
       "exactLine": false,
@@ -34499,7 +35429,7 @@
             3.2202856
           ],
           "available": true,
-          "distanceMetres": 483.19,
+          "distanceMetres": 389.08,
           "arrivalErrorMetres": 0,
           "reason": null
         },
@@ -34511,7 +35441,7 @@
             3.226830235992968
           ],
           "available": true,
-          "distanceMetres": 1415.56,
+          "distanceMetres": 1321.45,
           "arrivalErrorMetres": 0,
           "reason": null
         },
@@ -34523,7 +35453,7 @@
             3.2310317489583333
           ],
           "available": true,
-          "distanceMetres": 2014.24,
+          "distanceMetres": 1939.01,
           "arrivalErrorMetres": 0,
           "reason": null
         },
@@ -34535,43 +35465,43 @@
             3.2180945999999997
           ],
           "available": true,
-          "distanceMetres": 4725.26,
+          "distanceMetres": 4801.77,
           "arrivalErrorMetres": 0,
           "reason": null
         },
         {
-          "origin": "arrival-lane:2494511913",
+          "origin": "arrival-lane:2494511921",
           "scope": "terminal",
           "start": [
-            51.3113346,
-            3.2155985
+            51.3116062,
+            3.2168135
           ],
           "available": true,
-          "distanceMetres": 78.38,
+          "distanceMetres": 75.58,
           "arrivalErrorMetres": 0,
           "reason": null
         },
         {
-          "origin": "arrival-lane:2494511857",
+          "origin": "arrival-lane:2494511865",
           "scope": "terminal",
           "start": [
-            51.3087356,
-            3.2177133
+            51.3090855,
+            3.2188055
           ],
           "available": true,
-          "distanceMetres": 245.85,
+          "distanceMetres": 237.05,
           "arrivalErrorMetres": 0,
           "reason": null
         }
       ],
       "issues": [],
       "target": {
-        "lat": 51.31070665888376,
-        "lon": 3.2161108568451677,
-        "roadWay": "241873282",
+        "lat": 51.310995636379715,
+        "lon": 3.2172912099566666,
+        "roadWay": "241873278",
         "roadSegment": [
-          "2494511878",
-          "2494511913"
+          "2494511886",
+          "2494511921"
         ]
       },
       "routingScope": "connected-road-network",
@@ -34581,7 +35511,7 @@
         "revision": "V1.09-2026",
         "method": "landmark-junction-match",
         "region": "east-ab-e",
-        "basis": "The VPC-side access spine, continuous eastern quay perimeter, and ordered cross roads identify this A/B compound. The printed A/B divider is not treated as a road. The route ends on the matched access road, not at a surveyed parking line.",
+        "basis": "The independently aligned CF1/VPC cross-road, eastern quay, C3 boundary and ordered access roads identify this A/B compound. The outer northern cap belongs to AH/BH. The printed A/B divider is not treated as a road. The route ends on the matched access road, not at a surveyed parking line.",
         "scope": "parking-approach"
       },
       "exactLine": false,
@@ -34614,7 +35544,7 @@
             3.2202856
           ],
           "available": true,
-          "distanceMetres": 662.67,
+          "distanceMetres": 474.19,
           "arrivalErrorMetres": 0,
           "reason": null
         },
@@ -34626,7 +35556,7 @@
             3.226830235992968
           ],
           "available": true,
-          "distanceMetres": 1595.04,
+          "distanceMetres": 1406.56,
           "arrivalErrorMetres": 0,
           "reason": null
         },
@@ -34638,7 +35568,7 @@
             3.2310317489583333
           ],
           "available": true,
-          "distanceMetres": 2193.72,
+          "distanceMetres": 2005.24,
           "arrivalErrorMetres": 0,
           "reason": null
         },
@@ -34650,43 +35580,43 @@
             3.2180945999999997
           ],
           "available": true,
-          "distanceMetres": 4560.87,
+          "distanceMetres": 4716.26,
           "arrivalErrorMetres": 0,
           "reason": null
         },
         {
-          "origin": "arrival-lane:2494511830",
+          "origin": "arrival-lane:2494511913",
           "scope": "terminal",
           "start": [
-            51.3080322,
-            3.2155107
+            51.3113346,
+            3.2155985
           ],
           "available": true,
-          "distanceMetres": 253.4,
+          "distanceMetres": 87.38,
           "arrivalErrorMetres": 0,
           "reason": null
         },
         {
-          "origin": "arrival-lane:2494511892",
+          "origin": "arrival-lane:2494511857",
           "scope": "terminal",
           "start": [
-            51.3108155,
-            3.2132571
+            51.3087356,
+            3.2177133
           ],
           "available": true,
-          "distanceMetres": 93.49,
+          "distanceMetres": 236.85,
           "arrivalErrorMetres": 0,
           "reason": null
         }
       ],
       "issues": [],
       "target": {
-        "lat": 51.3100618457173,
-        "lon": 3.213853173453212,
-        "roadWay": "241873290",
+        "lat": 51.310634565621854,
+        "lon": 3.2161696799979658,
+        "roadWay": "241873282",
         "roadSegment": [
-          "2494511867",
-          "2494511882"
+          "2494511878",
+          "2494511913"
         ]
       },
       "routingScope": "connected-road-network",
@@ -34696,7 +35626,7 @@
         "revision": "V1.09-2026",
         "method": "landmark-junction-match",
         "region": "east-ab-f",
-        "basis": "The VPC-side access spine, continuous eastern quay perimeter, and ordered cross roads identify this A/B compound. The printed A/B divider is not treated as a road. The route ends on the matched access road, not at a surveyed parking line.",
+        "basis": "The independently aligned CF1/VPC cross-road, eastern quay, C3 boundary and ordered access roads identify this A/B compound. The outer northern cap belongs to AH/BH. The printed A/B divider is not treated as a road. The route ends on the matched access road, not at a surveyed parking line.",
         "scope": "parking-approach"
       },
       "exactLine": false,
@@ -34811,7 +35741,7 @@
         "revision": "V1.09-2026",
         "method": "landmark-junction-match",
         "region": "east-ab-g",
-        "basis": "The VPC-side access spine, continuous eastern quay perimeter, and ordered cross roads identify this A/B compound. The printed A/B divider is not treated as a road. The route ends on the matched access road, not at a surveyed parking line.",
+        "basis": "The independently aligned CF1/VPC cross-road, eastern quay, C3 boundary and ordered access roads identify this A/B compound. The outer northern cap belongs to AH/BH. The printed A/B divider is not treated as a road. The route ends on the matched access road, not at a surveyed parking line.",
         "scope": "parking-approach"
       },
       "exactLine": false,
@@ -34830,15 +35760,108 @@
       "sourceDate": "Older plan · date not printed",
       "sourceIndexed": true,
       "searchable": true,
-      "routeReady": false,
-      "withinTerminalReady": false,
-      "locationEvidenceConsistent": false,
+      "routeReady": true,
+      "withinTerminalReady": true,
+      "locationEvidenceConsistent": true,
       "surveyedDestination": false,
-      "precision": "unlocated",
-      "routes": [],
-      "issues": [
-        "missing-destination"
-      ]
+      "precision": "area-entry-only",
+      "routes": [
+        {
+          "origin": "south:CD1",
+          "scope": "terminal",
+          "start": [
+            51.30879865,
+            3.2202856
+          ],
+          "available": true,
+          "distanceMetres": 522.93,
+          "arrivalErrorMetres": 0,
+          "reason": null
+        },
+        {
+          "origin": "south:HC1",
+          "scope": "terminal",
+          "start": [
+            51.302174560703136,
+            3.226830235992968
+          ],
+          "available": true,
+          "distanceMetres": 1455.3,
+          "arrivalErrorMetres": 0,
+          "reason": null
+        },
+        {
+          "origin": "south:LA1",
+          "scope": "terminal",
+          "start": [
+            51.29755119104166,
+            3.2310317489583333
+          ],
+          "available": true,
+          "distanceMetres": 2053.97,
+          "arrivalErrorMetres": 0,
+          "reason": null
+        },
+        {
+          "origin": "north:BB",
+          "scope": "inter-terminal",
+          "start": [
+            51.32706215,
+            3.2180945999999997
+          ],
+          "available": true,
+          "distanceMetres": 4193.82,
+          "arrivalErrorMetres": 0,
+          "reason": null
+        },
+        {
+          "origin": "arrival-lane:12487520987",
+          "scope": "terminal",
+          "start": [
+            51.3074696,
+            3.2136887
+          ],
+          "available": true,
+          "distanceMetres": 27.68,
+          "arrivalErrorMetres": 0,
+          "reason": null
+        },
+        {
+          "origin": "arrival-lane:2494511869",
+          "scope": "terminal",
+          "start": [
+            51.3094544,
+            3.2199576
+          ],
+          "available": true,
+          "distanceMetres": 460.87,
+          "arrivalErrorMetres": 0,
+          "reason": null
+        }
+      ],
+      "issues": [],
+      "target": {
+        "lat": 51.3075696,
+        "lon": 3.2140528,
+        "roadWay": "241873267",
+        "roadSegment": [
+          "12487520988",
+          "2494511819"
+        ]
+      },
+      "routingScope": "connected-road-network",
+      "individualParkingVerified": false,
+      "evidence": {
+        "sourceMap": "bastenaken",
+        "revision": "Cewez historical page23",
+        "method": "source-topology-shared-area-entrance",
+        "region": "bastenaken-h-shared-field-entrance",
+        "basis": "The curved BDR/BDA outer perimeter, BWH quay cap, staff/rail-side approach and straight G/H divider identify the whole H field. The independent CF1/VPC cross-road control corrects the earlier one-field-shifted G assignment. Vehicle storage is inside the outer road392480112, not in the grass outside it. Shared AH/BH area entrance only; individual numbered AH/BH strips, exact lines and current access permission are not established. Historical page23 was separately reviewed: its four H compartments retain the same whole-field controls, although their individual partitions differ from the current ten strips.",
+        "scope": "parking-group-approach"
+      },
+      "exactLine": false,
+      "roadOffsetMetres": 0,
+      "arrivalRoadConsistent": true
     },
     {
       "reference": "bastenaken:AH2",
@@ -34852,15 +35875,108 @@
       "sourceDate": "Older plan · date not printed",
       "sourceIndexed": true,
       "searchable": true,
-      "routeReady": false,
-      "withinTerminalReady": false,
-      "locationEvidenceConsistent": false,
+      "routeReady": true,
+      "withinTerminalReady": true,
+      "locationEvidenceConsistent": true,
       "surveyedDestination": false,
-      "precision": "unlocated",
-      "routes": [],
-      "issues": [
-        "missing-destination"
-      ]
+      "precision": "area-entry-only",
+      "routes": [
+        {
+          "origin": "south:CD1",
+          "scope": "terminal",
+          "start": [
+            51.30879865,
+            3.2202856
+          ],
+          "available": true,
+          "distanceMetres": 522.93,
+          "arrivalErrorMetres": 0,
+          "reason": null
+        },
+        {
+          "origin": "south:HC1",
+          "scope": "terminal",
+          "start": [
+            51.302174560703136,
+            3.226830235992968
+          ],
+          "available": true,
+          "distanceMetres": 1455.3,
+          "arrivalErrorMetres": 0,
+          "reason": null
+        },
+        {
+          "origin": "south:LA1",
+          "scope": "terminal",
+          "start": [
+            51.29755119104166,
+            3.2310317489583333
+          ],
+          "available": true,
+          "distanceMetres": 2053.97,
+          "arrivalErrorMetres": 0,
+          "reason": null
+        },
+        {
+          "origin": "north:BB",
+          "scope": "inter-terminal",
+          "start": [
+            51.32706215,
+            3.2180945999999997
+          ],
+          "available": true,
+          "distanceMetres": 4193.82,
+          "arrivalErrorMetres": 0,
+          "reason": null
+        },
+        {
+          "origin": "arrival-lane:12487520987",
+          "scope": "terminal",
+          "start": [
+            51.3074696,
+            3.2136887
+          ],
+          "available": true,
+          "distanceMetres": 27.68,
+          "arrivalErrorMetres": 0,
+          "reason": null
+        },
+        {
+          "origin": "arrival-lane:2494511869",
+          "scope": "terminal",
+          "start": [
+            51.3094544,
+            3.2199576
+          ],
+          "available": true,
+          "distanceMetres": 460.87,
+          "arrivalErrorMetres": 0,
+          "reason": null
+        }
+      ],
+      "issues": [],
+      "target": {
+        "lat": 51.3075696,
+        "lon": 3.2140528,
+        "roadWay": "241873267",
+        "roadSegment": [
+          "12487520988",
+          "2494511819"
+        ]
+      },
+      "routingScope": "connected-road-network",
+      "individualParkingVerified": false,
+      "evidence": {
+        "sourceMap": "bastenaken",
+        "revision": "Cewez historical page23",
+        "method": "source-topology-shared-area-entrance",
+        "region": "bastenaken-h-shared-field-entrance",
+        "basis": "The curved BDR/BDA outer perimeter, BWH quay cap, staff/rail-side approach and straight G/H divider identify the whole H field. The independent CF1/VPC cross-road control corrects the earlier one-field-shifted G assignment. Vehicle storage is inside the outer road392480112, not in the grass outside it. Shared AH/BH area entrance only; individual numbered AH/BH strips, exact lines and current access permission are not established. Historical page23 was separately reviewed: its four H compartments retain the same whole-field controls, although their individual partitions differ from the current ten strips.",
+        "scope": "parking-group-approach"
+      },
+      "exactLine": false,
+      "roadOffsetMetres": 0,
+      "arrivalRoadConsistent": true
     },
     {
       "reference": "bastenaken:BA1",
@@ -35463,7 +36579,7 @@
             3.2202856
           ],
           "available": true,
-          "distanceMetres": 315.29,
+          "distanceMetres": 227.19,
           "arrivalErrorMetres": 0,
           "reason": null
         },
@@ -35475,7 +36591,7 @@
             3.226830235992968
           ],
           "available": true,
-          "distanceMetres": 1247.65,
+          "distanceMetres": 1159.56,
           "arrivalErrorMetres": 0,
           "reason": null
         },
@@ -35487,7 +36603,7 @@
             3.2310317489583333
           ],
           "available": true,
-          "distanceMetres": 1846.33,
+          "distanceMetres": 1777.12,
           "arrivalErrorMetres": 0,
           "reason": null
         },
@@ -35499,43 +36615,43 @@
             3.2180945999999997
           ],
           "available": true,
-          "distanceMetres": 4557.36,
+          "distanceMetres": 4639.88,
           "arrivalErrorMetres": 0,
           "reason": null
         },
         {
-          "origin": "arrival-lane:2494511913",
+          "origin": "arrival-lane:2494511921",
           "scope": "terminal",
           "start": [
-            51.3113346,
-            3.2155985
+            51.3116062,
+            3.2168135
           ],
           "available": true,
-          "distanceMetres": 246.28,
+          "distanceMetres": 237.47,
           "arrivalErrorMetres": 0,
           "reason": null
         },
         {
-          "origin": "arrival-lane:2494511857",
+          "origin": "arrival-lane:2494511865",
           "scope": "terminal",
           "start": [
-            51.3087356,
-            3.2177133
+            51.3090855,
+            3.2188055
           ],
           "available": true,
-          "distanceMetres": 77.95,
+          "distanceMetres": 75.16,
           "arrivalErrorMetres": 0,
           "reason": null
         }
       ],
       "issues": [],
       "target": {
-        "lat": 51.30936078456327,
-        "lon": 3.2172060232656072,
-        "roadWay": "241873282",
+        "lat": 51.30969035777416,
+        "lon": 3.218322941276138,
+        "roadWay": "241873278",
         "roadSegment": [
-          "2494511857",
-          "2494511878"
+          "2494511865",
+          "2494511886"
         ]
       },
       "routingScope": "connected-road-network",
@@ -35545,7 +36661,7 @@
         "revision": "V1.09-2026",
         "method": "landmark-junction-match",
         "region": "east-ab-d",
-        "basis": "The VPC-side access spine, continuous eastern quay perimeter, and ordered cross roads identify this A/B compound. The printed A/B divider is not treated as a road. The route ends on the matched access road, not at a surveyed parking line.",
+        "basis": "The independently aligned CF1/VPC cross-road, eastern quay, C3 boundary and ordered access roads identify this A/B compound. The outer northern cap belongs to AH/BH. The printed A/B divider is not treated as a road. The route ends on the matched access road, not at a surveyed parking line.",
         "scope": "parking-approach"
       },
       "exactLine": false,
@@ -35622,7 +36738,7 @@
             3.2202856
           ],
           "available": true,
-          "distanceMetres": 318.7,
+          "distanceMetres": 230.47,
           "arrivalErrorMetres": 0,
           "reason": null
         },
@@ -35634,7 +36750,7 @@
             3.226830235992968
           ],
           "available": true,
-          "distanceMetres": 1251.06,
+          "distanceMetres": 1162.84,
           "arrivalErrorMetres": 0,
           "reason": null
         },
@@ -35646,7 +36762,7 @@
             3.2310317489583333
           ],
           "available": true,
-          "distanceMetres": 1849.74,
+          "distanceMetres": 1780.4,
           "arrivalErrorMetres": 0,
           "reason": null
         },
@@ -35658,43 +36774,43 @@
             3.2180945999999997
           ],
           "available": true,
-          "distanceMetres": 4560.77,
+          "distanceMetres": 4643.16,
           "arrivalErrorMetres": 0,
           "reason": null
         },
         {
-          "origin": "arrival-lane:2494511913",
+          "origin": "arrival-lane:2494511921",
           "scope": "terminal",
           "start": [
-            51.3113346,
-            3.2155985
+            51.3116062,
+            3.2168135
           ],
           "available": true,
-          "distanceMetres": 242.88,
+          "distanceMetres": 234.18,
           "arrivalErrorMetres": 0,
           "reason": null
         },
         {
-          "origin": "arrival-lane:2494511857",
+          "origin": "arrival-lane:2494511865",
           "scope": "terminal",
           "start": [
-            51.3087356,
-            3.2177133
+            51.3090855,
+            3.2188055
           ],
           "available": true,
-          "distanceMetres": 81.36,
+          "distanceMetres": 78.44,
           "arrivalErrorMetres": 0,
           "reason": null
         }
       ],
       "issues": [],
       "target": {
-        "lat": 51.30938811366156,
-        "lon": 3.2171838483487085,
-        "roadWay": "241873282",
+        "lat": 51.30971679831434,
+        "lon": 3.2183018468736653,
+        "roadWay": "241873278",
         "roadSegment": [
-          "2494511857",
-          "2494511878"
+          "2494511865",
+          "2494511886"
         ]
       },
       "routingScope": "connected-road-network",
@@ -35704,7 +36820,7 @@
         "revision": "V1.09-2026",
         "method": "landmark-junction-match",
         "region": "east-ab-e",
-        "basis": "The VPC-side access spine, continuous eastern quay perimeter, and ordered cross roads identify this A/B compound. The printed A/B divider is not treated as a road. The route ends on the matched access road, not at a surveyed parking line.",
+        "basis": "The independently aligned CF1/VPC cross-road, eastern quay, C3 boundary and ordered access roads identify this A/B compound. The outer northern cap belongs to AH/BH. The printed A/B divider is not treated as a road. The route ends on the matched access road, not at a surveyed parking line.",
         "scope": "parking-approach"
       },
       "exactLine": false,
@@ -35737,7 +36853,7 @@
             3.2202856
           ],
           "available": true,
-          "distanceMetres": 493.12,
+          "distanceMetres": 315.71,
           "arrivalErrorMetres": 0,
           "reason": null
         },
@@ -35749,7 +36865,7 @@
             3.226830235992968
           ],
           "available": true,
-          "distanceMetres": 1425.49,
+          "distanceMetres": 1248.08,
           "arrivalErrorMetres": 0,
           "reason": null
         },
@@ -35761,7 +36877,7 @@
             3.2310317489583333
           ],
           "available": true,
-          "distanceMetres": 2024.17,
+          "distanceMetres": 1846.76,
           "arrivalErrorMetres": 0,
           "reason": null
         },
@@ -35773,43 +36889,43 @@
             3.2180945999999997
           ],
           "available": true,
-          "distanceMetres": 4391.32,
+          "distanceMetres": 4557.78,
           "arrivalErrorMetres": 0,
           "reason": null
         },
         {
-          "origin": "arrival-lane:2494511830",
+          "origin": "arrival-lane:2494511913",
           "scope": "terminal",
           "start": [
-            51.3080322,
-            3.2155107
+            51.3113346,
+            3.2155985
           ],
           "available": true,
-          "distanceMetres": 83.85,
+          "distanceMetres": 245.86,
           "arrivalErrorMetres": 0,
           "reason": null
         },
         {
-          "origin": "arrival-lane:2494511892",
+          "origin": "arrival-lane:2494511857",
           "scope": "terminal",
           "start": [
-            51.3108155,
-            3.2132571
+            51.3087356,
+            3.2177133
           ],
           "available": true,
-          "distanceMetres": 263.04,
+          "distanceMetres": 78.37,
           "arrivalErrorMetres": 0,
           "reason": null
         }
       ],
       "issues": [],
       "target": {
-        "lat": 51.30870431196593,
-        "lon": 3.2149638952769988,
-        "roadWay": "241873290",
+        "lat": 51.309364176522365,
+        "lon": 3.2172032710192524,
+        "roadWay": "241873282",
         "roadSegment": [
-          "2494511830",
-          "2494511867"
+          "2494511857",
+          "2494511878"
         ]
       },
       "routingScope": "connected-road-network",
@@ -35819,7 +36935,7 @@
         "revision": "V1.09-2026",
         "method": "landmark-junction-match",
         "region": "east-ab-f",
-        "basis": "The VPC-side access spine, continuous eastern quay perimeter, and ordered cross roads identify this A/B compound. The printed A/B divider is not treated as a road. The route ends on the matched access road, not at a surveyed parking line.",
+        "basis": "The independently aligned CF1/VPC cross-road, eastern quay, C3 boundary and ordered access roads identify this A/B compound. The outer northern cap belongs to AH/BH. The printed A/B divider is not treated as a road. The route ends on the matched access road, not at a surveyed parking line.",
         "scope": "parking-approach"
       },
       "exactLine": false,
@@ -35934,7 +37050,7 @@
         "revision": "V1.09-2026",
         "method": "landmark-junction-match",
         "region": "east-ab-g",
-        "basis": "The VPC-side access spine, continuous eastern quay perimeter, and ordered cross roads identify this A/B compound. The printed A/B divider is not treated as a road. The route ends on the matched access road, not at a surveyed parking line.",
+        "basis": "The independently aligned CF1/VPC cross-road, eastern quay, C3 boundary and ordered access roads identify this A/B compound. The outer northern cap belongs to AH/BH. The printed A/B divider is not treated as a road. The route ends on the matched access road, not at a surveyed parking line.",
         "scope": "parking-approach"
       },
       "exactLine": false,
@@ -35953,15 +37069,108 @@
       "sourceDate": "Older plan · date not printed",
       "sourceIndexed": true,
       "searchable": true,
-      "routeReady": false,
-      "withinTerminalReady": false,
-      "locationEvidenceConsistent": false,
+      "routeReady": true,
+      "withinTerminalReady": true,
+      "locationEvidenceConsistent": true,
       "surveyedDestination": false,
-      "precision": "unlocated",
-      "routes": [],
-      "issues": [
-        "missing-destination"
-      ]
+      "precision": "area-entry-only",
+      "routes": [
+        {
+          "origin": "south:CD1",
+          "scope": "terminal",
+          "start": [
+            51.30879865,
+            3.2202856
+          ],
+          "available": true,
+          "distanceMetres": 522.93,
+          "arrivalErrorMetres": 0,
+          "reason": null
+        },
+        {
+          "origin": "south:HC1",
+          "scope": "terminal",
+          "start": [
+            51.302174560703136,
+            3.226830235992968
+          ],
+          "available": true,
+          "distanceMetres": 1455.3,
+          "arrivalErrorMetres": 0,
+          "reason": null
+        },
+        {
+          "origin": "south:LA1",
+          "scope": "terminal",
+          "start": [
+            51.29755119104166,
+            3.2310317489583333
+          ],
+          "available": true,
+          "distanceMetres": 2053.97,
+          "arrivalErrorMetres": 0,
+          "reason": null
+        },
+        {
+          "origin": "north:BB",
+          "scope": "inter-terminal",
+          "start": [
+            51.32706215,
+            3.2180945999999997
+          ],
+          "available": true,
+          "distanceMetres": 4193.82,
+          "arrivalErrorMetres": 0,
+          "reason": null
+        },
+        {
+          "origin": "arrival-lane:12487520987",
+          "scope": "terminal",
+          "start": [
+            51.3074696,
+            3.2136887
+          ],
+          "available": true,
+          "distanceMetres": 27.68,
+          "arrivalErrorMetres": 0,
+          "reason": null
+        },
+        {
+          "origin": "arrival-lane:2494511869",
+          "scope": "terminal",
+          "start": [
+            51.3094544,
+            3.2199576
+          ],
+          "available": true,
+          "distanceMetres": 460.87,
+          "arrivalErrorMetres": 0,
+          "reason": null
+        }
+      ],
+      "issues": [],
+      "target": {
+        "lat": 51.3075696,
+        "lon": 3.2140528,
+        "roadWay": "241873267",
+        "roadSegment": [
+          "12487520988",
+          "2494511819"
+        ]
+      },
+      "routingScope": "connected-road-network",
+      "individualParkingVerified": false,
+      "evidence": {
+        "sourceMap": "bastenaken",
+        "revision": "Cewez historical page23",
+        "method": "source-topology-shared-area-entrance",
+        "region": "bastenaken-h-shared-field-entrance",
+        "basis": "The curved BDR/BDA outer perimeter, BWH quay cap, staff/rail-side approach and straight G/H divider identify the whole H field. The independent CF1/VPC cross-road control corrects the earlier one-field-shifted G assignment. Vehicle storage is inside the outer road392480112, not in the grass outside it. Shared AH/BH area entrance only; individual numbered AH/BH strips, exact lines and current access permission are not established. Historical page23 was separately reviewed: its four H compartments retain the same whole-field controls, although their individual partitions differ from the current ten strips.",
+        "scope": "parking-group-approach"
+      },
+      "exactLine": false,
+      "roadOffsetMetres": 0,
+      "arrivalRoadConsistent": true
     },
     {
       "reference": "bastenaken:BH2",
@@ -35975,15 +37184,108 @@
       "sourceDate": "Older plan · date not printed",
       "sourceIndexed": true,
       "searchable": true,
-      "routeReady": false,
-      "withinTerminalReady": false,
-      "locationEvidenceConsistent": false,
+      "routeReady": true,
+      "withinTerminalReady": true,
+      "locationEvidenceConsistent": true,
       "surveyedDestination": false,
-      "precision": "unlocated",
-      "routes": [],
-      "issues": [
-        "missing-destination"
-      ]
+      "precision": "area-entry-only",
+      "routes": [
+        {
+          "origin": "south:CD1",
+          "scope": "terminal",
+          "start": [
+            51.30879865,
+            3.2202856
+          ],
+          "available": true,
+          "distanceMetres": 522.93,
+          "arrivalErrorMetres": 0,
+          "reason": null
+        },
+        {
+          "origin": "south:HC1",
+          "scope": "terminal",
+          "start": [
+            51.302174560703136,
+            3.226830235992968
+          ],
+          "available": true,
+          "distanceMetres": 1455.3,
+          "arrivalErrorMetres": 0,
+          "reason": null
+        },
+        {
+          "origin": "south:LA1",
+          "scope": "terminal",
+          "start": [
+            51.29755119104166,
+            3.2310317489583333
+          ],
+          "available": true,
+          "distanceMetres": 2053.97,
+          "arrivalErrorMetres": 0,
+          "reason": null
+        },
+        {
+          "origin": "north:BB",
+          "scope": "inter-terminal",
+          "start": [
+            51.32706215,
+            3.2180945999999997
+          ],
+          "available": true,
+          "distanceMetres": 4193.82,
+          "arrivalErrorMetres": 0,
+          "reason": null
+        },
+        {
+          "origin": "arrival-lane:12487520987",
+          "scope": "terminal",
+          "start": [
+            51.3074696,
+            3.2136887
+          ],
+          "available": true,
+          "distanceMetres": 27.68,
+          "arrivalErrorMetres": 0,
+          "reason": null
+        },
+        {
+          "origin": "arrival-lane:2494511869",
+          "scope": "terminal",
+          "start": [
+            51.3094544,
+            3.2199576
+          ],
+          "available": true,
+          "distanceMetres": 460.87,
+          "arrivalErrorMetres": 0,
+          "reason": null
+        }
+      ],
+      "issues": [],
+      "target": {
+        "lat": 51.3075696,
+        "lon": 3.2140528,
+        "roadWay": "241873267",
+        "roadSegment": [
+          "12487520988",
+          "2494511819"
+        ]
+      },
+      "routingScope": "connected-road-network",
+      "individualParkingVerified": false,
+      "evidence": {
+        "sourceMap": "bastenaken",
+        "revision": "Cewez historical page23",
+        "method": "source-topology-shared-area-entrance",
+        "region": "bastenaken-h-shared-field-entrance",
+        "basis": "The curved BDR/BDA outer perimeter, BWH quay cap, staff/rail-side approach and straight G/H divider identify the whole H field. The independent CF1/VPC cross-road control corrects the earlier one-field-shifted G assignment. Vehicle storage is inside the outer road392480112, not in the grass outside it. Shared AH/BH area entrance only; individual numbered AH/BH strips, exact lines and current access permission are not established. Historical page23 was separately reviewed: its four H compartments retain the same whole-field controls, although their individual partitions differ from the current ten strips.",
+        "scope": "parking-group-approach"
+      },
+      "exactLine": false,
+      "roadOffsetMetres": 0,
+      "arrivalRoadConsistent": true
     },
     {
       "reference": "bastenaken:BKA",
@@ -37276,7 +38578,7 @@
             3.2202856
           ],
           "available": true,
-          "distanceMetres": 518.09,
+          "distanceMetres": 442.22,
           "arrivalErrorMetres": 0,
           "reason": null
         },
@@ -37288,7 +38590,7 @@
             3.226830235992968
           ],
           "available": true,
-          "distanceMetres": 1431.29,
+          "distanceMetres": 1342.74,
           "arrivalErrorMetres": 0,
           "reason": null
         },
@@ -37300,7 +38602,7 @@
             3.2310317489583333
           ],
           "available": true,
-          "distanceMetres": 2045.94,
+          "distanceMetres": 1957.4,
           "arrivalErrorMetres": 0,
           "reason": null
         },
@@ -37312,7 +38614,7 @@
             3.2180945999999997
           ],
           "available": true,
-          "distanceMetres": 4839.9,
+          "distanceMetres": 4912.46,
           "arrivalErrorMetres": 0,
           "reason": null
         },
@@ -37324,7 +38626,7 @@
             3.2140528
           ],
           "available": true,
-          "distanceMetres": 646.08,
+          "distanceMetres": 718.63,
           "arrivalErrorMetres": 0,
           "reason": null
         },
@@ -37336,19 +38638,19 @@
             3.2286188
           ],
           "available": true,
-          "distanceMetres": 1579.34,
+          "distanceMetres": 1490.8,
           "arrivalErrorMetres": 0,
           "reason": null
         }
       ],
       "issues": [],
       "target": {
-        "lat": 51.31144534255264,
-        "lon": 3.2160891281960478,
+        "lat": 51.311714661702126,
+        "lon": 3.2172878936170215,
         "roadWay": "392480112",
         "roadSegment": [
-          "2494511915",
-          "2494511921"
+          "2494511921",
+          "2494511933"
         ]
       },
       "routingScope": "connected-road-network",
@@ -37391,7 +38693,7 @@
             3.2202856
           ],
           "available": true,
-          "distanceMetres": 589.31,
+          "distanceMetres": 506.1,
           "arrivalErrorMetres": 0,
           "reason": null
         },
@@ -37403,7 +38705,7 @@
             3.226830235992968
           ],
           "available": true,
-          "distanceMetres": 1502.51,
+          "distanceMetres": 1419.3,
           "arrivalErrorMetres": 0,
           "reason": null
         },
@@ -37415,7 +38717,7 @@
             3.2310317489583333
           ],
           "available": true,
-          "distanceMetres": 2117.16,
+          "distanceMetres": 2033.95,
           "arrivalErrorMetres": 0,
           "reason": null
         },
@@ -37427,7 +38729,7 @@
             3.2180945999999997
           ],
           "available": true,
-          "distanceMetres": 4775.35,
+          "distanceMetres": 4851.89,
           "arrivalErrorMetres": 0,
           "reason": null
         },
@@ -37439,7 +38741,7 @@
             3.2140528
           ],
           "available": true,
-          "distanceMetres": 581.53,
+          "distanceMetres": 658.06,
           "arrivalErrorMetres": 0,
           "reason": null
         },
@@ -37451,19 +38753,19 @@
             3.2286188
           ],
           "available": true,
-          "distanceMetres": 1650.56,
+          "distanceMetres": 1567.35,
           "arrivalErrorMetres": 0,
           "reason": null
         }
       ],
       "issues": [],
       "target": {
-        "lat": 51.3112319009399,
-        "lon": 3.2151230694315522,
+        "lat": 51.31148142581764,
+        "lon": 3.216251618029075,
         "roadWay": "392480112",
         "roadSegment": [
-          "2494511909",
-          "2494511913"
+          "2494511915",
+          "2494511921"
         ]
       },
       "routingScope": "connected-road-network",
@@ -37506,7 +38808,7 @@
             3.2202856
           ],
           "available": true,
-          "distanceMetres": 679.25,
+          "distanceMetres": 641.99,
           "arrivalErrorMetres": 0,
           "reason": null
         },
@@ -37518,7 +38820,7 @@
             3.226830235992968
           ],
           "available": true,
-          "distanceMetres": 1592.45,
+          "distanceMetres": 1555.19,
           "arrivalErrorMetres": 0,
           "reason": null
         },
@@ -37530,7 +38832,7 @@
             3.2310317489583333
           ],
           "available": true,
-          "distanceMetres": 2207.1,
+          "distanceMetres": 2169.84,
           "arrivalErrorMetres": 0,
           "reason": null
         },
@@ -37542,7 +38844,7 @@
             3.2180945999999997
           ],
           "available": true,
-          "distanceMetres": 4690.56,
+          "distanceMetres": 4727.82,
           "arrivalErrorMetres": 0,
           "reason": null
         },
@@ -37554,7 +38856,7 @@
             3.2140528
           ],
           "available": true,
-          "distanceMetres": 496.73,
+          "distanceMetres": 533.99,
           "arrivalErrorMetres": 0,
           "reason": null
         },
@@ -37566,19 +38868,19 @@
             3.2286188
           ],
           "available": true,
-          "distanceMetres": 1740.5,
+          "distanceMetres": 1703.24,
           "arrivalErrorMetres": 0,
           "reason": null
         }
       ],
       "issues": [],
       "target": {
-        "lat": 51.31096046828271,
-        "lon": 3.213904186302179,
+        "lat": 51.31107115264414,
+        "lon": 3.2144101517511032,
         "roadWay": "392480112",
         "roadSegment": [
-          "2494511898",
-          "2494511904"
+          "2494511904",
+          "6986702477"
         ]
       },
       "routingScope": "connected-road-network",
@@ -70540,11 +71842,11 @@
       "arrivalRoadConsistent": true
     }
   ],
-  "generatedAt": "2026-11-19T14:18:36.827Z",
+  "generatedAt": "2026-11-19T14:55:49.644Z",
   "inputHashFormat": "SHA256 of JSON.stringify(JSON.parse(file)); authored key order retained, whitespace and line endings ignored.",
   "inputSHA256": {
     "data.json": "6c2c25ee56e97691e2a6b9b43b6f93f36165cc0450a0cee5407c9abf67dd7970",
-    "destinations.json": "d876921ea5c22fa0ff49c90f55552f0aa86ff03e5d94ca7102f8208811de8503",
+    "destinations.json": "0a020b974c06e4f2233b9f75229f61294faa427ba25672004ebf9f1e8cf2830d",
     "roads.json": "ac53a02eba3d5ad0821dcb036c83be7c3106458acadaf4c8fd97e23430088b4e"
   }
 }

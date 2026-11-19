@@ -14792,17 +14792,17 @@
       }
     },
     "south:AD1": {
-      "lat": 51.31071560387787,
-      "lon": 3.2161035583440176,
+      "lat": 51.311004333832145,
+      "lon": 3.217284404998948,
       "method": "landmark-junction-match",
       "scope": "parking-approach",
       "parking": "AD1",
       "sourceMap": "south",
       "sourceRevision": "V1.09-2026",
-      "roadWay": "241873282",
+      "roadWay": "241873278",
       "roadSegment": [
-        "2494511878",
-        "2494511913"
+        "2494511886",
+        "2494511921"
       ],
       "lineExact": false,
       "sourcePoint": [
@@ -14816,33 +14816,15 @@
         325.2
       ],
       "region": "east-ab-d",
-      "basis": "The VPC-side access spine, continuous eastern quay perimeter, and ordered cross roads identify this A/B compound. The printed A/B divider is not treated as a road. The route ends on the matched access road, not at a surveyed parking line.",
+      "basis": "The independently aligned CF1/VPC cross-road, eastern quay, C3 boundary and ordered access roads identify this A/B compound. The outer northern cap belongs to AH/BH. The printed A/B divider is not treated as a road. The route ends on the matched access road, not at a surveyed parking line.",
       "junctionMatch": {
         "cornerNodes": [
-          "2494511857",
-          "2494511913",
+          "2494511865",
           "2494511921",
-          "2494511865"
+          "2494511933",
+          "2494511869"
         ],
         "boundaryLanes": [
-          {
-            "way": "241873282",
-            "nodes": [
-              "2494511857",
-              "2494511878",
-              "2494511913"
-            ],
-            "oneway": false
-          },
-          {
-            "way": "392480112",
-            "nodes": [
-              "2494511913",
-              "2494511915",
-              "2494511921"
-            ],
-            "oneway": false
-          },
           {
             "way": "241873278",
             "nodes": [
@@ -14853,20 +14835,53 @@
             "oneway": false
           },
           {
+            "way": "392480112",
+            "nodes": [
+              "2494511921",
+              "2494511933"
+            ],
+            "oneway": false
+          },
+          {
+            "way": null,
+            "nodes": [
+              "2494511869",
+              "2494511891",
+              "2494511933"
+            ],
+            "parts": [
+              {
+                "way": "746582112",
+                "nodes": [
+                  "2494511869",
+                  "2494511891"
+                ],
+                "oneway": false
+              },
+              {
+                "way": "746641410",
+                "nodes": [
+                  "2494511891",
+                  "2494511933"
+                ],
+                "oneway": false
+              }
+            ]
+          },
+          {
             "way": "241873267",
             "nodes": [
-              "2494511857",
-              "2494511860",
-              "6986702535",
-              "2494511865"
+              "2494511865",
+              "12487520998",
+              "2494511869"
             ],
             "oneway": false
           }
         ]
       },
       "labelPosition": {
-        "lat": 51.31084864856172,
-        "lon": 3.2166473954478594,
+        "lat": 51.31113983325963,
+        "lon": 3.217825164692277,
         "method": "bounded-parcel-position",
         "scope": "parking-block-label",
         "sourcePoint": [
@@ -14874,20 +14889,29 @@
           312.5
         ],
         "basis": "Position inside the individually identified parking parcel; display label only, not a surveyed line."
+      },
+      "alignmentReview": {
+        "reviewed": "2026-11-19",
+        "sourceRevision": "V1.09-2026",
+        "anchor": "CF1 south PDF264.9 and AF/BF south265.1 share the drawn cross-road;931027303/1860 meets241873282/1857 within10m.",
+        "outerControl": "The curved392 outer edge, K504 quay cap, VPC/CF1 landmark and C3 upper boundary identify FIVE whole fields H/G/F/E/D, rather than the former four-field fit.",
+        "imageryService": "https://geo.api.vlaanderen.be/ofw/wms",
+        "imageryFlightDate": "2026-03-05",
+        "limitation": "Named parking approaches and bounded display labels only; not surveyed entrances or exact parking lines."
       }
     },
     "south:BD1": {
-      "lat": 51.30936078456327,
-      "lon": 3.2172060232656072,
+      "lat": 51.30969035777416,
+      "lon": 3.218322941276138,
       "method": "landmark-junction-match",
       "scope": "parking-approach",
       "parking": "BD1",
       "sourceMap": "south",
       "sourceRevision": "V1.09-2026",
-      "roadWay": "241873282",
+      "roadWay": "241873278",
       "roadSegment": [
-        "2494511857",
-        "2494511878"
+        "2494511865",
+        "2494511886"
       ],
       "lineExact": false,
       "sourcePoint": [
@@ -14901,7 +14925,116 @@
         325.2
       ],
       "region": "east-ab-d",
-      "basis": "The VPC-side access spine, continuous eastern quay perimeter, and ordered cross roads identify this A/B compound. The printed A/B divider is not treated as a road. The route ends on the matched access road, not at a surveyed parking line.",
+      "basis": "The independently aligned CF1/VPC cross-road, eastern quay, C3 boundary and ordered access roads identify this A/B compound. The outer northern cap belongs to AH/BH. The printed A/B divider is not treated as a road. The route ends on the matched access road, not at a surveyed parking line.",
+      "junctionMatch": {
+        "cornerNodes": [
+          "2494511865",
+          "2494511921",
+          "2494511933",
+          "2494511869"
+        ],
+        "boundaryLanes": [
+          {
+            "way": "241873278",
+            "nodes": [
+              "2494511865",
+              "2494511886",
+              "2494511921"
+            ],
+            "oneway": false
+          },
+          {
+            "way": "392480112",
+            "nodes": [
+              "2494511921",
+              "2494511933"
+            ],
+            "oneway": false
+          },
+          {
+            "way": null,
+            "nodes": [
+              "2494511869",
+              "2494511891",
+              "2494511933"
+            ],
+            "parts": [
+              {
+                "way": "746582112",
+                "nodes": [
+                  "2494511869",
+                  "2494511891"
+                ],
+                "oneway": false
+              },
+              {
+                "way": "746641410",
+                "nodes": [
+                  "2494511891",
+                  "2494511933"
+                ],
+                "oneway": false
+              }
+            ]
+          },
+          {
+            "way": "241873267",
+            "nodes": [
+              "2494511865",
+              "12487520998",
+              "2494511869"
+            ],
+            "oneway": false
+          }
+        ]
+      },
+      "labelPosition": {
+        "lat": 51.30984991870943,
+        "lon": 3.2188584473383886,
+        "method": "bounded-parcel-position",
+        "scope": "parking-block-label",
+        "sourcePoint": [
+          962.9533333333334,
+          312.5
+        ],
+        "basis": "Position inside the individually identified parking parcel; display label only, not a surveyed line."
+      },
+      "alignmentReview": {
+        "reviewed": "2026-11-19",
+        "sourceRevision": "V1.09-2026",
+        "anchor": "CF1 south PDF264.9 and AF/BF south265.1 share the drawn cross-road;931027303/1860 meets241873282/1857 within10m.",
+        "outerControl": "The curved392 outer edge, K504 quay cap, VPC/CF1 landmark and C3 upper boundary identify FIVE whole fields H/G/F/E/D, rather than the former four-field fit.",
+        "imageryService": "https://geo.api.vlaanderen.be/ofw/wms",
+        "imageryFlightDate": "2026-03-05",
+        "limitation": "Named parking approaches and bounded display labels only; not surveyed entrances or exact parking lines."
+      }
+    },
+    "south:AE1": {
+      "lat": 51.310995636379715,
+      "lon": 3.2172912099566666,
+      "method": "landmark-junction-match",
+      "scope": "parking-approach",
+      "parking": "AE1",
+      "sourceMap": "south",
+      "sourceRevision": "V1.09-2026",
+      "roadWay": "241873278",
+      "roadSegment": [
+        "2494511886",
+        "2494511921"
+      ],
+      "lineExact": false,
+      "sourcePoint": [
+        1018.52,
+        281.18666666666667
+      ],
+      "sourceBounds": [
+        938.6,
+        268.9,
+        1044.0,
+        292.3
+      ],
+      "region": "east-ab-e",
+      "basis": "The independently aligned CF1/VPC cross-road, eastern quay, C3 boundary and ordered access roads identify this A/B compound. The outer northern cap belongs to AH/BH. The printed A/B divider is not treated as a road. The route ends on the matched access road, not at a surveyed parking line.",
       "junctionMatch": {
         "cornerNodes": [
           "2494511857",
@@ -14950,115 +15083,8 @@
         ]
       },
       "labelPosition": {
-        "lat": 51.30951257456745,
-        "lon": 3.2177203999405464,
-        "method": "bounded-parcel-position",
-        "scope": "parking-block-label",
-        "sourcePoint": [
-          962.9533333333334,
-          312.5
-        ],
-        "basis": "Position inside the individually identified parking parcel; display label only, not a surveyed line."
-      }
-    },
-    "south:AE1": {
-      "lat": 51.31070665888376,
-      "lon": 3.2161108568451677,
-      "method": "landmark-junction-match",
-      "scope": "parking-approach",
-      "parking": "AE1",
-      "sourceMap": "south",
-      "sourceRevision": "V1.09-2026",
-      "roadWay": "241873282",
-      "roadSegment": [
-        "2494511878",
-        "2494511913"
-      ],
-      "lineExact": false,
-      "sourcePoint": [
-        1018.52,
-        281.18666666666667
-      ],
-      "sourceBounds": [
-        938.6,
-        268.9,
-        1044.0,
-        292.3
-      ],
-      "region": "east-ab-e",
-      "basis": "The VPC-side access spine, continuous eastern quay perimeter, and ordered cross roads identify this A/B compound. The printed A/B divider is not treated as a road. The route ends on the matched access road, not at a surveyed parking line.",
-      "junctionMatch": {
-        "cornerNodes": [
-          "2494511842",
-          "6986702477",
-          "2494511913",
-          "2494511857"
-        ],
-        "boundaryLanes": [
-          {
-            "way": null,
-            "nodes": [
-              "2494511842",
-              "2494511862",
-              "2494511864",
-              "2494511890",
-              "2494511894",
-              "6986702477"
-            ],
-            "parts": [
-              {
-                "way": "241873292",
-                "nodes": [
-                  "2494511842",
-                  "2494511862",
-                  "2494511864",
-                  "2494511890",
-                  "2494511894"
-                ],
-                "oneway": false
-              },
-              {
-                "way": "746582093",
-                "nodes": [
-                  "2494511894",
-                  "6986702477"
-                ],
-                "oneway": false
-              }
-            ]
-          },
-          {
-            "way": "392480112",
-            "nodes": [
-              "6986702477",
-              "2494511909",
-              "2494511913"
-            ],
-            "oneway": false
-          },
-          {
-            "way": "241873282",
-            "nodes": [
-              "2494511857",
-              "2494511878",
-              "2494511913"
-            ],
-            "oneway": false
-          },
-          {
-            "way": "241873267",
-            "nodes": [
-              "2494511842",
-              "2494511853",
-              "2494511857"
-            ],
-            "oneway": false
-          }
-        ]
-      },
-      "labelPosition": {
-        "lat": 51.31058723930188,
-        "lon": 3.215623465812323,
+        "lat": 51.31085885110184,
+        "lon": 3.2167321179477666,
         "method": "bounded-parcel-position",
         "scope": "parking-block-label",
         "sourcePoint": [
@@ -15066,20 +15092,29 @@
           281.18666666666667
         ],
         "basis": "Position inside the individually identified parking parcel; display label only, not a surveyed line."
+      },
+      "alignmentReview": {
+        "reviewed": "2026-11-19",
+        "sourceRevision": "V1.09-2026",
+        "anchor": "CF1 south PDF264.9 and AF/BF south265.1 share the drawn cross-road;931027303/1860 meets241873282/1857 within10m.",
+        "outerControl": "The curved392 outer edge, K504 quay cap, VPC/CF1 landmark and C3 upper boundary identify FIVE whole fields H/G/F/E/D, rather than the former four-field fit.",
+        "imageryService": "https://geo.api.vlaanderen.be/ofw/wms",
+        "imageryFlightDate": "2026-03-05",
+        "limitation": "Named parking approaches and bounded display labels only; not surveyed entrances or exact parking lines."
       }
     },
     "south:BE1": {
-      "lat": 51.30938811366156,
-      "lon": 3.2171838483487085,
+      "lat": 51.30971679831434,
+      "lon": 3.2183018468736653,
       "method": "landmark-junction-match",
       "scope": "parking-approach",
       "parking": "BE1",
       "sourceMap": "south",
       "sourceRevision": "V1.09-2026",
-      "roadWay": "241873282",
+      "roadWay": "241873278",
       "roadSegment": [
-        "2494511857",
-        "2494511878"
+        "2494511865",
+        "2494511886"
       ],
       "lineExact": false,
       "sourcePoint": [
@@ -15093,7 +15128,101 @@
         292.3
       ],
       "region": "east-ab-e",
-      "basis": "The VPC-side access spine, continuous eastern quay perimeter, and ordered cross roads identify this A/B compound. The printed A/B divider is not treated as a road. The route ends on the matched access road, not at a surveyed parking line.",
+      "basis": "The independently aligned CF1/VPC cross-road, eastern quay, C3 boundary and ordered access roads identify this A/B compound. The outer northern cap belongs to AH/BH. The printed A/B divider is not treated as a road. The route ends on the matched access road, not at a surveyed parking line.",
+      "junctionMatch": {
+        "cornerNodes": [
+          "2494511857",
+          "2494511913",
+          "2494511921",
+          "2494511865"
+        ],
+        "boundaryLanes": [
+          {
+            "way": "241873282",
+            "nodes": [
+              "2494511857",
+              "2494511878",
+              "2494511913"
+            ],
+            "oneway": false
+          },
+          {
+            "way": "392480112",
+            "nodes": [
+              "2494511913",
+              "2494511915",
+              "2494511921"
+            ],
+            "oneway": false
+          },
+          {
+            "way": "241873278",
+            "nodes": [
+              "2494511865",
+              "2494511886",
+              "2494511921"
+            ],
+            "oneway": false
+          },
+          {
+            "way": "241873267",
+            "nodes": [
+              "2494511857",
+              "2494511860",
+              "6986702535",
+              "2494511865"
+            ],
+            "oneway": false
+          }
+        ]
+      },
+      "labelPosition": {
+        "lat": 51.30957525347962,
+        "lon": 3.217820314037364,
+        "method": "bounded-parcel-position",
+        "scope": "parking-block-label",
+        "sourcePoint": [
+          965.0466666666666,
+          282.18666666666667
+        ],
+        "basis": "Position inside the individually identified parking parcel; display label only, not a surveyed line."
+      },
+      "alignmentReview": {
+        "reviewed": "2026-11-19",
+        "sourceRevision": "V1.09-2026",
+        "anchor": "CF1 south PDF264.9 and AF/BF south265.1 share the drawn cross-road;931027303/1860 meets241873282/1857 within10m.",
+        "outerControl": "The curved392 outer edge, K504 quay cap, VPC/CF1 landmark and C3 upper boundary identify FIVE whole fields H/G/F/E/D, rather than the former four-field fit.",
+        "imageryService": "https://geo.api.vlaanderen.be/ofw/wms",
+        "imageryFlightDate": "2026-03-05",
+        "limitation": "Named parking approaches and bounded display labels only; not surveyed entrances or exact parking lines."
+      }
+    },
+    "south:AF1": {
+      "lat": 51.310634565621854,
+      "lon": 3.2161696799979658,
+      "method": "landmark-junction-match",
+      "scope": "parking-approach",
+      "parking": "AF1",
+      "sourceMap": "south",
+      "sourceRevision": "V1.09-2026",
+      "roadWay": "241873282",
+      "roadSegment": [
+        "2494511878",
+        "2494511913"
+      ],
+      "lineExact": false,
+      "sourcePoint": [
+        1018.5166666666668,
+        251.45000000000002
+      ],
+      "sourceBounds": [
+        938.6,
+        237.1,
+        1048.0,
+        265.1
+      ],
+      "region": "east-ab-f",
+      "basis": "The independently aligned CF1/VPC cross-road, eastern quay, C3 boundary and ordered access roads identify this A/B compound. The outer northern cap belongs to AH/BH. The printed A/B divider is not treated as a road. The route ends on the matched access road, not at a surveyed parking line.",
       "junctionMatch": {
         "cornerNodes": [
           "2494511842",
@@ -15164,118 +15293,8 @@
         ]
       },
       "labelPosition": {
-        "lat": 51.30925807083895,
-        "lon": 3.216742046276451,
-        "method": "bounded-parcel-position",
-        "scope": "parking-block-label",
-        "sourcePoint": [
-          965.0466666666666,
-          282.18666666666667
-        ],
-        "basis": "Position inside the individually identified parking parcel; display label only, not a surveyed line."
-      }
-    },
-    "south:AF1": {
-      "lat": 51.3100618457173,
-      "lon": 3.213853173453212,
-      "method": "landmark-junction-match",
-      "scope": "parking-approach",
-      "parking": "AF1",
-      "sourceMap": "south",
-      "sourceRevision": "V1.09-2026",
-      "roadWay": "241873290",
-      "roadSegment": [
-        "2494511867",
-        "2494511882"
-      ],
-      "lineExact": false,
-      "sourcePoint": [
-        1018.5166666666668,
-        251.45000000000002
-      ],
-      "sourceBounds": [
-        938.6,
-        237.1,
-        1048.0,
-        265.1
-      ],
-      "region": "east-ab-f",
-      "basis": "The VPC-side access spine, continuous eastern quay perimeter, and ordered cross roads identify this A/B compound. The printed A/B divider is not treated as a road. The route ends on the matched access road, not at a surveyed parking line.",
-      "junctionMatch": {
-        "cornerNodes": [
-          "2494511830",
-          "2494511892",
-          "6986702477",
-          "2494511842"
-        ],
-        "boundaryLanes": [
-          {
-            "way": "241873290",
-            "nodes": [
-              "2494511830",
-              "2494511867",
-              "2494511882",
-              "2494511892"
-            ],
-            "oneway": false
-          },
-          {
-            "way": "392480112",
-            "nodes": [
-              "2494511892",
-              "2494511898",
-              "2494511904",
-              "6986702477"
-            ],
-            "oneway": false
-          },
-          {
-            "way": null,
-            "nodes": [
-              "2494511842",
-              "2494511862",
-              "2494511864",
-              "2494511890",
-              "2494511894",
-              "6986702477"
-            ],
-            "parts": [
-              {
-                "way": "241873292",
-                "nodes": [
-                  "2494511842",
-                  "2494511862",
-                  "2494511864",
-                  "2494511890",
-                  "2494511894"
-                ],
-                "oneway": false
-              },
-              {
-                "way": "746582093",
-                "nodes": [
-                  "2494511894",
-                  "6986702477"
-                ],
-                "oneway": false
-              }
-            ]
-          },
-          {
-            "way": "241873267",
-            "nodes": [
-              "2494511830",
-              "12487520977",
-              "12487520979",
-              "2494511842"
-            ],
-            "oneway": false
-          }
-        ]
-      },
-      "labelPosition": {
-        "lat": 51.310227028708674,
-        "lon": 3.2145206191169637,
+        "lat": 51.31051063843617,
+        "lon": 3.2156694072625305,
         "method": "bounded-parcel-position",
         "scope": "parking-block-label",
         "sourcePoint": [
@@ -15283,20 +15302,29 @@
           251.45000000000002
         ],
         "basis": "Position inside the individually identified parking parcel; display label only, not a surveyed line."
+      },
+      "alignmentReview": {
+        "reviewed": "2026-11-19",
+        "sourceRevision": "V1.09-2026",
+        "anchor": "CF1 south PDF264.9 and AF/BF south265.1 share the drawn cross-road;931027303/1860 meets241873282/1857 within10m.",
+        "outerControl": "The curved392 outer edge, K504 quay cap, VPC/CF1 landmark and C3 upper boundary identify FIVE whole fields H/G/F/E/D, rather than the former four-field fit.",
+        "imageryService": "https://geo.api.vlaanderen.be/ofw/wms",
+        "imageryFlightDate": "2026-03-05",
+        "limitation": "Named parking approaches and bounded display labels only; not surveyed entrances or exact parking lines."
       }
     },
     "south:BF1": {
-      "lat": 51.30870431196593,
-      "lon": 3.2149638952769988,
+      "lat": 51.309364176522365,
+      "lon": 3.2172032710192524,
       "method": "landmark-junction-match",
       "scope": "parking-approach",
       "parking": "BF1",
       "sourceMap": "south",
       "sourceRevision": "V1.09-2026",
-      "roadWay": "241873290",
+      "roadWay": "241873282",
       "roadSegment": [
-        "2494511830",
-        "2494511867"
+        "2494511857",
+        "2494511878"
       ],
       "lineExact": false,
       "sourcePoint": [
@@ -15310,35 +15338,15 @@
         265.1
       ],
       "region": "east-ab-f",
-      "basis": "The VPC-side access spine, continuous eastern quay perimeter, and ordered cross roads identify this A/B compound. The printed A/B divider is not treated as a road. The route ends on the matched access road, not at a surveyed parking line.",
+      "basis": "The independently aligned CF1/VPC cross-road, eastern quay, C3 boundary and ordered access roads identify this A/B compound. The outer northern cap belongs to AH/BH. The printed A/B divider is not treated as a road. The route ends on the matched access road, not at a surveyed parking line.",
       "junctionMatch": {
         "cornerNodes": [
-          "2494511830",
-          "2494511892",
+          "2494511842",
           "6986702477",
-          "2494511842"
+          "2494511913",
+          "2494511857"
         ],
         "boundaryLanes": [
-          {
-            "way": "241873290",
-            "nodes": [
-              "2494511830",
-              "2494511867",
-              "2494511882",
-              "2494511892"
-            ],
-            "oneway": false
-          },
-          {
-            "way": "392480112",
-            "nodes": [
-              "2494511892",
-              "2494511898",
-              "2494511904",
-              "6986702477"
-            ],
-            "oneway": false
-          },
           {
             "way": null,
             "nodes": [
@@ -15372,20 +15380,37 @@
             ]
           },
           {
+            "way": "392480112",
+            "nodes": [
+              "6986702477",
+              "2494511909",
+              "2494511913"
+            ],
+            "oneway": false
+          },
+          {
+            "way": "241873282",
+            "nodes": [
+              "2494511857",
+              "2494511878",
+              "2494511913"
+            ],
+            "oneway": false
+          },
+          {
             "way": "241873267",
             "nodes": [
-              "2494511830",
-              "12487520977",
-              "12487520979",
-              "2494511842"
+              "2494511842",
+              "2494511853",
+              "2494511857"
             ],
             "oneway": false
           }
         ]
       },
       "labelPosition": {
-        "lat": 51.30888840580275,
-        "lon": 3.215589559726272,
+        "lat": 51.30921711899162,
+        "lon": 3.2167051677662633,
         "method": "bounded-parcel-position",
         "scope": "parking-block-label",
         "sourcePoint": [
@@ -15393,6 +15418,15 @@
           251.45000000000002
         ],
         "basis": "Position inside the individually identified parking parcel; display label only, not a surveyed line."
+      },
+      "alignmentReview": {
+        "reviewed": "2026-11-19",
+        "sourceRevision": "V1.09-2026",
+        "anchor": "CF1 south PDF264.9 and AF/BF south265.1 share the drawn cross-road;931027303/1860 meets241873282/1857 within10m.",
+        "outerControl": "The curved392 outer edge, K504 quay cap, VPC/CF1 landmark and C3 upper boundary identify FIVE whole fields H/G/F/E/D, rather than the former four-field fit.",
+        "imageryService": "https://geo.api.vlaanderen.be/ofw/wms",
+        "imageryFlightDate": "2026-03-05",
+        "limitation": "Named parking approaches and bounded display labels only; not surveyed entrances or exact parking lines."
       }
     },
     "south:AG1": {
@@ -15420,39 +15454,15 @@
         232.5
       ],
       "region": "east-ab-g",
-      "basis": "The VPC-side access spine, continuous eastern quay perimeter, and ordered cross roads identify this A/B compound. The printed A/B divider is not treated as a road. The route ends on the matched access road, not at a surveyed parking line.",
+      "basis": "The independently aligned CF1/VPC cross-road, eastern quay, C3 boundary and ordered access roads identify this A/B compound. The outer northern cap belongs to AH/BH. The printed A/B divider is not treated as a road. The route ends on the matched access road, not at a surveyed parking line.",
       "junctionMatch": {
         "cornerNodes": [
-          "2494511819",
-          "2494511887",
+          "2494511830",
           "2494511892",
-          "2494511830"
+          "6986702477",
+          "2494511842"
         ],
         "boundaryLanes": [
-          {
-            "way": "392480112",
-            "nodes": [
-              "2494511819",
-              "12487520989",
-              "12487520990",
-              "12487520991",
-              "12487520992",
-              "9803568813",
-              "2494511887"
-            ],
-            "oneway": false
-          },
-          {
-            "way": "392480112",
-            "nodes": [
-              "2494511887",
-              "12487520994",
-              "12487520993",
-              "12487520995",
-              "2494511892"
-            ],
-            "oneway": false
-          },
           {
             "way": "241873290",
             "nodes": [
@@ -15464,19 +15474,62 @@
             "oneway": false
           },
           {
+            "way": "392480112",
+            "nodes": [
+              "2494511892",
+              "2494511898",
+              "2494511904",
+              "6986702477"
+            ],
+            "oneway": false
+          },
+          {
+            "way": null,
+            "nodes": [
+              "2494511842",
+              "2494511862",
+              "2494511864",
+              "2494511890",
+              "2494511894",
+              "6986702477"
+            ],
+            "parts": [
+              {
+                "way": "241873292",
+                "nodes": [
+                  "2494511842",
+                  "2494511862",
+                  "2494511864",
+                  "2494511890",
+                  "2494511894"
+                ],
+                "oneway": false
+              },
+              {
+                "way": "746582093",
+                "nodes": [
+                  "2494511894",
+                  "6986702477"
+                ],
+                "oneway": false
+              }
+            ]
+          },
+          {
             "way": "241873267",
             "nodes": [
-              "2494511819",
-              "2494511828",
-              "2494511830"
+              "2494511830",
+              "12487520977",
+              "12487520979",
+              "2494511842"
             ],
             "oneway": false
           }
         ]
       },
       "labelPosition": {
-        "lat": 51.309760919555515,
-        "lon": 3.213212115942466,
+        "lat": 51.31010624239531,
+        "lon": 3.214472391941635,
         "method": "bounded-parcel-position",
         "scope": "parking-block-label",
         "sourcePoint": [
@@ -15484,6 +15537,15 @@
           216.61
         ],
         "basis": "Position inside the individually identified parking parcel; display label only, not a surveyed line."
+      },
+      "alignmentReview": {
+        "reviewed": "2026-11-19",
+        "sourceRevision": "V1.09-2026",
+        "anchor": "CF1 south PDF264.9 and AF/BF south265.1 share the drawn cross-road;931027303/1860 meets241873282/1857 within10m.",
+        "outerControl": "The curved392 outer edge, K504 quay cap, VPC/CF1 landmark and C3 upper boundary identify FIVE whole fields H/G/F/E/D, rather than the former four-field fit.",
+        "imageryService": "https://geo.api.vlaanderen.be/ofw/wms",
+        "imageryFlightDate": "2026-03-05",
+        "limitation": "Named parking approaches and bounded display labels only; not surveyed entrances or exact parking lines."
       }
     },
     "south:BG1": {
@@ -15511,39 +15573,15 @@
         232.5
       ],
       "region": "east-ab-g",
-      "basis": "The VPC-side access spine, continuous eastern quay perimeter, and ordered cross roads identify this A/B compound. The printed A/B divider is not treated as a road. The route ends on the matched access road, not at a surveyed parking line.",
+      "basis": "The independently aligned CF1/VPC cross-road, eastern quay, C3 boundary and ordered access roads identify this A/B compound. The outer northern cap belongs to AH/BH. The printed A/B divider is not treated as a road. The route ends on the matched access road, not at a surveyed parking line.",
       "junctionMatch": {
         "cornerNodes": [
-          "2494511819",
-          "2494511887",
+          "2494511830",
           "2494511892",
-          "2494511830"
+          "6986702477",
+          "2494511842"
         ],
         "boundaryLanes": [
-          {
-            "way": "392480112",
-            "nodes": [
-              "2494511819",
-              "12487520989",
-              "12487520990",
-              "12487520991",
-              "12487520992",
-              "9803568813",
-              "2494511887"
-            ],
-            "oneway": false
-          },
-          {
-            "way": "392480112",
-            "nodes": [
-              "2494511887",
-              "12487520994",
-              "12487520993",
-              "12487520995",
-              "2494511892"
-            ],
-            "oneway": false
-          },
           {
             "way": "241873290",
             "nodes": [
@@ -15555,19 +15593,62 @@
             "oneway": false
           },
           {
+            "way": "392480112",
+            "nodes": [
+              "2494511892",
+              "2494511898",
+              "2494511904",
+              "6986702477"
+            ],
+            "oneway": false
+          },
+          {
+            "way": null,
+            "nodes": [
+              "2494511842",
+              "2494511862",
+              "2494511864",
+              "2494511890",
+              "2494511894",
+              "6986702477"
+            ],
+            "parts": [
+              {
+                "way": "241873292",
+                "nodes": [
+                  "2494511842",
+                  "2494511862",
+                  "2494511864",
+                  "2494511890",
+                  "2494511894"
+                ],
+                "oneway": false
+              },
+              {
+                "way": "746582093",
+                "nodes": [
+                  "2494511894",
+                  "6986702477"
+                ],
+                "oneway": false
+              }
+            ]
+          },
+          {
             "way": "241873267",
             "nodes": [
-              "2494511819",
-              "2494511828",
-              "2494511830"
+              "2494511830",
+              "12487520977",
+              "12487520979",
+              "2494511842"
             ],
             "oneway": false
           }
         ]
       },
       "labelPosition": {
-        "lat": 51.308396537252484,
-        "lon": 3.2142108389684743,
+        "lat": 51.30879781555516,
+        "lon": 3.215527466134679,
         "method": "bounded-parcel-position",
         "scope": "parking-block-label",
         "sourcePoint": [
@@ -15575,6 +15656,15 @@
           216.74666666666667
         ],
         "basis": "Position inside the individually identified parking parcel; display label only, not a surveyed line."
+      },
+      "alignmentReview": {
+        "reviewed": "2026-11-19",
+        "sourceRevision": "V1.09-2026",
+        "anchor": "CF1 south PDF264.9 and AF/BF south265.1 share the drawn cross-road;931027303/1860 meets241873282/1857 within10m.",
+        "outerControl": "The curved392 outer edge, K504 quay cap, VPC/CF1 landmark and C3 upper boundary identify FIVE whole fields H/G/F/E/D, rather than the former four-field fit.",
+        "imageryService": "https://geo.api.vlaanderen.be/ofw/wms",
+        "imageryFlightDate": "2026-03-05",
+        "limitation": "Named parking approaches and bounded display labels only; not surveyed entrances or exact parking lines."
       }
     },
     "south:BWA": {
@@ -15727,8 +15817,8 @@
       }
     },
     "south:BWD": {
-      "lat": 51.31144534255264,
-      "lon": 3.2160891281960478,
+      "lat": 51.311714661702126,
+      "lon": 3.2172878936170215,
       "method": "landmark-junction-match",
       "scope": "parking-approach",
       "parking": "BWD",
@@ -15736,8 +15826,8 @@
       "sourceRevision": "V1.09-2026",
       "roadWay": "392480112",
       "roadSegment": [
-        "2494511915",
-        "2494511921"
+        "2494511921",
+        "2494511933"
       ],
       "lineExact": false,
       "sourcePoint": [
@@ -15755,17 +15845,16 @@
           {
             "way": "392480112",
             "nodes": [
-              "2494511913",
-              "2494511915",
-              "2494511921"
+              "2494511921",
+              "2494511933"
             ],
             "oneway": false
           }
         ]
       },
       "labelPosition": {
-        "lat": 51.31144534255264,
-        "lon": 3.2160891281960478,
+        "lat": 51.311714661702126,
+        "lon": 3.2172878936170215,
         "method": "matched-quay-road-band",
         "scope": "parking-block-label",
         "sourcePoint": [
@@ -15773,11 +15862,20 @@
           311.2
         ],
         "basis": "Label at the matched quay access-road band, not an exact waterside parking line."
+      },
+      "alignmentReview": {
+        "reviewed": "2026-11-19",
+        "sourceRevision": "V1.09-2026",
+        "anchor": "CF1 south PDF264.9 and AF/BF south265.1 share the drawn cross-road;931027303/1860 meets241873282/1857 within10m.",
+        "outerControl": "The curved392 outer edge, K504 quay cap, VPC/CF1 landmark and C3 upper boundary identify FIVE whole fields H/G/F/E/D, rather than the former four-field fit.",
+        "imageryService": "https://geo.api.vlaanderen.be/ofw/wms",
+        "imageryFlightDate": "2026-03-05",
+        "limitation": "Named parking approaches and bounded display labels only; not surveyed entrances or exact parking lines."
       }
     },
     "south:BWE": {
-      "lat": 51.3112319009399,
-      "lon": 3.2151230694315522,
+      "lat": 51.31148142581764,
+      "lon": 3.216251618029075,
       "method": "landmark-junction-match",
       "scope": "parking-approach",
       "parking": "BWE",
@@ -15785,8 +15883,8 @@
       "sourceRevision": "V1.09-2026",
       "roadWay": "392480112",
       "roadSegment": [
-        "2494511909",
-        "2494511913"
+        "2494511915",
+        "2494511921"
       ],
       "lineExact": false,
       "sourcePoint": [
@@ -15804,17 +15902,17 @@
           {
             "way": "392480112",
             "nodes": [
-              "6986702477",
-              "2494511909",
-              "2494511913"
+              "2494511913",
+              "2494511915",
+              "2494511921"
             ],
             "oneway": false
           }
         ]
       },
       "labelPosition": {
-        "lat": 51.3112319009399,
-        "lon": 3.2151230694315522,
+        "lat": 51.31148142581764,
+        "lon": 3.216251618029075,
         "method": "matched-quay-road-band",
         "scope": "parking-block-label",
         "sourcePoint": [
@@ -15822,11 +15920,20 @@
           281.4866666666667
         ],
         "basis": "Label at the matched quay access-road band, not an exact waterside parking line."
+      },
+      "alignmentReview": {
+        "reviewed": "2026-11-19",
+        "sourceRevision": "V1.09-2026",
+        "anchor": "CF1 south PDF264.9 and AF/BF south265.1 share the drawn cross-road;931027303/1860 meets241873282/1857 within10m.",
+        "outerControl": "The curved392 outer edge, K504 quay cap, VPC/CF1 landmark and C3 upper boundary identify FIVE whole fields H/G/F/E/D, rather than the former four-field fit.",
+        "imageryService": "https://geo.api.vlaanderen.be/ofw/wms",
+        "imageryFlightDate": "2026-03-05",
+        "limitation": "Named parking approaches and bounded display labels only; not surveyed entrances or exact parking lines."
       }
     },
     "south:BWF": {
-      "lat": 51.31096046828271,
-      "lon": 3.213904186302179,
+      "lat": 51.31107115264414,
+      "lon": 3.2144101517511032,
       "method": "landmark-junction-match",
       "scope": "parking-approach",
       "parking": "BWF",
@@ -15834,8 +15941,8 @@
       "sourceRevision": "V1.09-2026",
       "roadWay": "392480112",
       "roadSegment": [
-        "2494511898",
-        "2494511904"
+        "2494511904",
+        "6986702477"
       ],
       "lineExact": false,
       "sourcePoint": [
@@ -15856,15 +15963,17 @@
               "2494511892",
               "2494511898",
               "2494511904",
-              "6986702477"
+              "6986702477",
+              "2494511909",
+              "2494511913"
             ],
             "oneway": false
           }
         ]
       },
       "labelPosition": {
-        "lat": 51.31096046828271,
-        "lon": 3.213904186302179,
+        "lat": 51.31107115264414,
+        "lon": 3.2144101517511032,
         "method": "matched-quay-road-band",
         "scope": "parking-block-label",
         "sourcePoint": [
@@ -15872,11 +15981,20 @@
           235.76
         ],
         "basis": "Label at the matched quay access-road band, not an exact waterside parking line."
+      },
+      "alignmentReview": {
+        "reviewed": "2026-11-19",
+        "sourceRevision": "V1.09-2026",
+        "anchor": "CF1 south PDF264.9 and AF/BF south265.1 share the drawn cross-road;931027303/1860 meets241873282/1857 within10m.",
+        "outerControl": "The curved392 outer edge, K504 quay cap, VPC/CF1 landmark and C3 upper boundary identify FIVE whole fields H/G/F/E/D, rather than the former four-field fit.",
+        "imageryService": "https://geo.api.vlaanderen.be/ofw/wms",
+        "imageryFlightDate": "2026-03-05",
+        "limitation": "Named parking approaches and bounded display labels only; not surveyed entrances or exact parking lines."
       }
     },
     "south:MAX": {
-      "lat": 51.31093897067018,
-      "lon": 3.213805523397571,
+      "lat": 51.31103249834073,
+      "lon": 3.214234766953079,
       "method": "landmark-junction-match",
       "scope": "parking-approach",
       "parking": "MAX",
@@ -15906,15 +16024,17 @@
               "2494511892",
               "2494511898",
               "2494511904",
-              "6986702477"
+              "6986702477",
+              "2494511909",
+              "2494511913"
             ],
             "oneway": false
           }
         ]
       },
       "labelPosition": {
-        "lat": 51.31093897067018,
-        "lon": 3.213805523397571,
+        "lat": 51.31103249834073,
+        "lon": 3.214234766953079,
         "method": "matched-quay-road-band",
         "scope": "parking-block-label",
         "sourcePoint": [
@@ -15922,6 +16042,15 @@
           231.89
         ],
         "basis": "Label at the matched quay access-road band, not an exact waterside parking line."
+      },
+      "alignmentReview": {
+        "reviewed": "2026-11-19",
+        "sourceRevision": "V1.09-2026",
+        "anchor": "CF1 south PDF264.9 and AF/BF south265.1 share the drawn cross-road;931027303/1860 meets241873282/1857 within10m.",
+        "outerControl": "The curved392 outer edge, K504 quay cap, VPC/CF1 landmark and C3 upper boundary identify FIVE whole fields H/G/F/E/D, rather than the former four-field fit.",
+        "imageryService": "https://geo.api.vlaanderen.be/ofw/wms",
+        "imageryFlightDate": "2026-03-05",
+        "limitation": "Named parking approaches and bounded display labels only; not surveyed entrances or exact parking lines."
       }
     },
     "south:DE1": {
@@ -36374,6 +36503,3464 @@
         "individualParkingVerified": false,
         "basis": "Display at the confirmed entrance, never an invented historical facility or parking position."
       }
+    },
+    "south:AH1": {
+      "lat": 51.3075696,
+      "lon": 3.2140528,
+      "name": "AH1 \u00b7 area entrance",
+      "parking": "AH1",
+      "areaName": "AH/BH parking area",
+      "region": "south-h-shared-field-entrance",
+      "method": "source-topology-shared-area-entrance",
+      "scope": "parking-group-approach",
+      "precision": "area-entry-only",
+      "individualParkingVerified": false,
+      "lineExact": false,
+      "historical": false,
+      "supportedMaps": [
+        "south"
+      ],
+      "sourceMap": "south",
+      "sourcePage": 1,
+      "sourceUrl": "https://www.icoterminals.com/sites/default/files/SIT%20terminalplan%20SIT%2021%2009%202026.pdf",
+      "sourceRevision": "V1.09-2026",
+      "sourcePoint": [
+        996.9467,
+        170.2133
+      ],
+      "sourcePoints": [
+        [
+          996.9467,
+          170.2133
+        ]
+      ],
+      "sourcePointUnits": "uncropped original PDF points",
+      "sourcePointAtlasPixels": [
+        2990.84,
+        510.64
+      ],
+      "sourceBounds": [
+        946,
+        138,
+        1059,
+        201
+      ],
+      "sourceBoundsUnits": "uncropped original PDF points",
+      "sourceBoundsBasis": "Visually reviewed whole H field outline and full code extents in this source; source drawing coordinates are not a geographic polygon.",
+      "roadWay": "241873267",
+      "roadSegment": [
+        "12487520988",
+        "2494511819"
+      ],
+      "arrivalNode": "2494511819",
+      "basis": "The curved BDR/BDA outer perimeter, BWH quay cap, staff/rail-side approach and straight G/H divider identify the whole H field. The independent CF1/VPC cross-road control corrects the earlier one-field-shifted G assignment. Vehicle storage is inside the outer road392480112, not in the grass outside it. Shared AH/BH area entrance only; individual numbered AH/BH strips, exact lines and current access permission are not established.",
+      "junctionMatch": {
+        "cornerNodes": [
+          "2494511819",
+          "2494511887",
+          "2494511892",
+          "2494511830"
+        ],
+        "arrivalNode": "2494511819",
+        "entrySegment": [
+          "12487520988",
+          "2494511819"
+        ],
+        "boundaryLanes": [
+          {
+            "way": "392480112",
+            "nodes": [
+              "2494511819",
+              "12487520989",
+              "12487520990",
+              "12487520991",
+              "12487520992",
+              "9803568813",
+              "2494511887"
+            ],
+            "oneway": false,
+            "role": "curved OUTER H/BDR field boundary"
+          },
+          {
+            "way": "392480112",
+            "nodes": [
+              "2494511887",
+              "12487520994",
+              "12487520993",
+              "12487520995",
+              "2494511892"
+            ],
+            "oneway": false,
+            "role": "H/BWH quay cap"
+          },
+          {
+            "way": "241873290",
+            "nodes": [
+              "2494511830",
+              "2494511867",
+              "2494511882",
+              "2494511892"
+            ],
+            "oneway": false,
+            "role": "straight H/G divider"
+          },
+          {
+            "way": "241873267",
+            "nodes": [
+              "2494511819",
+              "2494511828",
+              "2494511830"
+            ],
+            "oneway": false,
+            "role": "staff and rail-side access spine"
+          }
+        ]
+      },
+      "mappedArea": {
+        "areaName": "AH/BH parking area",
+        "boundaryReferences": [
+          {
+            "way": "392480112",
+            "nodes": [
+              "2494511819",
+              "12487520989",
+              "12487520990",
+              "12487520991",
+              "12487520992",
+              "9803568813",
+              "2494511887"
+            ],
+            "oneway": false,
+            "role": "curved OUTER H/BDR field boundary"
+          },
+          {
+            "way": "392480112",
+            "nodes": [
+              "2494511887",
+              "12487520994",
+              "12487520993",
+              "12487520995",
+              "2494511892"
+            ],
+            "oneway": false,
+            "role": "H/BWH quay cap"
+          },
+          {
+            "way": "241873290",
+            "nodes": [
+              "2494511830",
+              "2494511867",
+              "2494511882",
+              "2494511892"
+            ],
+            "oneway": false,
+            "role": "straight H/G divider"
+          },
+          {
+            "way": "241873267",
+            "nodes": [
+              "2494511819",
+              "2494511828",
+              "2494511830"
+            ],
+            "oneway": false,
+            "role": "staff and rail-side access spine"
+          }
+        ],
+        "individualParkingVerified": false,
+        "boundaryLimitation": "Only the whole H field and its shared entry are established. No individual current or historical AH/BH compartment is geographically positioned."
+      },
+      "independentControl": {
+        "forecourtWay": "931027303",
+        "sourceSouthY": [
+          264.9,
+          265.1
+        ],
+        "neighbouringJunctions": [
+          "2494511860",
+          "2494511857"
+        ],
+        "sourceCF1Bounds": [
+          855.2,
+          242.1,
+          930.3,
+          264.9
+        ],
+        "sourceAFBFBounds": [
+          938.6,
+          237.1,
+          1048.0,
+          265.1
+        ],
+        "proof": "CF1 and AF/BF share the same southern source cross-road beside the named VPC. The actual VPC northern forecourt 931027303 meets Koffieweg at node2494511860, within5m of road241873282 at node2494511857. Substituting road241873292 as the AF/BF south edge shifted every upper field by one.",
+        "independence": "This control starts from the VPC building/forecourt and source cross-road continuity; it does not use the published AG/BG GPS footprint as ground truth."
+      },
+      "flightEvidence": {
+        "service": "https://geo.api.vlaanderen.be/ofw/wms",
+        "imageryLayer": "OFW",
+        "queryLayer": "OFW_vdc",
+        "dataset": "Orthofotowerkbestand 2026.01",
+        "flightDate": "2026-03-05",
+        "reportedFlightDate": "5/3/2026",
+        "featureId": "4",
+        "reviewed": "2026-11-19",
+        "method": "Official OFW_vdc GetFeatureInfo OpnDatum, independently queried at this entrance on 2026-11-19.",
+        "query": {
+          "version": "1.3.0",
+          "CRS": "EPSG:4326",
+          "bboxLatLon": [
+            51.3074696,
+            3.2139528,
+            51.307669600000004,
+            3.2141528000000004
+          ],
+          "width": 500,
+          "height": 500,
+          "i": 250,
+          "j": 250,
+          "infoFormat": "application/geo+json"
+        },
+        "reviewImageRequest": {
+          "version": "1.3.0",
+          "CRS": "EPSG:4326",
+          "bboxLatLon": [
+            51.3073,
+            3.2117,
+            51.3112,
+            3.216
+          ],
+          "width": 1000,
+          "height": 1450
+        },
+        "limitation": "Supports the whole parking field and access junction. Individual AH/BH strip positions and live access permissions remain unverified."
+      },
+      "labelPosition": {
+        "lat": 51.3075696,
+        "lon": 3.2140528,
+        "name": "AH1 \u00b7 area entrance",
+        "method": "confirmed-shared-area-entrance",
+        "scope": "area-entrance-label",
+        "precision": "area-entry-only",
+        "individualParkingVerified": false,
+        "basis": "Display at the SAME confirmed H area junction; no inferred numbered H strip position."
+      },
+      "sourceGlyphBounds": [
+        [
+          993.2283,
+          164.5132,
+          1000.6623,
+          175.9132
+        ]
+      ]
+    },
+    "south:AH2": {
+      "lat": 51.3075696,
+      "lon": 3.2140528,
+      "name": "AH2 \u00b7 area entrance",
+      "parking": "AH2",
+      "areaName": "AH/BH parking area",
+      "region": "south-h-shared-field-entrance",
+      "method": "source-topology-shared-area-entrance",
+      "scope": "parking-group-approach",
+      "precision": "area-entry-only",
+      "individualParkingVerified": false,
+      "lineExact": false,
+      "historical": false,
+      "supportedMaps": [
+        "south"
+      ],
+      "sourceMap": "south",
+      "sourcePage": 1,
+      "sourceUrl": "https://www.icoterminals.com/sites/default/files/SIT%20terminalplan%20SIT%2021%2009%202026.pdf",
+      "sourceRevision": "V1.09-2026",
+      "sourcePoint": [
+        1007.4467,
+        169.9
+      ],
+      "sourcePoints": [
+        [
+          1007.4467,
+          169.9
+        ]
+      ],
+      "sourcePointUnits": "uncropped original PDF points",
+      "sourcePointAtlasPixels": [
+        3022.34,
+        509.7
+      ],
+      "sourceBounds": [
+        946,
+        138,
+        1059,
+        201
+      ],
+      "sourceBoundsUnits": "uncropped original PDF points",
+      "sourceBoundsBasis": "Visually reviewed whole H field outline and full code extents in this source; source drawing coordinates are not a geographic polygon.",
+      "roadWay": "241873267",
+      "roadSegment": [
+        "12487520988",
+        "2494511819"
+      ],
+      "arrivalNode": "2494511819",
+      "basis": "The curved BDR/BDA outer perimeter, BWH quay cap, staff/rail-side approach and straight G/H divider identify the whole H field. The independent CF1/VPC cross-road control corrects the earlier one-field-shifted G assignment. Vehicle storage is inside the outer road392480112, not in the grass outside it. Shared AH/BH area entrance only; individual numbered AH/BH strips, exact lines and current access permission are not established.",
+      "junctionMatch": {
+        "cornerNodes": [
+          "2494511819",
+          "2494511887",
+          "2494511892",
+          "2494511830"
+        ],
+        "arrivalNode": "2494511819",
+        "entrySegment": [
+          "12487520988",
+          "2494511819"
+        ],
+        "boundaryLanes": [
+          {
+            "way": "392480112",
+            "nodes": [
+              "2494511819",
+              "12487520989",
+              "12487520990",
+              "12487520991",
+              "12487520992",
+              "9803568813",
+              "2494511887"
+            ],
+            "oneway": false,
+            "role": "curved OUTER H/BDR field boundary"
+          },
+          {
+            "way": "392480112",
+            "nodes": [
+              "2494511887",
+              "12487520994",
+              "12487520993",
+              "12487520995",
+              "2494511892"
+            ],
+            "oneway": false,
+            "role": "H/BWH quay cap"
+          },
+          {
+            "way": "241873290",
+            "nodes": [
+              "2494511830",
+              "2494511867",
+              "2494511882",
+              "2494511892"
+            ],
+            "oneway": false,
+            "role": "straight H/G divider"
+          },
+          {
+            "way": "241873267",
+            "nodes": [
+              "2494511819",
+              "2494511828",
+              "2494511830"
+            ],
+            "oneway": false,
+            "role": "staff and rail-side access spine"
+          }
+        ]
+      },
+      "mappedArea": {
+        "areaName": "AH/BH parking area",
+        "boundaryReferences": [
+          {
+            "way": "392480112",
+            "nodes": [
+              "2494511819",
+              "12487520989",
+              "12487520990",
+              "12487520991",
+              "12487520992",
+              "9803568813",
+              "2494511887"
+            ],
+            "oneway": false,
+            "role": "curved OUTER H/BDR field boundary"
+          },
+          {
+            "way": "392480112",
+            "nodes": [
+              "2494511887",
+              "12487520994",
+              "12487520993",
+              "12487520995",
+              "2494511892"
+            ],
+            "oneway": false,
+            "role": "H/BWH quay cap"
+          },
+          {
+            "way": "241873290",
+            "nodes": [
+              "2494511830",
+              "2494511867",
+              "2494511882",
+              "2494511892"
+            ],
+            "oneway": false,
+            "role": "straight H/G divider"
+          },
+          {
+            "way": "241873267",
+            "nodes": [
+              "2494511819",
+              "2494511828",
+              "2494511830"
+            ],
+            "oneway": false,
+            "role": "staff and rail-side access spine"
+          }
+        ],
+        "individualParkingVerified": false,
+        "boundaryLimitation": "Only the whole H field and its shared entry are established. No individual current or historical AH/BH compartment is geographically positioned."
+      },
+      "independentControl": {
+        "forecourtWay": "931027303",
+        "sourceSouthY": [
+          264.9,
+          265.1
+        ],
+        "neighbouringJunctions": [
+          "2494511860",
+          "2494511857"
+        ],
+        "sourceCF1Bounds": [
+          855.2,
+          242.1,
+          930.3,
+          264.9
+        ],
+        "sourceAFBFBounds": [
+          938.6,
+          237.1,
+          1048.0,
+          265.1
+        ],
+        "proof": "CF1 and AF/BF share the same southern source cross-road beside the named VPC. The actual VPC northern forecourt 931027303 meets Koffieweg at node2494511860, within5m of road241873282 at node2494511857. Substituting road241873292 as the AF/BF south edge shifted every upper field by one.",
+        "independence": "This control starts from the VPC building/forecourt and source cross-road continuity; it does not use the published AG/BG GPS footprint as ground truth."
+      },
+      "flightEvidence": {
+        "service": "https://geo.api.vlaanderen.be/ofw/wms",
+        "imageryLayer": "OFW",
+        "queryLayer": "OFW_vdc",
+        "dataset": "Orthofotowerkbestand 2026.01",
+        "flightDate": "2026-03-05",
+        "reportedFlightDate": "5/3/2026",
+        "featureId": "4",
+        "reviewed": "2026-11-19",
+        "method": "Official OFW_vdc GetFeatureInfo OpnDatum, independently queried at this entrance on 2026-11-19.",
+        "query": {
+          "version": "1.3.0",
+          "CRS": "EPSG:4326",
+          "bboxLatLon": [
+            51.3074696,
+            3.2139528,
+            51.307669600000004,
+            3.2141528000000004
+          ],
+          "width": 500,
+          "height": 500,
+          "i": 250,
+          "j": 250,
+          "infoFormat": "application/geo+json"
+        },
+        "reviewImageRequest": {
+          "version": "1.3.0",
+          "CRS": "EPSG:4326",
+          "bboxLatLon": [
+            51.3073,
+            3.2117,
+            51.3112,
+            3.216
+          ],
+          "width": 1000,
+          "height": 1450
+        },
+        "limitation": "Supports the whole parking field and access junction. Individual AH/BH strip positions and live access permissions remain unverified."
+      },
+      "labelPosition": {
+        "lat": 51.3075696,
+        "lon": 3.2140528,
+        "name": "AH2 \u00b7 area entrance",
+        "method": "confirmed-shared-area-entrance",
+        "scope": "area-entrance-label",
+        "precision": "area-entry-only",
+        "individualParkingVerified": false,
+        "basis": "Display at the SAME confirmed H area junction; no inferred numbered H strip position."
+      },
+      "sourceGlyphBounds": [
+        [
+          1003.7283,
+          164.2012,
+          1011.1623,
+          175.6012
+        ]
+      ]
+    },
+    "south:AH3": {
+      "lat": 51.3075696,
+      "lon": 3.2140528,
+      "name": "AH3 \u00b7 area entrance",
+      "parking": "AH3",
+      "areaName": "AH/BH parking area",
+      "region": "south-h-shared-field-entrance",
+      "method": "source-topology-shared-area-entrance",
+      "scope": "parking-group-approach",
+      "precision": "area-entry-only",
+      "individualParkingVerified": false,
+      "lineExact": false,
+      "historical": false,
+      "supportedMaps": [
+        "south"
+      ],
+      "sourceMap": "south",
+      "sourcePage": 1,
+      "sourceUrl": "https://www.icoterminals.com/sites/default/files/SIT%20terminalplan%20SIT%2021%2009%202026.pdf",
+      "sourceRevision": "V1.09-2026",
+      "sourcePoint": [
+        1018.48,
+        169.59
+      ],
+      "sourcePoints": [
+        [
+          1018.48,
+          169.59
+        ]
+      ],
+      "sourcePointUnits": "uncropped original PDF points",
+      "sourcePointAtlasPixels": [
+        3055.44,
+        508.77
+      ],
+      "sourceBounds": [
+        946,
+        138,
+        1059,
+        201
+      ],
+      "sourceBoundsUnits": "uncropped original PDF points",
+      "sourceBoundsBasis": "Visually reviewed whole H field outline and full code extents in this source; source drawing coordinates are not a geographic polygon.",
+      "roadWay": "241873267",
+      "roadSegment": [
+        "12487520988",
+        "2494511819"
+      ],
+      "arrivalNode": "2494511819",
+      "basis": "The curved BDR/BDA outer perimeter, BWH quay cap, staff/rail-side approach and straight G/H divider identify the whole H field. The independent CF1/VPC cross-road control corrects the earlier one-field-shifted G assignment. Vehicle storage is inside the outer road392480112, not in the grass outside it. Shared AH/BH area entrance only; individual numbered AH/BH strips, exact lines and current access permission are not established.",
+      "junctionMatch": {
+        "cornerNodes": [
+          "2494511819",
+          "2494511887",
+          "2494511892",
+          "2494511830"
+        ],
+        "arrivalNode": "2494511819",
+        "entrySegment": [
+          "12487520988",
+          "2494511819"
+        ],
+        "boundaryLanes": [
+          {
+            "way": "392480112",
+            "nodes": [
+              "2494511819",
+              "12487520989",
+              "12487520990",
+              "12487520991",
+              "12487520992",
+              "9803568813",
+              "2494511887"
+            ],
+            "oneway": false,
+            "role": "curved OUTER H/BDR field boundary"
+          },
+          {
+            "way": "392480112",
+            "nodes": [
+              "2494511887",
+              "12487520994",
+              "12487520993",
+              "12487520995",
+              "2494511892"
+            ],
+            "oneway": false,
+            "role": "H/BWH quay cap"
+          },
+          {
+            "way": "241873290",
+            "nodes": [
+              "2494511830",
+              "2494511867",
+              "2494511882",
+              "2494511892"
+            ],
+            "oneway": false,
+            "role": "straight H/G divider"
+          },
+          {
+            "way": "241873267",
+            "nodes": [
+              "2494511819",
+              "2494511828",
+              "2494511830"
+            ],
+            "oneway": false,
+            "role": "staff and rail-side access spine"
+          }
+        ]
+      },
+      "mappedArea": {
+        "areaName": "AH/BH parking area",
+        "boundaryReferences": [
+          {
+            "way": "392480112",
+            "nodes": [
+              "2494511819",
+              "12487520989",
+              "12487520990",
+              "12487520991",
+              "12487520992",
+              "9803568813",
+              "2494511887"
+            ],
+            "oneway": false,
+            "role": "curved OUTER H/BDR field boundary"
+          },
+          {
+            "way": "392480112",
+            "nodes": [
+              "2494511887",
+              "12487520994",
+              "12487520993",
+              "12487520995",
+              "2494511892"
+            ],
+            "oneway": false,
+            "role": "H/BWH quay cap"
+          },
+          {
+            "way": "241873290",
+            "nodes": [
+              "2494511830",
+              "2494511867",
+              "2494511882",
+              "2494511892"
+            ],
+            "oneway": false,
+            "role": "straight H/G divider"
+          },
+          {
+            "way": "241873267",
+            "nodes": [
+              "2494511819",
+              "2494511828",
+              "2494511830"
+            ],
+            "oneway": false,
+            "role": "staff and rail-side access spine"
+          }
+        ],
+        "individualParkingVerified": false,
+        "boundaryLimitation": "Only the whole H field and its shared entry are established. No individual current or historical AH/BH compartment is geographically positioned."
+      },
+      "independentControl": {
+        "forecourtWay": "931027303",
+        "sourceSouthY": [
+          264.9,
+          265.1
+        ],
+        "neighbouringJunctions": [
+          "2494511860",
+          "2494511857"
+        ],
+        "sourceCF1Bounds": [
+          855.2,
+          242.1,
+          930.3,
+          264.9
+        ],
+        "sourceAFBFBounds": [
+          938.6,
+          237.1,
+          1048.0,
+          265.1
+        ],
+        "proof": "CF1 and AF/BF share the same southern source cross-road beside the named VPC. The actual VPC northern forecourt 931027303 meets Koffieweg at node2494511860, within5m of road241873282 at node2494511857. Substituting road241873292 as the AF/BF south edge shifted every upper field by one.",
+        "independence": "This control starts from the VPC building/forecourt and source cross-road continuity; it does not use the published AG/BG GPS footprint as ground truth."
+      },
+      "flightEvidence": {
+        "service": "https://geo.api.vlaanderen.be/ofw/wms",
+        "imageryLayer": "OFW",
+        "queryLayer": "OFW_vdc",
+        "dataset": "Orthofotowerkbestand 2026.01",
+        "flightDate": "2026-03-05",
+        "reportedFlightDate": "5/3/2026",
+        "featureId": "4",
+        "reviewed": "2026-11-19",
+        "method": "Official OFW_vdc GetFeatureInfo OpnDatum, independently queried at this entrance on 2026-11-19.",
+        "query": {
+          "version": "1.3.0",
+          "CRS": "EPSG:4326",
+          "bboxLatLon": [
+            51.3074696,
+            3.2139528,
+            51.307669600000004,
+            3.2141528000000004
+          ],
+          "width": 500,
+          "height": 500,
+          "i": 250,
+          "j": 250,
+          "infoFormat": "application/geo+json"
+        },
+        "reviewImageRequest": {
+          "version": "1.3.0",
+          "CRS": "EPSG:4326",
+          "bboxLatLon": [
+            51.3073,
+            3.2117,
+            51.3112,
+            3.216
+          ],
+          "width": 1000,
+          "height": 1450
+        },
+        "limitation": "Supports the whole parking field and access junction. Individual AH/BH strip positions and live access permissions remain unverified."
+      },
+      "labelPosition": {
+        "lat": 51.3075696,
+        "lon": 3.2140528,
+        "name": "AH3 \u00b7 area entrance",
+        "method": "confirmed-shared-area-entrance",
+        "scope": "area-entrance-label",
+        "precision": "area-entry-only",
+        "individualParkingVerified": false,
+        "basis": "Display at the SAME confirmed H area junction; no inferred numbered H strip position."
+      },
+      "sourceGlyphBounds": [
+        [
+          1014.7623,
+          163.8892,
+          1022.1963,
+          175.2892
+        ]
+      ]
+    },
+    "south:AH4": {
+      "lat": 51.3075696,
+      "lon": 3.2140528,
+      "name": "AH4 \u00b7 area entrance",
+      "parking": "AH4",
+      "areaName": "AH/BH parking area",
+      "region": "south-h-shared-field-entrance",
+      "method": "source-topology-shared-area-entrance",
+      "scope": "parking-group-approach",
+      "precision": "area-entry-only",
+      "individualParkingVerified": false,
+      "lineExact": false,
+      "historical": false,
+      "supportedMaps": [
+        "south"
+      ],
+      "sourceMap": "south",
+      "sourcePage": 1,
+      "sourceUrl": "https://www.icoterminals.com/sites/default/files/SIT%20terminalplan%20SIT%2021%2009%202026.pdf",
+      "sourceRevision": "V1.09-2026",
+      "sourcePoint": [
+        1030.03,
+        169.72
+      ],
+      "sourcePoints": [
+        [
+          1030.03,
+          169.72
+        ]
+      ],
+      "sourcePointUnits": "uncropped original PDF points",
+      "sourcePointAtlasPixels": [
+        3090.09,
+        509.16
+      ],
+      "sourceBounds": [
+        946,
+        138,
+        1059,
+        201
+      ],
+      "sourceBoundsUnits": "uncropped original PDF points",
+      "sourceBoundsBasis": "Visually reviewed whole H field outline and full code extents in this source; source drawing coordinates are not a geographic polygon.",
+      "roadWay": "241873267",
+      "roadSegment": [
+        "12487520988",
+        "2494511819"
+      ],
+      "arrivalNode": "2494511819",
+      "basis": "The curved BDR/BDA outer perimeter, BWH quay cap, staff/rail-side approach and straight G/H divider identify the whole H field. The independent CF1/VPC cross-road control corrects the earlier one-field-shifted G assignment. Vehicle storage is inside the outer road392480112, not in the grass outside it. Shared AH/BH area entrance only; individual numbered AH/BH strips, exact lines and current access permission are not established.",
+      "junctionMatch": {
+        "cornerNodes": [
+          "2494511819",
+          "2494511887",
+          "2494511892",
+          "2494511830"
+        ],
+        "arrivalNode": "2494511819",
+        "entrySegment": [
+          "12487520988",
+          "2494511819"
+        ],
+        "boundaryLanes": [
+          {
+            "way": "392480112",
+            "nodes": [
+              "2494511819",
+              "12487520989",
+              "12487520990",
+              "12487520991",
+              "12487520992",
+              "9803568813",
+              "2494511887"
+            ],
+            "oneway": false,
+            "role": "curved OUTER H/BDR field boundary"
+          },
+          {
+            "way": "392480112",
+            "nodes": [
+              "2494511887",
+              "12487520994",
+              "12487520993",
+              "12487520995",
+              "2494511892"
+            ],
+            "oneway": false,
+            "role": "H/BWH quay cap"
+          },
+          {
+            "way": "241873290",
+            "nodes": [
+              "2494511830",
+              "2494511867",
+              "2494511882",
+              "2494511892"
+            ],
+            "oneway": false,
+            "role": "straight H/G divider"
+          },
+          {
+            "way": "241873267",
+            "nodes": [
+              "2494511819",
+              "2494511828",
+              "2494511830"
+            ],
+            "oneway": false,
+            "role": "staff and rail-side access spine"
+          }
+        ]
+      },
+      "mappedArea": {
+        "areaName": "AH/BH parking area",
+        "boundaryReferences": [
+          {
+            "way": "392480112",
+            "nodes": [
+              "2494511819",
+              "12487520989",
+              "12487520990",
+              "12487520991",
+              "12487520992",
+              "9803568813",
+              "2494511887"
+            ],
+            "oneway": false,
+            "role": "curved OUTER H/BDR field boundary"
+          },
+          {
+            "way": "392480112",
+            "nodes": [
+              "2494511887",
+              "12487520994",
+              "12487520993",
+              "12487520995",
+              "2494511892"
+            ],
+            "oneway": false,
+            "role": "H/BWH quay cap"
+          },
+          {
+            "way": "241873290",
+            "nodes": [
+              "2494511830",
+              "2494511867",
+              "2494511882",
+              "2494511892"
+            ],
+            "oneway": false,
+            "role": "straight H/G divider"
+          },
+          {
+            "way": "241873267",
+            "nodes": [
+              "2494511819",
+              "2494511828",
+              "2494511830"
+            ],
+            "oneway": false,
+            "role": "staff and rail-side access spine"
+          }
+        ],
+        "individualParkingVerified": false,
+        "boundaryLimitation": "Only the whole H field and its shared entry are established. No individual current or historical AH/BH compartment is geographically positioned."
+      },
+      "independentControl": {
+        "forecourtWay": "931027303",
+        "sourceSouthY": [
+          264.9,
+          265.1
+        ],
+        "neighbouringJunctions": [
+          "2494511860",
+          "2494511857"
+        ],
+        "sourceCF1Bounds": [
+          855.2,
+          242.1,
+          930.3,
+          264.9
+        ],
+        "sourceAFBFBounds": [
+          938.6,
+          237.1,
+          1048.0,
+          265.1
+        ],
+        "proof": "CF1 and AF/BF share the same southern source cross-road beside the named VPC. The actual VPC northern forecourt 931027303 meets Koffieweg at node2494511860, within5m of road241873282 at node2494511857. Substituting road241873292 as the AF/BF south edge shifted every upper field by one.",
+        "independence": "This control starts from the VPC building/forecourt and source cross-road continuity; it does not use the published AG/BG GPS footprint as ground truth."
+      },
+      "flightEvidence": {
+        "service": "https://geo.api.vlaanderen.be/ofw/wms",
+        "imageryLayer": "OFW",
+        "queryLayer": "OFW_vdc",
+        "dataset": "Orthofotowerkbestand 2026.01",
+        "flightDate": "2026-03-05",
+        "reportedFlightDate": "5/3/2026",
+        "featureId": "4",
+        "reviewed": "2026-11-19",
+        "method": "Official OFW_vdc GetFeatureInfo OpnDatum, independently queried at this entrance on 2026-11-19.",
+        "query": {
+          "version": "1.3.0",
+          "CRS": "EPSG:4326",
+          "bboxLatLon": [
+            51.3074696,
+            3.2139528,
+            51.307669600000004,
+            3.2141528000000004
+          ],
+          "width": 500,
+          "height": 500,
+          "i": 250,
+          "j": 250,
+          "infoFormat": "application/geo+json"
+        },
+        "reviewImageRequest": {
+          "version": "1.3.0",
+          "CRS": "EPSG:4326",
+          "bboxLatLon": [
+            51.3073,
+            3.2117,
+            51.3112,
+            3.216
+          ],
+          "width": 1000,
+          "height": 1450
+        },
+        "limitation": "Supports the whole parking field and access junction. Individual AH/BH strip positions and live access permissions remain unverified."
+      },
+      "labelPosition": {
+        "lat": 51.3075696,
+        "lon": 3.2140528,
+        "name": "AH4 \u00b7 area entrance",
+        "method": "confirmed-shared-area-entrance",
+        "scope": "area-entrance-label",
+        "precision": "area-entry-only",
+        "individualParkingVerified": false,
+        "basis": "Display at the SAME confirmed H area junction; no inferred numbered H strip position."
+      },
+      "sourceGlyphBounds": [
+        [
+          1026.3123,
+          164.0212,
+          1033.7462,
+          175.4212
+        ]
+      ]
+    },
+    "south:AH5": {
+      "lat": 51.3075696,
+      "lon": 3.2140528,
+      "name": "AH5 \u00b7 area entrance",
+      "parking": "AH5",
+      "areaName": "AH/BH parking area",
+      "region": "south-h-shared-field-entrance",
+      "method": "source-topology-shared-area-entrance",
+      "scope": "parking-group-approach",
+      "precision": "area-entry-only",
+      "individualParkingVerified": false,
+      "lineExact": false,
+      "historical": false,
+      "supportedMaps": [
+        "south"
+      ],
+      "sourceMap": "south",
+      "sourcePage": 1,
+      "sourceUrl": "https://www.icoterminals.com/sites/default/files/SIT%20terminalplan%20SIT%2021%2009%202026.pdf",
+      "sourceRevision": "V1.09-2026",
+      "sourcePoint": [
+        1040.93,
+        170.2433
+      ],
+      "sourcePoints": [
+        [
+          1040.93,
+          170.2433
+        ]
+      ],
+      "sourcePointUnits": "uncropped original PDF points",
+      "sourcePointAtlasPixels": [
+        3122.79,
+        510.73
+      ],
+      "sourceBounds": [
+        946,
+        138,
+        1059,
+        201
+      ],
+      "sourceBoundsUnits": "uncropped original PDF points",
+      "sourceBoundsBasis": "Visually reviewed whole H field outline and full code extents in this source; source drawing coordinates are not a geographic polygon.",
+      "roadWay": "241873267",
+      "roadSegment": [
+        "12487520988",
+        "2494511819"
+      ],
+      "arrivalNode": "2494511819",
+      "basis": "The curved BDR/BDA outer perimeter, BWH quay cap, staff/rail-side approach and straight G/H divider identify the whole H field. The independent CF1/VPC cross-road control corrects the earlier one-field-shifted G assignment. Vehicle storage is inside the outer road392480112, not in the grass outside it. Shared AH/BH area entrance only; individual numbered AH/BH strips, exact lines and current access permission are not established.",
+      "junctionMatch": {
+        "cornerNodes": [
+          "2494511819",
+          "2494511887",
+          "2494511892",
+          "2494511830"
+        ],
+        "arrivalNode": "2494511819",
+        "entrySegment": [
+          "12487520988",
+          "2494511819"
+        ],
+        "boundaryLanes": [
+          {
+            "way": "392480112",
+            "nodes": [
+              "2494511819",
+              "12487520989",
+              "12487520990",
+              "12487520991",
+              "12487520992",
+              "9803568813",
+              "2494511887"
+            ],
+            "oneway": false,
+            "role": "curved OUTER H/BDR field boundary"
+          },
+          {
+            "way": "392480112",
+            "nodes": [
+              "2494511887",
+              "12487520994",
+              "12487520993",
+              "12487520995",
+              "2494511892"
+            ],
+            "oneway": false,
+            "role": "H/BWH quay cap"
+          },
+          {
+            "way": "241873290",
+            "nodes": [
+              "2494511830",
+              "2494511867",
+              "2494511882",
+              "2494511892"
+            ],
+            "oneway": false,
+            "role": "straight H/G divider"
+          },
+          {
+            "way": "241873267",
+            "nodes": [
+              "2494511819",
+              "2494511828",
+              "2494511830"
+            ],
+            "oneway": false,
+            "role": "staff and rail-side access spine"
+          }
+        ]
+      },
+      "mappedArea": {
+        "areaName": "AH/BH parking area",
+        "boundaryReferences": [
+          {
+            "way": "392480112",
+            "nodes": [
+              "2494511819",
+              "12487520989",
+              "12487520990",
+              "12487520991",
+              "12487520992",
+              "9803568813",
+              "2494511887"
+            ],
+            "oneway": false,
+            "role": "curved OUTER H/BDR field boundary"
+          },
+          {
+            "way": "392480112",
+            "nodes": [
+              "2494511887",
+              "12487520994",
+              "12487520993",
+              "12487520995",
+              "2494511892"
+            ],
+            "oneway": false,
+            "role": "H/BWH quay cap"
+          },
+          {
+            "way": "241873290",
+            "nodes": [
+              "2494511830",
+              "2494511867",
+              "2494511882",
+              "2494511892"
+            ],
+            "oneway": false,
+            "role": "straight H/G divider"
+          },
+          {
+            "way": "241873267",
+            "nodes": [
+              "2494511819",
+              "2494511828",
+              "2494511830"
+            ],
+            "oneway": false,
+            "role": "staff and rail-side access spine"
+          }
+        ],
+        "individualParkingVerified": false,
+        "boundaryLimitation": "Only the whole H field and its shared entry are established. No individual current or historical AH/BH compartment is geographically positioned."
+      },
+      "independentControl": {
+        "forecourtWay": "931027303",
+        "sourceSouthY": [
+          264.9,
+          265.1
+        ],
+        "neighbouringJunctions": [
+          "2494511860",
+          "2494511857"
+        ],
+        "sourceCF1Bounds": [
+          855.2,
+          242.1,
+          930.3,
+          264.9
+        ],
+        "sourceAFBFBounds": [
+          938.6,
+          237.1,
+          1048.0,
+          265.1
+        ],
+        "proof": "CF1 and AF/BF share the same southern source cross-road beside the named VPC. The actual VPC northern forecourt 931027303 meets Koffieweg at node2494511860, within5m of road241873282 at node2494511857. Substituting road241873292 as the AF/BF south edge shifted every upper field by one.",
+        "independence": "This control starts from the VPC building/forecourt and source cross-road continuity; it does not use the published AG/BG GPS footprint as ground truth."
+      },
+      "flightEvidence": {
+        "service": "https://geo.api.vlaanderen.be/ofw/wms",
+        "imageryLayer": "OFW",
+        "queryLayer": "OFW_vdc",
+        "dataset": "Orthofotowerkbestand 2026.01",
+        "flightDate": "2026-03-05",
+        "reportedFlightDate": "5/3/2026",
+        "featureId": "4",
+        "reviewed": "2026-11-19",
+        "method": "Official OFW_vdc GetFeatureInfo OpnDatum, independently queried at this entrance on 2026-11-19.",
+        "query": {
+          "version": "1.3.0",
+          "CRS": "EPSG:4326",
+          "bboxLatLon": [
+            51.3074696,
+            3.2139528,
+            51.307669600000004,
+            3.2141528000000004
+          ],
+          "width": 500,
+          "height": 500,
+          "i": 250,
+          "j": 250,
+          "infoFormat": "application/geo+json"
+        },
+        "reviewImageRequest": {
+          "version": "1.3.0",
+          "CRS": "EPSG:4326",
+          "bboxLatLon": [
+            51.3073,
+            3.2117,
+            51.3112,
+            3.216
+          ],
+          "width": 1000,
+          "height": 1450
+        },
+        "limitation": "Supports the whole parking field and access junction. Individual AH/BH strip positions and live access permissions remain unverified."
+      },
+      "labelPosition": {
+        "lat": 51.3075696,
+        "lon": 3.2140528,
+        "name": "AH5 \u00b7 area entrance",
+        "method": "confirmed-shared-area-entrance",
+        "scope": "area-entrance-label",
+        "precision": "area-entry-only",
+        "individualParkingVerified": false,
+        "basis": "Display at the SAME confirmed H area junction; no inferred numbered H strip position."
+      },
+      "sourceGlyphBounds": [
+        [
+          1037.2142,
+          164.5432,
+          1044.6482,
+          175.9432
+        ]
+      ]
+    },
+    "south:AH6": {
+      "lat": 51.3075696,
+      "lon": 3.2140528,
+      "name": "AH6 \u00b7 area entrance",
+      "parking": "AH6",
+      "areaName": "AH/BH parking area",
+      "region": "south-h-shared-field-entrance",
+      "method": "source-topology-shared-area-entrance",
+      "scope": "parking-group-approach",
+      "precision": "area-entry-only",
+      "individualParkingVerified": false,
+      "lineExact": false,
+      "historical": false,
+      "supportedMaps": [
+        "south"
+      ],
+      "sourceMap": "south",
+      "sourcePage": 1,
+      "sourceUrl": "https://www.icoterminals.com/sites/default/files/SIT%20terminalplan%20SIT%2021%2009%202026.pdf",
+      "sourceRevision": "V1.09-2026",
+      "sourcePoint": [
+        1051.78,
+        169.9867
+      ],
+      "sourcePoints": [
+        [
+          1051.78,
+          169.9867
+        ]
+      ],
+      "sourcePointUnits": "uncropped original PDF points",
+      "sourcePointAtlasPixels": [
+        3155.34,
+        509.96
+      ],
+      "sourceBounds": [
+        946,
+        138,
+        1059,
+        201
+      ],
+      "sourceBoundsUnits": "uncropped original PDF points",
+      "sourceBoundsBasis": "Visually reviewed whole H field outline and full code extents in this source; source drawing coordinates are not a geographic polygon.",
+      "roadWay": "241873267",
+      "roadSegment": [
+        "12487520988",
+        "2494511819"
+      ],
+      "arrivalNode": "2494511819",
+      "basis": "The curved BDR/BDA outer perimeter, BWH quay cap, staff/rail-side approach and straight G/H divider identify the whole H field. The independent CF1/VPC cross-road control corrects the earlier one-field-shifted G assignment. Vehicle storage is inside the outer road392480112, not in the grass outside it. Shared AH/BH area entrance only; individual numbered AH/BH strips, exact lines and current access permission are not established.",
+      "junctionMatch": {
+        "cornerNodes": [
+          "2494511819",
+          "2494511887",
+          "2494511892",
+          "2494511830"
+        ],
+        "arrivalNode": "2494511819",
+        "entrySegment": [
+          "12487520988",
+          "2494511819"
+        ],
+        "boundaryLanes": [
+          {
+            "way": "392480112",
+            "nodes": [
+              "2494511819",
+              "12487520989",
+              "12487520990",
+              "12487520991",
+              "12487520992",
+              "9803568813",
+              "2494511887"
+            ],
+            "oneway": false,
+            "role": "curved OUTER H/BDR field boundary"
+          },
+          {
+            "way": "392480112",
+            "nodes": [
+              "2494511887",
+              "12487520994",
+              "12487520993",
+              "12487520995",
+              "2494511892"
+            ],
+            "oneway": false,
+            "role": "H/BWH quay cap"
+          },
+          {
+            "way": "241873290",
+            "nodes": [
+              "2494511830",
+              "2494511867",
+              "2494511882",
+              "2494511892"
+            ],
+            "oneway": false,
+            "role": "straight H/G divider"
+          },
+          {
+            "way": "241873267",
+            "nodes": [
+              "2494511819",
+              "2494511828",
+              "2494511830"
+            ],
+            "oneway": false,
+            "role": "staff and rail-side access spine"
+          }
+        ]
+      },
+      "mappedArea": {
+        "areaName": "AH/BH parking area",
+        "boundaryReferences": [
+          {
+            "way": "392480112",
+            "nodes": [
+              "2494511819",
+              "12487520989",
+              "12487520990",
+              "12487520991",
+              "12487520992",
+              "9803568813",
+              "2494511887"
+            ],
+            "oneway": false,
+            "role": "curved OUTER H/BDR field boundary"
+          },
+          {
+            "way": "392480112",
+            "nodes": [
+              "2494511887",
+              "12487520994",
+              "12487520993",
+              "12487520995",
+              "2494511892"
+            ],
+            "oneway": false,
+            "role": "H/BWH quay cap"
+          },
+          {
+            "way": "241873290",
+            "nodes": [
+              "2494511830",
+              "2494511867",
+              "2494511882",
+              "2494511892"
+            ],
+            "oneway": false,
+            "role": "straight H/G divider"
+          },
+          {
+            "way": "241873267",
+            "nodes": [
+              "2494511819",
+              "2494511828",
+              "2494511830"
+            ],
+            "oneway": false,
+            "role": "staff and rail-side access spine"
+          }
+        ],
+        "individualParkingVerified": false,
+        "boundaryLimitation": "Only the whole H field and its shared entry are established. No individual current or historical AH/BH compartment is geographically positioned."
+      },
+      "independentControl": {
+        "forecourtWay": "931027303",
+        "sourceSouthY": [
+          264.9,
+          265.1
+        ],
+        "neighbouringJunctions": [
+          "2494511860",
+          "2494511857"
+        ],
+        "sourceCF1Bounds": [
+          855.2,
+          242.1,
+          930.3,
+          264.9
+        ],
+        "sourceAFBFBounds": [
+          938.6,
+          237.1,
+          1048.0,
+          265.1
+        ],
+        "proof": "CF1 and AF/BF share the same southern source cross-road beside the named VPC. The actual VPC northern forecourt 931027303 meets Koffieweg at node2494511860, within5m of road241873282 at node2494511857. Substituting road241873292 as the AF/BF south edge shifted every upper field by one.",
+        "independence": "This control starts from the VPC building/forecourt and source cross-road continuity; it does not use the published AG/BG GPS footprint as ground truth."
+      },
+      "flightEvidence": {
+        "service": "https://geo.api.vlaanderen.be/ofw/wms",
+        "imageryLayer": "OFW",
+        "queryLayer": "OFW_vdc",
+        "dataset": "Orthofotowerkbestand 2026.01",
+        "flightDate": "2026-03-05",
+        "reportedFlightDate": "5/3/2026",
+        "featureId": "4",
+        "reviewed": "2026-11-19",
+        "method": "Official OFW_vdc GetFeatureInfo OpnDatum, independently queried at this entrance on 2026-11-19.",
+        "query": {
+          "version": "1.3.0",
+          "CRS": "EPSG:4326",
+          "bboxLatLon": [
+            51.3074696,
+            3.2139528,
+            51.307669600000004,
+            3.2141528000000004
+          ],
+          "width": 500,
+          "height": 500,
+          "i": 250,
+          "j": 250,
+          "infoFormat": "application/geo+json"
+        },
+        "reviewImageRequest": {
+          "version": "1.3.0",
+          "CRS": "EPSG:4326",
+          "bboxLatLon": [
+            51.3073,
+            3.2117,
+            51.3112,
+            3.216
+          ],
+          "width": 1000,
+          "height": 1450
+        },
+        "limitation": "Supports the whole parking field and access junction. Individual AH/BH strip positions and live access permissions remain unverified."
+      },
+      "labelPosition": {
+        "lat": 51.3075696,
+        "lon": 3.2140528,
+        "name": "AH6 \u00b7 area entrance",
+        "method": "confirmed-shared-area-entrance",
+        "scope": "area-entrance-label",
+        "precision": "area-entry-only",
+        "individualParkingVerified": false,
+        "basis": "Display at the SAME confirmed H area junction; no inferred numbered H strip position."
+      },
+      "sourceGlyphBounds": [
+        [
+          1048.0623,
+          164.2852,
+          1055.4962,
+          175.6852
+        ]
+      ]
+    },
+    "south:BH1": {
+      "lat": 51.3075696,
+      "lon": 3.2140528,
+      "name": "BH1 \u00b7 area entrance",
+      "parking": "BH1",
+      "areaName": "AH/BH parking area",
+      "region": "south-h-shared-field-entrance",
+      "method": "source-topology-shared-area-entrance",
+      "scope": "parking-group-approach",
+      "precision": "area-entry-only",
+      "individualParkingVerified": false,
+      "lineExact": false,
+      "historical": false,
+      "supportedMaps": [
+        "south"
+      ],
+      "sourceMap": "south",
+      "sourcePage": 1,
+      "sourceUrl": "https://www.icoterminals.com/sites/default/files/SIT%20terminalplan%20SIT%2021%2009%202026.pdf",
+      "sourceRevision": "V1.09-2026",
+      "sourcePoint": [
+        955.1033,
+        170.0767
+      ],
+      "sourcePoints": [
+        [
+          955.1033,
+          170.0767
+        ]
+      ],
+      "sourcePointUnits": "uncropped original PDF points",
+      "sourcePointAtlasPixels": [
+        2865.31,
+        510.23
+      ],
+      "sourceBounds": [
+        946,
+        138,
+        1059,
+        201
+      ],
+      "sourceBoundsUnits": "uncropped original PDF points",
+      "sourceBoundsBasis": "Visually reviewed whole H field outline and full code extents in this source; source drawing coordinates are not a geographic polygon.",
+      "roadWay": "241873267",
+      "roadSegment": [
+        "12487520988",
+        "2494511819"
+      ],
+      "arrivalNode": "2494511819",
+      "basis": "The curved BDR/BDA outer perimeter, BWH quay cap, staff/rail-side approach and straight G/H divider identify the whole H field. The independent CF1/VPC cross-road control corrects the earlier one-field-shifted G assignment. Vehicle storage is inside the outer road392480112, not in the grass outside it. Shared AH/BH area entrance only; individual numbered AH/BH strips, exact lines and current access permission are not established.",
+      "junctionMatch": {
+        "cornerNodes": [
+          "2494511819",
+          "2494511887",
+          "2494511892",
+          "2494511830"
+        ],
+        "arrivalNode": "2494511819",
+        "entrySegment": [
+          "12487520988",
+          "2494511819"
+        ],
+        "boundaryLanes": [
+          {
+            "way": "392480112",
+            "nodes": [
+              "2494511819",
+              "12487520989",
+              "12487520990",
+              "12487520991",
+              "12487520992",
+              "9803568813",
+              "2494511887"
+            ],
+            "oneway": false,
+            "role": "curved OUTER H/BDR field boundary"
+          },
+          {
+            "way": "392480112",
+            "nodes": [
+              "2494511887",
+              "12487520994",
+              "12487520993",
+              "12487520995",
+              "2494511892"
+            ],
+            "oneway": false,
+            "role": "H/BWH quay cap"
+          },
+          {
+            "way": "241873290",
+            "nodes": [
+              "2494511830",
+              "2494511867",
+              "2494511882",
+              "2494511892"
+            ],
+            "oneway": false,
+            "role": "straight H/G divider"
+          },
+          {
+            "way": "241873267",
+            "nodes": [
+              "2494511819",
+              "2494511828",
+              "2494511830"
+            ],
+            "oneway": false,
+            "role": "staff and rail-side access spine"
+          }
+        ]
+      },
+      "mappedArea": {
+        "areaName": "AH/BH parking area",
+        "boundaryReferences": [
+          {
+            "way": "392480112",
+            "nodes": [
+              "2494511819",
+              "12487520989",
+              "12487520990",
+              "12487520991",
+              "12487520992",
+              "9803568813",
+              "2494511887"
+            ],
+            "oneway": false,
+            "role": "curved OUTER H/BDR field boundary"
+          },
+          {
+            "way": "392480112",
+            "nodes": [
+              "2494511887",
+              "12487520994",
+              "12487520993",
+              "12487520995",
+              "2494511892"
+            ],
+            "oneway": false,
+            "role": "H/BWH quay cap"
+          },
+          {
+            "way": "241873290",
+            "nodes": [
+              "2494511830",
+              "2494511867",
+              "2494511882",
+              "2494511892"
+            ],
+            "oneway": false,
+            "role": "straight H/G divider"
+          },
+          {
+            "way": "241873267",
+            "nodes": [
+              "2494511819",
+              "2494511828",
+              "2494511830"
+            ],
+            "oneway": false,
+            "role": "staff and rail-side access spine"
+          }
+        ],
+        "individualParkingVerified": false,
+        "boundaryLimitation": "Only the whole H field and its shared entry are established. No individual current or historical AH/BH compartment is geographically positioned."
+      },
+      "independentControl": {
+        "forecourtWay": "931027303",
+        "sourceSouthY": [
+          264.9,
+          265.1
+        ],
+        "neighbouringJunctions": [
+          "2494511860",
+          "2494511857"
+        ],
+        "sourceCF1Bounds": [
+          855.2,
+          242.1,
+          930.3,
+          264.9
+        ],
+        "sourceAFBFBounds": [
+          938.6,
+          237.1,
+          1048.0,
+          265.1
+        ],
+        "proof": "CF1 and AF/BF share the same southern source cross-road beside the named VPC. The actual VPC northern forecourt 931027303 meets Koffieweg at node2494511860, within5m of road241873282 at node2494511857. Substituting road241873292 as the AF/BF south edge shifted every upper field by one.",
+        "independence": "This control starts from the VPC building/forecourt and source cross-road continuity; it does not use the published AG/BG GPS footprint as ground truth."
+      },
+      "flightEvidence": {
+        "service": "https://geo.api.vlaanderen.be/ofw/wms",
+        "imageryLayer": "OFW",
+        "queryLayer": "OFW_vdc",
+        "dataset": "Orthofotowerkbestand 2026.01",
+        "flightDate": "2026-03-05",
+        "reportedFlightDate": "5/3/2026",
+        "featureId": "4",
+        "reviewed": "2026-11-19",
+        "method": "Official OFW_vdc GetFeatureInfo OpnDatum, independently queried at this entrance on 2026-11-19.",
+        "query": {
+          "version": "1.3.0",
+          "CRS": "EPSG:4326",
+          "bboxLatLon": [
+            51.3074696,
+            3.2139528,
+            51.307669600000004,
+            3.2141528000000004
+          ],
+          "width": 500,
+          "height": 500,
+          "i": 250,
+          "j": 250,
+          "infoFormat": "application/geo+json"
+        },
+        "reviewImageRequest": {
+          "version": "1.3.0",
+          "CRS": "EPSG:4326",
+          "bboxLatLon": [
+            51.3073,
+            3.2117,
+            51.3112,
+            3.216
+          ],
+          "width": 1000,
+          "height": 1450
+        },
+        "limitation": "Supports the whole parking field and access junction. Individual AH/BH strip positions and live access permissions remain unverified."
+      },
+      "labelPosition": {
+        "lat": 51.3075696,
+        "lon": 3.2140528,
+        "name": "BH1 \u00b7 area entrance",
+        "method": "confirmed-shared-area-entrance",
+        "scope": "area-entrance-label",
+        "precision": "area-entry-only",
+        "individualParkingVerified": false,
+        "basis": "Display at the SAME confirmed H area junction; no inferred numbered H strip position."
+      },
+      "sourceGlyphBounds": [
+        [
+          951.3867,
+          164.5316,
+          958.8207,
+          175.6196
+        ]
+      ]
+    },
+    "south:BH2": {
+      "lat": 51.3075696,
+      "lon": 3.2140528,
+      "name": "BH2 \u00b7 area entrance",
+      "parking": "BH2",
+      "areaName": "AH/BH parking area",
+      "region": "south-h-shared-field-entrance",
+      "method": "source-topology-shared-area-entrance",
+      "scope": "parking-group-approach",
+      "precision": "area-entry-only",
+      "individualParkingVerified": false,
+      "lineExact": false,
+      "historical": false,
+      "supportedMaps": [
+        "south"
+      ],
+      "sourceMap": "south",
+      "sourcePage": 1,
+      "sourceUrl": "https://www.icoterminals.com/sites/default/files/SIT%20terminalplan%20SIT%2021%2009%202026.pdf",
+      "sourceRevision": "V1.09-2026",
+      "sourcePoint": [
+        964.77,
+        170.1533
+      ],
+      "sourcePoints": [
+        [
+          964.77,
+          170.1533
+        ]
+      ],
+      "sourcePointUnits": "uncropped original PDF points",
+      "sourcePointAtlasPixels": [
+        2894.31,
+        510.46
+      ],
+      "sourceBounds": [
+        946,
+        138,
+        1059,
+        201
+      ],
+      "sourceBoundsUnits": "uncropped original PDF points",
+      "sourceBoundsBasis": "Visually reviewed whole H field outline and full code extents in this source; source drawing coordinates are not a geographic polygon.",
+      "roadWay": "241873267",
+      "roadSegment": [
+        "12487520988",
+        "2494511819"
+      ],
+      "arrivalNode": "2494511819",
+      "basis": "The curved BDR/BDA outer perimeter, BWH quay cap, staff/rail-side approach and straight G/H divider identify the whole H field. The independent CF1/VPC cross-road control corrects the earlier one-field-shifted G assignment. Vehicle storage is inside the outer road392480112, not in the grass outside it. Shared AH/BH area entrance only; individual numbered AH/BH strips, exact lines and current access permission are not established.",
+      "junctionMatch": {
+        "cornerNodes": [
+          "2494511819",
+          "2494511887",
+          "2494511892",
+          "2494511830"
+        ],
+        "arrivalNode": "2494511819",
+        "entrySegment": [
+          "12487520988",
+          "2494511819"
+        ],
+        "boundaryLanes": [
+          {
+            "way": "392480112",
+            "nodes": [
+              "2494511819",
+              "12487520989",
+              "12487520990",
+              "12487520991",
+              "12487520992",
+              "9803568813",
+              "2494511887"
+            ],
+            "oneway": false,
+            "role": "curved OUTER H/BDR field boundary"
+          },
+          {
+            "way": "392480112",
+            "nodes": [
+              "2494511887",
+              "12487520994",
+              "12487520993",
+              "12487520995",
+              "2494511892"
+            ],
+            "oneway": false,
+            "role": "H/BWH quay cap"
+          },
+          {
+            "way": "241873290",
+            "nodes": [
+              "2494511830",
+              "2494511867",
+              "2494511882",
+              "2494511892"
+            ],
+            "oneway": false,
+            "role": "straight H/G divider"
+          },
+          {
+            "way": "241873267",
+            "nodes": [
+              "2494511819",
+              "2494511828",
+              "2494511830"
+            ],
+            "oneway": false,
+            "role": "staff and rail-side access spine"
+          }
+        ]
+      },
+      "mappedArea": {
+        "areaName": "AH/BH parking area",
+        "boundaryReferences": [
+          {
+            "way": "392480112",
+            "nodes": [
+              "2494511819",
+              "12487520989",
+              "12487520990",
+              "12487520991",
+              "12487520992",
+              "9803568813",
+              "2494511887"
+            ],
+            "oneway": false,
+            "role": "curved OUTER H/BDR field boundary"
+          },
+          {
+            "way": "392480112",
+            "nodes": [
+              "2494511887",
+              "12487520994",
+              "12487520993",
+              "12487520995",
+              "2494511892"
+            ],
+            "oneway": false,
+            "role": "H/BWH quay cap"
+          },
+          {
+            "way": "241873290",
+            "nodes": [
+              "2494511830",
+              "2494511867",
+              "2494511882",
+              "2494511892"
+            ],
+            "oneway": false,
+            "role": "straight H/G divider"
+          },
+          {
+            "way": "241873267",
+            "nodes": [
+              "2494511819",
+              "2494511828",
+              "2494511830"
+            ],
+            "oneway": false,
+            "role": "staff and rail-side access spine"
+          }
+        ],
+        "individualParkingVerified": false,
+        "boundaryLimitation": "Only the whole H field and its shared entry are established. No individual current or historical AH/BH compartment is geographically positioned."
+      },
+      "independentControl": {
+        "forecourtWay": "931027303",
+        "sourceSouthY": [
+          264.9,
+          265.1
+        ],
+        "neighbouringJunctions": [
+          "2494511860",
+          "2494511857"
+        ],
+        "sourceCF1Bounds": [
+          855.2,
+          242.1,
+          930.3,
+          264.9
+        ],
+        "sourceAFBFBounds": [
+          938.6,
+          237.1,
+          1048.0,
+          265.1
+        ],
+        "proof": "CF1 and AF/BF share the same southern source cross-road beside the named VPC. The actual VPC northern forecourt 931027303 meets Koffieweg at node2494511860, within5m of road241873282 at node2494511857. Substituting road241873292 as the AF/BF south edge shifted every upper field by one.",
+        "independence": "This control starts from the VPC building/forecourt and source cross-road continuity; it does not use the published AG/BG GPS footprint as ground truth."
+      },
+      "flightEvidence": {
+        "service": "https://geo.api.vlaanderen.be/ofw/wms",
+        "imageryLayer": "OFW",
+        "queryLayer": "OFW_vdc",
+        "dataset": "Orthofotowerkbestand 2026.01",
+        "flightDate": "2026-03-05",
+        "reportedFlightDate": "5/3/2026",
+        "featureId": "4",
+        "reviewed": "2026-11-19",
+        "method": "Official OFW_vdc GetFeatureInfo OpnDatum, independently queried at this entrance on 2026-11-19.",
+        "query": {
+          "version": "1.3.0",
+          "CRS": "EPSG:4326",
+          "bboxLatLon": [
+            51.3074696,
+            3.2139528,
+            51.307669600000004,
+            3.2141528000000004
+          ],
+          "width": 500,
+          "height": 500,
+          "i": 250,
+          "j": 250,
+          "infoFormat": "application/geo+json"
+        },
+        "reviewImageRequest": {
+          "version": "1.3.0",
+          "CRS": "EPSG:4326",
+          "bboxLatLon": [
+            51.3073,
+            3.2117,
+            51.3112,
+            3.216
+          ],
+          "width": 1000,
+          "height": 1450
+        },
+        "limitation": "Supports the whole parking field and access junction. Individual AH/BH strip positions and live access permissions remain unverified."
+      },
+      "labelPosition": {
+        "lat": 51.3075696,
+        "lon": 3.2140528,
+        "name": "BH2 \u00b7 area entrance",
+        "method": "confirmed-shared-area-entrance",
+        "scope": "area-entrance-label",
+        "precision": "area-entry-only",
+        "individualParkingVerified": false,
+        "basis": "Display at the SAME confirmed H area junction; no inferred numbered H strip position."
+      },
+      "sourceGlyphBounds": [
+        [
+          961.0527,
+          164.6096,
+          968.4868,
+          175.6976
+        ]
+      ]
+    },
+    "south:BH3": {
+      "lat": 51.3075696,
+      "lon": 3.2140528,
+      "name": "BH3 \u00b7 area entrance",
+      "parking": "BH3",
+      "areaName": "AH/BH parking area",
+      "region": "south-h-shared-field-entrance",
+      "method": "source-topology-shared-area-entrance",
+      "scope": "parking-group-approach",
+      "precision": "area-entry-only",
+      "individualParkingVerified": false,
+      "lineExact": false,
+      "historical": false,
+      "supportedMaps": [
+        "south"
+      ],
+      "sourceMap": "south",
+      "sourcePage": 1,
+      "sourceUrl": "https://www.icoterminals.com/sites/default/files/SIT%20terminalplan%20SIT%2021%2009%202026.pdf",
+      "sourceRevision": "V1.09-2026",
+      "sourcePoint": [
+        975.41,
+        169.9667
+      ],
+      "sourcePoints": [
+        [
+          975.41,
+          169.9667
+        ]
+      ],
+      "sourcePointUnits": "uncropped original PDF points",
+      "sourcePointAtlasPixels": [
+        2926.23,
+        509.9
+      ],
+      "sourceBounds": [
+        946,
+        138,
+        1059,
+        201
+      ],
+      "sourceBoundsUnits": "uncropped original PDF points",
+      "sourceBoundsBasis": "Visually reviewed whole H field outline and full code extents in this source; source drawing coordinates are not a geographic polygon.",
+      "roadWay": "241873267",
+      "roadSegment": [
+        "12487520988",
+        "2494511819"
+      ],
+      "arrivalNode": "2494511819",
+      "basis": "The curved BDR/BDA outer perimeter, BWH quay cap, staff/rail-side approach and straight G/H divider identify the whole H field. The independent CF1/VPC cross-road control corrects the earlier one-field-shifted G assignment. Vehicle storage is inside the outer road392480112, not in the grass outside it. Shared AH/BH area entrance only; individual numbered AH/BH strips, exact lines and current access permission are not established.",
+      "junctionMatch": {
+        "cornerNodes": [
+          "2494511819",
+          "2494511887",
+          "2494511892",
+          "2494511830"
+        ],
+        "arrivalNode": "2494511819",
+        "entrySegment": [
+          "12487520988",
+          "2494511819"
+        ],
+        "boundaryLanes": [
+          {
+            "way": "392480112",
+            "nodes": [
+              "2494511819",
+              "12487520989",
+              "12487520990",
+              "12487520991",
+              "12487520992",
+              "9803568813",
+              "2494511887"
+            ],
+            "oneway": false,
+            "role": "curved OUTER H/BDR field boundary"
+          },
+          {
+            "way": "392480112",
+            "nodes": [
+              "2494511887",
+              "12487520994",
+              "12487520993",
+              "12487520995",
+              "2494511892"
+            ],
+            "oneway": false,
+            "role": "H/BWH quay cap"
+          },
+          {
+            "way": "241873290",
+            "nodes": [
+              "2494511830",
+              "2494511867",
+              "2494511882",
+              "2494511892"
+            ],
+            "oneway": false,
+            "role": "straight H/G divider"
+          },
+          {
+            "way": "241873267",
+            "nodes": [
+              "2494511819",
+              "2494511828",
+              "2494511830"
+            ],
+            "oneway": false,
+            "role": "staff and rail-side access spine"
+          }
+        ]
+      },
+      "mappedArea": {
+        "areaName": "AH/BH parking area",
+        "boundaryReferences": [
+          {
+            "way": "392480112",
+            "nodes": [
+              "2494511819",
+              "12487520989",
+              "12487520990",
+              "12487520991",
+              "12487520992",
+              "9803568813",
+              "2494511887"
+            ],
+            "oneway": false,
+            "role": "curved OUTER H/BDR field boundary"
+          },
+          {
+            "way": "392480112",
+            "nodes": [
+              "2494511887",
+              "12487520994",
+              "12487520993",
+              "12487520995",
+              "2494511892"
+            ],
+            "oneway": false,
+            "role": "H/BWH quay cap"
+          },
+          {
+            "way": "241873290",
+            "nodes": [
+              "2494511830",
+              "2494511867",
+              "2494511882",
+              "2494511892"
+            ],
+            "oneway": false,
+            "role": "straight H/G divider"
+          },
+          {
+            "way": "241873267",
+            "nodes": [
+              "2494511819",
+              "2494511828",
+              "2494511830"
+            ],
+            "oneway": false,
+            "role": "staff and rail-side access spine"
+          }
+        ],
+        "individualParkingVerified": false,
+        "boundaryLimitation": "Only the whole H field and its shared entry are established. No individual current or historical AH/BH compartment is geographically positioned."
+      },
+      "independentControl": {
+        "forecourtWay": "931027303",
+        "sourceSouthY": [
+          264.9,
+          265.1
+        ],
+        "neighbouringJunctions": [
+          "2494511860",
+          "2494511857"
+        ],
+        "sourceCF1Bounds": [
+          855.2,
+          242.1,
+          930.3,
+          264.9
+        ],
+        "sourceAFBFBounds": [
+          938.6,
+          237.1,
+          1048.0,
+          265.1
+        ],
+        "proof": "CF1 and AF/BF share the same southern source cross-road beside the named VPC. The actual VPC northern forecourt 931027303 meets Koffieweg at node2494511860, within5m of road241873282 at node2494511857. Substituting road241873292 as the AF/BF south edge shifted every upper field by one.",
+        "independence": "This control starts from the VPC building/forecourt and source cross-road continuity; it does not use the published AG/BG GPS footprint as ground truth."
+      },
+      "flightEvidence": {
+        "service": "https://geo.api.vlaanderen.be/ofw/wms",
+        "imageryLayer": "OFW",
+        "queryLayer": "OFW_vdc",
+        "dataset": "Orthofotowerkbestand 2026.01",
+        "flightDate": "2026-03-05",
+        "reportedFlightDate": "5/3/2026",
+        "featureId": "4",
+        "reviewed": "2026-11-19",
+        "method": "Official OFW_vdc GetFeatureInfo OpnDatum, independently queried at this entrance on 2026-11-19.",
+        "query": {
+          "version": "1.3.0",
+          "CRS": "EPSG:4326",
+          "bboxLatLon": [
+            51.3074696,
+            3.2139528,
+            51.307669600000004,
+            3.2141528000000004
+          ],
+          "width": 500,
+          "height": 500,
+          "i": 250,
+          "j": 250,
+          "infoFormat": "application/geo+json"
+        },
+        "reviewImageRequest": {
+          "version": "1.3.0",
+          "CRS": "EPSG:4326",
+          "bboxLatLon": [
+            51.3073,
+            3.2117,
+            51.3112,
+            3.216
+          ],
+          "width": 1000,
+          "height": 1450
+        },
+        "limitation": "Supports the whole parking field and access junction. Individual AH/BH strip positions and live access permissions remain unverified."
+      },
+      "labelPosition": {
+        "lat": 51.3075696,
+        "lon": 3.2140528,
+        "name": "BH3 \u00b7 area entrance",
+        "method": "confirmed-shared-area-entrance",
+        "scope": "area-entrance-label",
+        "precision": "area-entry-only",
+        "individualParkingVerified": false,
+        "basis": "Display at the SAME confirmed H area junction; no inferred numbered H strip position."
+      },
+      "sourceGlyphBounds": [
+        [
+          971.6943,
+          164.4232,
+          979.1283,
+          175.5112
+        ]
+      ]
+    },
+    "south:BH4": {
+      "lat": 51.3075696,
+      "lon": 3.2140528,
+      "name": "BH4 \u00b7 area entrance",
+      "parking": "BH4",
+      "areaName": "AH/BH parking area",
+      "region": "south-h-shared-field-entrance",
+      "method": "source-topology-shared-area-entrance",
+      "scope": "parking-group-approach",
+      "precision": "area-entry-only",
+      "individualParkingVerified": false,
+      "lineExact": false,
+      "historical": false,
+      "supportedMaps": [
+        "south"
+      ],
+      "sourceMap": "south",
+      "sourcePage": 1,
+      "sourceUrl": "https://www.icoterminals.com/sites/default/files/SIT%20terminalplan%20SIT%2021%2009%202026.pdf",
+      "sourceRevision": "V1.09-2026",
+      "sourcePoint": [
+        985.9167,
+        169.96
+      ],
+      "sourcePoints": [
+        [
+          985.9167,
+          169.96
+        ]
+      ],
+      "sourcePointUnits": "uncropped original PDF points",
+      "sourcePointAtlasPixels": [
+        2957.75,
+        509.88
+      ],
+      "sourceBounds": [
+        946,
+        138,
+        1059,
+        201
+      ],
+      "sourceBoundsUnits": "uncropped original PDF points",
+      "sourceBoundsBasis": "Visually reviewed whole H field outline and full code extents in this source; source drawing coordinates are not a geographic polygon.",
+      "roadWay": "241873267",
+      "roadSegment": [
+        "12487520988",
+        "2494511819"
+      ],
+      "arrivalNode": "2494511819",
+      "basis": "The curved BDR/BDA outer perimeter, BWH quay cap, staff/rail-side approach and straight G/H divider identify the whole H field. The independent CF1/VPC cross-road control corrects the earlier one-field-shifted G assignment. Vehicle storage is inside the outer road392480112, not in the grass outside it. Shared AH/BH area entrance only; individual numbered AH/BH strips, exact lines and current access permission are not established.",
+      "junctionMatch": {
+        "cornerNodes": [
+          "2494511819",
+          "2494511887",
+          "2494511892",
+          "2494511830"
+        ],
+        "arrivalNode": "2494511819",
+        "entrySegment": [
+          "12487520988",
+          "2494511819"
+        ],
+        "boundaryLanes": [
+          {
+            "way": "392480112",
+            "nodes": [
+              "2494511819",
+              "12487520989",
+              "12487520990",
+              "12487520991",
+              "12487520992",
+              "9803568813",
+              "2494511887"
+            ],
+            "oneway": false,
+            "role": "curved OUTER H/BDR field boundary"
+          },
+          {
+            "way": "392480112",
+            "nodes": [
+              "2494511887",
+              "12487520994",
+              "12487520993",
+              "12487520995",
+              "2494511892"
+            ],
+            "oneway": false,
+            "role": "H/BWH quay cap"
+          },
+          {
+            "way": "241873290",
+            "nodes": [
+              "2494511830",
+              "2494511867",
+              "2494511882",
+              "2494511892"
+            ],
+            "oneway": false,
+            "role": "straight H/G divider"
+          },
+          {
+            "way": "241873267",
+            "nodes": [
+              "2494511819",
+              "2494511828",
+              "2494511830"
+            ],
+            "oneway": false,
+            "role": "staff and rail-side access spine"
+          }
+        ]
+      },
+      "mappedArea": {
+        "areaName": "AH/BH parking area",
+        "boundaryReferences": [
+          {
+            "way": "392480112",
+            "nodes": [
+              "2494511819",
+              "12487520989",
+              "12487520990",
+              "12487520991",
+              "12487520992",
+              "9803568813",
+              "2494511887"
+            ],
+            "oneway": false,
+            "role": "curved OUTER H/BDR field boundary"
+          },
+          {
+            "way": "392480112",
+            "nodes": [
+              "2494511887",
+              "12487520994",
+              "12487520993",
+              "12487520995",
+              "2494511892"
+            ],
+            "oneway": false,
+            "role": "H/BWH quay cap"
+          },
+          {
+            "way": "241873290",
+            "nodes": [
+              "2494511830",
+              "2494511867",
+              "2494511882",
+              "2494511892"
+            ],
+            "oneway": false,
+            "role": "straight H/G divider"
+          },
+          {
+            "way": "241873267",
+            "nodes": [
+              "2494511819",
+              "2494511828",
+              "2494511830"
+            ],
+            "oneway": false,
+            "role": "staff and rail-side access spine"
+          }
+        ],
+        "individualParkingVerified": false,
+        "boundaryLimitation": "Only the whole H field and its shared entry are established. No individual current or historical AH/BH compartment is geographically positioned."
+      },
+      "independentControl": {
+        "forecourtWay": "931027303",
+        "sourceSouthY": [
+          264.9,
+          265.1
+        ],
+        "neighbouringJunctions": [
+          "2494511860",
+          "2494511857"
+        ],
+        "sourceCF1Bounds": [
+          855.2,
+          242.1,
+          930.3,
+          264.9
+        ],
+        "sourceAFBFBounds": [
+          938.6,
+          237.1,
+          1048.0,
+          265.1
+        ],
+        "proof": "CF1 and AF/BF share the same southern source cross-road beside the named VPC. The actual VPC northern forecourt 931027303 meets Koffieweg at node2494511860, within5m of road241873282 at node2494511857. Substituting road241873292 as the AF/BF south edge shifted every upper field by one.",
+        "independence": "This control starts from the VPC building/forecourt and source cross-road continuity; it does not use the published AG/BG GPS footprint as ground truth."
+      },
+      "flightEvidence": {
+        "service": "https://geo.api.vlaanderen.be/ofw/wms",
+        "imageryLayer": "OFW",
+        "queryLayer": "OFW_vdc",
+        "dataset": "Orthofotowerkbestand 2026.01",
+        "flightDate": "2026-03-05",
+        "reportedFlightDate": "5/3/2026",
+        "featureId": "4",
+        "reviewed": "2026-11-19",
+        "method": "Official OFW_vdc GetFeatureInfo OpnDatum, independently queried at this entrance on 2026-11-19.",
+        "query": {
+          "version": "1.3.0",
+          "CRS": "EPSG:4326",
+          "bboxLatLon": [
+            51.3074696,
+            3.2139528,
+            51.307669600000004,
+            3.2141528000000004
+          ],
+          "width": 500,
+          "height": 500,
+          "i": 250,
+          "j": 250,
+          "infoFormat": "application/geo+json"
+        },
+        "reviewImageRequest": {
+          "version": "1.3.0",
+          "CRS": "EPSG:4326",
+          "bboxLatLon": [
+            51.3073,
+            3.2117,
+            51.3112,
+            3.216
+          ],
+          "width": 1000,
+          "height": 1450
+        },
+        "limitation": "Supports the whole parking field and access junction. Individual AH/BH strip positions and live access permissions remain unverified."
+      },
+      "labelPosition": {
+        "lat": 51.3075696,
+        "lon": 3.2140528,
+        "name": "BH4 \u00b7 area entrance",
+        "method": "confirmed-shared-area-entrance",
+        "scope": "area-entrance-label",
+        "precision": "area-entry-only",
+        "individualParkingVerified": false,
+        "basis": "Display at the SAME confirmed H area junction; no inferred numbered H strip position."
+      },
+      "sourceGlyphBounds": [
+        [
+          982.2003,
+          164.4172,
+          989.6343,
+          175.5052
+        ]
+      ]
+    },
+    "bastenaken:AH1": {
+      "lat": 51.3075696,
+      "lon": 3.2140528,
+      "name": "AH1 \u00b7 area entrance",
+      "parking": "AH1",
+      "areaName": "AH/BH parking area",
+      "region": "bastenaken-h-shared-field-entrance",
+      "method": "source-topology-shared-area-entrance",
+      "scope": "parking-group-approach",
+      "precision": "area-entry-only",
+      "individualParkingVerified": false,
+      "lineExact": false,
+      "historical": true,
+      "supportedMaps": [
+        "bastenaken"
+      ],
+      "sourceMap": "bastenaken",
+      "sourcePage": 23,
+      "sourceUrl": "https://cewez.be/wp-content/uploads/2025/04/Onthaalbrochure-ICO.pdf",
+      "sourceRevision": "Cewez historical page23",
+      "sourcePoint": [
+        164.6667,
+        174.0
+      ],
+      "sourcePoints": [
+        [
+          164.6667,
+          174.0
+        ]
+      ],
+      "sourcePointUnits": "uncropped original PDF points",
+      "sourcePointAtlasPixels": [
+        359.0,
+        252.0
+      ],
+      "sourceBounds": [
+        120,
+        150,
+        181,
+        247
+      ],
+      "sourceBoundsUnits": "uncropped original PDF points",
+      "sourceBoundsBasis": "Visually reviewed whole H field outline and full code extents in this source; source drawing coordinates are not a geographic polygon.",
+      "roadWay": "241873267",
+      "roadSegment": [
+        "12487520988",
+        "2494511819"
+      ],
+      "arrivalNode": "2494511819",
+      "basis": "The curved BDR/BDA outer perimeter, BWH quay cap, staff/rail-side approach and straight G/H divider identify the whole H field. The independent CF1/VPC cross-road control corrects the earlier one-field-shifted G assignment. Vehicle storage is inside the outer road392480112, not in the grass outside it. Shared AH/BH area entrance only; individual numbered AH/BH strips, exact lines and current access permission are not established. Historical page23 was separately reviewed: its four H compartments retain the same whole-field controls, although their individual partitions differ from the current ten strips.",
+      "junctionMatch": {
+        "cornerNodes": [
+          "2494511819",
+          "2494511887",
+          "2494511892",
+          "2494511830"
+        ],
+        "arrivalNode": "2494511819",
+        "entrySegment": [
+          "12487520988",
+          "2494511819"
+        ],
+        "boundaryLanes": [
+          {
+            "way": "392480112",
+            "nodes": [
+              "2494511819",
+              "12487520989",
+              "12487520990",
+              "12487520991",
+              "12487520992",
+              "9803568813",
+              "2494511887"
+            ],
+            "oneway": false,
+            "role": "curved OUTER H/BDR field boundary"
+          },
+          {
+            "way": "392480112",
+            "nodes": [
+              "2494511887",
+              "12487520994",
+              "12487520993",
+              "12487520995",
+              "2494511892"
+            ],
+            "oneway": false,
+            "role": "H/BWH quay cap"
+          },
+          {
+            "way": "241873290",
+            "nodes": [
+              "2494511830",
+              "2494511867",
+              "2494511882",
+              "2494511892"
+            ],
+            "oneway": false,
+            "role": "straight H/G divider"
+          },
+          {
+            "way": "241873267",
+            "nodes": [
+              "2494511819",
+              "2494511828",
+              "2494511830"
+            ],
+            "oneway": false,
+            "role": "staff and rail-side access spine"
+          }
+        ]
+      },
+      "mappedArea": {
+        "areaName": "AH/BH parking area",
+        "boundaryReferences": [
+          {
+            "way": "392480112",
+            "nodes": [
+              "2494511819",
+              "12487520989",
+              "12487520990",
+              "12487520991",
+              "12487520992",
+              "9803568813",
+              "2494511887"
+            ],
+            "oneway": false,
+            "role": "curved OUTER H/BDR field boundary"
+          },
+          {
+            "way": "392480112",
+            "nodes": [
+              "2494511887",
+              "12487520994",
+              "12487520993",
+              "12487520995",
+              "2494511892"
+            ],
+            "oneway": false,
+            "role": "H/BWH quay cap"
+          },
+          {
+            "way": "241873290",
+            "nodes": [
+              "2494511830",
+              "2494511867",
+              "2494511882",
+              "2494511892"
+            ],
+            "oneway": false,
+            "role": "straight H/G divider"
+          },
+          {
+            "way": "241873267",
+            "nodes": [
+              "2494511819",
+              "2494511828",
+              "2494511830"
+            ],
+            "oneway": false,
+            "role": "staff and rail-side access spine"
+          }
+        ],
+        "individualParkingVerified": false,
+        "boundaryLimitation": "Only the whole H field and its shared entry are established. No individual current or historical AH/BH compartment is geographically positioned."
+      },
+      "independentControl": {
+        "forecourtWay": "931027303",
+        "sourceSouthY": [
+          264.9,
+          265.1
+        ],
+        "neighbouringJunctions": [
+          "2494511860",
+          "2494511857"
+        ],
+        "sourceCF1Bounds": [
+          855.2,
+          242.1,
+          930.3,
+          264.9
+        ],
+        "sourceAFBFBounds": [
+          938.6,
+          237.1,
+          1048.0,
+          265.1
+        ],
+        "proof": "CF1 and AF/BF share the same southern source cross-road beside the named VPC. The actual VPC northern forecourt 931027303 meets Koffieweg at node2494511860, within5m of road241873282 at node2494511857. Substituting road241873292 as the AF/BF south edge shifted every upper field by one.",
+        "independence": "This control starts from the VPC building/forecourt and source cross-road continuity; it does not use the published AG/BG GPS footprint as ground truth."
+      },
+      "flightEvidence": {
+        "service": "https://geo.api.vlaanderen.be/ofw/wms",
+        "imageryLayer": "OFW",
+        "queryLayer": "OFW_vdc",
+        "dataset": "Orthofotowerkbestand 2026.01",
+        "flightDate": "2026-03-05",
+        "reportedFlightDate": "5/3/2026",
+        "featureId": "4",
+        "reviewed": "2026-11-19",
+        "method": "Official OFW_vdc GetFeatureInfo OpnDatum, independently queried at this entrance on 2026-11-19.",
+        "query": {
+          "version": "1.3.0",
+          "CRS": "EPSG:4326",
+          "bboxLatLon": [
+            51.3074696,
+            3.2139528,
+            51.307669600000004,
+            3.2141528000000004
+          ],
+          "width": 500,
+          "height": 500,
+          "i": 250,
+          "j": 250,
+          "infoFormat": "application/geo+json"
+        },
+        "reviewImageRequest": {
+          "version": "1.3.0",
+          "CRS": "EPSG:4326",
+          "bboxLatLon": [
+            51.3073,
+            3.2117,
+            51.3112,
+            3.216
+          ],
+          "width": 1000,
+          "height": 1450
+        },
+        "limitation": "Supports the whole parking field and access junction. Individual AH/BH strip positions and live access permissions remain unverified."
+      },
+      "labelPosition": {
+        "lat": 51.3075696,
+        "lon": 3.2140528,
+        "name": "AH1 \u00b7 area entrance",
+        "method": "confirmed-shared-area-entrance",
+        "scope": "area-entrance-label",
+        "precision": "area-entry-only",
+        "individualParkingVerified": false,
+        "basis": "Display at the SAME confirmed H area junction; no inferred numbered H strip position."
+      },
+      "historicalAssociation": "Independent full-page23 review retained BG1/AG1 below, BWH/K504 cap, BDA outer edge and staff/truck/rail-side access. Four old partitions are not equated with ten current partitions."
+    },
+    "bastenaken:AH2": {
+      "lat": 51.3075696,
+      "lon": 3.2140528,
+      "name": "AH2 \u00b7 area entrance",
+      "parking": "AH2",
+      "areaName": "AH/BH parking area",
+      "region": "bastenaken-h-shared-field-entrance",
+      "method": "source-topology-shared-area-entrance",
+      "scope": "parking-group-approach",
+      "precision": "area-entry-only",
+      "individualParkingVerified": false,
+      "lineExact": false,
+      "historical": true,
+      "supportedMaps": [
+        "bastenaken"
+      ],
+      "sourceMap": "bastenaken",
+      "sourcePage": 23,
+      "sourceUrl": "https://cewez.be/wp-content/uploads/2025/04/Onthaalbrochure-ICO.pdf",
+      "sourceRevision": "Cewez historical page23",
+      "sourcePoint": [
+        134.6667,
+        174.0
+      ],
+      "sourcePoints": [
+        [
+          134.6667,
+          174.0
+        ]
+      ],
+      "sourcePointUnits": "uncropped original PDF points",
+      "sourcePointAtlasPixels": [
+        269.0,
+        252.0
+      ],
+      "sourceBounds": [
+        120,
+        150,
+        181,
+        247
+      ],
+      "sourceBoundsUnits": "uncropped original PDF points",
+      "sourceBoundsBasis": "Visually reviewed whole H field outline and full code extents in this source; source drawing coordinates are not a geographic polygon.",
+      "roadWay": "241873267",
+      "roadSegment": [
+        "12487520988",
+        "2494511819"
+      ],
+      "arrivalNode": "2494511819",
+      "basis": "The curved BDR/BDA outer perimeter, BWH quay cap, staff/rail-side approach and straight G/H divider identify the whole H field. The independent CF1/VPC cross-road control corrects the earlier one-field-shifted G assignment. Vehicle storage is inside the outer road392480112, not in the grass outside it. Shared AH/BH area entrance only; individual numbered AH/BH strips, exact lines and current access permission are not established. Historical page23 was separately reviewed: its four H compartments retain the same whole-field controls, although their individual partitions differ from the current ten strips.",
+      "junctionMatch": {
+        "cornerNodes": [
+          "2494511819",
+          "2494511887",
+          "2494511892",
+          "2494511830"
+        ],
+        "arrivalNode": "2494511819",
+        "entrySegment": [
+          "12487520988",
+          "2494511819"
+        ],
+        "boundaryLanes": [
+          {
+            "way": "392480112",
+            "nodes": [
+              "2494511819",
+              "12487520989",
+              "12487520990",
+              "12487520991",
+              "12487520992",
+              "9803568813",
+              "2494511887"
+            ],
+            "oneway": false,
+            "role": "curved OUTER H/BDR field boundary"
+          },
+          {
+            "way": "392480112",
+            "nodes": [
+              "2494511887",
+              "12487520994",
+              "12487520993",
+              "12487520995",
+              "2494511892"
+            ],
+            "oneway": false,
+            "role": "H/BWH quay cap"
+          },
+          {
+            "way": "241873290",
+            "nodes": [
+              "2494511830",
+              "2494511867",
+              "2494511882",
+              "2494511892"
+            ],
+            "oneway": false,
+            "role": "straight H/G divider"
+          },
+          {
+            "way": "241873267",
+            "nodes": [
+              "2494511819",
+              "2494511828",
+              "2494511830"
+            ],
+            "oneway": false,
+            "role": "staff and rail-side access spine"
+          }
+        ]
+      },
+      "mappedArea": {
+        "areaName": "AH/BH parking area",
+        "boundaryReferences": [
+          {
+            "way": "392480112",
+            "nodes": [
+              "2494511819",
+              "12487520989",
+              "12487520990",
+              "12487520991",
+              "12487520992",
+              "9803568813",
+              "2494511887"
+            ],
+            "oneway": false,
+            "role": "curved OUTER H/BDR field boundary"
+          },
+          {
+            "way": "392480112",
+            "nodes": [
+              "2494511887",
+              "12487520994",
+              "12487520993",
+              "12487520995",
+              "2494511892"
+            ],
+            "oneway": false,
+            "role": "H/BWH quay cap"
+          },
+          {
+            "way": "241873290",
+            "nodes": [
+              "2494511830",
+              "2494511867",
+              "2494511882",
+              "2494511892"
+            ],
+            "oneway": false,
+            "role": "straight H/G divider"
+          },
+          {
+            "way": "241873267",
+            "nodes": [
+              "2494511819",
+              "2494511828",
+              "2494511830"
+            ],
+            "oneway": false,
+            "role": "staff and rail-side access spine"
+          }
+        ],
+        "individualParkingVerified": false,
+        "boundaryLimitation": "Only the whole H field and its shared entry are established. No individual current or historical AH/BH compartment is geographically positioned."
+      },
+      "independentControl": {
+        "forecourtWay": "931027303",
+        "sourceSouthY": [
+          264.9,
+          265.1
+        ],
+        "neighbouringJunctions": [
+          "2494511860",
+          "2494511857"
+        ],
+        "sourceCF1Bounds": [
+          855.2,
+          242.1,
+          930.3,
+          264.9
+        ],
+        "sourceAFBFBounds": [
+          938.6,
+          237.1,
+          1048.0,
+          265.1
+        ],
+        "proof": "CF1 and AF/BF share the same southern source cross-road beside the named VPC. The actual VPC northern forecourt 931027303 meets Koffieweg at node2494511860, within5m of road241873282 at node2494511857. Substituting road241873292 as the AF/BF south edge shifted every upper field by one.",
+        "independence": "This control starts from the VPC building/forecourt and source cross-road continuity; it does not use the published AG/BG GPS footprint as ground truth."
+      },
+      "flightEvidence": {
+        "service": "https://geo.api.vlaanderen.be/ofw/wms",
+        "imageryLayer": "OFW",
+        "queryLayer": "OFW_vdc",
+        "dataset": "Orthofotowerkbestand 2026.01",
+        "flightDate": "2026-03-05",
+        "reportedFlightDate": "5/3/2026",
+        "featureId": "4",
+        "reviewed": "2026-11-19",
+        "method": "Official OFW_vdc GetFeatureInfo OpnDatum, independently queried at this entrance on 2026-11-19.",
+        "query": {
+          "version": "1.3.0",
+          "CRS": "EPSG:4326",
+          "bboxLatLon": [
+            51.3074696,
+            3.2139528,
+            51.307669600000004,
+            3.2141528000000004
+          ],
+          "width": 500,
+          "height": 500,
+          "i": 250,
+          "j": 250,
+          "infoFormat": "application/geo+json"
+        },
+        "reviewImageRequest": {
+          "version": "1.3.0",
+          "CRS": "EPSG:4326",
+          "bboxLatLon": [
+            51.3073,
+            3.2117,
+            51.3112,
+            3.216
+          ],
+          "width": 1000,
+          "height": 1450
+        },
+        "limitation": "Supports the whole parking field and access junction. Individual AH/BH strip positions and live access permissions remain unverified."
+      },
+      "labelPosition": {
+        "lat": 51.3075696,
+        "lon": 3.2140528,
+        "name": "AH2 \u00b7 area entrance",
+        "method": "confirmed-shared-area-entrance",
+        "scope": "area-entrance-label",
+        "precision": "area-entry-only",
+        "individualParkingVerified": false,
+        "basis": "Display at the SAME confirmed H area junction; no inferred numbered H strip position."
+      },
+      "historicalAssociation": "Independent full-page23 review retained BG1/AG1 below, BWH/K504 cap, BDA outer edge and staff/truck/rail-side access. Four old partitions are not equated with ten current partitions."
+    },
+    "bastenaken:BH1": {
+      "lat": 51.3075696,
+      "lon": 3.2140528,
+      "name": "BH1 \u00b7 area entrance",
+      "parking": "BH1",
+      "areaName": "AH/BH parking area",
+      "region": "bastenaken-h-shared-field-entrance",
+      "method": "source-topology-shared-area-entrance",
+      "scope": "parking-group-approach",
+      "precision": "area-entry-only",
+      "individualParkingVerified": false,
+      "lineExact": false,
+      "historical": true,
+      "supportedMaps": [
+        "bastenaken"
+      ],
+      "sourceMap": "bastenaken",
+      "sourcePage": 23,
+      "sourceUrl": "https://cewez.be/wp-content/uploads/2025/04/Onthaalbrochure-ICO.pdf",
+      "sourceRevision": "Cewez historical page23",
+      "sourcePoint": [
+        164.6667,
+        222.6667
+      ],
+      "sourcePoints": [
+        [
+          164.6667,
+          222.6667
+        ]
+      ],
+      "sourcePointUnits": "uncropped original PDF points",
+      "sourcePointAtlasPixels": [
+        359.0,
+        398.0
+      ],
+      "sourceBounds": [
+        120,
+        150,
+        181,
+        247
+      ],
+      "sourceBoundsUnits": "uncropped original PDF points",
+      "sourceBoundsBasis": "Visually reviewed whole H field outline and full code extents in this source; source drawing coordinates are not a geographic polygon.",
+      "roadWay": "241873267",
+      "roadSegment": [
+        "12487520988",
+        "2494511819"
+      ],
+      "arrivalNode": "2494511819",
+      "basis": "The curved BDR/BDA outer perimeter, BWH quay cap, staff/rail-side approach and straight G/H divider identify the whole H field. The independent CF1/VPC cross-road control corrects the earlier one-field-shifted G assignment. Vehicle storage is inside the outer road392480112, not in the grass outside it. Shared AH/BH area entrance only; individual numbered AH/BH strips, exact lines and current access permission are not established. Historical page23 was separately reviewed: its four H compartments retain the same whole-field controls, although their individual partitions differ from the current ten strips.",
+      "junctionMatch": {
+        "cornerNodes": [
+          "2494511819",
+          "2494511887",
+          "2494511892",
+          "2494511830"
+        ],
+        "arrivalNode": "2494511819",
+        "entrySegment": [
+          "12487520988",
+          "2494511819"
+        ],
+        "boundaryLanes": [
+          {
+            "way": "392480112",
+            "nodes": [
+              "2494511819",
+              "12487520989",
+              "12487520990",
+              "12487520991",
+              "12487520992",
+              "9803568813",
+              "2494511887"
+            ],
+            "oneway": false,
+            "role": "curved OUTER H/BDR field boundary"
+          },
+          {
+            "way": "392480112",
+            "nodes": [
+              "2494511887",
+              "12487520994",
+              "12487520993",
+              "12487520995",
+              "2494511892"
+            ],
+            "oneway": false,
+            "role": "H/BWH quay cap"
+          },
+          {
+            "way": "241873290",
+            "nodes": [
+              "2494511830",
+              "2494511867",
+              "2494511882",
+              "2494511892"
+            ],
+            "oneway": false,
+            "role": "straight H/G divider"
+          },
+          {
+            "way": "241873267",
+            "nodes": [
+              "2494511819",
+              "2494511828",
+              "2494511830"
+            ],
+            "oneway": false,
+            "role": "staff and rail-side access spine"
+          }
+        ]
+      },
+      "mappedArea": {
+        "areaName": "AH/BH parking area",
+        "boundaryReferences": [
+          {
+            "way": "392480112",
+            "nodes": [
+              "2494511819",
+              "12487520989",
+              "12487520990",
+              "12487520991",
+              "12487520992",
+              "9803568813",
+              "2494511887"
+            ],
+            "oneway": false,
+            "role": "curved OUTER H/BDR field boundary"
+          },
+          {
+            "way": "392480112",
+            "nodes": [
+              "2494511887",
+              "12487520994",
+              "12487520993",
+              "12487520995",
+              "2494511892"
+            ],
+            "oneway": false,
+            "role": "H/BWH quay cap"
+          },
+          {
+            "way": "241873290",
+            "nodes": [
+              "2494511830",
+              "2494511867",
+              "2494511882",
+              "2494511892"
+            ],
+            "oneway": false,
+            "role": "straight H/G divider"
+          },
+          {
+            "way": "241873267",
+            "nodes": [
+              "2494511819",
+              "2494511828",
+              "2494511830"
+            ],
+            "oneway": false,
+            "role": "staff and rail-side access spine"
+          }
+        ],
+        "individualParkingVerified": false,
+        "boundaryLimitation": "Only the whole H field and its shared entry are established. No individual current or historical AH/BH compartment is geographically positioned."
+      },
+      "independentControl": {
+        "forecourtWay": "931027303",
+        "sourceSouthY": [
+          264.9,
+          265.1
+        ],
+        "neighbouringJunctions": [
+          "2494511860",
+          "2494511857"
+        ],
+        "sourceCF1Bounds": [
+          855.2,
+          242.1,
+          930.3,
+          264.9
+        ],
+        "sourceAFBFBounds": [
+          938.6,
+          237.1,
+          1048.0,
+          265.1
+        ],
+        "proof": "CF1 and AF/BF share the same southern source cross-road beside the named VPC. The actual VPC northern forecourt 931027303 meets Koffieweg at node2494511860, within5m of road241873282 at node2494511857. Substituting road241873292 as the AF/BF south edge shifted every upper field by one.",
+        "independence": "This control starts from the VPC building/forecourt and source cross-road continuity; it does not use the published AG/BG GPS footprint as ground truth."
+      },
+      "flightEvidence": {
+        "service": "https://geo.api.vlaanderen.be/ofw/wms",
+        "imageryLayer": "OFW",
+        "queryLayer": "OFW_vdc",
+        "dataset": "Orthofotowerkbestand 2026.01",
+        "flightDate": "2026-03-05",
+        "reportedFlightDate": "5/3/2026",
+        "featureId": "4",
+        "reviewed": "2026-11-19",
+        "method": "Official OFW_vdc GetFeatureInfo OpnDatum, independently queried at this entrance on 2026-11-19.",
+        "query": {
+          "version": "1.3.0",
+          "CRS": "EPSG:4326",
+          "bboxLatLon": [
+            51.3074696,
+            3.2139528,
+            51.307669600000004,
+            3.2141528000000004
+          ],
+          "width": 500,
+          "height": 500,
+          "i": 250,
+          "j": 250,
+          "infoFormat": "application/geo+json"
+        },
+        "reviewImageRequest": {
+          "version": "1.3.0",
+          "CRS": "EPSG:4326",
+          "bboxLatLon": [
+            51.3073,
+            3.2117,
+            51.3112,
+            3.216
+          ],
+          "width": 1000,
+          "height": 1450
+        },
+        "limitation": "Supports the whole parking field and access junction. Individual AH/BH strip positions and live access permissions remain unverified."
+      },
+      "labelPosition": {
+        "lat": 51.3075696,
+        "lon": 3.2140528,
+        "name": "BH1 \u00b7 area entrance",
+        "method": "confirmed-shared-area-entrance",
+        "scope": "area-entrance-label",
+        "precision": "area-entry-only",
+        "individualParkingVerified": false,
+        "basis": "Display at the SAME confirmed H area junction; no inferred numbered H strip position."
+      },
+      "historicalAssociation": "Independent full-page23 review retained BG1/AG1 below, BWH/K504 cap, BDA outer edge and staff/truck/rail-side access. Four old partitions are not equated with ten current partitions."
+    },
+    "bastenaken:BH2": {
+      "lat": 51.3075696,
+      "lon": 3.2140528,
+      "name": "BH2 \u00b7 area entrance",
+      "parking": "BH2",
+      "areaName": "AH/BH parking area",
+      "region": "bastenaken-h-shared-field-entrance",
+      "method": "source-topology-shared-area-entrance",
+      "scope": "parking-group-approach",
+      "precision": "area-entry-only",
+      "individualParkingVerified": false,
+      "lineExact": false,
+      "historical": true,
+      "supportedMaps": [
+        "bastenaken"
+      ],
+      "sourceMap": "bastenaken",
+      "sourcePage": 23,
+      "sourceUrl": "https://cewez.be/wp-content/uploads/2025/04/Onthaalbrochure-ICO.pdf",
+      "sourceRevision": "Cewez historical page23",
+      "sourcePoint": [
+        133.3333,
+        222.6667
+      ],
+      "sourcePoints": [
+        [
+          133.3333,
+          222.6667
+        ]
+      ],
+      "sourcePointUnits": "uncropped original PDF points",
+      "sourcePointAtlasPixels": [
+        265.0,
+        398.0
+      ],
+      "sourceBounds": [
+        120,
+        150,
+        181,
+        247
+      ],
+      "sourceBoundsUnits": "uncropped original PDF points",
+      "sourceBoundsBasis": "Visually reviewed whole H field outline and full code extents in this source; source drawing coordinates are not a geographic polygon.",
+      "roadWay": "241873267",
+      "roadSegment": [
+        "12487520988",
+        "2494511819"
+      ],
+      "arrivalNode": "2494511819",
+      "basis": "The curved BDR/BDA outer perimeter, BWH quay cap, staff/rail-side approach and straight G/H divider identify the whole H field. The independent CF1/VPC cross-road control corrects the earlier one-field-shifted G assignment. Vehicle storage is inside the outer road392480112, not in the grass outside it. Shared AH/BH area entrance only; individual numbered AH/BH strips, exact lines and current access permission are not established. Historical page23 was separately reviewed: its four H compartments retain the same whole-field controls, although their individual partitions differ from the current ten strips.",
+      "junctionMatch": {
+        "cornerNodes": [
+          "2494511819",
+          "2494511887",
+          "2494511892",
+          "2494511830"
+        ],
+        "arrivalNode": "2494511819",
+        "entrySegment": [
+          "12487520988",
+          "2494511819"
+        ],
+        "boundaryLanes": [
+          {
+            "way": "392480112",
+            "nodes": [
+              "2494511819",
+              "12487520989",
+              "12487520990",
+              "12487520991",
+              "12487520992",
+              "9803568813",
+              "2494511887"
+            ],
+            "oneway": false,
+            "role": "curved OUTER H/BDR field boundary"
+          },
+          {
+            "way": "392480112",
+            "nodes": [
+              "2494511887",
+              "12487520994",
+              "12487520993",
+              "12487520995",
+              "2494511892"
+            ],
+            "oneway": false,
+            "role": "H/BWH quay cap"
+          },
+          {
+            "way": "241873290",
+            "nodes": [
+              "2494511830",
+              "2494511867",
+              "2494511882",
+              "2494511892"
+            ],
+            "oneway": false,
+            "role": "straight H/G divider"
+          },
+          {
+            "way": "241873267",
+            "nodes": [
+              "2494511819",
+              "2494511828",
+              "2494511830"
+            ],
+            "oneway": false,
+            "role": "staff and rail-side access spine"
+          }
+        ]
+      },
+      "mappedArea": {
+        "areaName": "AH/BH parking area",
+        "boundaryReferences": [
+          {
+            "way": "392480112",
+            "nodes": [
+              "2494511819",
+              "12487520989",
+              "12487520990",
+              "12487520991",
+              "12487520992",
+              "9803568813",
+              "2494511887"
+            ],
+            "oneway": false,
+            "role": "curved OUTER H/BDR field boundary"
+          },
+          {
+            "way": "392480112",
+            "nodes": [
+              "2494511887",
+              "12487520994",
+              "12487520993",
+              "12487520995",
+              "2494511892"
+            ],
+            "oneway": false,
+            "role": "H/BWH quay cap"
+          },
+          {
+            "way": "241873290",
+            "nodes": [
+              "2494511830",
+              "2494511867",
+              "2494511882",
+              "2494511892"
+            ],
+            "oneway": false,
+            "role": "straight H/G divider"
+          },
+          {
+            "way": "241873267",
+            "nodes": [
+              "2494511819",
+              "2494511828",
+              "2494511830"
+            ],
+            "oneway": false,
+            "role": "staff and rail-side access spine"
+          }
+        ],
+        "individualParkingVerified": false,
+        "boundaryLimitation": "Only the whole H field and its shared entry are established. No individual current or historical AH/BH compartment is geographically positioned."
+      },
+      "independentControl": {
+        "forecourtWay": "931027303",
+        "sourceSouthY": [
+          264.9,
+          265.1
+        ],
+        "neighbouringJunctions": [
+          "2494511860",
+          "2494511857"
+        ],
+        "sourceCF1Bounds": [
+          855.2,
+          242.1,
+          930.3,
+          264.9
+        ],
+        "sourceAFBFBounds": [
+          938.6,
+          237.1,
+          1048.0,
+          265.1
+        ],
+        "proof": "CF1 and AF/BF share the same southern source cross-road beside the named VPC. The actual VPC northern forecourt 931027303 meets Koffieweg at node2494511860, within5m of road241873282 at node2494511857. Substituting road241873292 as the AF/BF south edge shifted every upper field by one.",
+        "independence": "This control starts from the VPC building/forecourt and source cross-road continuity; it does not use the published AG/BG GPS footprint as ground truth."
+      },
+      "flightEvidence": {
+        "service": "https://geo.api.vlaanderen.be/ofw/wms",
+        "imageryLayer": "OFW",
+        "queryLayer": "OFW_vdc",
+        "dataset": "Orthofotowerkbestand 2026.01",
+        "flightDate": "2026-03-05",
+        "reportedFlightDate": "5/3/2026",
+        "featureId": "4",
+        "reviewed": "2026-11-19",
+        "method": "Official OFW_vdc GetFeatureInfo OpnDatum, independently queried at this entrance on 2026-11-19.",
+        "query": {
+          "version": "1.3.0",
+          "CRS": "EPSG:4326",
+          "bboxLatLon": [
+            51.3074696,
+            3.2139528,
+            51.307669600000004,
+            3.2141528000000004
+          ],
+          "width": 500,
+          "height": 500,
+          "i": 250,
+          "j": 250,
+          "infoFormat": "application/geo+json"
+        },
+        "reviewImageRequest": {
+          "version": "1.3.0",
+          "CRS": "EPSG:4326",
+          "bboxLatLon": [
+            51.3073,
+            3.2117,
+            51.3112,
+            3.216
+          ],
+          "width": 1000,
+          "height": 1450
+        },
+        "limitation": "Supports the whole parking field and access junction. Individual AH/BH strip positions and live access permissions remain unverified."
+      },
+      "labelPosition": {
+        "lat": 51.3075696,
+        "lon": 3.2140528,
+        "name": "BH2 \u00b7 area entrance",
+        "method": "confirmed-shared-area-entrance",
+        "scope": "area-entrance-label",
+        "precision": "area-entry-only",
+        "individualParkingVerified": false,
+        "basis": "Display at the SAME confirmed H area junction; no inferred numbered H strip position."
+      },
+      "historicalAssociation": "Independent full-page23 review retained BG1/AG1 below, BWH/K504 cap, BDA outer edge and staff/truck/rail-side access. Four old partitions are not equated with ten current partitions."
     }
   },
   "regions": [
@@ -37961,6 +41548,95 @@
         325.2
       ],
       "cornerNodes": [
+        "2494511865",
+        "2494511921",
+        "2494511933",
+        "2494511869"
+      ],
+      "cornerCoordinates": [
+        [
+          51.3090855,
+          3.2188055
+        ],
+        [
+          51.3116062,
+          3.2168135
+        ],
+        [
+          51.3118745,
+          3.217987
+        ],
+        [
+          51.3094544,
+          3.2199576
+        ]
+      ],
+      "boundaryLanes": [
+        {
+          "way": "241873278",
+          "nodes": [
+            "2494511865",
+            "2494511886",
+            "2494511921"
+          ],
+          "oneway": false
+        },
+        {
+          "way": "392480112",
+          "nodes": [
+            "2494511921",
+            "2494511933"
+          ],
+          "oneway": false
+        },
+        {
+          "way": null,
+          "nodes": [
+            "2494511869",
+            "2494511891",
+            "2494511933"
+          ],
+          "parts": [
+            {
+              "way": "746582112",
+              "nodes": [
+                "2494511869",
+                "2494511891"
+              ],
+              "oneway": false
+            },
+            {
+              "way": "746641410",
+              "nodes": [
+                "2494511891",
+                "2494511933"
+              ],
+              "oneway": false
+            }
+          ]
+        },
+        {
+          "way": "241873267",
+          "nodes": [
+            "2494511865",
+            "12487520998",
+            "2494511869"
+          ],
+          "oneway": false
+        }
+      ],
+      "model": "bounded-bilinear-parcel",
+      "evidence": "The independently aligned CF1/VPC cross-road, eastern quay, C3 boundary and ordered access roads identify this A/B compound. The outer northern cap belongs to AH/BH. The printed A/B divider is not treated as a road."
+    },
+    {
+      "id": "east-ab-e",
+      "sourceBounds": [
+        938.6,
+        268.9,
+        1044.0,
+        292.3
+      ],
+      "cornerNodes": [
         "2494511857",
         "2494511913",
         "2494511921",
@@ -38024,15 +41700,15 @@
         }
       ],
       "model": "bounded-bilinear-parcel",
-      "evidence": "The VPC-side access spine, continuous eastern quay perimeter, and ordered cross roads identify this A/B compound. The printed A/B divider is not treated as a road."
+      "evidence": "The independently aligned CF1/VPC cross-road, eastern quay, C3 boundary and ordered access roads identify this A/B compound. The outer northern cap belongs to AH/BH. The printed A/B divider is not treated as a road."
     },
     {
-      "id": "east-ab-e",
+      "id": "east-ab-f",
       "sourceBounds": [
         938.6,
-        268.9,
-        1044.0,
-        292.3
+        237.1,
+        1048.0,
+        265.1
       ],
       "cornerNodes": [
         "2494511842",
@@ -38120,15 +41796,15 @@
         }
       ],
       "model": "bounded-bilinear-parcel",
-      "evidence": "The VPC-side access spine, continuous eastern quay perimeter, and ordered cross roads identify this A/B compound. The printed A/B divider is not treated as a road."
+      "evidence": "The independently aligned CF1/VPC cross-road, eastern quay, C3 boundary and ordered access roads identify this A/B compound. The outer northern cap belongs to AH/BH. The printed A/B divider is not treated as a road."
     },
     {
-      "id": "east-ab-f",
+      "id": "east-ab-g",
       "sourceBounds": [
-        938.6,
-        237.1,
-        1048.0,
-        265.1
+        940.7,
+        205.2,
+        1052.8,
+        232.5
       ],
       "cornerNodes": [
         "2494511830",
@@ -38219,87 +41895,7 @@
         }
       ],
       "model": "bounded-bilinear-parcel",
-      "evidence": "The VPC-side access spine, continuous eastern quay perimeter, and ordered cross roads identify this A/B compound. The printed A/B divider is not treated as a road."
-    },
-    {
-      "id": "east-ab-g",
-      "sourceBounds": [
-        940.7,
-        205.2,
-        1052.8,
-        232.5
-      ],
-      "cornerNodes": [
-        "2494511819",
-        "2494511887",
-        "2494511892",
-        "2494511830"
-      ],
-      "cornerCoordinates": [
-        [
-          51.3075696,
-          3.2140528
-        ],
-        [
-          51.3104932,
-          3.2120988
-        ],
-        [
-          51.3108155,
-          3.2132571
-        ],
-        [
-          51.3080322,
-          3.2155107
-        ]
-      ],
-      "boundaryLanes": [
-        {
-          "way": "392480112",
-          "nodes": [
-            "2494511819",
-            "12487520989",
-            "12487520990",
-            "12487520991",
-            "12487520992",
-            "9803568813",
-            "2494511887"
-          ],
-          "oneway": false
-        },
-        {
-          "way": "392480112",
-          "nodes": [
-            "2494511887",
-            "12487520994",
-            "12487520993",
-            "12487520995",
-            "2494511892"
-          ],
-          "oneway": false
-        },
-        {
-          "way": "241873290",
-          "nodes": [
-            "2494511830",
-            "2494511867",
-            "2494511882",
-            "2494511892"
-          ],
-          "oneway": false
-        },
-        {
-          "way": "241873267",
-          "nodes": [
-            "2494511819",
-            "2494511828",
-            "2494511830"
-          ],
-          "oneway": false
-        }
-      ],
-      "model": "bounded-bilinear-parcel",
-      "evidence": "The VPC-side access spine, continuous eastern quay perimeter, and ordered cross roads identify this A/B compound. The printed A/B divider is not treated as a road."
+      "evidence": "The independently aligned CF1/VPC cross-road, eastern quay, C3 boundary and ordered access roads identify this A/B compound. The outer northern cap belongs to AH/BH. The printed A/B divider is not treated as a road."
     },
     {
       "id": "east-vpc-de1",
@@ -44561,24 +48157,264 @@
       },
       "precision": "area-entry-only",
       "individualParkingVerified": false
-    }
-  ],
-  "coverageAudit": {
-    "south": {
-      "total": 261,
-      "routable": 220,
-      "missing": [
+    },
+    {
+      "id": "south-h-shared-field-entrance",
+      "sourceMap": "south",
+      "sourcePage": 1,
+      "sourceUrl": "https://www.icoterminals.com/sites/default/files/SIT%20terminalplan%20SIT%2021%2009%202026.pdf",
+      "sourceBounds": [
+        946,
+        138,
+        1059,
+        201
+      ],
+      "sourceBoundsUnits": "uncropped original PDF points",
+      "codes": [
         "AH1",
         "AH2",
         "AH3",
         "AH4",
         "AH5",
         "AH6",
-        "BDR",
         "BH1",
         "BH2",
         "BH3",
-        "BH4",
+        "BH4"
+      ],
+      "areaName": "AH/BH parking area",
+      "arrivalNode": "2494511819",
+      "arrivalLatLon": [
+        51.3075696,
+        3.2140528
+      ],
+      "cornerNodes": [
+        "2494511819",
+        "2494511887",
+        "2494511892",
+        "2494511830"
+      ],
+      "boundaryLanes": [
+        {
+          "way": "392480112",
+          "nodes": [
+            "2494511819",
+            "12487520989",
+            "12487520990",
+            "12487520991",
+            "12487520992",
+            "9803568813",
+            "2494511887"
+          ],
+          "oneway": false,
+          "role": "curved OUTER H/BDR field boundary"
+        },
+        {
+          "way": "392480112",
+          "nodes": [
+            "2494511887",
+            "12487520994",
+            "12487520993",
+            "12487520995",
+            "2494511892"
+          ],
+          "oneway": false,
+          "role": "H/BWH quay cap"
+        },
+        {
+          "way": "241873290",
+          "nodes": [
+            "2494511830",
+            "2494511867",
+            "2494511882",
+            "2494511892"
+          ],
+          "oneway": false,
+          "role": "straight H/G divider"
+        },
+        {
+          "way": "241873267",
+          "nodes": [
+            "2494511819",
+            "2494511828",
+            "2494511830"
+          ],
+          "oneway": false,
+          "role": "staff and rail-side access spine"
+        }
+      ],
+      "precision": "area-entry-only",
+      "individualParkingVerified": false,
+      "basis": "The curved BDR/BDA outer perimeter, BWH quay cap, staff/rail-side approach and straight G/H divider identify the whole H field. The independent CF1/VPC cross-road control corrects the earlier one-field-shifted G assignment. Vehicle storage is inside the outer road392480112, not in the grass outside it. Shared AH/BH area entrance only; individual numbered AH/BH strips, exact lines and current access permission are not established.",
+      "flightEvidence": {
+        "service": "https://geo.api.vlaanderen.be/ofw/wms",
+        "imageryLayer": "OFW",
+        "queryLayer": "OFW_vdc",
+        "dataset": "Orthofotowerkbestand 2026.01",
+        "flightDate": "2026-03-05",
+        "reportedFlightDate": "5/3/2026",
+        "featureId": "4",
+        "reviewed": "2026-11-19",
+        "method": "Official OFW_vdc GetFeatureInfo OpnDatum, independently queried at this entrance on 2026-11-19.",
+        "query": {
+          "version": "1.3.0",
+          "CRS": "EPSG:4326",
+          "bboxLatLon": [
+            51.3074696,
+            3.2139528,
+            51.307669600000004,
+            3.2141528000000004
+          ],
+          "width": 500,
+          "height": 500,
+          "i": 250,
+          "j": 250,
+          "infoFormat": "application/geo+json"
+        },
+        "reviewImageRequest": {
+          "version": "1.3.0",
+          "CRS": "EPSG:4326",
+          "bboxLatLon": [
+            51.3073,
+            3.2117,
+            51.3112,
+            3.216
+          ],
+          "width": 1000,
+          "height": 1450
+        },
+        "limitation": "Supports the whole parking field and access junction. Individual AH/BH strip positions and live access permissions remain unverified."
+      }
+    },
+    {
+      "id": "bastenaken-h-shared-field-entrance",
+      "sourceMap": "bastenaken",
+      "sourcePage": 23,
+      "sourceUrl": "https://cewez.be/wp-content/uploads/2025/04/Onthaalbrochure-ICO.pdf",
+      "sourceBounds": [
+        120,
+        150,
+        181,
+        247
+      ],
+      "sourceBoundsUnits": "uncropped original PDF points",
+      "codes": [
+        "AH1",
+        "AH2",
+        "BH1",
+        "BH2"
+      ],
+      "areaName": "AH/BH parking area",
+      "arrivalNode": "2494511819",
+      "arrivalLatLon": [
+        51.3075696,
+        3.2140528
+      ],
+      "cornerNodes": [
+        "2494511819",
+        "2494511887",
+        "2494511892",
+        "2494511830"
+      ],
+      "boundaryLanes": [
+        {
+          "way": "392480112",
+          "nodes": [
+            "2494511819",
+            "12487520989",
+            "12487520990",
+            "12487520991",
+            "12487520992",
+            "9803568813",
+            "2494511887"
+          ],
+          "oneway": false,
+          "role": "curved OUTER H/BDR field boundary"
+        },
+        {
+          "way": "392480112",
+          "nodes": [
+            "2494511887",
+            "12487520994",
+            "12487520993",
+            "12487520995",
+            "2494511892"
+          ],
+          "oneway": false,
+          "role": "H/BWH quay cap"
+        },
+        {
+          "way": "241873290",
+          "nodes": [
+            "2494511830",
+            "2494511867",
+            "2494511882",
+            "2494511892"
+          ],
+          "oneway": false,
+          "role": "straight H/G divider"
+        },
+        {
+          "way": "241873267",
+          "nodes": [
+            "2494511819",
+            "2494511828",
+            "2494511830"
+          ],
+          "oneway": false,
+          "role": "staff and rail-side access spine"
+        }
+      ],
+      "precision": "area-entry-only",
+      "individualParkingVerified": false,
+      "basis": "The curved BDR/BDA outer perimeter, BWH quay cap, staff/rail-side approach and straight G/H divider identify the whole H field. The independent CF1/VPC cross-road control corrects the earlier one-field-shifted G assignment. Vehicle storage is inside the outer road392480112, not in the grass outside it. Shared AH/BH area entrance only; individual numbered AH/BH strips, exact lines and current access permission are not established. Historical page23 was separately reviewed: its four H compartments retain the same whole-field controls, although their individual partitions differ from the current ten strips.",
+      "flightEvidence": {
+        "service": "https://geo.api.vlaanderen.be/ofw/wms",
+        "imageryLayer": "OFW",
+        "queryLayer": "OFW_vdc",
+        "dataset": "Orthofotowerkbestand 2026.01",
+        "flightDate": "2026-03-05",
+        "reportedFlightDate": "5/3/2026",
+        "featureId": "4",
+        "reviewed": "2026-11-19",
+        "method": "Official OFW_vdc GetFeatureInfo OpnDatum, independently queried at this entrance on 2026-11-19.",
+        "query": {
+          "version": "1.3.0",
+          "CRS": "EPSG:4326",
+          "bboxLatLon": [
+            51.3074696,
+            3.2139528,
+            51.307669600000004,
+            3.2141528000000004
+          ],
+          "width": 500,
+          "height": 500,
+          "i": 250,
+          "j": 250,
+          "infoFormat": "application/geo+json"
+        },
+        "reviewImageRequest": {
+          "version": "1.3.0",
+          "CRS": "EPSG:4326",
+          "bboxLatLon": [
+            51.3073,
+            3.2117,
+            51.3112,
+            3.216
+          ],
+          "width": 1000,
+          "height": 1450
+        },
+        "limitation": "Supports the whole parking field and access junction. Individual AH/BH strip positions and live access permissions remain unverified."
+      }
+    }
+  ],
+  "coverageAudit": {
+    "south": {
+      "total": 261,
+      "routable": 230,
+      "missing": [
+        "BDR",
         "BWH",
         "CH1",
         "CH10",
@@ -44637,14 +48473,10 @@
     },
     "bastenaken": {
       "total": 168,
-      "routable": 123,
+      "routable": 127,
       "missing": [
-        "AH1",
-        "AH2",
         "BDA",
         "BDR",
-        "BH1",
-        "BH2",
         "BWH",
         "CH1",
         "CLT1",
@@ -44992,166 +48824,6 @@
       ],
       "routeStatus": "unresolved",
       "reason": "The source office/gate-side angled frontage cannot be reconciled to a unique current private parcel boundary; the northern staging-yard driveway is not automatically the Nissan carfield gate."
-    },
-    {
-      "code": "AH1",
-      "sourceMap": "south",
-      "sourceRevision": "V1.09-2026",
-      "sourcePoints": [
-        [
-          996.9467,
-          170.2133
-        ]
-      ],
-      "sourceUnits": "original PDF points",
-      "region": "central-upper-ah-bh",
-      "status": "source-position-only",
-      "geographicMatchVerified": false,
-      "reason": "The source identifies ordered strips, but no independent control matches each strip to a physical parking parcel. The earlier bounded-road candidate only interpolated source ordinals; it does not establish individual label locations."
-    },
-    {
-      "code": "AH2",
-      "sourceMap": "south",
-      "sourceRevision": "V1.09-2026",
-      "sourcePoints": [
-        [
-          1007.4467,
-          169.9
-        ]
-      ],
-      "sourceUnits": "original PDF points",
-      "region": "central-upper-ah-bh",
-      "status": "source-position-only",
-      "geographicMatchVerified": false,
-      "reason": "The source identifies ordered strips, but no independent control matches each strip to a physical parking parcel. The earlier bounded-road candidate only interpolated source ordinals; it does not establish individual label locations."
-    },
-    {
-      "code": "AH3",
-      "sourceMap": "south",
-      "sourceRevision": "V1.09-2026",
-      "sourcePoints": [
-        [
-          1018.48,
-          169.59
-        ]
-      ],
-      "sourceUnits": "original PDF points",
-      "region": "central-upper-ah-bh",
-      "status": "source-position-only",
-      "geographicMatchVerified": false,
-      "reason": "The source identifies ordered strips, but no independent control matches each strip to a physical parking parcel. The earlier bounded-road candidate only interpolated source ordinals; it does not establish individual label locations."
-    },
-    {
-      "code": "AH4",
-      "sourceMap": "south",
-      "sourceRevision": "V1.09-2026",
-      "sourcePoints": [
-        [
-          1030.03,
-          169.72
-        ]
-      ],
-      "sourceUnits": "original PDF points",
-      "region": "central-upper-ah-bh",
-      "status": "source-position-only",
-      "geographicMatchVerified": false,
-      "reason": "The source identifies ordered strips, but no independent control matches each strip to a physical parking parcel. The earlier bounded-road candidate only interpolated source ordinals; it does not establish individual label locations."
-    },
-    {
-      "code": "AH5",
-      "sourceMap": "south",
-      "sourceRevision": "V1.09-2026",
-      "sourcePoints": [
-        [
-          1040.93,
-          170.2433
-        ]
-      ],
-      "sourceUnits": "original PDF points",
-      "region": "central-upper-ah-bh",
-      "status": "source-position-only",
-      "geographicMatchVerified": false,
-      "reason": "The source identifies ordered strips, but no independent control matches each strip to a physical parking parcel. The earlier bounded-road candidate only interpolated source ordinals; it does not establish individual label locations."
-    },
-    {
-      "code": "AH6",
-      "sourceMap": "south",
-      "sourceRevision": "V1.09-2026",
-      "sourcePoints": [
-        [
-          1051.78,
-          169.9867
-        ]
-      ],
-      "sourceUnits": "original PDF points",
-      "region": "central-upper-ah-bh",
-      "status": "source-position-only",
-      "geographicMatchVerified": false,
-      "reason": "The source identifies ordered strips, but no independent control matches each strip to a physical parking parcel. The earlier bounded-road candidate only interpolated source ordinals; it does not establish individual label locations."
-    },
-    {
-      "code": "BH1",
-      "sourceMap": "south",
-      "sourceRevision": "V1.09-2026",
-      "sourcePoints": [
-        [
-          955.1033,
-          170.0767
-        ]
-      ],
-      "sourceUnits": "original PDF points",
-      "region": "central-upper-ah-bh",
-      "status": "source-position-only",
-      "geographicMatchVerified": false,
-      "reason": "The source identifies ordered strips, but no independent control matches each strip to a physical parking parcel. The earlier bounded-road candidate only interpolated source ordinals; it does not establish individual label locations."
-    },
-    {
-      "code": "BH2",
-      "sourceMap": "south",
-      "sourceRevision": "V1.09-2026",
-      "sourcePoints": [
-        [
-          964.77,
-          170.1533
-        ]
-      ],
-      "sourceUnits": "original PDF points",
-      "region": "central-upper-ah-bh",
-      "status": "source-position-only",
-      "geographicMatchVerified": false,
-      "reason": "The source identifies ordered strips, but no independent control matches each strip to a physical parking parcel. The earlier bounded-road candidate only interpolated source ordinals; it does not establish individual label locations."
-    },
-    {
-      "code": "BH3",
-      "sourceMap": "south",
-      "sourceRevision": "V1.09-2026",
-      "sourcePoints": [
-        [
-          975.41,
-          169.9667
-        ]
-      ],
-      "sourceUnits": "original PDF points",
-      "region": "central-upper-ah-bh",
-      "status": "source-position-only",
-      "geographicMatchVerified": false,
-      "reason": "The source identifies ordered strips, but no independent control matches each strip to a physical parking parcel. The earlier bounded-road candidate only interpolated source ordinals; it does not establish individual label locations."
-    },
-    {
-      "code": "BH4",
-      "sourceMap": "south",
-      "sourceRevision": "V1.09-2026",
-      "sourcePoints": [
-        [
-          985.9167,
-          169.96
-        ]
-      ],
-      "sourceUnits": "original PDF points",
-      "region": "central-upper-ah-bh",
-      "status": "source-position-only",
-      "geographicMatchVerified": false,
-      "reason": "The source identifies ordered strips, but no independent control matches each strip to a physical parking parcel. The earlier bounded-road candidate only interpolated source ordinals; it does not establish individual label locations."
     },
     {
       "code": "BDR",
@@ -45594,40 +49266,6 @@
         [
           103.3333,
           167.6667
-        ]
-      ],
-      "sourceUnits": "uncropped original PDF points",
-      "region": "central-legacy-revised-layout",
-      "status": "source-position-only",
-      "geographicMatchVerified": false,
-      "reason": "The printed old label and source position are established. The old forecourt or northern compound is partitioned differently from the current drawing; current code equality, a VPC name, or a nearby road does not independently identify this old parcel. No current GPS coordinate has been copied into it."
-    },
-    {
-      "code": "AH2",
-      "sourceMap": "bastenaken",
-      "sourcePage": 23,
-      "sourceRevision": "Cewez older plan, date not printed",
-      "sourcePoints": [
-        [
-          134.6667,
-          174
-        ]
-      ],
-      "sourceUnits": "uncropped original PDF points",
-      "region": "central-legacy-revised-layout",
-      "status": "source-position-only",
-      "geographicMatchVerified": false,
-      "reason": "The printed old label and source position are established. The old forecourt or northern compound is partitioned differently from the current drawing; current code equality, a VPC name, or a nearby road does not independently identify this old parcel. No current GPS coordinate has been copied into it."
-    },
-    {
-      "code": "BH2",
-      "sourceMap": "bastenaken",
-      "sourcePage": 23,
-      "sourceRevision": "Cewez older plan, date not printed",
-      "sourcePoints": [
-        [
-          133.3333,
-          222.6667
         ]
       ],
       "sourceUnits": "uncropped original PDF points",

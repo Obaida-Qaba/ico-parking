@@ -4,7 +4,9 @@ export const isAreaEntry=pin=>!!pin?.automatic&&pin.precision==='area-entry-only
 
 function builtIn(hit,catalogue) {
   const direct=catalogue?.destinations?.[`${hit.map.id}:${hit.parking.code}`];
-  return validPin(direct)?direct:catalogue?.destinations?.[parkingKey({...hit,line:null,approach:null}).replace(/:parking$/,'')];
+  const point=validPin(direct)?direct:catalogue?.destinations?.[parkingKey({...hit,line:null,approach:null}).replace(/:parking$/,'')];
+  if(point&&Object.hasOwn(point,'supportedMaps')&&(!Array.isArray(point.supportedMaps)||!point.supportedMaps.includes(hit.map.id)))return null;
+  return point;
 }
 
 /** Repeated names in separate compounds need a stable, explicit area choice. */

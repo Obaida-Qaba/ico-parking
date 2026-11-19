@@ -1,20 +1,20 @@
 {
-  "base": "https://obaida-qaba.github.io/ico-parking",
-  "generatedAt": "2026-11-19T14:29:46.689Z",
+  "base": "http://127.0.0.1:4173",
+  "generatedAt": "2026-11-19T14:57:16.051Z",
   "inputHashFormat": "SHA256 of JSON.stringify(JSON.parse(file)); whitespace and line endings ignored.",
   "inputSHA256": {
     "data.json": "6c2c25ee56e97691e2a6b9b43b6f93f36165cc0450a0cee5407c9abf67dd7970",
-    "destinations.json": "d876921ea5c22fa0ff49c90f55552f0aa86ff03e5d94ca7102f8208811de8503",
+    "destinations.json": "0a020b974c06e4f2233b9f75229f61294faa427ba25672004ebf9f1e8cf2830d",
     "roads.json": "ac53a02eba3d5ad0821dcb036c83be7c3106458acadaf4c8fd97e23430088b4e"
   },
   "servedInputSHA256": {
     "data.json": "6c2c25ee56e97691e2a6b9b43b6f93f36165cc0450a0cee5407c9abf67dd7970",
-    "destinations.json": "d876921ea5c22fa0ff49c90f55552f0aa86ff03e5d94ca7102f8208811de8503",
+    "destinations.json": "0a020b974c06e4f2233b9f75229f61294faa427ba25672004ebf9f1e8cf2830d",
     "roads.json": "ac53a02eba3d5ad0821dcb036c83be7c3106458acadaf4c8fd97e23430088b4e"
   },
   "servedFinalSHA256": {
     "data.json": "6c2c25ee56e97691e2a6b9b43b6f93f36165cc0450a0cee5407c9abf67dd7970",
-    "destinations.json": "d876921ea5c22fa0ff49c90f55552f0aa86ff03e5d94ca7102f8208811de8503",
+    "destinations.json": "0a020b974c06e4f2233b9f75229f61294faa427ba25672004ebf9f1e8cf2830d",
     "roads.json": "ac53a02eba3d5ad0821dcb036c83be7c3106458acadaf4c8fd97e23430088b4e"
   },
   "inputStable": true,
@@ -23,7 +23,7 @@
   "checked": 717,
   "completeRun": true,
   "uiFailures": 0,
-  "missingDestinations": 123,
+  "missingDestinations": 109,
   "limitedRoutingChoices": 13,
   "results": [
     {
@@ -80,7 +80,7 @@
       "routingScope": null,
       "areaEntryOnly": false,
       "uiPassed": true,
-      "distanceMetres": 484.3069117655182
+      "distanceMetres": 390.1566486262815
     },
     {
       "key": "bastenaken:AE1",
@@ -88,7 +88,7 @@
       "routingScope": null,
       "areaEntryOnly": false,
       "uiPassed": true,
-      "distanceMetres": 483.1903711139311
+      "distanceMetres": 389.0800648405751
     },
     {
       "key": "bastenaken:AF1",
@@ -96,7 +96,7 @@
       "routingScope": null,
       "areaEntryOnly": false,
       "uiPassed": true,
-      "distanceMetres": 662.6711644380233
+      "distanceMetres": 474.19147668587965
     },
     {
       "key": "bastenaken:AG1",
@@ -108,19 +108,19 @@
     },
     {
       "key": "bastenaken:AH1",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
-      "areaEntryOnly": false,
+      "areaEntryOnly": true,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 522.9277786052508
     },
     {
       "key": "bastenaken:AH2",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
-      "areaEntryOnly": false,
+      "areaEntryOnly": true,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 522.9277786052508
     },
     {
       "key": "bastenaken:BA1",
@@ -168,7 +168,7 @@
       "routingScope": null,
       "areaEntryOnly": false,
       "uiPassed": true,
-      "distanceMetres": 315.2876132863845
+      "distanceMetres": 227.18796581972828
     },
     {
       "key": "bastenaken:BDA",
@@ -192,7 +192,7 @@
       "routingScope": null,
       "areaEntryOnly": false,
       "uiPassed": true,
-      "distanceMetres": 318.69503243686466
+      "distanceMetres": 230.4733642892371
     },
     {
       "key": "bastenaken:BF1",
@@ -200,7 +200,7 @@
       "routingScope": null,
       "areaEntryOnly": false,
       "uiPassed": true,
-      "distanceMetres": 493.1213421089153
+      "distanceMetres": 315.71052611957566
     },
     {
       "key": "bastenaken:BG1",
@@ -212,19 +212,19 @@
     },
     {
       "key": "bastenaken:BH1",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
-      "areaEntryOnly": false,
+      "areaEntryOnly": true,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 522.9277786052508
     },
     {
       "key": "bastenaken:BH2",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
-      "areaEntryOnly": false,
+      "areaEntryOnly": true,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 522.9277786052508
     },
     {
       "key": "bastenaken:BKA",
@@ -320,7 +320,7 @@
       "routingScope": null,
       "areaEntryOnly": false,
       "uiPassed": true,
-      "distanceMetres": 518.0878520852157
+      "distanceMetres": 442.2195922772925
     },
     {
       "key": "bastenaken:BWE",
@@ -328,7 +328,7 @@
       "routingScope": null,
       "areaEntryOnly": false,
       "uiPassed": true,
-      "distanceMetres": 589.3084285336406
+      "distanceMetres": 506.1022348484927
     },
     {
       "key": "bastenaken:BWF",
@@ -336,7 +336,7 @@
       "routingScope": null,
       "areaEntryOnly": false,
       "uiPassed": true,
-      "distanceMetres": 679.2489959303354
+      "distanceMetres": 641.9891836291443
     },
     {
       "key": "bastenaken:BWH",
@@ -2400,7 +2400,7 @@
       "routingScope": null,
       "areaEntryOnly": false,
       "uiPassed": true,
-      "distanceMetres": 484.3069117655182
+      "distanceMetres": 390.1566486262815
     },
     {
       "key": "south:AE1",
@@ -2408,7 +2408,7 @@
       "routingScope": null,
       "areaEntryOnly": false,
       "uiPassed": true,
-      "distanceMetres": 483.1903711139311
+      "distanceMetres": 389.0800648405751
     },
     {
       "key": "south:AF1",
@@ -2416,7 +2416,7 @@
       "routingScope": null,
       "areaEntryOnly": false,
       "uiPassed": true,
-      "distanceMetres": 662.6711644380233
+      "distanceMetres": 474.19147668587965
     },
     {
       "key": "south:AG1",
@@ -2428,51 +2428,51 @@
     },
     {
       "key": "south:AH1",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
-      "areaEntryOnly": false,
+      "areaEntryOnly": true,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 522.9277786052508
     },
     {
       "key": "south:AH2",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
-      "areaEntryOnly": false,
+      "areaEntryOnly": true,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 522.9277786052508
     },
     {
       "key": "south:AH3",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
-      "areaEntryOnly": false,
+      "areaEntryOnly": true,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 522.9277786052508
     },
     {
       "key": "south:AH4",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
-      "areaEntryOnly": false,
+      "areaEntryOnly": true,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 522.9277786052508
     },
     {
       "key": "south:AH5",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
-      "areaEntryOnly": false,
+      "areaEntryOnly": true,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 522.9277786052508
     },
     {
       "key": "south:AH6",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
-      "areaEntryOnly": false,
+      "areaEntryOnly": true,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 522.9277786052508
     },
     {
       "key": "south:BA1",
@@ -2520,7 +2520,7 @@
       "routingScope": null,
       "areaEntryOnly": false,
       "uiPassed": true,
-      "distanceMetres": 315.2876132863845
+      "distanceMetres": 227.18796581972828
     },
     {
       "key": "south:BDR",
@@ -2536,7 +2536,7 @@
       "routingScope": null,
       "areaEntryOnly": false,
       "uiPassed": true,
-      "distanceMetres": 318.69503243686466
+      "distanceMetres": 230.4733642892371
     },
     {
       "key": "south:BF1",
@@ -2544,7 +2544,7 @@
       "routingScope": null,
       "areaEntryOnly": false,
       "uiPassed": true,
-      "distanceMetres": 493.1213421089153
+      "distanceMetres": 315.71052611957566
     },
     {
       "key": "south:BG1",
@@ -2556,35 +2556,35 @@
     },
     {
       "key": "south:BH1",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
-      "areaEntryOnly": false,
+      "areaEntryOnly": true,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 522.9277786052508
     },
     {
       "key": "south:BH2",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
-      "areaEntryOnly": false,
+      "areaEntryOnly": true,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 522.9277786052508
     },
     {
       "key": "south:BH3",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
-      "areaEntryOnly": false,
+      "areaEntryOnly": true,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 522.9277786052508
     },
     {
       "key": "south:BH4",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
-      "areaEntryOnly": false,
+      "areaEntryOnly": true,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 522.9277786052508
     },
     {
       "key": "south:BKA",
@@ -2712,7 +2712,7 @@
       "routingScope": null,
       "areaEntryOnly": false,
       "uiPassed": true,
-      "distanceMetres": 518.0878520852157
+      "distanceMetres": 442.2195922772925
     },
     {
       "key": "south:BWE",
@@ -2720,7 +2720,7 @@
       "routingScope": null,
       "areaEntryOnly": false,
       "uiPassed": true,
-      "distanceMetres": 589.3084285336406
+      "distanceMetres": 506.1022348484927
     },
     {
       "key": "south:BWF",
@@ -2728,7 +2728,7 @@
       "routingScope": null,
       "areaEntryOnly": false,
       "uiPassed": true,
-      "distanceMetres": 679.2489959303354
+      "distanceMetres": 641.9891836291443
     },
     {
       "key": "south:BWH",
@@ -4304,7 +4304,7 @@
       "routingScope": null,
       "areaEntryOnly": false,
       "uiPassed": true,
-      "distanceMetres": 686.5114618061124
+      "distanceMetres": 654.9153245680301
     },
     {
       "key": "south:ME1",
@@ -5763,6 +5763,6 @@
       "distanceMetres": 1942.7468197522062
     }
   ],
-  "areaEntranceChoices": 79,
-  "verification": "Simulated GPS checks on the deployed GitHub Pages app across the complete catalogue, connected-road geometry, explicitly labelled area entrances and source-plan fallbacks. Shared entrances do not establish individual parking positions. This is not an on-site survey; missing and internally restricted destinations remain incomplete."
+  "areaEntranceChoices": 93,
+  "verification": "Complete local browser sweep with simulated GPS. Connected road routes and explicit area-entrance wording checked; missing geographic destinations remain identified. This is not a physical survey of numbered bays."
 }

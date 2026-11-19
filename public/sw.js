@@ -1,4 +1,4 @@
-const CACHE='portway-v22-shared-area-routes';
+const CACHE='portway-v23-ah-field-alignment';
 self.addEventListener('install',event=>{
   event.waitUntil((async()=>{
     const cache=await caches.open(CACHE);

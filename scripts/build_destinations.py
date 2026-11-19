@@ -224,6 +224,7 @@ for builder,filename in [
     ('build_toyota_area_destinations.py','toyota-area-destinations.json'),
     ('build_d_area_destinations.py','d-area-destinations.json'),
     ('build_legacy_vpc_area_destinations.py','legacy-vpc-area-destinations.json'),
+    ('build_h_area_destinations.py','h-area-destinations.json'),
 ]:
     subprocess.run([sys.executable,str(ROOT/'scripts'/builder)],check=True,cwd=ROOT)
     extra=json.loads((ROOT/'scripts/geo'/filename).read_text(encoding='utf-8'))

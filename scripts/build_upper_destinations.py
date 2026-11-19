@@ -1,4 +1,9 @@
-"""Bounded ICO upper-strip approaches and explicit remaining CH evidence gap.
+"""REJECTED research model, superseded by the independently aligned H field.
+
+The former AG/BG footprint was shifted one field and consumed H. Interpolating
+AH/BH between its old outer boundary and Koffieweg puts labels in the median.
+This archived script must never emit route destinations. Use the corrected
+SouthEast ladder and build_h_area_destinations.py instead.
 
 The 1338613xxx road grid west of Koffieweg belongs to WWL terminal5010, as
 confirmed by the Port of Antwerp-Bruges public company polygons. It MUST NOT be
@@ -11,6 +16,8 @@ individually matched from the Sep2026 drawing to Feb2025 imagery/cached roads.
 from pathlib import Path
 import json
 import math
+
+raise RuntimeError('Rejected upper-strip interpolation. Use build_h_area_destinations.py and the corrected CF1/VPC alignment.')
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = json.loads((ROOT / 'public/data.json').read_text(encoding='utf-8'))

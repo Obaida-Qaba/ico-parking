@@ -1,6 +1,6 @@
 {
-  "base": "http://127.0.0.1:4173",
-  "generatedAt": "2026-11-19T14:20:41.725Z",
+  "base": "https://obaida-qaba.github.io/ico-parking",
+  "generatedAt": "2026-11-19T14:29:46.689Z",
   "inputHashFormat": "SHA256 of JSON.stringify(JSON.parse(file)); whitespace and line endings ignored.",
   "inputSHA256": {
     "data.json": "6c2c25ee56e97691e2a6b9b43b6f93f36165cc0450a0cee5407c9abf67dd7970",
@@ -5764,5 +5764,5 @@
     }
   ],
   "areaEntranceChoices": 79,
-  "verification": "Simulated GPS checks across the complete local release catalogue, connected-road geometry, explicitly labelled area entrances and source-plan fallbacks. Shared entrances do not establish individual parking positions. This is not an on-site survey; missing and internally restricted destinations remain incomplete."
+  "verification": "Simulated GPS checks on the deployed GitHub Pages app across the complete catalogue, connected-road geometry, explicitly labelled area entrances and source-plan fallbacks. Shared entrances do not establish individual parking positions. This is not an on-site survey; missing and internally restricted destinations remain incomplete."
 }

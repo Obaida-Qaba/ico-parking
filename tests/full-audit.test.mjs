@@ -41,6 +41,16 @@ test('source metadata outside its own declared drawing bounds is reported separa
  assert.equal(row.locationEvidenceConsistent,false);
  assert.equal(row.routeReady,true,'the report distinguishes connectivity from geographic evidence');
 });
+
+test('a connected shared entrance retains its unverified individual-parking status in the audit',()=>{
+ const report=run({'south:A':{...pin,scope:'parking-group-approach',precision:'area-entry-only',individualParkingVerified:false,historical:true}});
+ const row=report.rows.find(row=>row.code==='A');
+ assert.equal(row.routeReady,true,'the road route reaches the shared entrance');
+ assert.equal(row.precision,'area-entry-only','historical and group metadata must not hide the entrance-only limitation');
+ assert.equal(row.individualParkingVerified,false);
+ assert.equal(report.summary.areaEntranceReferences,1);
+ assert.equal(report.summary.complete,false);
+});
 test('a disconnected destination fails the full audit even when it lies exactly on a real road',()=>{
  const far={id:'far',nodes:['x','y'],points:[[51.31,3.24],[51.31,3.241]],oneway:false};
  const report=run({'south:A':{...pin,lat:51.31,lon:3.2405,roadWay:'far',roadSegment:['x','y']}},{roads:{ways:[road,far]}});

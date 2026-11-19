@@ -1,5 +1,7 @@
 import {parkingKey,validPin} from './navigation.mjs';
 
+export const isAreaEntry=pin=>!!pin?.automatic&&pin.precision==='area-entry-only';
+
 function builtIn(hit,catalogue) {
   const direct=catalogue?.destinations?.[`${hit.map.id}:${hit.parking.code}`];
   return validPin(direct)?direct:catalogue?.destinations?.[parkingKey({...hit,line:null,approach:null}).replace(/:parking$/,'')];

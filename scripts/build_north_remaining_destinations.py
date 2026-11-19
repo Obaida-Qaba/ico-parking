@@ -1,4 +1,4 @@
-"""Rebuild the reviewed P/Q2 approaches and retain explicit North/Nissan gaps.
+"""Rebuild reviewed North approaches and retain explicit North/Nissan gaps.
 
 The old OSM109 alignment runs through stored cars. Its replacement is the
 independently digitized quay aisle in north-road-corrections.json. P has a
@@ -156,6 +156,167 @@ REGIONS = [
      'boundaryLanes': [DIVIDER, EXTENSION, Q_ACCESS], 'evidence': Q_BASIS},
 ]
 
+# DRU is a named linear parking/access reference outside the repeated U banks,
+# not an individual row inside one of them. Its source position and the whole
+# long outer corridor are matched independently of the P/Q2 quay correction.
+# The5Mar2026 official working orthophoto positively confirms this existing
+# private lane between the Jozef fence and the U storage rows.
+DRU_WAY = '241878055'
+DRU_EXPECTED_NODES = [
+    '2494558929', '2494558928', '2494558936', '2494558938', '2494558939',
+    '2494558949', '2494558956', '2494558970', '2494558979', '2494558985',
+    '2494558992', '2494558998', '2494559009', '2494559019', '2494559025',
+]
+if WAYS.get(DRU_WAY, {}).get('nodes') != DRU_EXPECTED_NODES:
+    raise ValueError('DRU outer U-side corridor topology changed: ' + DRU_WAY)
+DRU_ACCESS = chain(DRU_WAY, ['2494558928', '2494558936'])
+for n, expected in {
+    '2494558928': [51.3193662, 3.2080204],
+    '2494558936': [51.3235379, 3.2063497],
+}.items():
+    if any(abs(a - b) > 1e-10 for a, b in zip(NODES[n], expected)):
+        raise ValueError('DRU image-matched corridor anchor moved: ' + n)
+DRU_SOURCE = source_points('north', 'DRU')
+DRU_EXPECTED_SOURCE = [[49.0156, 541.4828], [45.2179, 682.2490]]
+if len(DRU_SOURCE) != 2 or any(abs(a - b) > .03 for p, q in zip(DRU_SOURCE, DRU_EXPECTED_SOURCE) for a, b in zip(p, q)):
+    raise ValueError('DRU printed source references changed; review the corridor association.')
+DRU_POINT = midpoint(DRU_ACCESS['nodes'])
+DRU_BASIS = ('The two printed DRU references name the continuous outer U-side '
+             'parking/access lane between the terminal fence beside Jozef '
+             'Verschaveweg and the repeated U storage banks. The existing private '
+             'road8928-8936 follows that exact corridor in the official5Mar2026 '
+             'orthophoto. This is a named-lane group approach, not an interior '
+             'parking-row centre or a public-road target across the fence.')
+OUT['north:DRU'] = {
+    'lat': DRU_POINT[0], 'lon': DRU_POINT[1], 'parking': 'DRU',
+    'sourceMap': 'north', 'sourceRevision': MAPS['north']['date'], 'sourcePage': 5,
+    'sourcePoint': DRU_SOURCE[0], 'sourcePoints': DRU_SOURCE,
+    'scope': 'parking-group-approach', 'destinationKind': 'parking-lane-reference',
+    'method': 'source-lane-and-2026-imagery-match', 'lineExact': False,
+    'roadWay': DRU_WAY, 'roadSegment': DRU_ACCESS['nodes'],
+    'region': 'nit-dru-outer-u-side-corridor', 'basis': DRU_BASIS,
+    'junctionMatch': {'boundaryLanes': [DRU_ACCESS], 'landmarks': ['Jozef-side terminal fence', 'repeated U storage banks']},
+    'labelPosition': {'lat': DRU_POINT[0], 'lon': DRU_POINT[1],
+                      'method': 'matched-named-lane-reference', 'scope': 'parking-lane-reference',
+                      'basis': 'Display reference on the individually identified DRU corridor; no exact truck position or numbered row is claimed.'},
+    'provenance': {
+        'sourceUrl': SOURCE_URL, 'sourceCache': 'scripts/sources/current.pdf', 'sourcePage': 5,
+        'sourceCoordinates': PROVENANCE['sourceCoordinates'],
+        'imageryService': 'https://geo.api.vlaanderen.be/ofw/wms', 'imageryLayer': 'OFW',
+        'imageryFlightDate': '2026-03-05', 'reviewed': '2026-11-19',
+        'imageryRequest': {'service': 'WMS', 'request': 'GetMap', 'version': '1.3.0',
+                           'layers': 'OFW', 'crs': 'EPSG:4326',
+                           'bbox': [51.3192, 3.2058, 51.3238, 3.2084],
+                           'width': 1000, 'height': 1800, 'format': 'image/jpeg'},
+        'flightDateEvidence': 'OFW_vdc GetFeatureInfo text/html at i550,j1000 returns OpnDatum5/3/2026,FID4.',
+        'limitation': 'Existing private named-lane approach only; imagery does not establish current operational permission, a numbered parking row, or an exact truck position.',
+    },
+}
+REGIONS.append({'id': 'nit-dru-outer-u-side-corridor', 'codes': ['DRU'], 'sourceMap': 'north',
+                'sourcePoints': DRU_SOURCE, 'model': 'individually-matched-named-lane',
+                'boundaryLanes': [DRU_ACCESS], 'evidence': DRU_BASIS,
+                'provenance': OUT['north:DRU']['provenance']})
+
+# These are entrances to independently identified compounds. Their individual
+# old-plan strips are not positioned in today's parking rows. Keep the source
+# glyphs, field boundaries and actual entrance junctions separate; no source
+# coordinates are projected onto the orthophoto.
+Q_COMPOUND_ACCESS = chain('241878076', ['2494558944', '2494558932'])
+KB_COMPOUND_ACCESS = chain(DRU_WAY, ['2494558929', '2494558928'])
+for node, expected in {
+    '2494558944': [51.3238986, 3.2078897],
+    '2494558932': [51.3224706, 3.2084415],
+    '2494558929': [51.3195327, 3.2090748],
+}.items():
+    if any(abs(a - b) > 1e-10 for a, b in zip(NODES[node], expected)):
+        raise ValueError('North compound entrance image anchor moved: ' + node)
+
+Q_AREA = 'Q parking area north of Loods C'
+KB_AREA = 'KB area at south end of U'
+Q_ENTRANCE_BASIS = (
+    'The original Q9 and Q10 glyphs label the two strips between Q2 and Loods C. '
+    'They belong to the specific dock408 Q compound bounded north by divider113, '
+    'west by the inner076 lane, east by the quay-side aisle and south by Loods C. '
+    'The5Mar2026 OFW image confirms an uninterrupted paved field and its open '
+    'south-west forecourt access at existing076 junction8932, immediately north '
+    'of Loods C. Routing ends at that actual area entrance. The historic strip '
+    'divisions and individual Q9/Q10 parking positions are not mapped.')
+KB_ENTRANCE_BASIS = (
+    'The original KB glyph labels the southern cap of U, west of the rail '
+    'corridor; it does not label either KA or KE beside VPC1-PDI. The5Mar2026 '
+    'OFW image independently confirms the paved strip between the U storage '
+    'rows and southern terminal fence, with the rail/track-side boundary to '
+    'the east and DRU-side boundary to the west. Existing055 junction8928 '
+    'is the actual open junction from the outer U-side lane into that south '
+    'strip. Routing ends at this area entrance, not an invented KB bay.')
+
+AREA_PROVENANCE = {
+    **OUT['north:DRU']['provenance'],
+    'imageryRequest': {'service': 'WMS', 'request': 'GetMap', 'version': '1.3.0',
+                      'layers': 'OFW', 'crs': 'EPSG:4326',
+                      'bbox': [51.31925, 3.20755, 51.32425, 3.21035],
+                      'width': 1500, 'height': 2000, 'format': 'image/jpeg'},
+    'kbDetailRequest': {'bbox': [51.3188, 3.2077, 51.3198, 3.2095],
+                        'width': 1600, 'height': 1300},
+    'limitation': 'Confirmed physical compound entrances only. Individual parking strips and numbered lines are not mapped; current operational access is not verified live.',
+}
+AREA_SPECS = [
+    ('Q9', [195.5400, 488.9333], [155.6410, 481.4598, 240.9261, 495.6889],
+     Q_COMPOUND_ACCESS, '2494558932', 'nit-q-north-loods-c-area-entry', Q_AREA, Q_ENTRANCE_BASIS),
+    ('Q10', [195.5533, 510.6200], [155.1571, 502.8689, 240.5472, 517.6440],
+     Q_COMPOUND_ACCESS, '2494558932', 'nit-q-north-loods-c-area-entry', Q_AREA, Q_ENTRANCE_BASIS),
+    ('KB', [80.6833, 781.6967], [40.0, 763.0, 112.0, 800.0],
+     KB_COMPOUND_ACCESS, '2494558928', 'nit-kb-south-u-area-entry', KB_AREA, KB_ENTRANCE_BASIS),
+]
+for code, expected, bounds, access, arrival_node, region_id, area_name, basis in AREA_SPECS:
+    source = source_points('north', code)
+    if len(source) != 1 or any(abs(a - b) > .03 for a, b in zip(source[0], expected)):
+        raise ValueError('North compound printed source reference changed: ' + code)
+    point = NODES[arrival_node]
+    OUT['north:' + code] = {
+        'lat': point[0], 'lon': point[1], 'parking': code,
+        'name': code + ' · ' + area_name + ' area entrance', 'areaName': area_name,
+        'sourceMap': 'north', 'sourceRevision': MAPS['north']['date'], 'sourcePage': 5,
+        'sourcePoint': source[0], 'sourcePoints': source, 'sourceBounds': bounds,
+        'scope': 'parking-group-approach', 'precision': 'area-entry-only',
+        'individualParkingVerified': False, 'lineExact': False,
+        'method': 'source-compound-and-2026-imagery-entrance-match',
+        'roadWay': access['way'], 'roadSegment': access['nodes'], 'region': region_id,
+        'basis': basis, 'junctionMatch': {'boundaryLanes': [access], 'arrivalNode': arrival_node},
+        'labelPosition': {'lat': point[0], 'lon': point[1], 'scope': 'area-entrance-reference',
+                          'method': 'actual-compound-entrance-junction',
+                          'basis': 'Display the confirmed area entrance; the individual parking is not mapped.'},
+        'provenance': AREA_PROVENANCE,
+    }
+
+REGIONS.extend([
+    {'id': 'nit-q-north-loods-c-area-entry', 'codes': ['Q9', 'Q10'], 'sourceMap': 'north',
+     'sourceBounds': [150.0, 377.7, 244.1, 529.2], 'areaName': Q_AREA,
+     'model': 'landmark-bounded-compound-area-entrance',
+     'polygon': [NODES['2494558944'], NODES['portway-nit-quay-divider'],
+                 [51.322524, 3.21012], [51.3223475, 3.209547], NODES['2494558930'],
+                 NODES['2494558932'], NODES['2494558944']],
+     'polygonPrecision': 'Physical compound evidence envelope, not a surveyed parking-strip boundary',
+     'boundaryControls': [
+         {'name': 'North divider113', 'lane': DIVIDER},
+         {'name': 'West inner076 lane and actual south-west entry', 'lane': Q_COMPOUND_ACCESS},
+         {'name': 'Eastern quay-side aisle', 'lane': Q_ACCESS},
+         {'name': 'Loods C northern roof edge', 'points': [NODES['2494558930'], [51.3223475, 3.209547]]},
+     ], 'evidence': Q_ENTRANCE_BASIS, 'provenance': AREA_PROVENANCE},
+    {'id': 'nit-kb-south-u-area-entry', 'codes': ['KB'], 'sourceMap': 'north',
+     'sourceBounds': [40.0, 763.0, 112.0, 800.0], 'areaName': KB_AREA,
+     'model': 'landmark-bounded-compound-area-entrance',
+     'polygon': [[51.31955, 3.2080], [51.31968, 3.2091], [51.31922, 3.20932],
+                 [51.31908, 3.20815], [51.31955, 3.2080]],
+     'polygonPrecision': 'Physical south-U compound evidence envelope, not a surveyed KB bay boundary',
+     'boundaryControls': [
+         {'name': 'North end of paved strip below U storage rows', 'points': [[51.31955, 3.2080], [51.31968, 3.2091]]},
+         {'name': 'South terminal fence', 'points': [[51.31908, 3.20815], [51.31922, 3.20932]]},
+         {'name': 'West DRU-side actual entry8928 and south-U crossing', 'lane': KB_COMPOUND_ACCESS},
+         {'name': 'East rail/track-side boundary', 'points': [[51.31968, 3.2091], [51.31922, 3.20932]]},
+     ], 'evidence': KB_ENTRANCE_BASIS, 'provenance': AREA_PROVENANCE},
+])
+
 OVERRIDE_GUARDS = {
     'north:P': {'roadWay': '241878109', 'roadSegment': ['2494558948', '2494558983'],
                 'lat': 51.324694199999996, 'lon': 3.2088330999999997},
@@ -200,7 +361,7 @@ for map_id in ['north', 'nissan']:
                            'reason': unresolved_reason(map_id, parking['code'])})
 
 RESULT = {
-    'version': 1, 'source': 'Reviewed North P/Q2 correction and explicit remaining North/Nissan evidence gaps',
+    'version': 1, 'source': 'Reviewed North P/Q2 correction, DRU named lane, Q9/Q10/KB area entrances and remaining North/Nissan evidence gaps',
     'lineExact': False, 'destinations': OUT, 'regions': REGIONS,
     'overrideKeys': list(OVERRIDE_GUARDS), 'overrideGuards': OVERRIDE_GUARDS,
     'unresolved': UNRESOLVED, 'provenance': PROVENANCE,
@@ -210,4 +371,4 @@ if __name__ == '__main__':
     target = ROOT / 'scripts/geo/north-remaining-destinations.json'
     target.parent.mkdir(exist_ok=True)
     target.write_text(json.dumps(RESULT, indent=2), encoding='utf-8')
-    print(f'North P/Q2: 2 reviewed approaches; {len(UNRESOLVED)} other North/Nissan codes retain explicit evidence gaps')
+    print(f'North: {len(OUT)} reviewed approaches, including3 explicit area-only entrances; {len(UNRESOLVED)} other North/Nissan codes retain explicit evidence gaps')

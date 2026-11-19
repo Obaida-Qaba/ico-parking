@@ -25,6 +25,13 @@ test('Toyota includes the visible Y bays, staging rows and perimeter references'
  for(const code of ['Y02','Y34','Y35','Y38','W01','W06','X02','X04','X06','P10','P70','R01','Z01','Z05'])assert.ok(parking('toyota',code),code);
  assert.equal(parking('toyota','R01').points.length,3);
 });
+
+test('Toyota Z perimeter preserves the repeated Z01 label and excludes the capacity 234 annotation',()=>{
+ assert.equal(parking('toyota','Z02'),undefined,'the right-edge glyph reads Z01, not a separate Z02');
+ assert.equal(parking('toyota','Z01').points.length,3);
+ const z04=parking('toyota','Z04');assert.equal(z04.points.length,1);
+ assert.ok(Math.abs(z04.y/3+90-501)<.1,'Z04 is the actual lower-corner label, not the vertical capacity 234');
+});
 test('overpainted GE1 text is excluded in favour of the one visible current label',()=>{
  const point=parking('south','GE1');
  assert.equal(point.points.length,1);

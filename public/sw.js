@@ -1,4 +1,4 @@
-const CACHE='portway-v21-parking-search-zeroes';
+const CACHE='portway-v22-shared-area-routes';
 self.addEventListener('install',event=>{
   event.waitUntil((async()=>{
     const cache=await caches.open(CACHE);

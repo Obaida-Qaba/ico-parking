@@ -1,5 +1,5 @@
 import {buildGraph,distanceMetres,parkingKey,validPin} from './navigation.mjs';
-import {resolveDestination} from './destinations.mjs';
+import {resolveDestination,isAreaEntry} from './destinations.mjs';
 import {createCourseTracker,screenHeading} from './heading.mjs';
 import {nextInstruction} from './guidance.mjs';
 import {createParkingLabels} from './parking-labels.mjs';
@@ -25,6 +25,7 @@ export function createGPS({getMap,getSelected,getCatalogue,showStreet,toast,dial
   const $=id=>document.getElementById(id);
   function pinFor(hit){return resolveDestination(hit,pins,getCatalogue?.());}
   function label(hit){return hit.parking.code+(hit.approachName?' · '+hit.approachName:'')+(hit.line?' · line '+hit.line:'');}
+  function navigationLabel(hit){return label(hit)+(isAreaEntry(pinFor(hit))?' · area entrance':'');}
   async function loadGraph(){
     if(graph)return graph;
     if(!graphPromise)graphPromise=fetch('./roads.json').then(r=>{if(!r.ok)throw Error('roads');return r.json();}).then(data=>{graph=buildGraph(data);return graph;}).catch(e=>{graphPromise=null;throw e;});
@@ -111,7 +112,7 @@ export function createGPS({getMap,getSelected,getCatalogue,showStreet,toast,dial
       const position=[display.lat,display.lon],code=hit.parking.code;
       if(!targetMarker)targetMarker=L.marker(position,{icon:L.divIcon({className:'gps-target',html:`<span>${esc(code)}</span>`,iconSize:[0,0]})}).addTo(layer);
       else{move(targetMarker,position);if(targetCode!==code)targetMarker.getElement().querySelector('span').textContent=code;}
-      targetCode=code;targetMarker.getElement().title=label(hit)+(display!==pin?' · parking area':pin.automatic?' · mapped parking approach':' · saved GPS point');
+      targetCode=code;targetMarker.getElement().title=navigationLabel(hit)+(isAreaEntry(pin)?'':display!==pin?' · parking area':pin.automatic?' · mapped parking approach':' · saved GPS point');
     }else if(targetMarker){layer.removeLayer(targetMarker);targetMarker=null;targetCode=null;}
     if(active&&route?.available&&usable()){
       if(!routeLine){
@@ -141,16 +142,16 @@ export function createGPS({getMap,getSelected,getCatalogue,showStreet,toast,dial
       if(!computed||active!==hit||watch===null)return;
       if(fix!==calculationFix||!usable())return calculate(true);
       route=computed;
-      $('navigation-destination').textContent=label(hit);
+      $('navigation-destination').textContent=navigationLabel(hit);
       const internal=pin.automatic&&pin.routingScope==='terminal-internal';
       if(!route.available){$('navigation-instruction').textContent=internal?'No route from here':'No connected road route';$('navigation-detail').textContent=(internal?'Routes use reviewed roads inside Nissan. Entrance and some onward connections are unconfirmed. ':'')+route.reason;$('navigation-distance').textContent='—';}
       else{
         $('navigation-distance').textContent=route.distance>=1000?(route.distance/1000).toFixed(1)+' km':Math.round(route.distance)+' m';
         const near=distanceMetres([fix.lat,fix.lon],[pin.lat,pin.lon])<=Math.max(12,fix.accuracy);
-        $('navigation-instruction').textContent=near?(pin.automatic?'You are near the parking approach':'You are near your saved destination'):nextInstruction(route.points,{heading:travelHeading});
+        $('navigation-instruction').textContent=near?(isAreaEntry(pin)?'You are near the area entrance':pin.automatic?'You are near the parking approach':'You are near your saved destination'):nextInstruction(route.points,{heading:travelHeading});
         const area=pin.scope==='parking-group-approach';
-        const targetNote=pin.automatic?`Route to ${hit.parking.code} parking ${area?'area ':''}approach.${area?' Shared area access; exact entrance is not mapped.':''}${hit.line?' Line '+hit.line+' remains a reference inside the parking.':''}`:(!pin.exactLine&&hit.line?`Route to ${hit.parking.code} parking; line ${hit.line} is not separately positioned.`:'Route follows mapped roads.');
-        $('navigation-detail').textContent=targetNote+(internal?' Within Nissan only.':'')+(route.endOffset>10?` Road ends ${Math.round(route.endOffset)} m from the point.`:'')+' Follow current terminal signs.';
+        const targetNote=isAreaEntry(pin)?`Route to the ${pin.areaName||hit.parking.code+' area'} entrance. The individual parking position is not mapped.${hit.line?' Line '+hit.line+' remains a reference inside the area.':''}`:pin.automatic?`Route to ${hit.parking.code} parking ${area?'area ':''}approach.${area?' Shared area access; exact entrance is not mapped.':''}${hit.line?' Line '+hit.line+' remains a reference inside the parking.':''}`:(!pin.exactLine&&hit.line?`Route to ${hit.parking.code} parking; line ${hit.line} is not separately positioned.`:'Route follows mapped roads.');
+        $('navigation-detail').textContent=targetNote+(isAreaEntry(pin)&&pin.areaAccessNote?' '+pin.areaAccessNote:'')+(internal?' Within Nissan only.':'')+(route.endOffset>10?` Road ends ${Math.round(route.endOffset)} m from the point.`:'')+' Follow current terminal signs.';
       }
       draw();
       if(firstRoute&&route.available&&street&&following)followView();
@@ -204,12 +205,12 @@ export function createGPS({getMap,getSelected,getCatalogue,showStreet,toast,dial
     if(!hit){toast('Choose a parking first.');return;}
     const pin=pinFor(hit);
     if(!pin){clearRoute();onUnmapped?.(hit);return;}
-    routeClient.cancel();active=hit;route=null;navigationLayout(true);$('map-options-panel').hidden=true;$('map-options').setAttribute('aria-expanded','false');$('navigation-destination').textContent=label(hit);$('navigation-instruction').textContent='Waiting for live GPS…';$('navigation-distance').textContent='—';$('navigation-detail').textContent=pin.automatic&&pin.routingScope==='terminal-internal'?'Routes use reviewed roads inside Nissan. Entrance and some onward connections are unconfirmed.':pin.automatic?'Using the built-in parking approach. The route follows mapped roads.':'Using your saved destination point. The route follows mapped roads.';
+    routeClient.cancel();active=hit;route=null;navigationLayout(true);$('map-options-panel').hidden=true;$('map-options').setAttribute('aria-expanded','false');$('navigation-destination').textContent=navigationLabel(hit);$('navigation-instruction').textContent='Waiting for live GPS…';$('navigation-distance').textContent='—';$('navigation-detail').textContent=isAreaEntry(pin)?'Routing to the area entrance. The individual parking position is not mapped.':pin.automatic&&pin.routingScope==='terminal-internal'?'Routes use reviewed roads inside Nissan. Entrance and some onward connections are unconfirmed.':pin.automatic?'Using the built-in parking approach. The route follows mapped roads.':'Using your saved destination point. The route follows mapped roads.';
     start();calculate(true);
   }
   function setup(hit){
     const name=label(hit),existing=pinFor(hit);
-    dialog(`<h2>${existing?'Destination location':'Locate '+esc(name)}</h2><p>${existing?(existing.automatic?'A built-in road approach is available for this parking. You can optionally refine it with an on-site GPS measurement.':'This destination has a GPS point saved on this device.'):'This reference is not yet in the built-in destination catalogue. You can optionally add its actual location here.'}</p>${existing?`<p>${esc(name)}<br>${existing.lat.toFixed(6)}, ${existing.lon.toFixed(6)}<br>${existing.automatic?'Matched from the ICO terminal plan to the geographic road layout':existing.method==='gps'?'Recorded on site · accuracy ±'+Math.round(existing.accuracy)+' m':'Point selected on the geographic road map'}</p>`:''}<button class="primary" id="capture-parking">I’m at ${esc(name)} · save GPS</button><p>Use this while you are at the named parking${hit.line?' and line '+esc(hit.line):''}. The point is stored on this device.</p><button class="secondary" id="pick-parking">Choose its location on the GPS map</button>${existing&&!existing.automatic?'<button class="inline-button" id="forget-pin" style="margin-top:20px">Remove saved point</button>':''}`);
+    dialog(`<h2>${existing?'Destination location':'Locate '+esc(name)}</h2><p>${existing?(existing.automatic?(isAreaEntry(existing)?'Only a shared area entrance is mapped here. You can refine the individual parking position with an on-site GPS measurement.':'A built-in road approach is available for this parking. You can optionally refine it with an on-site GPS measurement.'):'This destination has a GPS point saved on this device.'):'This reference is not yet in the built-in destination catalogue. You can optionally add its actual location here.'}</p>${existing?`<p>${esc(name)}<br>${existing.lat.toFixed(6)}, ${existing.lon.toFixed(6)}<br>${existing.automatic?'Matched from the ICO terminal plan to the geographic road layout':existing.method==='gps'?'Recorded on site · accuracy ±'+Math.round(existing.accuracy)+' m':'Point selected on the geographic road map'}</p>`:''}<button class="primary" id="capture-parking">I’m at ${esc(name)} · save GPS</button><p>Use this while you are at the named parking${hit.line?' and line '+esc(hit.line):''}. The point is stored on this device.</p><button class="secondary" id="pick-parking">Choose its location on the GPS map</button>${existing&&!existing.automatic?'<button class="inline-button" id="forget-pin" style="margin-top:20px">Remove saved point</button>':''}`);
     $('capture-parking').onclick=()=>capture(hit);
     $('pick-parking').onclick=()=>{
       $('info-dialog').close();pending=hit;showStreet();setPanel(true);status(`Tap the real location of ${name} on the GPS map`);$('cancel-pin').hidden=false;

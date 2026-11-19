@@ -248,9 +248,7 @@
       [
         543,
         479.5
-      ]
-    ],
-    "Z02": [
+      ],
       [
         565,
         371
@@ -272,10 +270,6 @@
     ],
     "Z04": [
       [
-        565,
-        398
-      ],
-      [
         546,
         501
       ]
@@ -288,5 +282,9 @@
     ]
   },
   "gpsPolicy": "Index only until each code is independently associated with current physical roads and a destination area. A source glyph does not become a GPS fix.",
-  "independentReview": "All43 labels re-read on20x source renders; Y group gaps, W centres and repeated Z labels checked independently."
+  "independentReview": "Source labels reviewed on enlarged source renders. Further original-glyph review on 2026-11-19 joins the right-edge Z01 instance previously misread as Z02 and excludes capacity 234 previously misread as a Z04 instance. Additional inventory: 42 actual references and 48 printed labels.",
+  "corrections": {
+    "Z02": "The right-edge glyph is another Z01 at original PDF [565,371], not an additional code.",
+    "Z04": "Only [546,501] is a parking label. The annotation at [565,398] reads capacity 234 and is excluded."
+  }
 }

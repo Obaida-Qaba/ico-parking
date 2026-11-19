@@ -24,7 +24,7 @@ if(process.argv.includes('--verify-published')){
  console.log('PASS published full-audit snapshot matches every current reference and input fingerprint.');
 }
 writeFileSync(new URL('all-parking-audit.json',output),JSON.stringify(report,null,2)+'\n');
-const columns=['map','code','approachName','precision','routingScope','sourceIndexed','searchable','routeReady','withinTerminalReady','locationEvidenceConsistent','surveyedDestination','issues'];
+const columns=['map','code','approachName','precision','individualParkingVerified','routingScope','sourceIndexed','searchable','routeReady','withinTerminalReady','locationEvidenceConsistent','surveyedDestination','issues'];
 const csv=value=>'"'+String(Array.isArray(value)?value.join('; '):value??'').replaceAll('"','""')+'"';
 writeFileSync(new URL('all-parking-audit.csv',output),[columns.join(','),...report.rows.map(row=>columns.map(key=>csv(row[key])).join(','))].join('\n')+'\n');
 if(process.argv.includes('--publish-report')){

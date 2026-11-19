@@ -23,6 +23,9 @@ try{
  await page.goto(base+'/?map=toyota&parking=A01&line=15');
  await page.locator('.destination-code').waitFor();
  assert.match(await page.locator('#route-button').innerText(),/View parking/,'an unmapped GPS approach offers the actual parking plan rather than a setup flow');
+ assert.match(await page.locator('.line-note').innerText(),/GPS route.*not mapped/i,'the selected destination explicitly identifies the missing GPS route');
+ assert.equal(await page.locator('.destination-routing-scope').isVisible(),true);
+ assert.match(await page.locator('.destination-routing-scope').innerText(),/No GPS route/);
  await page.locator('#route-button').click();
  await page.waitForFunction(()=>document.querySelector('.leaflet-image-layer')?.naturalWidth>0);
  assert.equal(await page.locator('dialog[open]').count(),0,'primary action never asks the user to record parking GPS');

@@ -221,6 +221,9 @@ for builder,filename in [
     ('build_north_remaining_destinations.py','north-remaining-destinations.json'),
     ('build_central_remaining_destinations.py','central-remaining-destinations.json'),
     ('build_nissan_destinations.py','nissan-destinations.json'),
+    ('build_toyota_area_destinations.py','toyota-area-destinations.json'),
+    ('build_d_area_destinations.py','d-area-destinations.json'),
+    ('build_legacy_vpc_area_destinations.py','legacy-vpc-area-destinations.json'),
 ]:
     subprocess.run([sys.executable,str(ROOT/'scripts'/builder)],check=True,cwd=ROOT)
     extra=json.loads((ROOT/'scripts/geo'/filename).read_text(encoding='utf-8'))
@@ -239,10 +242,10 @@ for source_map in DATA['maps']:
     audit[source_map['id']]={'total':len(source_map['parkings']),'routable':len(source_map['parkings'])-len(missing),'missing':missing}
 
 result={
- 'version':5,'source':'ICO terminal plans and individually matched geographic road/landmark geometry',
+ 'version':6,'source':'ICO terminal plans, matched geographic approaches and explicitly labelled shared-area entrances',
  'sourceUrl':'https://www.icoterminals.com/sites/default/files/SIT%20terminalplan%20SIT%2021%2009%202026.pdf',
- 'lineExact':False,'coverage':'Bounded individually matched regions only; no global schematic georeference or site validation claimed.',
- 'coverageDefinition':'coverageAudit counts built-in road approaches, including restricted within-terminal networks. parking-audit.json separately checks external connectivity, missing destinations and accuracy limitations.',
+ 'lineExact':False,'coverage':'Matched road approaches and explicitly labelled shared-area entrances; no global schematic georeference or site validation claimed.',
+ 'coverageDefinition':'coverageAudit counts built-in approaches, shared-area entrances and restricted within-terminal networks. parking-audit.json separately checks connectivity, missing destinations and individual-parking limitations.',
  'controlPoints':{'bastenaken':BASTENAKEN_CONTROLS,'hanze':HANZE_CONTROLS},
  'destinations':out,'regions':regions,'coverageAudit':audit,'evidenceGaps':evidence_gaps
 }

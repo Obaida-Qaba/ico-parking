@@ -1,6 +1,6 @@
 {
-  "base": "http://127.0.0.1:4173",
-  "generatedAt": "2026-11-19T14:57:16.051Z",
+  "base": "https://obaida-qaba.github.io/ico-parking",
+  "generatedAt": "2026-11-19T15:06:15.468Z",
   "inputHashFormat": "SHA256 of JSON.stringify(JSON.parse(file)); whitespace and line endings ignored.",
   "inputSHA256": {
     "data.json": "6c2c25ee56e97691e2a6b9b43b6f93f36165cc0450a0cee5407c9abf67dd7970",
@@ -5764,5 +5764,5 @@
     }
   ],
   "areaEntranceChoices": 93,
-  "verification": "Complete local browser sweep with simulated GPS. Connected road routes and explicit area-entrance wording checked; missing geographic destinations remain identified. This is not a physical survey of numbered bays."
+  "verification": "Complete deployed-site browser sweep with simulated GPS. Connected road routes and explicit area-entrance wording checked; missing geographic destinations remain identified. This is not a physical survey of numbered bays."
 }

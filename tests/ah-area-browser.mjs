@@ -23,7 +23,7 @@ try{
   assert.equal(await page.locator('.destination-code').innerText(),code);
   assert.equal(new URL(page.url()).searchParams.get('map'),'south','normal search uses the supported current source');
   assert.match(await page.locator('#route-button').innerText(),/Route to area/,'the selected H reference must offer a real route');
-  assert.equal(await page.locator('.destination-routing-scope').isVisible(),true);
+   await page.locator('.destination-routing-scope').waitFor({state:'visible'});
   assert.match(await page.locator('.destination-routing-scope').innerText(),/Area entrance/);
   await page.locator('#route-button').click();await page.locator('.road-route').waitFor();
   assert.ok(await page.locator('.mapped-road-fill').count()>0);

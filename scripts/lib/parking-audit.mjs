@@ -1,5 +1,5 @@
 import {searchParkings} from '../../public/core.mjs';
-import {resolveDestination,isAreaEntry} from '../../public/destinations.mjs';
+import {resolveDestination,isAreaEntry,isAreaApproach,destinationEvidenceGap} from '../../public/destinations.mjs';
 import {buildGraph,distanceMetres,nearestRoad,routeRoads,validPin} from '../../public/navigation.mjs';
 import {createHash} from 'node:crypto';
 
@@ -18,7 +18,7 @@ export function auditChoices(hit,catalogue){
 }
 
 export function auditOrigins(catalogue){
-  const names={south:['south:CD1','south:HC1','south:H61','north:BB'],north:['north:BB','north:P','north:X','south:CD1'],toyota:['toyota:A01','toyota:D12','toyota:G09','north:BB'],hanze:['south:H61','south:H1','south:H52','north:BB'],bastenaken:['south:CD1','south:HC1','south:LA1','north:BB'],nissan:['nissan:VA','nissan:VH001','north:BB']};
+  const names={south:['south:CD1','south:HC1','south:H61','north:BB'],north:['north:BB','north:P','north:X','south:CD1'],toyota:['toyota:A01','toyota:Y02','toyota:R01','north:BB'],hanze:['south:H61','south:H1','south:H52','north:BB'],bastenaken:['south:CD1','south:HC1','south:LA1','north:BB'],nissan:['nissan:VA','nissan:VH001','north:BB']};
   return Object.fromEntries(Object.entries(names).map(([id,keys])=>[id,keys.map(key=>({name:key,point:catalogue.destinations[key],scope:key.startsWith('north:')&&id!=='north'||id==='north'&&key.startsWith('south:')?'inter-terminal':'terminal'})).filter(p=>validPin(p.point)).map(p=>({...p,point:xy(p.point)}))]));
 }
 
@@ -38,11 +38,11 @@ export function auditParkings({atlas,catalogue,roads,origins=auditOrigins(catalo
       rows.push(row);records.push(row);
       if(!sourceIndexed)issues.push('source-index-invalid');
       if(!searchable)issues.push('not-searchable');
-      if(!pin){issues.push('missing-destination');continue;}
+      if(!pin){issues.push('missing-destination');const gap=destinationEvidenceGap(choice,catalogue);if(gap)row.locationLimitation=gap.reason;continue;}
       row.target={lat:pin.lat,lon:pin.lon,roadWay:pin.roadWay||null,roadSegment:pin.roadSegment||null};
       row.routingScope=pin.routingScope||'connected-road-network';
-      row.precision=isAreaEntry(pin)?'area-entry-only':pin.historical||map.historical||pin.sourceRevision?.includes('historical')?'historical-area-approach':pin.scope==='parking-group-approach'?'shared-area-approach':'source-matched-parking-approach';
-      row.individualParkingVerified=isAreaEntry(pin)?false:null;
+      row.precision=isAreaEntry(pin)?'area-entry-only':isAreaApproach(pin)?'area-approach-only':pin.historical||map.historical||pin.sourceRevision?.includes('historical')?'historical-area-approach':pin.scope==='parking-group-approach'?'shared-area-approach':'source-matched-parking-approach';
+      row.individualParkingVerified=isAreaEntry(pin)||isAreaApproach(pin)?false:null;
       row.evidence={sourceMap:pin.sourceMap||null,revision:pin.sourceRevision||null,method:pin.method||null,region:pin.region||null,basis:pin.basis||null,scope:pin.scope||null};
       row.exactLine=!!pin.exactLine;
       const nearby=nearestRoad(graph,xy(pin));row.roadOffsetMetres=nearby?rounded(nearby.distance):null;
@@ -81,6 +81,7 @@ export function auditParkings({atlas,catalogue,roads,origins=auditOrigins(catalo
   }
   const summary={references:byReference.size,targets:rows.filter(r=>r.target).length,routeReady:[...byReference.values()].filter(group=>group.length&&group.every(r=>r.routeReady)).length,withinTerminalRouteReady:[...byReference.values()].filter(group=>group.length&&group.every(r=>r.withinTerminalReady)).length,missing:[...byReference.values()].filter(group=>group.some(r=>r.issues.includes('missing-destination'))).length,evidenceInconsistent:rows.filter(r=>r.target&&!r.locationEvidenceConsistent).length,surveyedDestinations:rows.filter(r=>r.surveyedDestination).length,routeCases:rows.reduce((n,r)=>n+r.routes.length,0),routeFailures:rows.flatMap(r=>r.routes).filter(r=>!r.available).length};
   summary.areaEntranceReferences=[...byReference.values()].filter(group=>group.some(row=>row.precision==='area-entry-only')).length;
+  summary.areaApproachReferences=[...byReference.values()].filter(group=>group.some(row=>row.precision==='area-approach-only')).length;
   summary.complete=summary.routeReady===summary.references&&summary.evidenceInconsistent===0&&rows.every(r=>r.precision==='surveyed-destination');
   return {schemaVersion:1,scope:'Every indexed reference in every supplied terminal plan, including historical plans and explicit compound choices.',verification:'Routes are simulated on the corrected road graph. Source matches and shared-area approaches are not surveyed entrances or parking-line coordinates. No field-accuracy or current gate-access claim is made.',summary,terminals:Object.fromEntries(atlas.maps.map(map=>{const groups=[...byReference.values()].filter(group=>group[0]?.map===map.id);return [map.id,{references:groups.length,routeReady:groups.filter(g=>g.every(r=>r.routeReady)).length,missing:groups.filter(g=>g.some(r=>r.issues.includes('missing-destination'))).length}];})),rows};
 }

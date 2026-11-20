@@ -1,10 +1,25 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
-import {resolveDestination} from '../public/destinations.mjs';
+import {resolveDestination,isAreaEntry,isAreaApproach,destinationEvidenceGap} from '../public/destinations.mjs';
 import {readFileSync} from 'node:fs';
 import {buildGraph,nearestRoad,distanceMetres,validPin} from '../public/navigation.mjs';
 const hit={map:{id:'bastenaken'},parking:{code:'HC1'},line:null};
 const automatic={destinations:{'south:HC1':{lat:51.301,lon:3.225,method:'source-road-match',scope:'parking-approach'}}};
+
+test('a shared boundary-road approach is distinct from a confirmed area entrance',()=>{
+ const approach=resolveDestination(hit,{}, {destinations:{'south:HC1':{lat:51.301,lon:3.225,precision:'area-approach-only',scope:'parking-group-approach'}}});
+ assert.equal(isAreaApproach(approach),true);assert.equal(isAreaEntry(approach),false);
+ assert.equal(isAreaApproach({...approach,automatic:false}),false,'saved refinements retain their own precision');
+ assert.equal(isAreaApproach({...approach,precision:'area-entry-only'}),false);
+});
+
+test('source-only reasons resolve on their own source or a canonical South alias',()=>{
+ const gap={sourceMap:'south',code:'HC1',reason:'Named parking position is not independently matched.'};
+ assert.equal(destinationEvidenceGap(hit,{evidenceGaps:[gap]}),gap);
+ assert.equal(destinationEvidenceGap({...hit,parking:{code:'HC2'}},{evidenceGaps:[gap]}),null);
+ const exact={sourceMap:'bastenaken',code:'HC1',reason:'Older source only'};
+ assert.equal(destinationEvidenceGap(hit,{evidenceGaps:[gap,exact]}),exact);
+});
 test('known parking navigates immediately without asking user to record GPS',()=>{
  const point=resolveDestination(hit,{},automatic);
  assert.ok(point);assert.equal(point.lat,51.301);assert.equal(point.automatic,true);

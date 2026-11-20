@@ -1,4 +1,4 @@
-const CACHE='portway-v24-google-satellite';
+const CACHE='portway-v25-parking-geography';
 self.addEventListener('install',event=>{
   event.waitUntil((async()=>{
     const cache=await caches.open(CACHE);

@@ -6,7 +6,7 @@ import {buildGraph,routeRoads} from '../public/navigation.mjs';
 const base=(process.env.PORTWAY_BASE_URL||'http://127.0.0.1:4173').replace(/\/$/,'');
 const catalogue=JSON.parse(readFileSync('public/destinations.json','utf8'));
 const graph=buildGraph(JSON.parse(readFileSync('public/roads.json','utf8')));
-const start=[catalogue.destinations['toyota:B05'].lat,catalogue.destinations['toyota:B05'].lon];
+const start=[catalogue.destinations['toyota:A01'].lat,catalogue.destinations['toyota:A01'].lon];
 mkdirSync('test-results',{recursive:true});
 const browser=await chromium.launch();
 const context=await browser.newContext({viewport:{width:390,height:844},isMobile:true,hasTouch:true});

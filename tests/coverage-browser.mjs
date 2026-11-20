@@ -2,7 +2,7 @@ import {chromium} from '@playwright/test';
 import assert from 'node:assert/strict';
 import {readFileSync,mkdirSync} from 'node:fs';
 import {buildGraph,routeRoads,distanceMetres} from '../public/navigation.mjs';
-import {resolveDestination} from '../public/destinations.mjs';
+import {resolveDestination,isAreaEntry} from '../public/destinations.mjs';
 
 mkdirSync('test-results',{recursive:true});
 const catalogue=JSON.parse(readFileSync('public/destinations.json','utf8'));
@@ -20,7 +20,7 @@ for(const [mapId,code] of [['north','BB'],['south','BB1'],['toyota','A01'],['han
   if(route.available&&route.distance>100&&route.distance<1400){start=candidate;expected=route.distance;break;}
  }
  assert.ok(start,'connected start road for '+mapId+':'+code);
- fixtures.push({mapId,code,start,expected});
+ fixtures.push({mapId,code,start,expected,areaEntry:isAreaEntry(point)});
 }
 const base=(process.env.PORTWAY_BASE_URL||'http://127.0.0.1:4173').replace(/\/$/,'');
 const browser=await chromium.launch();
@@ -35,10 +35,10 @@ try{
  for(const fixture of fixtures){
   await page.goto(`${base}/?map=${fixture.mapId}&parking=${fixture.code}&line=15`);
   await page.locator('.destination-code').waitFor();
-  assert.match(await page.locator('#route-button').innerText(),/Start route/,fixture.mapId+':'+fixture.code+' starts navigation directly');
+  assert.match(await page.locator('#route-button').innerText(),fixture.areaEntry?/Route to area/:/Start route/,fixture.mapId+':'+fixture.code+' offers its actual route scope');
   await page.locator('#route-button').click();await page.locator('.road-route').waitFor();
   assert.equal(await page.locator('dialog[open]').count(),0,'no request to record the parking position');
-  assert.match(await page.locator('#navigation-detail').innerText(),new RegExp(fixture.code+' parking (?:area )?approach.*Line 15 remains a reference'));
+  assert.match(await page.locator('#navigation-detail').innerText(),fixture.areaEntry?/individual parking position is not mapped.*Line 15 remains a reference/:new RegExp(fixture.code+' parking (?:area )?approach.*Line 15 remains a reference'));
   const text=await page.locator('#navigation-distance').innerText(),metres=parseFloat(text)*(text.includes('km')?1000:1);
   assert.ok(Math.abs(metres-fixture.expected)<(text.includes('km')?55:2),'distance matches connected roads for '+fixture.code);
   assert.equal(await page.evaluate(()=>localStorage.getItem('portway-gps-pins')),null);

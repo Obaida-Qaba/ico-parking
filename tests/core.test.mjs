@@ -4,7 +4,7 @@ import { readFileSync } from 'node:fs';
 import { parseDestination, searchParkings, routeStatus, terminalFromInput } from '../public/core.mjs';
 import {resolveDestination} from '../public/destinations.mjs';
 
-test('B5 finds the existing Toyota B05 route and preserves the official code and line',()=>{
+test('B5 finds the Toyota B05 source reference without inventing a GPS route',()=>{
   const {maps}=JSON.parse(readFileSync(new URL('../public/data.json',import.meta.url)));
   const catalogue=JSON.parse(readFileSync(new URL('../public/destinations.json',import.meta.url)));
   const hits=searchParkings(maps,'Toyota B5 line 12','north');
@@ -12,7 +12,7 @@ test('B5 finds the existing Toyota B05 route and preserves the official code and
   assert.equal(hits[0].parking.code,'B05');
   assert.equal(hits[0].line,'12');
   assert.equal(hits[0].exactMatch,true,'a full numeric equivalent can be selected on submit');
-  assert.equal(resolveDestination(hits[0],{},catalogue)?.parking,'B05');
+  assert.equal(resolveDestination(hits[0],{},catalogue),null,'a successful name match is not geographic proof');
 });
 
 test('omitted leading zeroes never merge distinct official codes in one map',()=>{

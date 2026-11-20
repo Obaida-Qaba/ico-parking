@@ -10,7 +10,7 @@ test('historical Toyota extrapolations into fenced gas facilities cannot remain 
   assert.ok(parking,'the source reference stays searchable');
   assert.equal(resolveDestination({map,parking},{},catalogue),null,code+' has no independently supported current parking target');
  }
- assert.ok(catalogue.destinations['toyota:A01'],'independently supported neighbouring compound remains');
+ assert.equal(catalogue.destinations['toyota:A01']?.precision,'area-entry-only','A01 retains the independently confirmed shared area entrance, without claiming an individual bay');
 });
 test('current fitted C-row and H61 metadata retain the actual source glyph separately from fitting controls',()=>{
  const map=atlas.maps.find(m=>m.id==='south');

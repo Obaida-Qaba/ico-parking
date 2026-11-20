@@ -1,20 +1,20 @@
 {
-  "base": "https://obaida-qaba.github.io/ico-parking",
-  "generatedAt": "2026-11-19T15:06:15.468Z",
+  "base": "http://127.0.0.1:4174",
+  "generatedAt": "2026-11-20T01:05:17.806Z",
   "inputHashFormat": "SHA256 of JSON.stringify(JSON.parse(file)); whitespace and line endings ignored.",
   "inputSHA256": {
     "data.json": "6c2c25ee56e97691e2a6b9b43b6f93f36165cc0450a0cee5407c9abf67dd7970",
-    "destinations.json": "0a020b974c06e4f2233b9f75229f61294faa427ba25672004ebf9f1e8cf2830d",
+    "destinations.json": "7854456630135bc66c9ac8cd6d1ed8807044fd2671a72e4171ed0fcf2b3d1ed1",
     "roads.json": "ac53a02eba3d5ad0821dcb036c83be7c3106458acadaf4c8fd97e23430088b4e"
   },
   "servedInputSHA256": {
     "data.json": "6c2c25ee56e97691e2a6b9b43b6f93f36165cc0450a0cee5407c9abf67dd7970",
-    "destinations.json": "0a020b974c06e4f2233b9f75229f61294faa427ba25672004ebf9f1e8cf2830d",
+    "destinations.json": "7854456630135bc66c9ac8cd6d1ed8807044fd2671a72e4171ed0fcf2b3d1ed1",
     "roads.json": "ac53a02eba3d5ad0821dcb036c83be7c3106458acadaf4c8fd97e23430088b4e"
   },
   "servedFinalSHA256": {
     "data.json": "6c2c25ee56e97691e2a6b9b43b6f93f36165cc0450a0cee5407c9abf67dd7970",
-    "destinations.json": "0a020b974c06e4f2233b9f75229f61294faa427ba25672004ebf9f1e8cf2830d",
+    "destinations.json": "7854456630135bc66c9ac8cd6d1ed8807044fd2671a72e4171ed0fcf2b3d1ed1",
     "roads.json": "ac53a02eba3d5ad0821dcb036c83be7c3106458acadaf4c8fd97e23430088b4e"
   },
   "inputStable": true,
@@ -23,7 +23,7 @@
   "checked": 717,
   "completeRun": true,
   "uiFailures": 0,
-  "missingDestinations": 109,
+  "missingDestinations": 223,
   "limitedRoutingChoices": 13,
   "results": [
     {
@@ -31,6 +31,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 500.3250221349832
     },
@@ -39,6 +40,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 442.2439547628342
     },
@@ -47,6 +49,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 411.63875109492693
     },
@@ -55,6 +58,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 398.72409332808587
     },
@@ -63,6 +67,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 372.4762476258778
     },
@@ -71,6 +76,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 345.9579554784806
     },
@@ -79,6 +85,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 390.1566486262815
     },
@@ -87,6 +94,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 389.0800648405751
     },
@@ -95,6 +103,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 474.19147668587965
     },
@@ -103,6 +112,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 651.1838733406604
     },
@@ -111,6 +121,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 522.9277786052508
     },
@@ -119,6 +130,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 522.9277786052508
     },
@@ -127,6 +139,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 347.2054047042914
     },
@@ -135,6 +148,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 347.9360036066313
     },
@@ -143,6 +157,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 251.7368246207031
     },
@@ -151,6 +166,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 223.70069133843876
     },
@@ -159,6 +175,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 195.45465535722627
     },
@@ -167,6 +184,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 227.18796581972828
     },
@@ -175,6 +193,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -183,6 +202,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -191,6 +211,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 230.4733642892371
     },
@@ -199,6 +220,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 315.71052611957566
     },
@@ -207,6 +229,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 485.7279411575765
     },
@@ -215,6 +238,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 522.9277786052508
     },
@@ -223,6 +247,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 522.9277786052508
     },
@@ -231,6 +256,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 555.2051957253992
     },
@@ -239,6 +265,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 442.73395916703663
     },
@@ -247,6 +274,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 459.34080860168405
     },
@@ -255,6 +283,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 472.5172761365758
     },
@@ -263,6 +292,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 609.4020153268252
     },
@@ -271,6 +301,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 774.2070133118208
     },
@@ -279,6 +310,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 840.5319747240798
     },
@@ -287,6 +319,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 995.9518617066874
     },
@@ -295,6 +328,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 581.4379354680138
     },
@@ -303,6 +337,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 498.85313125615926
     },
@@ -311,6 +346,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 425.4873918474376
     },
@@ -319,6 +355,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 442.2195922772925
     },
@@ -327,6 +364,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 506.1022348484927
     },
@@ -335,6 +373,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 641.9891836291443
     },
@@ -343,6 +382,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -351,6 +391,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 365.1744998292568
     },
@@ -359,6 +400,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 365.3249319099621
     },
@@ -367,6 +409,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 277.30337005871843
     },
@@ -375,6 +418,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -383,6 +427,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -391,6 +436,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -399,6 +445,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 416.39242656992235
     },
@@ -407,6 +454,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -415,6 +463,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 295.59081917658784
     },
@@ -423,6 +472,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -431,6 +481,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -439,6 +490,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -447,6 +499,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 527.4507090422373
     },
@@ -455,6 +508,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 526.6947276115683
     },
@@ -463,6 +517,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 523.5920099131412
     },
@@ -471,6 +526,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -479,6 +535,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -487,6 +544,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 431.1976886561615
     },
@@ -495,6 +553,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -503,6 +562,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -511,6 +571,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -519,6 +580,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 583.4381220764928
     },
@@ -527,6 +589,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -535,6 +598,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -543,6 +607,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -551,6 +616,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -559,6 +625,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 690.2196446300759
     },
@@ -567,6 +634,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 689.9503430213134
     },
@@ -575,6 +643,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -583,6 +652,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -591,6 +661,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -599,6 +670,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 511.3494556248107
     },
@@ -607,6 +679,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -615,6 +688,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -623,6 +697,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -631,6 +706,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -639,6 +715,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -647,6 +724,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -655,6 +733,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -663,6 +742,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -671,6 +751,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 749.5755433547454
     },
@@ -679,6 +760,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 768.7613617031119
     },
@@ -687,6 +769,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 782.6574033194887
     },
@@ -695,6 +778,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 754.6303190769606
     },
@@ -703,6 +787,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 724.4189713473853
     },
@@ -711,6 +796,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 976.403455855934
     },
@@ -719,6 +805,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 976.403455855934
     },
@@ -727,6 +814,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 976.403455855934
     },
@@ -735,6 +823,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 976.403455855934
     },
@@ -743,6 +832,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 757.1110306445295
     },
@@ -751,6 +841,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 848.0370344077165
     },
@@ -759,6 +850,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -767,6 +859,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -775,6 +868,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -783,6 +877,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 912.9013996473071
     },
@@ -791,6 +886,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 912.8666962922207
     },
@@ -799,6 +895,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 932.3672941548455
     },
@@ -807,6 +904,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 904.3375767383384
     },
@@ -815,6 +913,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 874.1377761132499
     },
@@ -823,6 +922,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 976.403455855934
     },
@@ -831,6 +931,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 976.403455855934
     },
@@ -839,6 +940,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 976.403455855934
     },
@@ -847,6 +949,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 976.403455855934
     },
@@ -855,6 +958,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -863,6 +967,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1079.5686829969559
     },
@@ -871,6 +976,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1075.3851686272155
     },
@@ -879,6 +985,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1100.8352122015256
     },
@@ -887,6 +994,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1071.842672521472
     },
@@ -895,6 +1003,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1041.6307672626976
     },
@@ -903,6 +1012,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1136.1038512397488
     },
@@ -911,6 +1021,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1136.1038512397488
     },
@@ -919,6 +1030,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1136.1038512397488
     },
@@ -927,6 +1039,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1136.1038512397488
     },
@@ -935,6 +1048,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1053.1503643367614
     },
@@ -943,6 +1057,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1076.0052076576137
     },
@@ -951,6 +1066,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1096.5408834961506
     },
@@ -959,6 +1075,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1126.9569765009664
     },
@@ -967,6 +1084,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1234.8377355653834
     },
@@ -975,6 +1093,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1234.849001012456
     },
@@ -983,6 +1102,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1268.3581345889356
     },
@@ -991,6 +1111,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1240.312441052416
     },
@@ -999,6 +1120,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1210.100249972281
     },
@@ -1007,6 +1129,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1296.4675782788013
     },
@@ -1015,6 +1138,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1296.4675782788013
     },
@@ -1023,6 +1147,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1296.4675782788013
     },
@@ -1031,6 +1156,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1296.4675782788013
     },
@@ -1039,6 +1165,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1213.0974668593833
     },
@@ -1047,6 +1174,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1236.3944999819166
     },
@@ -1055,6 +1183,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1256.8630061203366
     },
@@ -1063,6 +1192,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1274.2532413891213
     },
@@ -1071,6 +1201,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1396.61303664872
     },
@@ -1079,6 +1210,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1396.9528140089435
     },
@@ -1087,6 +1219,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1437.908134211642
     },
@@ -1095,6 +1228,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1409.8570808070879
     },
@@ -1103,6 +1237,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1379.6594112125194
     },
@@ -1111,6 +1246,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1458.1768632994404
     },
@@ -1119,6 +1255,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1458.1768632994404
     },
@@ -1127,6 +1264,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1458.1768632994404
     },
@@ -1135,6 +1273,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1458.1768632994404
     },
@@ -1143,6 +1282,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1373.970296309863
     },
@@ -1151,6 +1291,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1397.2712814712672
     },
@@ -1159,6 +1300,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1417.7272817787177
     },
@@ -1167,6 +1309,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1434.5246089360442
     },
@@ -1175,6 +1318,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1549.9284555704064
     },
@@ -1183,6 +1327,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1550.17514618211
     },
@@ -1191,6 +1336,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1603.2976302973364
     },
@@ -1199,6 +1345,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1578.596176808994
     },
@@ -1207,6 +1354,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1548.4035525745119
     },
@@ -1215,6 +1363,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1600.2161269074065
     },
@@ -1223,6 +1372,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1600.2161269074065
     },
@@ -1231,6 +1381,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1600.2161269074065
     },
@@ -1239,6 +1390,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1600.2161269074065
     },
@@ -1247,6 +1399,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1526.468694314806
     },
@@ -1255,6 +1408,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1549.7150374968742
     },
@@ -1263,6 +1417,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1570.1187222877097
     },
@@ -1271,6 +1426,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1561.5343013008942
     },
@@ -1279,6 +1435,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 505.8949114406047
     },
@@ -1287,6 +1444,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 824.7410556974284
     },
@@ -1295,6 +1453,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -1303,6 +1462,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -1311,6 +1471,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -1319,6 +1480,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -1327,6 +1489,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -1335,6 +1498,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 469.4690781394768
     },
@@ -1343,6 +1507,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 384.62264915984514
     },
@@ -1351,6 +1516,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -1359,6 +1525,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -1367,6 +1534,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 166.03013617741814
     },
@@ -1375,6 +1543,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 166.03013617741814
     },
@@ -1383,6 +1552,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1097.693150713791
     },
@@ -1391,6 +1561,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 524.4761827034075
     },
@@ -1399,6 +1570,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 454.0782245003243
     },
@@ -1407,6 +1579,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 383.6800177599219
     },
@@ -1415,6 +1588,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 213.3419958950415
     },
@@ -1423,6 +1597,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 258.62580400485393
     },
@@ -1431,6 +1606,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 183.6816372687316
     },
@@ -1439,6 +1615,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 173.50505009076846
     },
@@ -1447,6 +1624,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 243.90414304898383
     },
@@ -1455,6 +1633,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 313.86019060675875
     },
@@ -1463,6 +1642,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 384.14844528237614
     },
@@ -1471,6 +1651,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1030.9535075059507
     },
@@ -1479,6 +1660,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 433.5301326510487
     },
@@ -1487,6 +1669,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 243.44848349489519
     },
@@ -1495,6 +1678,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 232.84984706095477
     },
@@ -1503,6 +1687,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 303.25129588665294
     },
@@ -1511,6 +1696,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 402.35112237463784
     },
@@ -1519,6 +1705,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 557.3478818040189
     },
@@ -1527,6 +1714,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 528.0111332892632
     },
@@ -1535,6 +1723,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 371.38331865332873
     },
@@ -1543,6 +1732,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 701.5666118445599
     },
@@ -1551,6 +1741,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 701.5666118445599
     },
@@ -1559,6 +1750,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 963.281074691401
     },
@@ -1567,6 +1759,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 890.8151843268265
     },
@@ -1575,6 +1768,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 930.72833461996
     },
@@ -1583,6 +1777,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 896.0801013106426
     },
@@ -1591,6 +1786,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 927.4696840433252
     },
@@ -1599,6 +1795,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 815.5640280436126
     },
@@ -1607,6 +1804,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 741.4824739969382
     },
@@ -1615,6 +1813,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 419.57941224269433
     },
@@ -1623,6 +1822,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1097.6931507137915
     },
@@ -1631,6 +1831,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 140.04888953796868
     },
@@ -1639,6 +1840,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 209.27488225248294
     },
@@ -1647,6 +1849,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 386.03048673282274
     },
@@ -1655,6 +1858,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -1663,6 +1867,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 912.0383889610239
     },
@@ -1671,6 +1876,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 635.0507862712416
     },
@@ -1679,6 +1885,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 588.533652733147
     },
@@ -1687,6 +1894,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 513.7009441925444
     },
@@ -1695,6 +1903,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 443.9672272336069
     },
@@ -1703,6 +1912,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 379.2223478944902
     },
@@ -1711,6 +1921,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 318.3316082983651
     },
@@ -1719,6 +1930,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 492.53759296738536
     },
@@ -1727,6 +1939,7 @@
       "hasBuiltInRoute": true,
       "routingScope": "terminal-internal",
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 421.06269309951693
     },
@@ -1735,6 +1948,7 @@
       "hasBuiltInRoute": true,
       "routingScope": "terminal-internal",
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 315.54941602805195
     },
@@ -1743,6 +1957,7 @@
       "hasBuiltInRoute": true,
       "routingScope": "terminal-internal",
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 539.276544589887
     },
@@ -1751,6 +1966,7 @@
       "hasBuiltInRoute": true,
       "routingScope": "terminal-internal",
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 895.3202998590033
     },
@@ -1759,6 +1975,7 @@
       "hasBuiltInRoute": true,
       "routingScope": "terminal-internal",
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 895.3202998590033
     },
@@ -1767,6 +1984,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -1775,6 +1993,7 @@
       "hasBuiltInRoute": true,
       "routingScope": "terminal-internal",
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 401.9987527546058
     },
@@ -1783,6 +2002,7 @@
       "hasBuiltInRoute": true,
       "routingScope": "terminal-internal",
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 308.34830731577574
     },
@@ -1791,6 +2011,7 @@
       "hasBuiltInRoute": true,
       "routingScope": "terminal-internal",
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 422.3114259048839
     },
@@ -1799,6 +2020,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -1807,6 +2029,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -1815,6 +2038,7 @@
       "hasBuiltInRoute": true,
       "routingScope": "terminal-internal",
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 630.28575869821
     },
@@ -1823,6 +2047,7 @@
       "hasBuiltInRoute": true,
       "routingScope": "terminal-internal",
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 525.2652643702113
     },
@@ -1831,6 +2056,7 @@
       "hasBuiltInRoute": true,
       "routingScope": "terminal-internal",
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 201.216754788363
     },
@@ -1839,6 +2065,7 @@
       "hasBuiltInRoute": true,
       "routingScope": "terminal-internal",
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 315.54941602805195
     },
@@ -1847,6 +2074,7 @@
       "hasBuiltInRoute": true,
       "routingScope": "terminal-internal",
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 604.3305920984609
     },
@@ -1855,6 +2083,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -1863,6 +2092,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 83.65914660840227
     },
@@ -1871,6 +2101,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -1879,6 +2110,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 459.03608690545855
     },
@@ -1887,6 +2119,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 275.4775172553081
     },
@@ -1895,6 +2128,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -1903,6 +2137,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 178.6345207029885
     },
@@ -1911,6 +2146,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 178.6345207029885
     },
@@ -1919,6 +2155,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 178.6345207029885
     },
@@ -1927,6 +2164,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 162.3533855573217
     },
@@ -1935,6 +2173,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 865.4326085054468
     },
@@ -1943,6 +2182,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 167.22057904650387
     },
@@ -1951,6 +2191,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 197.47598400086375
     },
@@ -1959,6 +2200,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 229.68894397942262
     },
@@ -1967,6 +2209,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 262.3762823284475
     },
@@ -1975,6 +2218,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 294.27245551551414
     },
@@ -1983,6 +2227,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 325.6002188554229
     },
@@ -1991,6 +2236,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 359.5877215655224
     },
@@ -1999,6 +2245,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -2007,6 +2254,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -2015,6 +2263,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -2023,6 +2272,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -2031,6 +2281,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1377.35420588136
     },
@@ -2039,6 +2290,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 393.3914796006849
     },
@@ -2047,6 +2299,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 475.70954680867766
     },
@@ -2055,6 +2308,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 479.57015526973765
     },
@@ -2063,6 +2317,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 581.8060236797356
     },
@@ -2071,6 +2326,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 526.1341670546062
     },
@@ -2079,6 +2335,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 555.120060598275
     },
@@ -2087,6 +2344,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 565.2180049217677
     },
@@ -2095,6 +2353,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 668.5776196643925
     },
@@ -2103,6 +2362,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 628.8964253437405
     },
@@ -2111,6 +2371,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -2119,6 +2380,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1616.444543900499
     },
@@ -2127,6 +2389,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 627.3601268723089
     },
@@ -2135,6 +2398,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 692.0866472817636
     },
@@ -2143,6 +2407,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 692.0866472817636
     },
@@ -2151,6 +2416,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -2159,6 +2425,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 742.470101421184
     },
@@ -2167,6 +2434,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 695.8985759558469
     },
@@ -2175,6 +2443,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 812.0322591590544
     },
@@ -2183,6 +2452,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 864.0806170192338
     },
@@ -2191,6 +2461,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 865.4326085054466
     },
@@ -2199,6 +2470,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 704.6934878895038
     },
@@ -2207,6 +2479,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 646.7622192895068
     },
@@ -2215,6 +2488,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1203.364140192504
     },
@@ -2223,6 +2497,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 967.0491097896759
     },
@@ -2231,6 +2506,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1203.364140192504
     },
@@ -2239,6 +2515,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 882.7895517457853
     },
@@ -2247,6 +2524,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 959.7781872874442
     },
@@ -2255,6 +2533,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 630.3046904689795
     },
@@ -2263,6 +2542,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1377.35420588136
     },
@@ -2271,6 +2551,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 597.8912723639885
     },
@@ -2279,6 +2560,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1047.535044999642
     },
@@ -2287,6 +2569,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 893.0242973981318
     },
@@ -2295,6 +2578,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 382.82285848889506
     },
@@ -2303,6 +2587,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 734.0720098732702
     },
@@ -2311,6 +2596,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 863.6465493365621
     },
@@ -2319,6 +2605,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1014.3485768895089
     },
@@ -2327,6 +2614,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 903.8008327232659
     },
@@ -2335,6 +2623,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 500.3250221349832
     },
@@ -2343,6 +2632,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 442.2439547628342
     },
@@ -2351,6 +2641,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 411.63875109492693
     },
@@ -2359,6 +2650,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 378.77560131128575
     },
@@ -2367,6 +2659,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 346.830353297486
     },
@@ -2375,6 +2668,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 398.72409332808587
     },
@@ -2383,6 +2677,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 372.4762476258778
     },
@@ -2391,6 +2686,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 345.9579554784806
     },
@@ -2399,6 +2695,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 390.1566486262815
     },
@@ -2407,6 +2704,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 389.0800648405751
     },
@@ -2415,6 +2713,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 474.19147668587965
     },
@@ -2423,6 +2722,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 651.1838733406604
     },
@@ -2431,6 +2731,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 522.9277786052508
     },
@@ -2439,6 +2740,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 522.9277786052508
     },
@@ -2447,6 +2749,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 522.9277786052508
     },
@@ -2455,6 +2758,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 522.9277786052508
     },
@@ -2463,6 +2767,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 522.9277786052508
     },
@@ -2471,6 +2776,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 522.9277786052508
     },
@@ -2479,6 +2785,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 347.2054047042914
     },
@@ -2487,6 +2794,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 347.9360036066313
     },
@@ -2495,6 +2803,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 251.7368246207031
     },
@@ -2503,6 +2812,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 223.70069133843876
     },
@@ -2511,6 +2821,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 195.45465535722627
     },
@@ -2519,6 +2830,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 227.18796581972828
     },
@@ -2527,6 +2839,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -2535,6 +2848,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 230.4733642892371
     },
@@ -2543,6 +2857,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 315.71052611957566
     },
@@ -2551,6 +2866,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 485.7279411575765
     },
@@ -2559,6 +2875,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 522.9277786052508
     },
@@ -2567,6 +2884,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 522.9277786052508
     },
@@ -2575,6 +2893,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 522.9277786052508
     },
@@ -2583,6 +2902,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 522.9277786052508
     },
@@ -2591,6 +2911,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 555.2051957253992
     },
@@ -2599,6 +2920,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 442.73395916703663
     },
@@ -2607,6 +2929,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 459.34080860168405
     },
@@ -2615,6 +2938,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 472.5172761365758
     },
@@ -2623,6 +2947,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 609.4020153268252
     },
@@ -2631,6 +2956,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 774.2070133118208
     },
@@ -2639,6 +2965,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 840.5319747240798
     },
@@ -2647,6 +2974,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 995.9518617066874
     },
@@ -2655,6 +2983,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1165.528730529158
     },
@@ -2663,6 +2992,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1331.3409984016437
     },
@@ -2671,6 +3001,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1490.259486354395
     },
@@ -2679,6 +3010,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1646.4506980698006
     },
@@ -2687,6 +3019,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 581.4379354680138
     },
@@ -2695,6 +3028,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 498.85313125615926
     },
@@ -2703,6 +3037,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 425.4873918474376
     },
@@ -2711,6 +3046,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 442.2195922772925
     },
@@ -2719,6 +3055,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 506.1022348484927
     },
@@ -2727,6 +3064,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 641.9891836291443
     },
@@ -2735,6 +3073,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -2743,6 +3082,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 365.1744998292568
     },
@@ -2751,6 +3091,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 365.3249319099621
     },
@@ -2759,6 +3100,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 277.30337005871843
     },
@@ -2767,6 +3109,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 53.86041710191457
     },
@@ -2775,6 +3118,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 932.3672941548456
     },
@@ -2783,6 +3127,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 49.52554886100111
     },
@@ -2791,6 +3136,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 319.5812404179617
     },
@@ -2799,6 +3145,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 352.0762599955422
     },
@@ -2807,6 +3154,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 360.49849485291264
     },
@@ -2815,6 +3163,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -2823,6 +3172,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -2831,6 +3181,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -2839,6 +3190,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -2847,6 +3199,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -2855,6 +3208,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -2863,6 +3217,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -2871,6 +3226,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -2879,6 +3235,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -2887,6 +3244,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -2895,6 +3253,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -2903,6 +3262,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -2911,6 +3271,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -2919,6 +3280,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -2927,6 +3289,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -2935,6 +3298,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -2943,6 +3307,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -2951,6 +3316,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -2959,6 +3325,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -2967,6 +3334,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -2975,6 +3343,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -2983,6 +3352,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -2991,6 +3361,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -2999,6 +3370,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -3007,6 +3379,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 416.39242656992235
     },
@@ -3015,6 +3388,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 380.8384374461176
     },
@@ -3023,6 +3397,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 295.59081917658784
     },
@@ -3031,6 +3406,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 296.314682502015
     },
@@ -3039,6 +3415,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 227.88725042862356
     },
@@ -3047,6 +3424,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 391.2548206107431
     },
@@ -3055,30 +3433,34 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "south:DRALD",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 4076.201360766514
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "south:DRFLX",
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": true,
       "uiPassed": true,
-      "distanceMetres": 4198.567126984417
+      "distanceMetres": 4093.2714570559738
     },
     {
       "key": "south:DRL",
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1604.808564389741
     },
@@ -3087,6 +3469,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 2783.6961830622654
     },
@@ -3095,22 +3478,25 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": true,
       "uiPassed": true,
-      "distanceMetres": 4164.715773769174
+      "distanceMetres": 4093.2714570559738
     },
     {
       "key": "south:DRWWL",
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": true,
       "uiPassed": true,
-      "distanceMetres": 4164.715773769174
+      "distanceMetres": 4093.2714570559738
     },
     {
       "key": "south:EA1",
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 527.4507090422373
     },
@@ -3119,6 +3505,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 526.6947276115683
     },
@@ -3127,6 +3514,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 523.5920099131412
     },
@@ -3135,6 +3523,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 431.1976886561615
     },
@@ -3143,6 +3532,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 583.4381220764928
     },
@@ -3151,6 +3541,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -3159,6 +3550,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 690.2196446300759
     },
@@ -3167,6 +3559,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 689.9503430213134
     },
@@ -3175,6 +3568,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 511.3494556248107
     },
@@ -3183,6 +3577,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -3191,6 +3586,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 749.5755433547454
     },
@@ -3199,6 +3595,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 768.7613617031119
     },
@@ -3207,6 +3604,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 782.6574033194887
     },
@@ -3215,6 +3613,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 754.6303190769606
     },
@@ -3223,6 +3622,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 724.4189713473853
     },
@@ -3231,6 +3631,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 976.403455855934
     },
@@ -3239,6 +3640,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 976.403455855934
     },
@@ -3247,6 +3649,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 976.403455855934
     },
@@ -3255,6 +3658,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 976.403455855934
     },
@@ -3263,6 +3667,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 757.1110306445295
     },
@@ -3271,6 +3676,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 848.0370344077165
     },
@@ -3279,6 +3685,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -3287,6 +3694,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 4009.627816714092
     },
@@ -3295,6 +3703,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 3555.3745390022486
     },
@@ -3303,6 +3712,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 3484.9765807991653
     },
@@ -3311,6 +3721,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 3414.5783740587626
     },
@@ -3319,6 +3730,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 3518.1415980914408
     },
@@ -3327,6 +3739,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 3289.5241603036948
     },
@@ -3335,6 +3748,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 3214.5799935675723
     },
@@ -3343,6 +3757,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 3135.5028487766804
     },
@@ -3351,6 +3766,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 3065.268247375365
     },
@@ -3359,6 +3775,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 3064.7458247279114
     },
@@ -3367,6 +3784,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 3075.232444736021
     },
@@ -3375,6 +3793,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 3942.888173506252
     },
@@ -3383,6 +3802,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 3055.2160864041284
     },
@@ -3391,6 +3811,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 3155.238064840354
     },
@@ -3399,6 +3820,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 3076.078007413026
     },
@@ -3407,6 +3829,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 3005.6765585873277
     },
@@ -3415,6 +3838,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 2814.338653205781
     },
@@ -3423,6 +3847,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 2751.8217452288327
     },
@@ -3431,6 +3856,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 2751.8217452288327
     },
@@ -3439,6 +3865,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 3875.215740691702
     },
@@ -3447,6 +3874,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 2746.9104824555407
     },
@@ -3455,6 +3883,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 2786.8236327486743
     },
@@ -3463,6 +3892,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 3808.0147673109436
     },
@@ -3471,6 +3901,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 2660.332407226823
     },
@@ -3479,6 +3910,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 2591.764196521029
     },
@@ -3487,6 +3919,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 2488.3306060619225
     },
@@ -3495,6 +3928,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 2454.940542747302
     },
@@ -3503,6 +3937,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 3727.498694043913
     },
@@ -3511,6 +3946,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 2521.5871931120123
     },
@@ -3519,6 +3955,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 2798.1837362248984
     },
@@ -3527,6 +3964,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 2829.521736996475
     },
@@ -3535,6 +3973,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 2861.4269637381944
     },
@@ -3543,6 +3982,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 2892.9825246414225
     },
@@ -3551,6 +3991,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 2912.6884014198904
     },
@@ -3559,6 +4000,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 2887.8173293537443
     },
@@ -3567,6 +4009,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 2863.181911214201
     },
@@ -3575,6 +4018,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 2686.8798342018076
     },
@@ -3583,6 +4027,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 2550.411189543035
     },
@@ -3591,6 +4036,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 2454.940542747302
     },
@@ -3599,6 +4045,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 3653.417139997239
     },
@@ -3607,6 +4054,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 3728.507266716675
     },
@@ -3615,6 +4063,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 3308.927854473981
     },
@@ -3623,6 +4072,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 3311.2388525910087
     },
@@ -3631,6 +4081,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 3240.7046954111665
     },
@@ -3639,6 +4090,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 3315.5641105482164
     },
@@ -3647,6 +4099,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 3304.4946993517556
     },
@@ -3655,6 +4108,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 3823.9730549613246
     },
@@ -3663,6 +4117,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 3448.5609707182216
     },
@@ -3671,6 +4126,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 3493.0923444229425
     },
@@ -3679,6 +4135,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 3422.0401253032433
     },
@@ -3687,6 +4144,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 3351.507059322186
     },
@@ -3695,6 +4153,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 3546.985452271542
     },
@@ -3703,6 +4162,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 3727.5951849982725
     },
@@ -3711,6 +4171,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 3727.5951849982725
     },
@@ -3719,6 +4180,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 3727.5951849982725
     },
@@ -3727,6 +4189,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 3727.5951849982725
     },
@@ -3735,6 +4198,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 3727.5951849982725
     },
@@ -3743,6 +4207,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 3727.5951849982725
     },
@@ -3751,6 +4216,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 912.9013996473071
     },
@@ -3759,6 +4225,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 912.8666962922207
     },
@@ -3767,6 +4234,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 932.3672941548455
     },
@@ -3775,6 +4243,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 904.3375767383384
     },
@@ -3783,6 +4252,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 874.1377761132499
     },
@@ -3791,6 +4261,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 976.403455855934
     },
@@ -3799,6 +4270,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 976.403455855934
     },
@@ -3807,6 +4279,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 976.403455855934
     },
@@ -3815,6 +4288,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 976.403455855934
     },
@@ -3823,6 +4297,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -3831,6 +4306,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 3500.4683187334476
     },
@@ -3839,6 +4315,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 3425.6349131678708
     },
@@ -3847,6 +4324,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 3355.9011962089335
     },
@@ -3855,6 +4333,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 3291.1563168698167
     },
@@ -3863,6 +4342,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 3230.180142702081
     },
@@ -3871,6 +4351,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 2820.74427706477
     },
@@ -3879,6 +4360,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 2721.9015896946603
     },
@@ -3887,6 +4369,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1079.5686829969559
     },
@@ -3895,6 +4378,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1075.3851686272155
     },
@@ -3903,6 +4387,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1100.8352122015256
     },
@@ -3911,6 +4396,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1071.842672521472
     },
@@ -3919,6 +4405,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1041.6307672626976
     },
@@ -3927,6 +4414,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1136.1038512397488
     },
@@ -3935,6 +4423,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1136.1038512397488
     },
@@ -3943,6 +4432,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1136.1038512397488
     },
@@ -3951,6 +4441,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1136.1038512397488
     },
@@ -3959,6 +4450,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1053.1503643367614
     },
@@ -3967,6 +4459,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1076.0052076576137
     },
@@ -3975,6 +4468,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1096.5408834961506
     },
@@ -3983,6 +4477,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1126.9569765009664
     },
@@ -3991,6 +4486,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1234.8377355653834
     },
@@ -3999,6 +4495,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1234.849001012456
     },
@@ -4007,6 +4504,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1268.3581345889356
     },
@@ -4015,6 +4513,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1240.312441052416
     },
@@ -4023,6 +4522,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1210.100249972281
     },
@@ -4031,6 +4531,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1296.4675782788013
     },
@@ -4039,6 +4540,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1296.4675782788013
     },
@@ -4047,6 +4549,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1296.4675782788013
     },
@@ -4055,6 +4558,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1296.4675782788013
     },
@@ -4063,6 +4567,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1213.0974668593833
     },
@@ -4071,6 +4576,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1236.3944999819166
     },
@@ -4079,6 +4585,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1256.8630061203366
     },
@@ -4087,6 +4594,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1274.2532413891213
     },
@@ -4095,6 +4603,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1396.61303664872
     },
@@ -4103,6 +4612,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1396.9528140089435
     },
@@ -4111,6 +4621,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1437.908134211642
     },
@@ -4119,6 +4630,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1409.8570808070879
     },
@@ -4127,6 +4639,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1379.6594112125194
     },
@@ -4135,6 +4648,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1458.1768632994404
     },
@@ -4143,6 +4657,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1458.1768632994404
     },
@@ -4151,6 +4666,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1458.1768632994404
     },
@@ -4159,6 +4675,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1458.1768632994404
     },
@@ -4167,6 +4684,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1373.970296309863
     },
@@ -4175,6 +4693,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1397.2712814712672
     },
@@ -4183,6 +4702,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1417.7272817787177
     },
@@ -4191,6 +4711,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1434.5246089360442
     },
@@ -4199,6 +4720,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1549.9284555704064
     },
@@ -4207,6 +4729,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1550.17514618211
     },
@@ -4215,6 +4738,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1603.2976302973364
     },
@@ -4223,6 +4747,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1578.596176808994
     },
@@ -4231,6 +4756,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1548.4035525745119
     },
@@ -4239,6 +4765,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1600.2161269074065
     },
@@ -4247,6 +4774,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1600.2161269074065
     },
@@ -4255,6 +4783,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1600.2161269074065
     },
@@ -4263,6 +4792,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1600.2161269074065
     },
@@ -4271,6 +4801,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1526.468694314806
     },
@@ -4279,6 +4810,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1549.7150374968742
     },
@@ -4287,6 +4819,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1570.1187222877097
     },
@@ -4295,6 +4828,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1561.5343013008942
     },
@@ -4303,6 +4837,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 654.9153245680301
     },
@@ -4311,6 +4846,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1695.2324558940354
     },
@@ -4319,6 +4855,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1788.461262993032
     },
@@ -4327,6 +4864,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1866.6843863195716
     },
@@ -4335,6 +4873,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 1944.7964637891116
     },
@@ -4343,6 +4882,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 505.8949114406047
     },
@@ -4351,6 +4891,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 824.7410556974284
     },
@@ -4359,6 +4900,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 2023.145932396583
     },
@@ -4367,6 +4909,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 2101.66409963255
     },
@@ -4375,6 +4918,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 2180.555481219687
     },
@@ -4383,6 +4927,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 2259.35226184841
     },
@@ -4391,6 +4936,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 469.4690781394768
     },
@@ -4399,6 +4945,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 384.62264915984514
     },
@@ -4407,6 +4954,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 2337.633916280359
     },
@@ -4415,6 +4963,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 2412.0075523342184
     },
@@ -4423,6 +4972,7 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "distanceMetres": 2558.07576443773
     },
@@ -4430,15 +4980,17 @@
       "key": "toyota:A01",
       "hasBuiltInRoute": true,
       "routingScope": null,
-      "areaEntryOnly": false,
+      "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 728.8554958334669
+      "distanceMetres": 726.1730054241884
     },
     {
       "key": "toyota:A01PPO",
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -4446,31 +4998,35 @@
       "key": "toyota:A02",
       "hasBuiltInRoute": true,
       "routingScope": null,
-      "areaEntryOnly": false,
+      "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 729.5801498718458
+      "distanceMetres": 726.1730054241884
     },
     {
       "key": "toyota:A03",
       "hasBuiltInRoute": true,
       "routingScope": null,
-      "areaEntryOnly": false,
+      "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 730.3048039111874
+      "distanceMetres": 726.1730054241884
     },
     {
       "key": "toyota:A04",
       "hasBuiltInRoute": true,
       "routingScope": null,
-      "areaEntryOnly": false,
+      "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 667.3589771981376
+      "distanceMetres": 726.1730054241884
     },
     {
       "key": "toyota:A05",
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -4479,6 +5035,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -4487,6 +5044,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -4495,6 +5053,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -4503,918 +5062,1033 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:B01",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 784.6074353922817
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:B02",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 808.6633443510058
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:B03",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 870.3360645247064
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:B04",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 871.0839500943928
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:B05",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 880.8307151908856
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:B06",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 903.1685059815065
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:B07",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 927.2245883717508
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:B08",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 951.2806707628392
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:B09",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 975.3367531532235
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:B10",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 997.6745439445486
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:C01",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1020.0123347351696
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:C02",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1042.350125527353
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:C03",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1066.4062079184414
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:C04",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1090.4622903088257
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:C05",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1114.5183726990558
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:C06",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1138.5744550901443
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:C07",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1160.9122458816234
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:C08",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1228.9181172645115
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:C09",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1229.4942032599863
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:C10",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1230.029140255525
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:C11",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1254.0110735489818
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:C12",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1276.3530157467478
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:C13",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1298.3898648717761
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:D09",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1371.2370178057633
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:D10",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1371.772520433296
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:D11",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1386.3709233245347
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:D12",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1410.426369304006
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:D13",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1432.76356914207
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:E09",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1508.473138302507
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:E10",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1509.0095873470118
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:E11",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1509.5460363921795
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:E12",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1521.6392760019933
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:E13",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1543.9773231580077
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:F00",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1456.1636028095797
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:F01",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1456.6598677191882
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:F02",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1457.1206851348393
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:F03",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1457.6169500445094
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:F04",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1595.8931703010308
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:F05",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1596.4157126441517
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:F06",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1596.9784505511916
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:F07",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1597.500992894285
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:F08",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1598.0637308016544
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:F09",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1598.5862731447478
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:F10",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1613.9986733098976
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:F11",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1636.335083253986
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:F12",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1774.1215547484244
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:F13",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1776.430256598879
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:F14",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1778.7389584498653
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:G00",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1602.058790488309
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:G01",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1614.9067862045015
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:G02",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1637.243885597992
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:G03",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1661.2992234071921
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:G04",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1685.3545612155483
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:G05",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1707.691660608334
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:G06",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1722.206084073406
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:G07",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1722.7271274101927
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:G08",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1735.945111126491
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:G09",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1758.2823464977894
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:G10",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1782.337830745016
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:G11",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1804.6750661170329
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:G12",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1828.7305503632754
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:G13",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1851.0677857345738
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:G14",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1907.482621843205
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:H01",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 670.3630264564438
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:H02",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 770.6018258172039
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:H03",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 872.5689927331649
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:H04",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 949.8921147040036
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:H05",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1032.3701114715714
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:H06",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1111.4115250413151
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:H07",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1238.2230156556914
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:H08",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1263.8603523642569
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:H09",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1298.3898648717761
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:H10",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1562.8196590642901
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:H11",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1634.6936384614464
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:H12",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1706.3158408389013
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:H13",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1768.0176954231852
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:H14",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1832.7145631431522
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:I01",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1538.1360923057134
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:I02",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1560.4788874389478
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:I03",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1584.5403591220186
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:I04",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1608.6018308033742
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:I05",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1630.9446259366086
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:I06",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1655.0060976188217
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:I07",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1677.348892752214
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:I08",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1701.4103644351267
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:I09",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1725.471836116497
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:I10",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1747.814631249731
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:I11",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1771.8761029327875
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:I12",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1794.218898065322
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:I13",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1840.7526440323034
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:I14",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1965.9509887110594
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:I15",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 2495.429084969916
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:I16",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 2543.193447182116
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:I17",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 2054.2608732776275
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:J01",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1652.403722939314
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:J02",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1662.0943608454766
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:J03",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1686.149140895426
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:J04",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1710.203920944531
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:J05",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1732.5405024179427
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:J06",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1756.5952824669087
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:J07",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1778.9318639411786
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:J08",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1909.3456227555225
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:J09",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1933.4016848580748
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:J10",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1955.7394568112443
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:J11",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1979.7955189147947
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:J12",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1978.8359069389637
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:J13",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1979.6060828326056
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:J14",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 2104.9189331292123
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:J15",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 2356.502963009619
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:J16",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 2355.783733426821
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:J17",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 2193.219813833695
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:P02",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1455.7027853932914
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:P03",
-      "hasBuiltInRoute": true,
+      "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1601.362451282587
+      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
     {
       "key": "toyota:P04",
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -5423,6 +6097,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -5431,6 +6106,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -5439,6 +6115,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -5447,6 +6124,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -5455,6 +6133,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -5463,6 +6142,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -5471,6 +6151,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -5479,6 +6160,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -5487,14 +6169,16 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1550.4351560466127
+      "distanceMetres": 825.6227563024362
     },
     {
       "key": "toyota:W01",
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -5503,6 +6187,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -5511,6 +6196,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -5519,6 +6205,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -5527,6 +6214,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -5535,6 +6223,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -5543,6 +6232,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -5551,6 +6241,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -5559,6 +6250,7 @@
       "hasBuiltInRoute": false,
       "routingScope": null,
       "areaEntryOnly": false,
+      "areaApproachOnly": false,
       "uiPassed": true,
       "limitation": "No confirmed geographic arrival point; source-plan fallback only"
     },
@@ -5567,202 +6259,227 @@
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1450.9854051683647
+      "distanceMetres": 726.1730054241883
     },
     {
       "key": "toyota:Y04",
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1450.9854051683647
+      "distanceMetres": 726.1730054241883
     },
     {
       "key": "toyota:Y06",
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1450.9854051683647
+      "distanceMetres": 726.1730054241883
     },
     {
       "key": "toyota:Y08",
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1450.9854051683647
+      "distanceMetres": 726.1730054241883
     },
     {
       "key": "toyota:Y10",
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1450.9854051683647
+      "distanceMetres": 726.1730054241883
     },
     {
       "key": "toyota:Y12",
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1450.9854051683647
+      "distanceMetres": 726.1730054241883
     },
     {
       "key": "toyota:Y14",
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1450.9854051683647
+      "distanceMetres": 726.1730054241883
     },
     {
       "key": "toyota:Y16",
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1450.9854051683647
+      "distanceMetres": 726.1730054241883
     },
     {
       "key": "toyota:Y18",
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1450.9854051683647
+      "distanceMetres": 726.1730054241883
     },
     {
       "key": "toyota:Y20",
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1450.9854051683647
+      "distanceMetres": 726.1730054241883
     },
     {
       "key": "toyota:Y22",
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1450.9854051683647
+      "distanceMetres": 726.1730054241883
     },
     {
       "key": "toyota:Y24",
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1450.9854051683647
+      "distanceMetres": 726.1730054241883
     },
     {
       "key": "toyota:Y26",
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1450.9854051683647
+      "distanceMetres": 726.1730054241883
     },
     {
       "key": "toyota:Y28",
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1450.9854051683647
+      "distanceMetres": 726.1730054241883
     },
     {
       "key": "toyota:Y30",
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1450.9854051683647
+      "distanceMetres": 726.1730054241883
     },
     {
       "key": "toyota:Y32",
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1450.9854051683647
+      "distanceMetres": 726.1730054241883
     },
     {
       "key": "toyota:Y34",
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1450.9854051683647
+      "distanceMetres": 726.1730054241883
     },
     {
       "key": "toyota:Y35",
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1450.9854051683647
+      "distanceMetres": 726.1730054241883
     },
     {
       "key": "toyota:Y36",
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1450.9854051683647
+      "distanceMetres": 726.1730054241883
     },
     {
       "key": "toyota:Y37",
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1450.9854051683647
+      "distanceMetres": 726.1730054241883
     },
     {
       "key": "toyota:Y38",
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1450.9854051683647
+      "distanceMetres": 726.1730054241883
     },
     {
       "key": "toyota:Z01",
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1884.6902652157617
+      "distanceMetres": 1159.877865471585
     },
     {
       "key": "toyota:Z03",
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1942.7468197522062
+      "distanceMetres": 1217.9344200080295
     },
     {
       "key": "toyota:Z04",
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1942.7468197522062
+      "distanceMetres": 1217.9344200080295
     },
     {
       "key": "toyota:Z05",
       "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": true,
+      "areaApproachOnly": false,
       "uiPassed": true,
-      "distanceMetres": 1942.7468197522062
+      "distanceMetres": 1217.9344200080295
     }
   ],
-  "areaEntranceChoices": 93,
-  "verification": "Complete deployed-site browser sweep with simulated GPS. Connected road routes and explicit area-entrance wording checked; missing geographic destinations remain identified. This is not a physical survey of numbered bays."
+  "areaEntranceChoices": 97,
+  "areaApproachChoices": 3
 }

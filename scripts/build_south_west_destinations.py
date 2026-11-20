@@ -1,12 +1,12 @@
-"""Rebuild bounded Hanze and historical Toyota parking-road approaches.
+"""Rebuild bounded Hanze parking-road approaches.
 
 The modern Hanze drawing is schematic: blocks are matched by basin/Natie1
 landmarks and the ordered adjacent lane topology, rather than projecting all
-labels with one transform. Toyota uses its two individually identified wind
-turbines, with the independently matching Bridgestone northern edge as a check.
-All routes end on a real, explicitly allowed service road. Historical Toyota
-rows whose internal lanes have changed share their nearest existing block
-approach. No surveyed line positions or current access permission is claimed.
+labels with one transform. The retired two-turbine Toyota fit did not identify
+individual parking fields or current entrances. Its source references stay
+searchable, but only independently matched area builders may emit Toyota GPS.
+All routes end on an explicitly identified service road. No surveyed line
+positions or current access permission is claimed.
 """
 from pathlib import Path
 import json
@@ -32,13 +32,6 @@ TOYOTA_CONTROLS = [
     {'source': [173.5, 460.3], 'geo': [3.2406611, 51.3007641], 'osmNode': '5147481310', 'landmark': 'Wind mill in C11'},
     {'source': [429.4, 489.0], 'geo': [3.2465473, 51.3022612], 'osmNode': '5147482728', 'landmark': 'Wind mill in F13'},
 ]
-TS = np.array([c['source'] for c in TOYOTA_CONTROLS])
-TG = np.array([c['geo'] for c in TOYOTA_CONTROLS])
-u = TS[1] - TS[0]
-v = (TG[1] - TG[0]) * SCALE
-a, b = np.linalg.solve([[u[0], u[1]], [-u[1], u[0]]], v)
-# PDF/image Y points down; geographic north points up: reflected similarity.
-TR = np.array([[a, b], [b, -a]])
 
 
 # Ordered road-node guards make stale topology fail loudly on rebuild.
@@ -202,9 +195,6 @@ def hgeo(point):
     return np.array([*point, 1]) @ HC
 
 
-def tgeo(point):
-    return (TR @ (np.array(point) - TS[0]) + TG[0] * SCALE) / SCALE
-
 
 def road_match(point, road_ids, limit=180):
     best = None
@@ -367,13 +357,9 @@ for code, box, roads, approach in [
 for letter, y, road in [('A', 411.5, '1396678595'), ('B', 402.5, '1396678596'), ('C', 393.5, '1396678597'), ('D', 384.5, '1396678598'), ('E', 375.5, '1396678599'), ('F', 366.4, '1396678600'), ('G', 357.5, '1349890073')]:
     hanze('H51' + letter, [20, y - 4, 64, y + 4], [road], [45, y - 4])
 
-for code, box, roads, approach in [
-    ('DRALD', [668, 553, 704, 579], ['746744823'], [683, 553]),
-    ('DRWWL', [668, 579, 704, 624], ['241869944'], [665.6, 602]),
-    ('DRTOY', [668, 579, 686, 624], ['241869944'], [665.6, 602]),
-    ('DRFLX', [686, 579, 704, 624], ['241869944'], [665.6, 613]),
-]:
-    hanze(code, box, roads, approach, group=True)
+# DR source leaders do not define four rectangular parking cells. FLUX is
+# handled by its separate, whole-compound road-topology builder; ALD remains
+# source-only until its physical band and access are independently matched.
 if source_parking('south', 'DRS'):
     p = source_parking('south', 'DRS')
     source = [p['x'] / 3, p['y'] / 3]
@@ -405,17 +391,15 @@ if 'south:H65' in OUT and 'south:H64' in OUT:
 # indexed catalogue's accumulating row drift. Coordinates remain PDF points.
 TOYOTA_POINTS = json.loads((ROOT / 'scripts/toyota-source-points.json').read_text(encoding='utf-8'))['points']
 
-TOYOTA_ROADS = {
-    'north': ['731070739', '241869936', '241869946', '241869944', '241869927', '746744824', '241869964'],
-    'central': ['241869946', '241869944', '241869968', '241869958', '241869962', '241869964', '241869917', '241869926', '746744824', '746744858', '746744859', '746744860', '746744861', '746744868'],
-    'south': ['241869916', '241869924', '241869942', '746744795', '746744796', '746744825', '746744826', '746744827', '746744828', '746744830', '746744831', '746744832', '505952613'],
-}
 TOYOTA_EXCLUSIONS=json.loads((ROOT/'scripts/destination-evidence-exclusions.json').read_text(encoding='utf-8'))['excludedAutomaticDestinations']
-for code, source in TOYOTA_POINTS.items():
-    if 'toyota:'+code in TOYOTA_EXCLUSIONS:continue
-    region = 'north' if source[1] < 230 else 'south' if source[1] > 530 else 'central'
-    raw = tgeo(source)
-    add('toyota', code, source, raw, raw, TOYOTA_ROADS[region], 'toyota-' + region + '-windmill-block-match', historical=True, group=True)
+TOYOTA_GAPS = {**TOYOTA_EXCLUSIONS}
+for code in TOYOTA_POINTS:
+    TOYOTA_GAPS.setdefault('toyota:'+code, {
+        'sourceMap': 'toyota', 'code': code,
+        'reason': 'The older Toyota drawing was fitted using two windmills, without an independently matched boundary or current entrance for this numbered parking. Road snapping did not validate the parking location. Its PDF reference remains searchable; the unsupported GPS route and label have been withdrawn.',
+        'evidence': ['Cewez brochure page25: historical, non-georeferenced parking drawing',
+                     '2026-11-20 source-to-geography review: source rows and current field partitions differ'],
+    })
 
 # Three old Hanze-only strips adjoin the west basin bend between HH6, H28-31
 # and H19/20. The current plan revises this compound into the larger H26 group.
@@ -439,10 +423,10 @@ result = {
     'sourceUrls': ['https://www.icoterminals.com/sites/default/files/SIT%20terminalplan%20SIT%2021%2009%202026.pdf', 'https://cewez.be/wp-content/uploads/2025/04/Onthaalbrochure-ICO.pdf'],
     'sourcePointUnits': 'Uncropped PDF points; sourcePointAtlasPixels separately uses the public atlas crop/scale.',
     'controls': {'hanze': HANZE_CONTROLS, 'toyota': TOYOTA_CONTROLS},
-    'independentCheck': {'osmWay': '240813032', 'landmark': 'Bridgestone warehouse northern edge adjacent to Toyota I/J field', 'source': [395, 534], 'boundaryResidualMetres': 7.52, 'westernEdgeSchematicOffsetMetres': 44, 'basis': 'Northern edge lies within 7.52m of the independently turbine-matched source point; not a fit input. The western edge differs by about44m, confirming this historical drawing supports block approaches rather than surveyed block corners.'},
-    'regions': [{'id': 'hanze-basin-natie-lane-topology', 'method': 'Individually ordered road strips and named basin/Natie1 landmarks; separate west-bank ladder.'}, {'id': 'toyota', 'method': 'Local two-windmill reflected similarity, independent Bridgestone northern-edge check, and bounded north/central/south service-road lists.', 'historical': True}],
+    'retiredToyotaFit': {'status': 'rejected-for-automatic-destinations', 'reason': 'Two windmills and one warehouse-edge residual do not validate individual historical parking boundaries or current arrivals. Only the independent area builders may emit Toyota destinations.'},
+    'regions': [{'id': 'hanze-basin-natie-lane-topology', 'method': 'Individually ordered road strips and named basin/Natie1 landmarks; separate west-bank ladder.'}],
     'destinations': OUT,
-    'unresolved':list(TOYOTA_EXCLUSIONS.values()),
+    'unresolved':list(TOYOTA_GAPS.values()),
 }
 target = ROOT / 'scripts/geo/south-west-destinations.json'
 target.write_text(json.dumps(result, indent=2), encoding='utf-8')

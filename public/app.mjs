@@ -3,7 +3,7 @@ import { createGPS } from './gps.mjs';
 import { createMapUI } from './map-ui.mjs';
 import { detectTerminal } from './location-context.mjs';
 import { optimizeDrivingMap } from './map-performance.mjs';
-import { destinationChoices,isAreaEntry } from './destinations.mjs';
+import { destinationChoices,isAreaEntry,isAreaApproach,destinationEvidenceGap } from './destinations.mjs';
 import { parkingKey } from './navigation.mjs';
 import { createGoogleSatellite } from './google-satellite.mjs';
 import { GOOGLE_MAPS } from './google-config.mjs';
@@ -225,8 +225,9 @@ function renderGPSActions(){
   if(!selected)return;
   const pin=gps.pinFor(selected);
   const internal=pin?.automatic&&pin.routingScope==='terminal-internal';
-  const areaEntry=isAreaEntry(pin),scopeText=internal?'Within Nissan only':areaEntry?'Area entrance':!pin?'No GPS route yet':null;
-  $('route-button').innerHTML=internal?'Route inside Nissan':`${icon(pin?'route':'layers')} ${areaEntry?'Route to area':pin?'Start route':'View parking'} ${icon('arrow')}`;
+  const areaEntry=isAreaEntry(pin),areaApproach=isAreaApproach(pin),sourceOnly=!pin&&destinationEvidenceGap(selected,catalogue);
+  const scopeText=internal?'Within Nissan only':areaEntry?'Area entrance':areaApproach?'Area approach':sourceOnly?'Plan only · GPS position unverified':!pin?'No GPS route yet':null;
+  $('route-button').innerHTML=internal?'Route inside Nissan':`${icon(pin?'route':'layers')} ${areaEntry||areaApproach?'Route to area':pin?'Start route':sourceOnly?'View ICO plan':'View parking'} ${icon('arrow')}`;
   let scope=$('destination-card').querySelector('.destination-routing-scope');
   if(scopeText&&!scope){
     scope=document.createElement('small');scope.className='destination-routing-scope';
@@ -240,7 +241,8 @@ function renderGPSActions(){
   $('destination-options').hidden=false;
   button.textContent=pin?.automatic?'Refine destination location':pin?'Manage saved GPS point':'Save this parking’s GPS location';button.onclick=()=>gps.setup(selected);
   const note=$('destination-card').querySelector('.line-note');
-  if(!pin){note.textContent=`The GPS route to ${selected.parking.code} is not mapped yet. Its label is available on the source plan.`;}
+  if(!pin){note.textContent=sourceOnly?`The current GPS position of ${selected.parking.code} is unverified. Check its name on the ICO plan.`:`The GPS route to ${selected.parking.code} is not mapped yet. Its label is available on the source plan.`;}
+  else if(areaApproach){note.textContent=`Route to the ${pin.areaName||selected.parking.code+' area'} perimeter road. The exact gate and individual parking position are not mapped.${selected.line?' Find line '+selected.line+' using terminal signs.':''}`;}
   else if(areaEntry){note.textContent=`Route to the ${pin.areaName||selected.parking.code+' area'} entrance. The individual parking position is not mapped.${pin.areaAccessNote?' '+pin.areaAccessNote:''}${selected.line?' Find line '+selected.line+' inside the area.':''}`;}
   else{note.textContent=pin.automatic?`Built-in route to ${selected.parking.code} parking ${pin.scope==='parking-group-approach'?'area ':''}approach.${pin.scope==='parking-group-approach'?' Shared area access; exact entrance is not mapped.':''}${selected.line?' Find line '+selected.line+' inside the parking.':''}`:pin.method==='gps'?`GPS location saved on this device (±${Math.round(pin.accuracy)} m). Road routing uses this saved point.`:'Destination point selected on the road map. Road routing uses this saved point.';if(selected.line&&!pin.exactLine&&!pin.automatic)note.textContent+=' Line '+selected.line+' is not separately positioned.';}
 }
@@ -283,7 +285,7 @@ function renderSearchResults(results,parking){
   $('result-list').replaceChildren();
   if(!results.length){const p=document.createElement('p');p.className='result-list-note';p.textContent=`No indexed parking matches “${parking}”${$('terminal-filter').value!=='all'?' in this terminal':''}. Try another map or a shorter reference. The source plans remain available to browse.`;$('result-list').append(p);}
   for(const hit of results.slice(0,40)){
-    const pin=gps.pinFor(hit),coverage=!pin?'No GPS route':isAreaEntry(pin)?'Area entrance route':pin.automatic&&pin.routingScope==='terminal-internal'?'Within Nissan only':'GPS route';
+    const pin=gps.pinFor(hit),coverage=!pin?(destinationEvidenceGap(hit,catalogue)?'Plan only · GPS position unverified':'No GPS route'):isAreaEntry(pin)?'Area entrance route':isAreaApproach(pin)?'Area road approach':pin.automatic&&pin.routingScope==='terminal-internal'?'Within Nissan only':'GPS route';
     const b=document.createElement('button');b.type='button';b.className='result-row';
     b.dataset.terminal=hit.matchedTerminal||hit.map.id;b.dataset.preferred=String(!!hit.preferred);
     b.innerHTML=`<span class="result-icon">${icon('pin')}</span><span><strong>${esc(hit.parking.code)}${hit.line?` · line ${esc(hit.line)}`:''}</strong><small>${hit.approachName?esc(hit.approachName)+' · ':''}${esc(parkingArea(hit))} · ${esc(coverage)}${hit.map.historical?' · older plan':''}</small></span>${icon('arrow')}`;

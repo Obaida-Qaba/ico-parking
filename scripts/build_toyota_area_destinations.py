@@ -12,6 +12,11 @@ Z01 is the inner G perimeter. The separate Z03/Z04/Z05 triangular apron is
 outside the curved railway; routing stops at its observed crossing approach,
 without adding an unverified road connection across the tracks.
 Nothing is inferred for the gas-site projections or the W/X/P subdivisions.
+
+The historical A01-A04 field is separately matched by its closed access loop,
+quayside strip and eastern redevelopment. Its present southwest connector is
+one shared field entrance, not the historic source GATE or an individual bay.
+H01 remains outside that loop. No flight date is claimed for this mosaic match.
 """
 from pathlib import Path
 import argparse
@@ -21,6 +26,7 @@ import json
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE_URL = 'https://cewez.be/wp-content/uploads/2025/04/Onthaalbrochure-ICO.pdf'
 OFW_URL = 'https://geo.api.vlaanderen.be/ofw/wms'
+MOSAIC_URL = 'https://geo.api.vlaanderen.be/OMWRGBMRVL/wms'
 OWNER_URL = 'https://webapps.portofantwerpbruges.com/arcgis/rest/services/extern/havenmeesterkaart/MapServer/20'
 Y_CODES = [f'Y{n:02}' for n in list(range(2, 35, 2)) + [35, 36, 37, 38]]
 
@@ -36,14 +42,17 @@ ROAD_GUARDS = {
     '746744860': '1078e07bd23a6ac19b14e795160987fd20521c17b6aa7ed3dd97602b08bcb75e',
     '241869917': '29fd55c80ed84a918813793f2178fd4d887a1addcbbf8d2cc6965178bdd737b9',
     '87379708': '6c4066c1ed3e2b232cd15e7c810160e3138e9b55128bf10c38916c8b1e6d6d5e',
+    '731070738': '6d9de652c8f7a26ab1116b8b0b0567e4cf5bf1193498674c5117a96de114e4c1',
+    '731070739': 'eaafa343fa1711c83a352800071f8d43403c6aef118d25991d93f67deb194884',
 }
+ROAD_DIRECTIONS = {'731070739': True}
 
 
 def guarded_ways(roads):
     ways = {w['id']: w for w in roads['ways']}
     for ident, expected in ROAD_GUARDS.items():
         way = ways.get(ident)
-        if not way or way.get('oneway') is not False or way.get('private') is not (ident != '87379708'):
+        if not way or way.get('oneway') is not ROAD_DIRECTIONS.get(ident, False) or way.get('private') is not (ident != '87379708'):
             raise ValueError('Reviewed Toyota area road direction/access changed: ' + ident)
         actual = hashlib.sha256(json.dumps({'nodes': way['nodes'], 'points': way['points']}, separators=(',', ':')).encode()).hexdigest()
         if actual != expected:
@@ -60,7 +69,7 @@ def chain(ways, ident, start, end):
     nodes = way['nodes'][a:b + step:step] if b + step >= 0 else way['nodes'][a::step]
     if not nodes or nodes[-1] != end:
         raise ValueError('Reviewed Toyota area boundary changed: ' + ident)
-    return {'way': ident, 'nodes': nodes, 'oneway': False}
+    return {'way': ident, 'nodes': nodes, 'oneway': way['oneway']}
 
 
 def flight_evidence(position):
@@ -87,6 +96,31 @@ def build(atlas=None, roads=None):
     if 'Z02' in parkings:
         raise ValueError('Toyota source needs review: indexed Z02 was a repeated Z01 glyph, not a parking code.')
     groups = [
+        {
+            'id': 'toyota-a01-a04-shared-field-entrance', 'areaName': 'Historical Toyota A01-A04 field',
+            'codes': ['A01', 'A02', 'A03', 'A04'],
+            'arrivalNode': '6847391526', 'arrivalWay': '731070738',
+            'arrivalSegment': ['6847391526', '6847391525'],
+            'adjoiningLane': ('731070739', '6847391528', '6847391527'),
+            'sourceBounds': [141.6667, 127.6667, 206.6667, 178.6667],
+            'sourceGlyphs': {'A01': [[157, 134]], 'A02': [[157, 148]],
+                             'A03': [[157, 162]], 'A04': [[157, 176]]},
+            'sourceRevision': 'Cewez historical source; whole-field association independently reviewed with the official Flanders orthophoto mosaic; individual partitions unverified',
+            'imageryEvidence': {
+                'service': MOSAIC_URL, 'imageryLayer': 'Ortho',
+                'dataset': 'Flanders most recent orthophoto mosaic',
+                'method': 'Independent official WMS imagery review of the closed field loop, separate western quay strip, eastern redevelopment and southwest access connector. No Google imagery was used to derive these positions.',
+                'limitation': 'The aerial association identifies the whole historical field and its real entrance. Its flight date and the old A01-A04 internal partitions were not independently confirmed.',
+            },
+            'association': 'The whole historical A01-A04 field is matched by the closed access loop north of the cross-terminal road, the separate narrow quay strip to its west and the redevelopment to its east. The present southwest connector joins the independently mapped cross-terminal road at node 6847391525. The current field aisles differ from the old four drawn partitions.',
+            'boundaries': [
+                {'way': '731070739', 'nodes': ways['731070739']['nodes'], 'oneway': True,
+                 'role': 'complete one-way loop surrounding the independently matched historical A01-A04 whole field'},
+                dict(chain(ways, '731070738', '6847391526', '6847391525'), role='real two-way connector from the field loop to the cross-terminal approach road'),
+                dict(chain(ways, '241869964', '2494477588', '2494477618'), role='existing cross-terminal road junction at connector node 6847391525'),
+            ],
+            'boundaryLimitation': 'Only the whole-field entrance is located; no individual A01-A04 bay centre, row or exact line is established. H01 is outside the loop in the separate western quay strip and is not included. The historic source GATE is not identified with this current connector. Eastern A05-A09 and A01PPO are not inferred across the redevelopment.',
+        },
         {
             'id': 'toyota-y-shared-field-entrance', 'areaName': 'Toyota Y area', 'codes': Y_CODES,
             'arrivalNode': '6988020209', 'arrivalWay': '746744858',
@@ -154,7 +188,7 @@ def build(atlas=None, roads=None):
         branch = chain(ways, *adjoining) if adjoining else None
         if branch and group['arrivalNode'] not in branch['nodes']:
             raise ValueError('Reviewed Toyota entrance junction changed: ' + group['id'])
-        evidence = flight_evidence(point)
+        evidence = group.get('imageryEvidence') or flight_evidence(point)
         for code in group['codes']:
             parking = parkings[code]
             source = [[round(p['x'] / 3 + 45, 4), round(p['y'] / 3 + 90, 4)] for p in parking['points']]
@@ -170,7 +204,7 @@ def build(atlas=None, roads=None):
                 'scope': 'parking-group-approach', 'precision': 'area-entry-only',
                 'individualParkingVerified': False, 'lineExact': False, 'historical': True,
                 'sourceMap': 'toyota', 'sourcePage': 25, 'sourceUrl': SOURCE_URL,
-                'sourceRevision': 'Cewez historical source; shared-area control reviewed with OFW 2026 imagery',
+                'sourceRevision': group.get('sourceRevision', 'Cewez historical source; shared-area control reviewed with OFW 2026 imagery'),
                 'sourcePoint': source[0], 'sourcePoints': source, 'sourcePointUnits': 'uncropped original PDF points',
                 'sourcePointAtlasPixels': [parking['x'], parking['y']],
                 'sourceBounds': group['sourceBounds'], 'sourceBoundsUnits': 'uncropped original PDF points',
@@ -198,13 +232,17 @@ def build(atlas=None, roads=None):
                         'precision': 'area-entry-only', 'individualParkingVerified': False,
                         'arrivalLatLon': point, 'flightEvidence': evidence})
     return {
-        'version': 1, 'reviewed': '2026-11-19', 'source': 'Cewez page25 and independently reviewed OFW2026 field/rail topology',
-        'sourceUrls': [SOURCE_URL, OFW_URL, OWNER_URL], 'destinations': out, 'regions': regions,
-        'roadGuards': {way: {'orderedGeometrySHA256': fingerprint, 'oneway': False, 'private': way != '87379708'} for way, fingerprint in ROAD_GUARDS.items()},
+        'version': 1, 'reviewed': '2026-11-20', 'source': 'Cewez page25 and independently reviewed official Flanders aerial field/road/rail topology',
+        'sourceUrls': [SOURCE_URL, OFW_URL, MOSAIC_URL, OWNER_URL], 'destinations': out, 'regions': regions,
+        'roadGuards': {way: {'orderedGeometrySHA256': fingerprint, 'oneway': ROAD_DIRECTIONS.get(way, False), 'private': way != '87379708'} for way, fingerprint in ROAD_GUARDS.items()},
         'ownerEvidence': {'dataset': OWNER_URL, 'queried': '2026-11-19',
                           'arrivalNodes': ['6988020209', '6988020210', '6988020212', '2494477580'], 'company': 'TOYOTA MOTOR EUROPE', 'terminal': '5230',
+                          'additionalAreas': [{'region': 'toyota-a01-a04-shared-field-entrance',
+                                               'fieldInteriorLatLon': [51.3055, 3.2363], 'company': 'ICO', 'terminal': '5250',
+                                               'objectId': 296, 'landUse': 'roro concession',
+                                               'basis': 'Official Port operator-polygon point query at the independently matched field interior; this does not transfer Toyota5230 ownership evidence to the northern A field.'}],
                           'limitation': 'Operator polygon is supporting geographic evidence, not current driving permission.'},
-        'coverage': '26 source references share FOUR reviewed area entrances. No individual parking locations are claimed. Outer-apron routing ends before the railway crossing; its onward roads are not mapped.',
+        'coverage': '30 source references share FIVE reviewed area entrances. A01-A04 share one historical whole-field entrance; their individual old partitions are unverified and H01 is excluded. No individual parking locations are claimed. Outer-apron routing ends before the railway crossing; its onward roads are not mapped.',
         'notAdded': ['A01PPO', 'A05', 'A06', 'A07', 'A08', 'A09', 'P04', 'P05',
                      'W01', 'W02', 'W03', 'W04', 'W05', 'W06', 'X02', 'X04', 'X06',
                      'P10', 'P20', 'P30', 'P40', 'P50', 'P60', 'P70'],
@@ -222,4 +260,4 @@ if __name__ == '__main__':
         target = ROOT / 'scripts/geo/toyota-area-destinations.json'
         target.parent.mkdir(parents=True, exist_ok=True)
         target.write_text(json.dumps(result, indent=2, ensure_ascii=False), encoding='utf-8')
-        print('26 Toyota source references; FOUR reviewed area entrances; no individual bay coordinates or new railway graph joins')
+        print('30 Toyota source references; FIVE reviewed area entrances; no individual bay coordinates or new railway graph joins')

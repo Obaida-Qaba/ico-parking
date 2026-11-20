@@ -1,6 +1,15 @@
 import {parkingKey,validPin} from './navigation.mjs';
 
 export const isAreaEntry=pin=>!!pin?.automatic&&pin.precision==='area-entry-only';
+export const isAreaApproach=pin=>!!pin?.automatic&&pin.precision==='area-approach-only';
+
+export function destinationEvidenceGap(hit,catalogue={}) {
+  if(!hit)return null;
+  const code=hit.parking.code,canonical=['bastenaken','hanze'].includes(hit.map.id)?'south':hit.map.id;
+  const gaps=catalogue.evidenceGaps||[];
+  const find=id=>gaps.find(gap=>(gap.key||`${gap.sourceMap}:${gap.code}`)===`${id}:${code}`);
+  return find(hit.map.id)||find(canonical)||null;
+}
 
 function builtIn(hit,catalogue) {
   const direct=catalogue?.destinations?.[`${hit.map.id}:${hit.parking.code}`];

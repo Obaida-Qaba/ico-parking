@@ -222,6 +222,7 @@ for builder,filename in [
     ('build_central_remaining_destinations.py','central-remaining-destinations.json'),
     ('build_nissan_destinations.py','nissan-destinations.json'),
     ('build_toyota_area_destinations.py','toyota-area-destinations.json'),
+    ('build_flux_area_destinations.py','flux-area-destinations.json'),
     ('build_d_area_destinations.py','d-area-destinations.json'),
     ('build_legacy_vpc_area_destinations.py','legacy-vpc-area-destinations.json'),
     ('build_h_area_destinations.py','h-area-destinations.json'),

@@ -1,7 +1,7 @@
 import {chromium} from '@playwright/test';
 import assert from 'node:assert/strict';
 import {readFileSync,writeFileSync,mkdirSync} from 'node:fs';
-import {resolveDestination,isAreaEntry} from '../public/destinations.mjs';
+import {resolveDestination,isAreaEntry,isAreaApproach,destinationEvidenceGap} from '../public/destinations.mjs';
 import {auditOrigins,auditChoices,auditInputHash} from '../scripts/lib/parking-audit.mjs';
 import {buildGraph,routeRoads,distanceMetres} from '../public/navigation.mjs';
 const files=Object.fromEntries(['data.json','destinations.json','roads.json'].map(name=>[name,readFileSync('public/'+name)]));
@@ -23,14 +23,15 @@ const fixtures=[];
 for(const map of atlas.maps)for(const parking of map.parkings)for(const hit of auditChoices({map,parking,line:'15'},catalogue)){
  const pin=resolveDestination(hit,{},catalogue),choices=origins[map.id]||[];
  const origin=(choices.find(start=>!pin||distanceMetres(start.point,[pin.lat,pin.lon])>25)||choices[0])?.point||[51.30217,3.22683];
- fixtures.push({key:map.id+':'+parking.code+(hit.approach?'@'+hit.approach:''),map:map.id,code:parking.code,approach:hit.approach||null,approachName:hit.approachName||null,routingScope:pin?.routingScope||null,areaEntryOnly:isAreaEntry(pin),sourcePoints:hit.approachSourceIndices?.length||parking.points.length,origin,target:pin?[pin.lat,pin.lon]:null,expected:pin?routeRoads(graph,origin,[pin.lat,pin.lon]):null});
+ fixtures.push({key:map.id+':'+parking.code+(hit.approach?'@'+hit.approach:''),map:map.id,code:parking.code,approach:hit.approach||null,approachName:hit.approachName||null,routingScope:pin?.routingScope||null,areaEntryOnly:isAreaEntry(pin),areaApproachOnly:isAreaApproach(pin),sourceOnly:!pin&&!!destinationEvidenceGap(hit,catalogue),sourcePoints:hit.approachSourceIndices?.length||parking.points.length,origin,target:pin?[pin.lat,pin.lon]:null,expected:pin?routeRoads(graph,origin,[pin.lat,pin.lon]):null});
 }
 const limitArg=process.argv.find(arg=>arg.startsWith('--limit=')),limit=limitArg?Number(limitArg.split('=')[1]):fixtures.length;
 const cases=fixtures.slice(0,limit),browser=await chromium.launch(),results=[];
 let next=0;
 mkdirSync('test-results',{recursive:true});
 try{
- await Promise.all(Array.from({length:Math.min(3,cases.length)},async()=>{
+ const workers=Math.min(3,Math.max(1,Number(process.env.PORTWAY_AUDIT_WORKERS)||3),cases.length);
+ await Promise.all(Array.from({length:workers},async()=>{
   const context=await browser.newContext({viewport:{width:390,height:844},isMobile:true,hasTouch:true});
   await context.addInitScript(fixtures=>{
    const p=new URLSearchParams(location.search),key=p.get('map')+':'+p.get('parking')+(p.get('approach')?'@'+p.get('approach'):'');
@@ -41,7 +42,7 @@ try{
   const page=await context.newPage();page.setDefaultTimeout(6500);
   let pageErrors=[];page.on('pageerror',error=>pageErrors.push(error.message));
   while(next<cases.length){
-   const item=cases[next++],result={key:item.key,hasBuiltInRoute:!!item.target,routingScope:item.routingScope,areaEntryOnly:item.areaEntryOnly,uiPassed:false};pageErrors=[];
+   const item=cases[next++],result={key:item.key,hasBuiltInRoute:!!item.target,routingScope:item.routingScope,areaEntryOnly:item.areaEntryOnly,areaApproachOnly:item.areaApproachOnly,uiPassed:false};pageErrors=[];
    try{
     const url=new URL(base+'/');url.searchParams.set('map',item.map);url.searchParams.set('parking',item.code);url.searchParams.set('line','15');if(item.approach)url.searchParams.set('approach',item.approach);
     await page.goto(url.href,{waitUntil:'domcontentloaded'});
@@ -49,15 +50,18 @@ try{
     assert.equal(await page.locator('dialog[open]').count(),0,'no GPS-recording prompt');
     const button=await page.locator('#route-button').innerText();
     if(item.target){
-     assert.match(button,item.areaEntryOnly?/Route to area/:item.routingScope==='terminal-internal'?/Route inside Nissan/:/Start route/);assert.equal(item.expected.available,true,'the tested origin has a connected route');
+     assert.match(button,(item.areaEntryOnly||item.areaApproachOnly)?/Route to area/:item.routingScope==='terminal-internal'?/Route inside Nissan/:/Start route/);assert.equal(item.expected.available,true,'the tested origin has a connected route');
      await page.locator('#route-button').click();await page.locator('.road-route').waitFor();
      assert.equal(await page.locator('.mapped-road-fill').count()>0,true,'roads remain visible');
-     const name=await page.locator('#navigation-destination').innerText();assert.ok(name.includes(item.code));assert.ok(name.includes('line 15'));if(item.approachName)assert.ok(name.includes(item.approachName));if(item.areaEntryOnly)assert.match(name,/area entrance/i);
+     const name=await page.locator('#navigation-destination').innerText();assert.ok(name.includes(item.code));assert.ok(name.includes('line 15'));if(item.approachName)assert.ok(name.includes(item.approachName));if(item.areaEntryOnly)assert.match(name,/area entrance/i);if(item.areaApproachOnly){assert.match(name,/area approach/i);assert.match(await page.locator('#navigation-detail').innerText(),/exact gate and individual parking position are not mapped/i);}
      const text=await page.locator('#navigation-distance').innerText(),metres=parseFloat(text)*(text.includes('km')?1000:1);
      assert.ok(Math.abs(metres-item.expected.distance)<(text.includes('km')?55:2),'displayed distance matches the connected road route');
      result.distanceMetres=item.expected.distance;
     }else{
-     assert.match(button,/View parking/);await page.locator('#route-button').click();
+     assert.equal(await page.locator('.gps-target').count(),0,'no unsupported selected GPS point');
+     assert.equal(await page.locator('.road-route').count(),0,'no unsupported automatic road route');
+     if(item.sourceOnly)assert.match(await page.locator('.destination-meta').innerText(),/GPS position unverified/);
+     assert.match(button,item.sourceOnly?/View ICO plan/:/View parking/);await page.locator('#route-button').click();
      await page.waitForFunction(()=>document.querySelector('.leaflet-image-layer')?.naturalWidth>0);
      assert.equal(await page.locator('.destination-marker').count(),item.sourcePoints,'every source position remains available');
      result.limitation='No confirmed geographic arrival point; source-plan fallback only';
@@ -73,6 +77,7 @@ try{
 const servedFinalSHA256=await servedHashes(),inputStable=Object.keys(files).every(name=>servedFinalSHA256[name]===inputSHA256[name]);
 const report={base,generatedAt:new Date().toISOString(),inputHashFormat:'SHA256 of JSON.stringify(JSON.parse(file)); whitespace and line endings ignored.',inputSHA256,servedInputSHA256,servedFinalSHA256,inputStable,allSourceReferences:atlas.maps.reduce((n,map)=>n+map.parkings.length,0),allChoices:fixtures.length,checked:results.length,completeRun:results.length===fixtures.length&&inputStable,uiFailures:results.filter(r=>!r.uiPassed).length,missingDestinations:results.filter(r=>!r.hasBuiltInRoute).length,limitedRoutingChoices:results.filter(r=>r.routingScope==='terminal-internal').length,results:results.sort((a,b)=>a.key.localeCompare(b.key))};
 report.areaEntranceChoices=results.filter(row=>row.areaEntryOnly).length;
+report.areaApproachChoices=results.filter(row=>row.areaApproachOnly).length;
 const host=['localhost','127.0.0.1','[::1]'].includes(new URL(base).hostname)?'local':'live';
 const path='test-results/all-parking-browser-'+host+(limitArg?'-smoke':'')+'.json';writeFileSync(path,JSON.stringify(report,null,2)+'\n');
 console.log(JSON.stringify({checked:report.checked,total:report.allChoices,uiFailures:report.uiFailures,missingDestinations:report.missingDestinations,completeRun:report.completeRun,report:path}));

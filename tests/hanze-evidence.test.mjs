@@ -24,7 +24,8 @@ test('H65 identifies the supported shared H64 corner without placing its label o
 
 test('Hanze records distinguish the matched local plane from actual printed source label bounds',()=>{
  const reviewed=Object.entries(catalogue.destinations).filter(([key,p])=>key.startsWith('south:')&&p.region?.startsWith('hanze-')&&p.matchModelBounds);
- assert.ok(reviewed.length>=65,'every local-box Hanze record publishes its matching-plane metadata');
+ assert.equal(reviewed.length,64,'the four unsupported DR model boxes are no longer emitted');
+ for(const code of ['DRALD','DRTOY','DRWWL','DRFLX'])assert.equal(point(code)?.matchModelBounds,undefined,'source callouts must not acquire invented parking cells');
  for(const [key,p] of reviewed){
   assert.equal(p.matchModelCoordinates.space,'hanze-local-landmark-plane');
   assert.match(p.matchModelCoordinates.basis,/not.*PDF|different.*PDF/i);

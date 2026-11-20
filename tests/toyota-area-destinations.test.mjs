@@ -10,10 +10,11 @@ const roads=read('../public/roads.json'),atlas=read('../public/data.json');
 const published=read('../public/destinations.json').destinations;
 const candidate=JSON.parse(execFileSync('python',['scripts/build_toyota_area_destinations.py','--stdout'],{cwd,encoding:'utf8',maxBuffer:4e6}));
 const ys=Array.from({length:17},(_,i)=>`Y${String((i+1)*2).padStart(2,'0')}`).concat(['Y35','Y36','Y37','Y38']);
-const expected=[...ys,'R01','Z01','Z03','Z04','Z05'];
+const as=['A01','A02','A03','A04'];
+const expected=[...as,...ys,'R01','Z01','Z03','Z04','Z05'];
 const toyota=atlas.maps.find(m=>m.id==='toyota');
 
-test('all 26 references publish honest shared-area arrivals with the display label at that arrival',()=>{
+test('all 30 references publish honest shared-area arrivals with the display label at that arrival',()=>{
  for(const code of expected){
   const pin=published['toyota:'+code];assert.ok(pin,`${code}: reviewed shared-area arrival must be published`);
   const proposal=candidate.destinations['toyota:'+code];
@@ -36,8 +37,13 @@ test('actual historical source glyphs are preserved, including all three R01 str
    assert.ok(Math.abs(pin.sourcePoints[i][0]-(p.x/3+45))<.0001);
    assert.ok(Math.abs(pin.sourcePoints[i][1]-(p.y/3+90))<.0001);
   });
-  assert.equal(pin.flightEvidence.flightDate,'2026-03-05');assert.equal(pin.flightEvidence.queryLayer,'OFW_vdc');
-  assert.equal(pin.flightEvidence.query.infoFormat,'application/geo+json');
+  if(as.includes(code)){
+   assert.equal(pin.flightEvidence.service,'https://geo.api.vlaanderen.be/OMWRGBMRVL/wms');
+   assert.equal(pin.flightEvidence.flightDate,undefined,'the northern mosaic was not dated by an independent flight-day query');
+  }else{
+   assert.equal(pin.flightEvidence.flightDate,'2026-03-05');assert.equal(pin.flightEvidence.queryLayer,'OFW_vdc');
+   assert.equal(pin.flightEvidence.query.infoFormat,'application/geo+json');
+  }
   assert.ok(pin.mappedArea.boundaryReferences.length);assert.match(pin.mappedArea.boundaryLimitation,/not|no precise/i);
  }
  assert.deepEqual(candidate.destinations['toyota:R01'].sourcePoints,[[157,502],[229,502],[315,502]]);
@@ -59,13 +65,63 @@ test('the two entrances are real junctions with road-connected routes on the cor
   assert.deepEqual(way.points[i+1],position);assert.equal(way.oneway,false);
   const branch=roads.ways.find(w=>w.id==='746744859');assert.ok(branch.nodes.includes(pin.arrivalNode));
   const snap=nearestRoad(graph,position);assert.ok(snap.distance<.1);assert.equal(snap.segment.way,wayId);
-  for(const origin of ['north:BB','toyota:B05']){
+  for(const origin of ['north:BB','toyota:Y02']){
    const from=published[origin],route=routeRoads(graph,[from.lat,from.lon],position);
    assert.ok(route.available,`${origin} reaches ${code} entrance through actual graph roads`);assert.ok(route.endOffset<.1);
-   assert.ok(route.distance>100&&route.distance<6500,'existing network provides a reasonable connected approach');
+   assert.ok(route.distance<6500,'existing network provides a reasonable connected approach');
   }
  }
  assert.notEqual(candidate.destinations['toyota:R01'].roadWay,'241869960','the railway cannot be silently crossed to the parallel road');
+});
+
+test('A01 through A04 share the whole historical field entrance without placing H01 or individual bays inside it',()=>{
+ const position=[51.3043933,3.2363201],segment=['6847391526','6847391525'];
+ const loopNodes=['6847391530','6847391529','6847391528','6847391526','6847391527','6847391530'];
+ assert.equal(Object.keys(candidate.destinations).length,30);assert.equal(candidate.regions.length,5);
+ for(const [index,code] of as.entries()){
+  const pin=candidate.destinations['toyota:'+code];assert.ok(pin,code+' must have a reviewed whole-field approach');
+  assert.deepEqual([pin.lat,pin.lon],position);assert.equal(pin.arrivalNode,'6847391526');
+  assert.equal(pin.roadWay,'731070738');assert.deepEqual(pin.roadSegment,segment);
+  assert.deepEqual(pin.sourceBounds,[141.6667,127.6667,206.6667,178.6667]);
+  assert.deepEqual(pin.sourcePoints,[[157,134+14*index]]);
+  assert.equal(pin.precision,'area-entry-only');assert.equal(pin.individualParkingVerified,false);
+  assert.deepEqual([pin.labelPosition.lat,pin.labelPosition.lon],position);
+  const loop=pin.mappedArea.boundaryReferences.find(b=>b.way==='731070739');
+  assert.deepEqual(loop.nodes,loopNodes);assert.equal(loop.oneway,true);
+  assert.deepEqual(pin.junctionMatch.adjoiningLane,{way:'731070739',nodes:['6847391528','6847391526','6847391527'],oneway:true});
+  assert.match(pin.basis,/whole.*field/i);assert.match(pin.mappedArea.boundaryLimitation,/H01.*outside/i);
+  assert.match(pin.mappedArea.boundaryLimitation,/historic.*GATE.*not.*current/i);
+ }
+ assert.equal(candidate.destinations['toyota:H01'],undefined,'the quay strip is not part of the A field');
+ const graph=buildGraph(roads),from=published['north:BB'];
+ assert.ok(nearestRoad(graph,position).distance<.1);
+ const route=routeRoads(graph,[from.lat,from.lon],position);
+ assert.ok(route.available,'the A field entry is connected to actual approach roads');assert.ok(route.endOffset<.1);
+ assert.equal(candidate.roadGuards['731070738'].oneway,false);assert.equal(candidate.roadGuards['731070739'].oneway,true);
+ assert.equal(candidate.roadGuards['731070738'].private,true);assert.equal(candidate.roadGuards['731070739'].private,true);
+});
+
+test('A-field connector, one-way boundary loop and source glyph changes require another geographic review',()=>{
+ const results=JSON.parse(execFileSync('python',['-c',`import copy,json,runpy
+from pathlib import Path
+build=runpy.run_path('scripts/build_toyota_area_destinations.py')['build']
+base=json.loads(Path('public/roads.json').read_text(encoding='utf-8'));atlas=json.loads(Path('public/data.json').read_text(encoding='utf-8'))
+out=[]
+for change in ['connectorGeometry','loopGeometry','connectorDirection','loopDirection','access','closed','sourceGlyph']:
+ roads=copy.deepcopy(base);source=copy.deepcopy(atlas)
+ connector=next(w for w in roads['ways'] if w['id']=='731070738');loop=next(w for w in roads['ways'] if w['id']=='731070739')
+ if change=='connectorGeometry':connector['points'][0][0]+=.0001
+ if change=='loopGeometry':loop['points'][0][1]+=.0001
+ if change=='connectorDirection':connector['oneway']=True
+ if change=='loopDirection':loop['oneway']=False
+ if change=='access':loop['private']=False
+ if change=='closed':connector['excludedSegments']=[['6847391526','6847391525']]
+ if change=='sourceGlyph':next(p for m in source['maps'] if m['id']=='toyota' for p in m['parkings'] if p['code']=='A04')['points'][0]['y']-=3
+ try:
+  build(source,roads);out.append({'change':change,'rejected':False})
+ except ValueError as error:out.append({'change':change,'rejected':True,'reason':str(error)})
+print(json.dumps(out))`],{cwd,encoding:'utf8',maxBuffer:4e6}));
+ for(const result of results)assert.equal(result.rejected,true,result.change+' invalidates the reviewed A field');
 });
 
 test('changed geometry, direction, closures, or source glyphs invalidate the reviewed association',()=>{

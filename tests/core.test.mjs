@@ -2,9 +2,9 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { parseDestination, searchParkings, routeStatus, terminalFromInput } from '../public/core.mjs';
-import {resolveDestination} from '../public/destinations.mjs';
+import {resolveDestination,isAreaApproach} from '../public/destinations.mjs';
 
-test('B5 finds the Toyota B05 source reference without inventing a GPS route',()=>{
+test('B5 resolves the reviewed Toyota B/C whole-area approach and preserves its official code',()=>{
   const {maps}=JSON.parse(readFileSync(new URL('../public/data.json',import.meta.url)));
   const catalogue=JSON.parse(readFileSync(new URL('../public/destinations.json',import.meta.url)));
   const hits=searchParkings(maps,'Toyota B5 line 12','north');
@@ -12,7 +12,9 @@ test('B5 finds the Toyota B05 source reference without inventing a GPS route',()
   assert.equal(hits[0].parking.code,'B05');
   assert.equal(hits[0].line,'12');
   assert.equal(hits[0].exactMatch,true,'a full numeric equivalent can be selected on submit');
-  assert.equal(resolveDestination(hits[0],{},catalogue),null,'a successful name match is not geographic proof');
+  const pin=resolveDestination(hits[0],{},catalogue);
+  assert.equal(isAreaApproach(pin),true,'the named bay uses its independently reviewed whole-corridor approach');
+  assert.equal(pin.individualParkingVerified,false);assert.equal(pin.exactLine,false);
 });
 
 test('omitted leading zeroes never merge distinct official codes in one map',()=>{

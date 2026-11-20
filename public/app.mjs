@@ -1,9 +1,9 @@
 import { normalizeCode, parseDestination, searchParkings } from './core.mjs';
 import { createGPS } from './gps.mjs';
 import { createMapUI } from './map-ui.mjs';
-import { detectTerminal } from './location-context.mjs';
+import { detectTerminal,destinationOverview } from './location-context.mjs';
 import { optimizeDrivingMap } from './map-performance.mjs';
-import { destinationChoices,isAreaEntry,isAreaApproach,destinationEvidenceGap } from './destinations.mjs';
+import { destinationChoices,isAreaEntry,isAreaApproach } from './destinations.mjs';
 import { parkingKey } from './navigation.mjs';
 import { createGoogleSatellite } from './google-satellite.mjs';
 import { GOOGLE_MAPS } from './google-config.mjs';
@@ -35,7 +35,7 @@ const resizeObserver=new ResizeObserver(()=>map?.invalidateSize());
 resizeObserver.observe($('map'));
 function toast(message) { $('toast').textContent=message;$('toast').hidden=false;clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('toast').hidden=true,6500); }
 function dialog(html) { $('dialog-content').innerHTML=html; if (!$('info-dialog').open) $('info-dialog').showModal(); }
-const gps=createGPS({getMap:()=>map,getSelected:()=>selected,getCatalogue:()=>catalogue,showStreet:()=>{if(!street){street=true;renderMap();}},toast,dialog,escape:esc,onPinChanged:()=>{if(selected)renderGPSActions();},onLocation:locationChanged,onLocationState:locationStateChanged,onUnmapped:hit=>{if(selected!==hit)choose(hit);viewSelectedPlan();}});
+const gps=createGPS({getMap:()=>map,getSelected:()=>selected,getCatalogue:()=>catalogue,showStreet:()=>{if(!street){street=true;renderMap();}},toast,dialog,escape:esc,onPinChanged:()=>{if(selected)renderGPSActions();},onLocation:locationChanged,onLocationState:locationStateChanged,onUnmapped:hit=>{if(selected!==hit)choose(hit);viewMapArea(hit);}});
 const mapUI=createMapUI({getMap:()=>map});
 const satellite=createGoogleSatellite({element:$('google-map'),apiKey:location.origin===GOOGLE_MAPS.siteOrigin?GOOGLE_MAPS.apiKey:'',onState:state=>{
   document.body.classList.toggle('google-satellite-active',state==='ready');
@@ -92,6 +92,16 @@ function closeSearch(){
 function viewSelectedPlan(){
   if(!selected)return;closeSearch();street=false;renderMap(selected.map,selectedPlanParking());mapUI.closeOptions();
 }
+function viewMapArea(hit=null){
+  const filter=$('terminal-filter').value;
+  hit??=selected||{map:current,parking:{terminal:filter==='auto'?nearbyTerminal?.id:filter}};
+  closeSearch();mapUI.closeOptions();
+  if(!street){street=true;renderMap(hit.map||current);}
+  const area=destinationOverview(hit,terminalData);
+  if(!area)return;
+  map.fire('dragstart');map.stopHeadingUp?.();map.setBearing?.(0);
+  map.fitBounds(area.bounds,{paddingTopLeft:[24,145],paddingBottomRight:[70,220],maxZoom:16,animate:false});
+}
 function selectedPlanParking(){
   if(!selected)return null;
   const indices=selected.approachSourceIndices;
@@ -103,9 +113,9 @@ function setViewButtons() {
   $('plan-view').classList.toggle('active',!street);$('street-view').classList.toggle('active',street);
   $('plan-view').setAttribute('aria-pressed',String(!street));$('street-view').setAttribute('aria-pressed',String(street));
   $('street-notice').hidden=!street;
-  $('all-parkings').setAttribute('aria-pressed',String(!street));
-  $('all-parkings').querySelector('span').textContent=street?'All parkings':'GPS map';
-  $('all-parkings').title=street?'Open the complete terminal plan':'Return to my GPS location';
+  $('all-parkings').removeAttribute('aria-pressed');
+  $('all-parkings').querySelector('span').textContent='All parkings';
+  $('all-parkings').title='Show parking areas on the live map';
 }
 function fit() {
   if(street) {map.fitBounds([[51.265,3.18],[51.33,3.265]],{padding:[35,100]});return;}
@@ -220,14 +230,15 @@ function choose(hit, remember=true) {
   renderGPSActions();
   if(remember)saveRecent(hit);
   const url=new URL(location.href);url.search='';url.searchParams.set('map',hit.map.id);url.searchParams.set('parking',hit.parking.code);if(hit.line)url.searchParams.set('line',hit.line);if(hit.approach)url.searchParams.set('approach',hit.approach);history.replaceState(null,'',url);
+  if(!gps.pinFor(hit))viewMapArea(hit);
 }
 function renderGPSActions(){
   if(!selected)return;
   const pin=gps.pinFor(selected);
   const internal=pin?.automatic&&pin.routingScope==='terminal-internal';
-  const areaEntry=isAreaEntry(pin),areaApproach=isAreaApproach(pin),sourceOnly=!pin&&destinationEvidenceGap(selected,catalogue);
-  const scopeText=internal?'Within Nissan only':areaEntry?'Area entrance':areaApproach?'Area approach':sourceOnly?'Plan only · GPS position unverified':!pin?'No GPS route yet':null;
-  $('route-button').innerHTML=internal?'Route inside Nissan':`${icon(pin?'route':'layers')} ${areaEntry||areaApproach?'Route to area':pin?'Start route':sourceOnly?'View ICO plan':'View parking'} ${icon('arrow')}`;
+  const areaEntry=isAreaEntry(pin),areaApproach=isAreaApproach(pin);
+  const scopeText=internal?'Within Nissan only':areaEntry?'Area entrance':areaApproach?'Area approach':!pin?'Location unverified':null;
+  $('route-button').innerHTML=internal?'Route inside Nissan':`${icon(pin?'route':'globe')} ${areaEntry||areaApproach?'Route to area':pin?'Start route':'Show on map'} ${icon('arrow')}`;
   let scope=$('destination-card').querySelector('.destination-routing-scope');
   if(scopeText&&!scope){
     scope=document.createElement('small');scope.className='destination-routing-scope';
@@ -241,7 +252,7 @@ function renderGPSActions(){
   $('destination-options').hidden=false;
   button.textContent=pin?.automatic?'Refine destination location':pin?'Manage saved GPS point':'Save this parking’s GPS location';button.onclick=()=>gps.setup(selected);
   const note=$('destination-card').querySelector('.line-note');
-  if(!pin){note.textContent=sourceOnly?`The current GPS position of ${selected.parking.code} is unverified. Check its name on the ICO plan.`:`The GPS route to ${selected.parking.code} is not mapped yet. Its label is available on the source plan.`;}
+  if(!pin){const area=destinationOverview(selected,terminalData);note.textContent=`The exact position and directions for ${selected.parking.code} are not confirmed. ${area?'Showing the '+area.name+' terminal area on the map.':'The live map stays open.'}`;}
   else if(areaApproach){note.textContent=`Route to the ${pin.areaName||selected.parking.code+' area'} perimeter road. The exact gate and individual parking position are not mapped.${selected.line?' Find line '+selected.line+' using terminal signs.':''}`;}
   else if(areaEntry){note.textContent=`Route to the ${pin.areaName||selected.parking.code+' area'} entrance. The individual parking position is not mapped.${pin.areaAccessNote?' '+pin.areaAccessNote:''}${selected.line?' Find line '+selected.line+' inside the area.':''}`;}
   else{note.textContent=pin.automatic?`Built-in route to ${selected.parking.code} parking ${pin.scope==='parking-group-approach'?'area ':''}approach.${pin.scope==='parking-group-approach'?' Shared area access; exact entrance is not mapped.':''}${selected.line?' Find line '+selected.line+' inside the parking.':''}`:pin.method==='gps'?`GPS location saved on this device (±${Math.round(pin.accuracy)} m). Road routing uses this saved point.`:'Destination point selected on the road map. Road routing uses this saved point.';if(selected.line&&!pin.exactLine&&!pin.automatic)note.textContent+=' Line '+selected.line+' is not separately positioned.';}
@@ -285,7 +296,7 @@ function renderSearchResults(results,parking){
   $('result-list').replaceChildren();
   if(!results.length){const p=document.createElement('p');p.className='result-list-note';p.textContent=`No indexed parking matches “${parking}”${$('terminal-filter').value!=='all'?' in this terminal':''}. Try another map or a shorter reference. The source plans remain available to browse.`;$('result-list').append(p);}
   for(const hit of results.slice(0,40)){
-    const pin=gps.pinFor(hit),coverage=!pin?(destinationEvidenceGap(hit,catalogue)?'Plan only · GPS position unverified':'No GPS route'):isAreaEntry(pin)?'Area entrance route':isAreaApproach(pin)?'Area road approach':pin.automatic&&pin.routingScope==='terminal-internal'?'Within Nissan only':'GPS route';
+    const pin=gps.pinFor(hit),coverage=!pin?'Location unverified':isAreaEntry(pin)?'Area entrance route':isAreaApproach(pin)?'Area road approach':pin.automatic&&pin.routingScope==='terminal-internal'?'Within Nissan only':'GPS route';
     const b=document.createElement('button');b.type='button';b.className='result-row';
     b.dataset.terminal=hit.matchedTerminal||hit.map.id;b.dataset.preferred=String(!!hit.preferred);
     b.innerHTML=`<span class="result-icon">${icon('pin')}</span><span><strong>${esc(hit.parking.code)}${hit.line?` · line ${esc(hit.line)}`:''}</strong><small>${hit.approachName?esc(hit.approachName)+' · ':''}${esc(parkingArea(hit))} · ${esc(coverage)}${hit.map.historical?' · older plan':''}</small></span>${icon('arrow')}`;
@@ -341,7 +352,7 @@ try {
   $('clear-recents').onclick=()=>{recents=[];try{localStorage.removeItem('portway-recents');}catch{}renderRecents();};
   $('plan-view').onclick=()=>{if(street){street=false;renderMap(current,selectedPlanParking());}mapUI.closeOptions();};
   $('street-view').onclick=()=>{if(!street){street=true;renderMap();}mapUI.closeOptions();};
-  $('all-parkings').onclick=()=>{closeSearch();mapUI.closeOptions();if(street){street=false;renderMap(current);}else gps.start({quiet:true});};
+  $('all-parkings').onclick=()=>viewMapArea();
   $('zoom-in').onclick=()=>map.zoomIn(undefined,{animate:satellite.state!=='ready'});$('zoom-out').onclick=()=>map.zoomOut(undefined,{animate:satellite.state!=='ready'});$('fit-map').onclick=()=>{if(!gps.fitRoute())fit();};$('locate').onclick=()=>gps.start();$('live-gps-start').onclick=()=>gps.start();
   $('source').onclick=showSource;$('about').onclick=showAbout;
   document.addEventListener('keydown',e=>{if(e.key==='/'&&!['INPUT','SELECT','TEXTAREA'].includes(document.activeElement.tagName)){e.preventDefault();$('destination').focus();}if(e.key==='Escape'&&!$('info-dialog').open){if(document.body.classList.contains('searching')){closeSearch();$('destination').blur();}else clearDestination();}});
@@ -349,6 +360,7 @@ try {
   const p=m?.parkings.find(p=>normalizeCode(p.code)===normalizeCode(params.get('parking')));
   if(m&&p){const line=params.get('line');choose({map:m,parking:p,line:/^[1-9]\d{0,3}$/.test(line??'')?line:null,approach:params.get('approach')},false);}
   gps.start({quiet:true});
+  if(selected&&!gps.pinFor(selected))viewMapArea(selected);
   offlineSetup();
 } catch(e) {
   console.error(e);$('map-loading').hidden=false;$('map-loading').textContent='Could not load the map library. Reconnect and reload.';$('offline-status').textContent='Map library unavailable';

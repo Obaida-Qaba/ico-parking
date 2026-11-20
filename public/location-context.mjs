@@ -21,6 +21,17 @@ function edgeDistance(point,polygon){
 }
 const result=region=>region?{id:region.id,name:region.name,mapId:region.mapId,confidence:'approximate-area'}:null;
 
+/** Broad camera bounds only. Never turn these operator areas into route targets. */
+export function destinationOverview(hit,data){
+  if(!hit)return null;
+  const ids=[hit.parking?.terminal,hit.map?.id].filter(Boolean);
+  const region=ids.map(id=>(data?.regions||[]).find(r=>r.id===id)).find(Boolean);
+  const points=region?.polygon?.filter(p=>Array.isArray(p)&&p.length===2&&p.every(Number.isFinite));
+  if(!points?.length)return null;
+  return {id:region.id,name:region.name,precision:'terminal-overview-only',routable:false,
+    bounds:[[Math.min(...points.map(p=>p[0])),Math.min(...points.map(p=>p[1]))],[Math.max(...points.map(p=>p[0])),Math.max(...points.map(p=>p[1]))]]};
+}
+
 /** Approximate search context only; never destination coordinates or access rules. */
 export function detectTerminal(fix,data,{previous=null}={}){
   if(!validPin(fix)||!Number.isFinite(fix.accuracy)||fix.accuracy<0||fix.accuracy>(data?.maxAccuracyMetres??60))return null;

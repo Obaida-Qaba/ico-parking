@@ -1,4 +1,4 @@
-const CACHE='portway-v25-parking-geography';
+const CACHE='portway-v26-live-map-fallback';
 self.addEventListener('install',event=>{
   event.waitUntil((async()=>{
     const cache=await caches.open(CACHE);

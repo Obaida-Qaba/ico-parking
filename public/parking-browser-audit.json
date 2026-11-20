@@ -1,20 +1,20 @@
 {
-  "base": "http://127.0.0.1:4174",
-  "generatedAt": "2026-11-20T01:05:17.806Z",
+  "base": "http://127.0.0.1:4175",
+  "generatedAt": "2026-11-20T13:53:18.606Z",
   "inputHashFormat": "SHA256 of JSON.stringify(JSON.parse(file)); whitespace and line endings ignored.",
   "inputSHA256": {
     "data.json": "6c2c25ee56e97691e2a6b9b43b6f93f36165cc0450a0cee5407c9abf67dd7970",
-    "destinations.json": "7854456630135bc66c9ac8cd6d1ed8807044fd2671a72e4171ed0fcf2b3d1ed1",
+    "destinations.json": "7eb2ed971bf6b56605484437483738d6de735cbf1db24b899d14d791a2ab8fc2",
     "roads.json": "ac53a02eba3d5ad0821dcb036c83be7c3106458acadaf4c8fd97e23430088b4e"
   },
   "servedInputSHA256": {
     "data.json": "6c2c25ee56e97691e2a6b9b43b6f93f36165cc0450a0cee5407c9abf67dd7970",
-    "destinations.json": "7854456630135bc66c9ac8cd6d1ed8807044fd2671a72e4171ed0fcf2b3d1ed1",
+    "destinations.json": "7eb2ed971bf6b56605484437483738d6de735cbf1db24b899d14d791a2ab8fc2",
     "roads.json": "ac53a02eba3d5ad0821dcb036c83be7c3106458acadaf4c8fd97e23430088b4e"
   },
   "servedFinalSHA256": {
     "data.json": "6c2c25ee56e97691e2a6b9b43b6f93f36165cc0450a0cee5407c9abf67dd7970",
-    "destinations.json": "7854456630135bc66c9ac8cd6d1ed8807044fd2671a72e4171ed0fcf2b3d1ed1",
+    "destinations.json": "7eb2ed971bf6b56605484437483738d6de735cbf1db24b899d14d791a2ab8fc2",
     "roads.json": "ac53a02eba3d5ad0821dcb036c83be7c3106458acadaf4c8fd97e23430088b4e"
   },
   "inputStable": true,
@@ -23,7 +23,7 @@
   "checked": 717,
   "completeRun": true,
   "uiFailures": 0,
-  "missingDestinations": 223,
+  "missingDestinations": 134,
   "limitedRoutingChoices": 13,
   "results": [
     {
@@ -195,7 +195,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "bastenaken:BDR",
@@ -204,7 +204,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "bastenaken:BE1",
@@ -384,7 +384,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "bastenaken:CA1",
@@ -420,7 +420,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "bastenaken:CLT1",
@@ -429,7 +429,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "bastenaken:CLT2",
@@ -438,7 +438,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "bastenaken:DA1",
@@ -456,7 +456,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "bastenaken:DC1",
@@ -474,7 +474,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "bastenaken:DH1",
@@ -483,7 +483,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "bastenaken:DLT",
@@ -492,7 +492,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "bastenaken:EA1",
@@ -528,7 +528,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "bastenaken:EC3",
@@ -537,7 +537,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "bastenaken:ED1",
@@ -555,7 +555,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "bastenaken:ED3",
@@ -564,7 +564,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "bastenaken:ED4",
@@ -573,7 +573,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "bastenaken:EE1",
@@ -591,7 +591,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "bastenaken:EE3",
@@ -600,7 +600,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "bastenaken:EE4",
@@ -609,7 +609,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "bastenaken:EFX",
@@ -618,7 +618,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "bastenaken:FA1",
@@ -645,7 +645,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "bastenaken:FC2",
@@ -654,7 +654,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "bastenaken:FC3",
@@ -663,7 +663,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "bastenaken:FD1",
@@ -681,7 +681,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "bastenaken:FD3",
@@ -690,7 +690,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "bastenaken:FD4",
@@ -699,7 +699,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "bastenaken:FE1",
@@ -708,7 +708,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "bastenaken:FE2",
@@ -717,7 +717,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "bastenaken:FE3",
@@ -726,7 +726,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "bastenaken:FE4",
@@ -735,7 +735,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "bastenaken:FFX",
@@ -744,7 +744,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "bastenaken:GA1",
@@ -852,7 +852,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "bastenaken:GE4",
@@ -861,7 +861,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "bastenaken:GFX",
@@ -870,7 +870,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "bastenaken:HA1",
@@ -960,7 +960,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "bastenaken:IA1",
@@ -1455,7 +1455,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "bastenaken:TES",
@@ -1464,7 +1464,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "bastenaken:TP10",
@@ -1473,7 +1473,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "bastenaken:TP4",
@@ -1482,7 +1482,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "bastenaken:TP5",
@@ -1491,7 +1491,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "bastenaken:TP6",
@@ -1518,7 +1518,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "bastenaken:TP9",
@@ -1527,7 +1527,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "bastenaken:VPC",
@@ -1860,7 +1860,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "hanze:H7",
@@ -1986,7 +1986,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "nissan:VC",
@@ -2022,7 +2022,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "nissan:VG",
@@ -2031,7 +2031,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "nissan:VH001",
@@ -2085,7 +2085,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "north:A23",
@@ -2103,7 +2103,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "north:AA",
@@ -2130,7 +2130,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "north:B1",
@@ -2247,7 +2247,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "north:DRA002",
@@ -2256,7 +2256,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "north:DRA003",
@@ -2265,7 +2265,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "north:DRQ",
@@ -2274,7 +2274,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "north:DRU",
@@ -2373,7 +2373,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "north:KB",
@@ -2418,7 +2418,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "north:L",
@@ -2836,12 +2836,12 @@
     },
     {
       "key": "south:BDR",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
-      "areaApproachOnly": false,
+      "areaApproachOnly": true,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 522.9277786052508
     },
     {
       "key": "south:BE1",
@@ -3070,12 +3070,12 @@
     },
     {
       "key": "south:BWH",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
-      "areaApproachOnly": false,
+      "areaApproachOnly": true,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 522.9277786052508
     },
     {
       "key": "south:CA1",
@@ -3160,219 +3160,219 @@
     },
     {
       "key": "south:CH1",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
-      "areaApproachOnly": false,
+      "areaApproachOnly": true,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 372.8287008070726
     },
     {
       "key": "south:CH10",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
-      "areaApproachOnly": false,
+      "areaApproachOnly": true,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 372.8287008070726
     },
     {
       "key": "south:CH11",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
-      "areaApproachOnly": false,
+      "areaApproachOnly": true,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 372.8287008070726
     },
     {
       "key": "south:CH12",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
-      "areaApproachOnly": false,
+      "areaApproachOnly": true,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 372.8287008070726
     },
     {
       "key": "south:CH13",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
-      "areaApproachOnly": false,
+      "areaApproachOnly": true,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 372.8287008070726
     },
     {
       "key": "south:CH14",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
-      "areaApproachOnly": false,
+      "areaApproachOnly": true,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 372.8287008070726
     },
     {
       "key": "south:CH15",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
-      "areaApproachOnly": false,
+      "areaApproachOnly": true,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 372.8287008070726
     },
     {
       "key": "south:CH16",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
-      "areaApproachOnly": false,
+      "areaApproachOnly": true,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 372.8287008070726
     },
     {
       "key": "south:CH17",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
-      "areaApproachOnly": false,
+      "areaApproachOnly": true,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 372.8287008070726
     },
     {
       "key": "south:CH18",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
-      "areaApproachOnly": false,
+      "areaApproachOnly": true,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 372.8287008070726
     },
     {
       "key": "south:CH19",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
-      "areaApproachOnly": false,
+      "areaApproachOnly": true,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 372.8287008070726
     },
     {
       "key": "south:CH2",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
-      "areaApproachOnly": false,
+      "areaApproachOnly": true,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 372.8287008070726
     },
     {
       "key": "south:CH20",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
-      "areaApproachOnly": false,
+      "areaApproachOnly": true,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 372.8287008070726
     },
     {
       "key": "south:CH21",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
-      "areaApproachOnly": false,
+      "areaApproachOnly": true,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 372.8287008070726
     },
     {
       "key": "south:CH22",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
-      "areaApproachOnly": false,
+      "areaApproachOnly": true,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 372.8287008070726
     },
     {
       "key": "south:CH23",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
-      "areaApproachOnly": false,
+      "areaApproachOnly": true,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 372.8287008070726
     },
     {
       "key": "south:CH24",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
-      "areaApproachOnly": false,
+      "areaApproachOnly": true,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 372.8287008070726
     },
     {
       "key": "south:CH3",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
-      "areaApproachOnly": false,
+      "areaApproachOnly": true,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 372.8287008070726
     },
     {
       "key": "south:CH4",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
-      "areaApproachOnly": false,
+      "areaApproachOnly": true,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 372.8287008070726
     },
     {
       "key": "south:CH5",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
-      "areaApproachOnly": false,
+      "areaApproachOnly": true,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 372.8287008070726
     },
     {
       "key": "south:CH6",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
-      "areaApproachOnly": false,
+      "areaApproachOnly": true,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 372.8287008070726
     },
     {
       "key": "south:CH7",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
-      "areaApproachOnly": false,
+      "areaApproachOnly": true,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 372.8287008070726
     },
     {
       "key": "south:CH8",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
-      "areaApproachOnly": false,
+      "areaApproachOnly": true,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 372.8287008070726
     },
     {
       "key": "south:CH9",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
-      "areaApproachOnly": false,
+      "areaApproachOnly": true,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 372.8287008070726
     },
     {
       "key": "south:DA1",
@@ -3435,7 +3435,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "south:DRALD",
@@ -3444,7 +3444,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "south:DRFLX",
@@ -3543,7 +3543,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "south:FA1",
@@ -3579,7 +3579,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "south:GA1",
@@ -3687,7 +3687,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "south:H1",
@@ -4299,7 +4299,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "south:HH1",
@@ -4992,7 +4992,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "toyota:A02",
@@ -5028,7 +5028,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "toyota:A06",
@@ -5037,7 +5037,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "toyota:A07",
@@ -5046,7 +5046,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "toyota:A08",
@@ -5055,7 +5055,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "toyota:A09",
@@ -5064,574 +5064,574 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "toyota:B01",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
-      "areaApproachOnly": false,
+      "areaApproachOnly": true,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 573.5774651275997
     },
     {
       "key": "toyota:B02",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
-      "areaApproachOnly": false,
+      "areaApproachOnly": true,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 573.5774651275997
     },
     {
       "key": "toyota:B03",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
-      "areaApproachOnly": false,
+      "areaApproachOnly": true,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 573.5774651275997
     },
     {
       "key": "toyota:B04",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
-      "areaApproachOnly": false,
+      "areaApproachOnly": true,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 573.5774651275997
     },
     {
       "key": "toyota:B05",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
-      "areaApproachOnly": false,
+      "areaApproachOnly": true,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 573.5774651275997
     },
     {
       "key": "toyota:B06",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
-      "areaApproachOnly": false,
+      "areaApproachOnly": true,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 573.5774651275997
     },
     {
       "key": "toyota:B07",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
-      "areaApproachOnly": false,
+      "areaApproachOnly": true,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 573.5774651275997
     },
     {
       "key": "toyota:B08",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
-      "areaApproachOnly": false,
+      "areaApproachOnly": true,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 573.5774651275997
     },
     {
       "key": "toyota:B09",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
-      "areaApproachOnly": false,
+      "areaApproachOnly": true,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 573.5774651275997
     },
     {
       "key": "toyota:B10",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
-      "areaApproachOnly": false,
+      "areaApproachOnly": true,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 573.5774651275997
     },
     {
       "key": "toyota:C01",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
-      "areaApproachOnly": false,
+      "areaApproachOnly": true,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 573.5774651275997
     },
     {
       "key": "toyota:C02",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
-      "areaApproachOnly": false,
+      "areaApproachOnly": true,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 573.5774651275997
     },
     {
       "key": "toyota:C03",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
-      "areaApproachOnly": false,
+      "areaApproachOnly": true,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 573.5774651275997
     },
     {
       "key": "toyota:C04",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
-      "areaApproachOnly": false,
+      "areaApproachOnly": true,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 573.5774651275997
     },
     {
       "key": "toyota:C05",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
-      "areaApproachOnly": false,
+      "areaApproachOnly": true,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 573.5774651275997
     },
     {
       "key": "toyota:C06",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
-      "areaApproachOnly": false,
+      "areaApproachOnly": true,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 573.5774651275997
     },
     {
       "key": "toyota:C07",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
-      "areaApproachOnly": false,
+      "areaApproachOnly": true,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 573.5774651275997
     },
     {
       "key": "toyota:C08",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
-      "areaApproachOnly": false,
+      "areaApproachOnly": true,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 573.5774651275997
     },
     {
       "key": "toyota:C09",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
-      "areaApproachOnly": false,
+      "areaApproachOnly": true,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 573.5774651275997
     },
     {
       "key": "toyota:C10",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
-      "areaApproachOnly": false,
+      "areaApproachOnly": true,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 573.5774651275997
     },
     {
       "key": "toyota:C11",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
-      "areaApproachOnly": false,
+      "areaApproachOnly": true,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 573.5774651275997
     },
     {
       "key": "toyota:C12",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
-      "areaApproachOnly": false,
+      "areaApproachOnly": true,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 573.5774651275997
     },
     {
       "key": "toyota:C13",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
-      "areaApproachOnly": false,
+      "areaApproachOnly": true,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 573.5774651275997
     },
     {
       "key": "toyota:D09",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
-      "areaApproachOnly": false,
+      "areaApproachOnly": true,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 611.6994725981679
     },
     {
       "key": "toyota:D10",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
-      "areaApproachOnly": false,
+      "areaApproachOnly": true,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 611.6994725981679
     },
     {
       "key": "toyota:D11",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
-      "areaApproachOnly": false,
+      "areaApproachOnly": true,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 611.6994725981679
     },
     {
       "key": "toyota:D12",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
-      "areaApproachOnly": false,
+      "areaApproachOnly": true,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 611.6994725981679
     },
     {
       "key": "toyota:D13",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
-      "areaApproachOnly": false,
+      "areaApproachOnly": true,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 611.6994725981679
     },
     {
       "key": "toyota:E09",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
-      "areaApproachOnly": false,
+      "areaApproachOnly": true,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 611.6994725981679
     },
     {
       "key": "toyota:E10",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
-      "areaApproachOnly": false,
+      "areaApproachOnly": true,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 611.6994725981679
     },
     {
       "key": "toyota:E11",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
-      "areaApproachOnly": false,
+      "areaApproachOnly": true,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 611.6994725981679
     },
     {
       "key": "toyota:E12",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
-      "areaApproachOnly": false,
+      "areaApproachOnly": true,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 611.6994725981679
     },
     {
       "key": "toyota:E13",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
       "areaEntryOnly": false,
-      "areaApproachOnly": false,
+      "areaApproachOnly": true,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 611.6994725981679
     },
     {
       "key": "toyota:F00",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
-      "areaEntryOnly": false,
+      "areaEntryOnly": true,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 809.3822071670685
     },
     {
       "key": "toyota:F01",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
-      "areaEntryOnly": false,
+      "areaEntryOnly": true,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 809.3822071670685
     },
     {
       "key": "toyota:F02",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
-      "areaEntryOnly": false,
+      "areaEntryOnly": true,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 809.3822071670685
     },
     {
       "key": "toyota:F03",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
-      "areaEntryOnly": false,
+      "areaEntryOnly": true,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 809.3822071670685
     },
     {
       "key": "toyota:F04",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
-      "areaEntryOnly": false,
+      "areaEntryOnly": true,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 809.3822071670685
     },
     {
       "key": "toyota:F05",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
-      "areaEntryOnly": false,
+      "areaEntryOnly": true,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 809.3822071670685
     },
     {
       "key": "toyota:F06",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
-      "areaEntryOnly": false,
+      "areaEntryOnly": true,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 809.3822071670685
     },
     {
       "key": "toyota:F07",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
-      "areaEntryOnly": false,
+      "areaEntryOnly": true,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 809.3822071670685
     },
     {
       "key": "toyota:F08",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
-      "areaEntryOnly": false,
+      "areaEntryOnly": true,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 809.3822071670685
     },
     {
       "key": "toyota:F09",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
-      "areaEntryOnly": false,
+      "areaEntryOnly": true,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 809.3822071670685
     },
     {
       "key": "toyota:F10",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
-      "areaEntryOnly": false,
+      "areaEntryOnly": true,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 809.3822071670685
     },
     {
       "key": "toyota:F11",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
-      "areaEntryOnly": false,
+      "areaEntryOnly": true,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 809.3822071670685
     },
     {
       "key": "toyota:F12",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
-      "areaEntryOnly": false,
+      "areaEntryOnly": true,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 809.3822071670685
     },
     {
       "key": "toyota:F13",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
-      "areaEntryOnly": false,
+      "areaEntryOnly": true,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 809.3822071670685
     },
     {
       "key": "toyota:F14",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
-      "areaEntryOnly": false,
+      "areaEntryOnly": true,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 809.3822071670685
     },
     {
       "key": "toyota:G00",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
-      "areaEntryOnly": false,
+      "areaEntryOnly": true,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 809.3822071670685
     },
     {
       "key": "toyota:G01",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
-      "areaEntryOnly": false,
+      "areaEntryOnly": true,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 809.3822071670685
     },
     {
       "key": "toyota:G02",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
-      "areaEntryOnly": false,
+      "areaEntryOnly": true,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 809.3822071670685
     },
     {
       "key": "toyota:G03",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
-      "areaEntryOnly": false,
+      "areaEntryOnly": true,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 809.3822071670685
     },
     {
       "key": "toyota:G04",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
-      "areaEntryOnly": false,
+      "areaEntryOnly": true,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 809.3822071670685
     },
     {
       "key": "toyota:G05",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
-      "areaEntryOnly": false,
+      "areaEntryOnly": true,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 809.3822071670685
     },
     {
       "key": "toyota:G06",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
-      "areaEntryOnly": false,
+      "areaEntryOnly": true,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 809.3822071670685
     },
     {
       "key": "toyota:G07",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
-      "areaEntryOnly": false,
+      "areaEntryOnly": true,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 809.3822071670685
     },
     {
       "key": "toyota:G08",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
-      "areaEntryOnly": false,
+      "areaEntryOnly": true,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 809.3822071670685
     },
     {
       "key": "toyota:G09",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
-      "areaEntryOnly": false,
+      "areaEntryOnly": true,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 809.3822071670685
     },
     {
       "key": "toyota:G10",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
-      "areaEntryOnly": false,
+      "areaEntryOnly": true,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 809.3822071670685
     },
     {
       "key": "toyota:G11",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
-      "areaEntryOnly": false,
+      "areaEntryOnly": true,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 809.3822071670685
     },
     {
       "key": "toyota:G12",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
-      "areaEntryOnly": false,
+      "areaEntryOnly": true,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 809.3822071670685
     },
     {
       "key": "toyota:G13",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
-      "areaEntryOnly": false,
+      "areaEntryOnly": true,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 809.3822071670685
     },
     {
       "key": "toyota:G14",
-      "hasBuiltInRoute": false,
+      "hasBuiltInRoute": true,
       "routingScope": null,
-      "areaEntryOnly": false,
+      "areaEntryOnly": true,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "distanceMetres": 809.3822071670685
     },
     {
       "key": "toyota:H01",
@@ -5640,7 +5640,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "toyota:H02",
@@ -5649,7 +5649,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "toyota:H03",
@@ -5658,7 +5658,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "toyota:H04",
@@ -5667,7 +5667,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "toyota:H05",
@@ -5676,7 +5676,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "toyota:H06",
@@ -5685,7 +5685,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "toyota:H07",
@@ -5694,7 +5694,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "toyota:H08",
@@ -5703,7 +5703,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "toyota:H09",
@@ -5712,7 +5712,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "toyota:H10",
@@ -5721,7 +5721,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "toyota:H11",
@@ -5730,7 +5730,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "toyota:H12",
@@ -5739,7 +5739,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "toyota:H13",
@@ -5748,7 +5748,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "toyota:H14",
@@ -5757,7 +5757,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "toyota:I01",
@@ -5766,7 +5766,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "toyota:I02",
@@ -5775,7 +5775,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "toyota:I03",
@@ -5784,7 +5784,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "toyota:I04",
@@ -5793,7 +5793,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "toyota:I05",
@@ -5802,7 +5802,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "toyota:I06",
@@ -5811,7 +5811,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "toyota:I07",
@@ -5820,7 +5820,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "toyota:I08",
@@ -5829,7 +5829,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "toyota:I09",
@@ -5838,7 +5838,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "toyota:I10",
@@ -5847,7 +5847,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "toyota:I11",
@@ -5856,7 +5856,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "toyota:I12",
@@ -5865,7 +5865,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "toyota:I13",
@@ -5874,7 +5874,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "toyota:I14",
@@ -5883,7 +5883,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "toyota:I15",
@@ -5892,7 +5892,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "toyota:I16",
@@ -5901,7 +5901,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "toyota:I17",
@@ -5910,7 +5910,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "toyota:J01",
@@ -5919,7 +5919,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "toyota:J02",
@@ -5928,7 +5928,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "toyota:J03",
@@ -5937,7 +5937,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "toyota:J04",
@@ -5946,7 +5946,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "toyota:J05",
@@ -5955,7 +5955,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "toyota:J06",
@@ -5964,7 +5964,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "toyota:J07",
@@ -5973,7 +5973,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "toyota:J08",
@@ -5982,7 +5982,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "toyota:J09",
@@ -5991,7 +5991,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "toyota:J10",
@@ -6000,7 +6000,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "toyota:J11",
@@ -6009,7 +6009,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "toyota:J12",
@@ -6018,7 +6018,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "toyota:J13",
@@ -6027,7 +6027,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "toyota:J14",
@@ -6036,7 +6036,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "toyota:J15",
@@ -6045,7 +6045,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "toyota:J16",
@@ -6054,7 +6054,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "toyota:J17",
@@ -6063,7 +6063,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "toyota:P02",
@@ -6072,7 +6072,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "toyota:P03",
@@ -6081,7 +6081,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "toyota:P04",
@@ -6090,7 +6090,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "toyota:P05",
@@ -6099,7 +6099,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "toyota:P10",
@@ -6108,7 +6108,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "toyota:P20",
@@ -6117,7 +6117,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "toyota:P30",
@@ -6126,7 +6126,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "toyota:P40",
@@ -6135,7 +6135,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "toyota:P50",
@@ -6144,7 +6144,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "toyota:P60",
@@ -6153,7 +6153,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "toyota:P70",
@@ -6162,7 +6162,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "toyota:R01",
@@ -6180,7 +6180,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "toyota:W02",
@@ -6189,7 +6189,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "toyota:W03",
@@ -6198,7 +6198,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "toyota:W04",
@@ -6207,7 +6207,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "toyota:W05",
@@ -6216,7 +6216,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "toyota:W06",
@@ -6225,7 +6225,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "toyota:X02",
@@ -6234,7 +6234,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "toyota:X04",
@@ -6243,7 +6243,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "toyota:X06",
@@ -6252,7 +6252,7 @@
       "areaEntryOnly": false,
       "areaApproachOnly": false,
       "uiPassed": true,
-      "limitation": "No confirmed geographic arrival point; source-plan fallback only"
+      "limitation": "Unverified position; geographic map only"
     },
     {
       "key": "toyota:Y02",
@@ -6480,6 +6480,6 @@
       "distanceMetres": 1217.9344200080295
     }
   ],
-  "areaEntranceChoices": 97,
-  "areaApproachChoices": 3
+  "areaEntranceChoices": 127,
+  "areaApproachChoices": 62
 }

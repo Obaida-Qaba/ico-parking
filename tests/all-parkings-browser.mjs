@@ -36,8 +36,9 @@ try{
   await context.addInitScript(fixtures=>{
    const p=new URLSearchParams(location.search),key=p.get('map')+':'+p.get('parking')+(p.get('approach')?'@'+p.get('approach'):'');
    const fixture=fixtures.find(f=>f.key===key),origin=fixture?.origin||[51.30217,3.22683];
-   navigator.geolocation.watchPosition=ok=>{ok({timestamp:Date.now(),coords:{latitude:origin[0],longitude:origin[1],accuracy:3,speed:0,heading:null}});return 701;};
-   navigator.geolocation.clearWatch=()=>{};
+   window.__auditWatchStarts=0;window.__auditWatchStops=0;
+   navigator.geolocation.watchPosition=ok=>{window.__auditWatchStarts++;ok({timestamp:Date.now(),coords:{latitude:origin[0],longitude:origin[1],accuracy:3,speed:0,heading:null}});return 701;};
+   navigator.geolocation.clearWatch=()=>window.__auditWatchStops++;
   },cases);
   const page=await context.newPage();page.setDefaultTimeout(6500);
   let pageErrors=[];page.on('pageerror',error=>pageErrors.push(error.message));
@@ -60,11 +61,16 @@ try{
     }else{
      assert.equal(await page.locator('.gps-target').count(),0,'no unsupported selected GPS point');
      assert.equal(await page.locator('.road-route').count(),0,'no unsupported automatic road route');
-     if(item.sourceOnly)assert.match(await page.locator('.destination-meta').innerText(),/GPS position unverified/);
-     assert.match(button,item.sourceOnly?/View ICO plan/:/View parking/);await page.locator('#route-button').click();
-     await page.waitForFunction(()=>document.querySelector('.leaflet-image-layer')?.naturalWidth>0);
-     assert.equal(await page.locator('.destination-marker').count(),item.sourcePoints,'every source position remains available');
-     result.limitation='No confirmed geographic arrival point; source-plan fallback only';
+     assert.match(await page.locator('.destination-meta').innerText(),/Location unverified/);
+     assert.match(button,/Show on map/);await page.locator('#route-button').click();
+     await page.waitForFunction(()=>document.getElementById('street-view').getAttribute('aria-pressed')==='true');
+     assert.equal(await page.locator('.leaflet-image-layer').count(),0,'an unverified destination never opens a schematic drawing');
+     assert.equal(await page.locator('.destination-marker').count(),0,'no source drawing marker is passed off as a live-map location');
+     assert.equal(await page.locator('.gps-target').count(),0,'map focus must not invent a parking position');
+     assert.equal(await page.locator('.road-route').count(),0,'map focus must not invent a driving route');
+     assert.equal(await page.evaluate(()=>window.__auditWatchStarts),1);
+     assert.equal(await page.evaluate(()=>window.__auditWatchStops),0,'the existing live GPS watch remains active');
+     result.limitation='Unverified position; geographic map only';
     }
     assert.equal(await page.locator('dialog[open]').count(),0);assert.equal(await page.evaluate(()=>localStorage.getItem('portway-gps-pins')),null);
     assert.deepEqual(pageErrors,[]);result.uiPassed=true;

@@ -1,7 +1,7 @@
 {
   "version": 1,
   "reviewed": "2026-11-18",
-  "purpose": "Local search prioritization only. Approximate operator areas; never used as destination coordinates, driving permissions or exact terminal boundaries.",
+  "purpose": "Local search prioritization and broad map overview bounds only. Approximate operator areas; never used as parking destination coordinates, driving permissions or exact terminal boundaries.",
   "maxAccuracyMetres": 60,
   "maxAgeMilliseconds": 30000,
   "hysteresisMetres": 20,

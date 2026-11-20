@@ -1,10 +1,21 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
-import {detectTerminal} from '../public/location-context.mjs';
+import {detectTerminal,destinationOverview} from '../public/location-context.mjs';
 
 const data=JSON.parse(readFileSync(new URL('../public/terminals.json',import.meta.url)));
 const fix=(lat,lon,accuracy=5)=>({lat,lon,accuracy,timestamp:Date.now()});
+
+test('unlocated destinations have terminal overview bounds without inventing a parking point',()=>{
+ for(const [map,terminal,expected] of [['south','bastenaken','bastenaken'],['bastenaken',null,'bastenaken'],['toyota','toyota','toyota'],['north',null,'north']]){
+  const area=destinationOverview({map:{id:map},parking:{code:'UNKNOWN',terminal}},data);
+  assert.equal(area.id,expected);assert.equal(area.precision,'terminal-overview-only');assert.equal(area.routable,false);
+  assert.equal(area.lat,undefined);assert.equal(area.lon,undefined);
+  const polygon=data.regions.find(r=>r.id===expected).polygon;
+  assert.deepEqual(area.bounds,[[Math.min(...polygon.map(p=>p[0])),Math.min(...polygon.map(p=>p[1]))],[Math.max(...polygon.map(p=>p[0])),Math.max(...polygon.map(p=>p[1]))]]);
+ }
+ assert.equal(destinationOverview({map:{id:'missing'},parking:{code:'X'}},data),null,'no made-up viewport for an unknown source');
+});
 
 test('real terminal interiors choose their own local search context',()=>{
  for(const [lat,lon,id] of [[51.301,3.242,'toyota'],[51.29689,3.24508,'hanze'],[51.30217,3.22683,'bastenaken'],[51.326,3.213,'north'],[51.3187,3.2059,'nissan']]){

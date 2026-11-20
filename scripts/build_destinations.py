@@ -226,6 +226,11 @@ for builder,filename in [
     ('build_d_area_destinations.py','d-area-destinations.json'),
     ('build_legacy_vpc_area_destinations.py','legacy-vpc-area-destinations.json'),
     ('build_h_area_destinations.py','h-area-destinations.json'),
+    ('build_h_boundary_area_destinations.py','h-boundary-area-destinations.json'),
+    ('build_ch_area_destinations.py','ch-area-destinations.json'),
+    ('build_toyota_fg_area_destinations.py','toyota-fg-area-destinations.json'),
+    ('build_toyota_de_area_destinations.py','toyota-de-area-destinations.json'),
+    ('build_toyota_bc_area_destinations.py','toyota-bc-area-destinations.json'),
 ]:
     subprocess.run([sys.executable,str(ROOT/'scripts'/builder)],check=True,cwd=ROOT)
     extra=json.loads((ROOT/'scripts/geo'/filename).read_text(encoding='utf-8'))
@@ -238,9 +243,19 @@ for builder,filename in [
 evidence_gaps=list({gap.get('key',gap.get('sourceMap','south')+':'+gap.get('code','')):gap for gap in evidence_gaps if gap.get('key',gap.get('sourceMap','south')+':'+gap.get('code','')) not in out}.values())
 
 audit={}
+def source_supported(source_id, target_id, code):
+    direct=out.get(source_id+':'+code)
+    point=direct if direct and 'lat' in direct and 'lon' in direct else out.get(target_id+':'+code)
+    if not point:return False
+    if 'supportedMaps' in point and (not isinstance(point['supportedMaps'],list) or source_id not in point['supportedMaps']):return False
+    if point.get('chooseApproach'):
+        options=point.get('approaches',[])
+        return bool(options) and all('lat' in p and 'lon' in p and p.get('id') and p.get('name') for p in options)
+    return 'lat' in point and 'lon' in point
+
 for source_map in DATA['maps']:
     target_map='south' if source_map['id'] in ['bastenaken','hanze'] else source_map['id']
-    missing=[p['code'] for p in source_map['parkings'] if target_map+':'+p['code'] not in out and source_map['id']+':'+p['code'] not in out]
+    missing=[p['code'] for p in source_map['parkings'] if not source_supported(source_map['id'],target_map,p['code'])]
     audit[source_map['id']]={'total':len(source_map['parkings']),'routable':len(source_map['parkings'])-len(missing),'missing':missing}
 
 result={

@@ -30,6 +30,16 @@ body.navigating #destination-card{display:none!important}body.searching #destina
 .leaflet-control-attribution{max-width:90vw;font-size:8px!important;background:#edf2eec9!important}.skip{z-index:3000}
 .search-brand,.find-button,.search-options{flex-basis:44px}.search-brand,.find-button,.search-options summary{width:44px;min-width:44px}
 .map-top .gps-summary{display:none}#all-parkings{white-space:nowrap}
+/* Google's native map owns gestures; Leaflet supplies only geographic data. */
+#google-map{position:absolute;inset:0;z-index:0;opacity:0;pointer-events:none}
+#map{position:absolute;inset:0;z-index:1}
+.google-satellite-active #google-map{opacity:1;pointer-events:auto}
+.google-satellite-active #map{background:transparent!important;pointer-events:none}
+.google-satellite-active #map .mapped-road-fill,.google-satellite-active #map .mapped-road-outline,.google-satellite-active #map .terminal-dot{visibility:hidden}
+.google-satellite-active #map .leaflet-control-attribution{pointer-events:auto;bottom:22px}
+.google-satellite-active #map .leaflet-popup,.google-satellite-active #map .parking-cluster-button{pointer-events:auto}
+.google-satellite-active #destination-card,.google-satellite-active.navigating .navigation-panel,.google-satellite-active .navigation-panel{bottom:max(44px,calc(env(safe-area-inset-bottom) + 40px))}
+.satellite-information{font-size:12px;line-height:1.5;color:#61766a;margin:12px 0}.satellite-information p{margin:0 0 8px}.satellite-information .secondary{min-height:44px}
 @media(max-width:379px){.map-top #map-fullscreen{width:44px;padding:0}.map-top #map-fullscreen span{display:none}}
 @media(min-width:760px){:root{--home-inset:20px;--home-top:20px}.map-top{left:auto;top:20px;right:20px;gap:9px}.map-controls,.gps-active .map-controls{top:84px;right:20px}.map-options-panel{top:76px;right:20px;max-height:calc(100dvh - 100px)}.gps-status-alert{top:108px;left:460px;right:84px;max-width:430px}.navigation-panel,.gps-active .navigation-panel{left:20px;bottom:24px}.map-toolbar-button{min-height:44px}.location-context{font-size:12px}}
 @media(max-height:520px) and (min-width:600px){#search-form{max-width:350px}.map-controls,.gps-active .map-controls{top:74px}.map-top{left:auto;top:var(--home-top);gap:6px}.map-top #map-fullscreen{display:none}.map-top .gps-summary{display:none}.map-toolbar-button{font-size:11px}.navigation-panel,.gps-active .navigation-panel{right:78px;bottom:14px;max-width:370px;padding:6px 14px 12px}.navigation-panel>strong{font-size:16px}.navigation-panel>div#navigation-distance{font-size:23px}#destination-card{right:78px;bottom:14px;max-width:370px;max-height:calc(100dvh - 110px)}#search-results,#welcome-content{max-height:calc(100dvh - 115px)}.map-options-panel{top:66px;max-height:calc(100dvh - 80px)}}

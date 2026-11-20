@@ -1,5 +1,13 @@
 # Portway - ICO Zeebrugge parking finder
 
+Google satellite is the default geographic background on the production site. One native Maps JavaScript API map is reused while searching, driving and opening source-plan previews. ICO labels, browser GPS and the blue route use Portway's existing independently sourced data; this imagery change does not establish missing parking coordinates or exact lines. The local road map remains available offline or when Google cannot authenticate or supply a compatible vector renderer.
+
+The production browser key is injected from the GitHub repository secret `PORTWAY_GOOGLE_MAPS_BROWSER_KEY` during deployment. Keep its application restriction at `https://obaida-qaba.github.io/*` and its API restriction at Maps JavaScript API only. The checked-in `public/google-config.mjs` intentionally has an empty key for ordinary local/offline development. Google imagery is never added to the service-worker cache. Public privacy and map terms are linked from Maps options.
+
+Google's current Dynamic Maps allowance is 10,000 free loads per billing account per month; this is not an automatic monthly hard stop. The configured project was left on the user-completed trial without upgrading it to a paid account. Its daily map-load quota was displayed as unlimited and not adjustable; no daily spending cap is claimed. Budget alerts alone do not prevent charges. Review the [official pricing](https://developers.google.com/maps/billing-and-pricing/pricing) and account status before any later upgrade.
+
+Run `npm run test:google` for the real-SDK candidate check (requires the restricted key in the ignored `test-results/google-browser-key.txt`, or `PORTWAY_GOOGLE_MAPS_BROWSER_KEY`). On this Windows host it uses installed Edge for actual hardware WebGL. Set `PORTWAY_GOOGLE_LIVE=1` to check the deployed app and its PWA cache instead of mounting the local candidate at the production origin. Each run creates one native Google map and uses the normal Dynamic Maps allowance. The ordinary unit/browser suites do not require a Google key.
+
 A standalone mobile web app for looking up parking references on published ICO terminal plans. Example: `H61 line 15`.
 
 Hosted app: https://obaida-qaba.github.io/ico-parking/

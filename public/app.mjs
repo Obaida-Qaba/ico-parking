@@ -5,6 +5,8 @@ import { detectTerminal } from './location-context.mjs';
 import { optimizeDrivingMap } from './map-performance.mjs';
 import { destinationChoices,isAreaEntry } from './destinations.mjs';
 import { parkingKey } from './navigation.mjs';
+import { createGoogleSatellite } from './google-satellite.mjs';
+import { GOOGLE_MAPS } from './google-config.mjs';
 
 const paths = {
   search:'m21 21-5-5 M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0',
@@ -35,6 +37,14 @@ function toast(message) { $('toast').textContent=message;$('toast').hidden=false
 function dialog(html) { $('dialog-content').innerHTML=html; if (!$('info-dialog').open) $('info-dialog').showModal(); }
 const gps=createGPS({getMap:()=>map,getSelected:()=>selected,getCatalogue:()=>catalogue,showStreet:()=>{if(!street){street=true;renderMap();}},toast,dialog,escape:esc,onPinChanged:()=>{if(selected)renderGPSActions();},onLocation:locationChanged,onLocationState:locationStateChanged,onUnmapped:hit=>{if(selected!==hit)choose(hit);viewSelectedPlan();}});
 const mapUI=createMapUI({getMap:()=>map});
+const satellite=createGoogleSatellite({element:$('google-map'),apiKey:location.origin===GOOGLE_MAPS.siteOrigin?GOOGLE_MAPS.apiKey:'',onState:state=>{
+  document.body.classList.toggle('google-satellite-active',state==='ready');
+  $('google-map').setAttribute('aria-hidden',String(state!=='ready'));
+  const labels={ready:'Google satellite · parking labels · GPS',loading:'Loading Google satellite…',fallback:'Satellite unavailable · local road map',disabled:'Local road map',plan:'ICO terminal plan'};
+  $('satellite-status').textContent=labels[state]||labels.fallback;
+  $('retry-satellite').hidden=!['fallback'].includes(state);
+}});
+$('retry-satellite').onclick=()=>satellite.retry();
 $('close-dialog').onclick=()=>$('info-dialog').close();
 $('info-dialog').addEventListener('click',e=>{if(e.target===$('info-dialog')) {const r=e.target.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)e.target.close();}});
 
@@ -118,7 +128,8 @@ function renderMap(next=current, focus=null) {
   nodes=L.layerGroup().addTo(map);selectedLayers=L.layerGroup().addTo(map);
     $('map-loading').hidden=street;
   if(street) {
-    map.attributionControl.addAttribution('Routing data &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap contributors</a> · Alignment: <a href="https://geo.api.vlaanderen.be/OMWRGBMRVL/wms" target="_blank" rel="noopener">Digitaal Vlaanderen</a>');
+    map.attributionControl.setPrefix(false);
+    map.attributionControl.addAttribution('Routing data &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap contributors</a>');
     for(const t of [{name:'ICO · Zuidelijke Insteek',pos:[51.2946906,3.2413519]},{name:'ICO · Noordelijke Insteek',pos:[51.3218156,3.2131578]}]) {
       L.marker(t.pos,{icon:L.divIcon({className:'terminal-dot',iconSize:[16,16]}),title:t.name+' · approximate terminal location'}).addTo(map).bindTooltip(t.name+' · approximate terminal location');
     }
@@ -136,6 +147,7 @@ function renderMap(next=current, focus=null) {
     if(focus) highlight(focus);
   }
   gps.bind(map,street);
+  satellite.bind(map,street);
 }
 function updateNodes() {
   if(street || !nodes) return;
@@ -328,7 +340,7 @@ try {
   $('plan-view').onclick=()=>{if(street){street=false;renderMap(current,selectedPlanParking());}mapUI.closeOptions();};
   $('street-view').onclick=()=>{if(!street){street=true;renderMap();}mapUI.closeOptions();};
   $('all-parkings').onclick=()=>{closeSearch();mapUI.closeOptions();if(street){street=false;renderMap(current);}else gps.start({quiet:true});};
-  $('zoom-in').onclick=()=>map.zoomIn();$('zoom-out').onclick=()=>map.zoomOut();$('fit-map').onclick=()=>{if(!gps.fitRoute())fit();};$('locate').onclick=()=>gps.start();$('live-gps-start').onclick=()=>gps.start();
+  $('zoom-in').onclick=()=>map.zoomIn(undefined,{animate:satellite.state!=='ready'});$('zoom-out').onclick=()=>map.zoomOut(undefined,{animate:satellite.state!=='ready'});$('fit-map').onclick=()=>{if(!gps.fitRoute())fit();};$('locate').onclick=()=>gps.start();$('live-gps-start').onclick=()=>gps.start();
   $('source').onclick=showSource;$('about').onclick=showAbout;
   document.addEventListener('keydown',e=>{if(e.key==='/'&&!['INPUT','SELECT','TEXTAREA'].includes(document.activeElement.tagName)){e.preventDefault();$('destination').focus();}if(e.key==='Escape'&&!$('info-dialog').open){if(document.body.classList.contains('searching')){closeSearch();$('destination').blur();}else clearDestination();}});
   const params=new URL(location.href).searchParams, m=atlas.maps.find(m=>m.id===params.get('map'));

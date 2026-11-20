@@ -48,6 +48,7 @@
     <div class="sidebar-footer"><span>ICO ZEEBRUGGE</span><span id="catalogue-count">Loading maps…</span></div>
   </aside>
   <section class="map-workspace" aria-label="Terminal map workspace">
+    <div id="google-map" class="google-satellite" aria-label="Google satellite imagery" aria-hidden="true"></div>
     <div id="map" role="region" aria-label="Interactive terminal plan"></div>
     <div class="map-top">
       <button id="map-fullscreen" class="map-toolbar-button" aria-pressed="false"><i data-icon="expand"></i><span>Full screen</span></button>
@@ -64,12 +65,13 @@
       <div class="view-switch" role="group" aria-label="Map view"><button id="plan-view" class="active" aria-pressed="true"><i data-icon="layers"></i> Terminal plan</button><button id="street-view" aria-pressed="false"><i data-icon="globe"></i> GPS map</button></div>
       <div class="map-heading"><span class="live-pill">TERMINAL PLAN</span><h2 id="map-title">Zuidelijke Insteek</h2><p id="map-subtitle">Loading terminal plan…</p></div>
       <div id="street-notice" class="street-notice" hidden>Road routing uses the available parking approaches. A line number stays a reference inside the parking.</div>
+      <div class="satellite-information"><p id="satellite-status" role="status">Local road map</p><button id="retry-satellite" class="secondary" hidden>Retry Google satellite</button></div>
       <div id="gps-panel" class="gps-panel" hidden><div class="gps-status-row"><span class="gps-live-dot"></span><strong id="gps-text">GPS is off</strong><button id="gps-toggle">Start GPS</button></div><div class="gps-actions"><button id="follow-gps" hidden>Follow my position</button><button id="cancel-pin" hidden>Cancel location selection</button></div></div>
       <button id="live-gps-start" class="gps-start-button"><i data-icon="locate"></i> Show my location</button>
       <div class="map-bottom"><div class="map-library-heading"><span>Terminal plans</span><button id="source" class="inline-button">Source <i data-icon="external"></i></button></div><div id="map-library" class="map-library" aria-label="Available terminal plans"></div></div>
       <div class="route-information"><h3>Route details</h3><p id="navigation-detail">Choose a parking to see route details.</p><div id="destination-options" hidden></div></div>
       <div class="map-source"><span id="map-date"></span><span>Source: ICO / Cewez · Independent app</span></div>
-      <div class="app-utilities"><span id="offline-status" class="connection">Preparing offline maps…</span><button id="install" class="secondary" hidden>Install app</button><button id="about" class="inline-button" aria-label="About maps and coverage"><i data-icon="info"></i> About Portway</button></div>
+      <div class="app-utilities"><span id="offline-status" class="connection">Preparing offline maps…</span><button id="install" class="secondary" hidden>Install app</button><button id="about" class="inline-button" aria-label="About maps and coverage"><i data-icon="info"></i> About Portway</button><a href="privacy.html" target="_blank" rel="noopener">Privacy</a><a href="terms.html" target="_blank" rel="noopener">Map terms</a></div>
     </section>
   </section>
 </main>
